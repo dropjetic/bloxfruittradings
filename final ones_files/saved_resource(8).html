@@ -1,0 +1,3362 @@
+
+<!-- saved from url=(0012)about:srcdoc -->
+<html data-processed-1910435169="true"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=9">
+        
+        
+        <link href="https://cdn.somplo.com/" rel="preconnect" crossorigin="">
+        
+
+
+        <style>
+          body {
+            margin:0;
+            background: #000;
+            overflow: hidden;
+          }
+          #container{
+            overflow:hidden;
+            position: relative;
+            
+          }
+          .stopallanimations *{
+            animation-delay: 0s !important;
+            animation-duration: 0s !important;
+          }
+          .somplomain-page-slide{
+            max-width:100vw;
+            max-height:100vh;
+          }
+          .disable-perspeftive .somplo-main-swiper-slide{
+            -webkit-perspective: initial !important;
+            -moz-perspective: initial !important;
+            -o-perspective: initial !important;
+            perspective: initial !important;
+            }
+        </style>
+
+        <script>
+        
+        var startMyAnimationWorked = false;
+        var timeOutForView;
+        var touchStartDataHeatmap = {};
+        var viewpixFierd = false;
+        var ganimationStarted = false;
+        function handleVisibilityChangeNew() {
+          if (!document[hidden]) {
+    
+            fireImppretionfunc();
+    
+          }
+        }
+    
+        function fireImppretionfunc() {
+          if (typeof parent['impF'] == "undefined" || !parent.impF) {
+            initViewability();
+            
+            if (parent.publisher_config.prod || typeof parent.publisher_config.prod == "undefined") {
+              parent.creatPixel("https://pixel.somplo.com/pixel.png?e=2&tag_id=903355288&val=&order=21&tech=3", true);
+              
+            } else {
+              console.log("pixels_impression");
+            }
+          }
+    
+            
+    
+    
+    
+          parent.impF = true;
+        }
+        function initViewability() {
+          var intervalViewability = frameToRunTimeout.setInterval(function () {
+            if (parent.Visible(parent.publisher_config.element, parent.publisher_config.window)) {
+              if (!ganimationStarted) {
+                
+                if(!parent.isApp || typeof parent.somploElement == "undefined"){
+                  frameToRunTimeout.setTimeout(function(){parent.initAd()}, 100);
+                }
+                
+                ganimationStarted = true;
+              }
+              timeOutForView = frameToRunTimeout.setTimeout(function () {
+                if (!viewpixFierd) {
+                  if (parent.publisher_config.prod || typeof parent.publisher_config.prod == "undefined") {
+                    parent.creatPixel("https://pixel.somplo.com/pixel.png?e=20&tag_id=903355288&val=&order=39&tech=3", true);
+                    if (parent.publisher_config.imp != '' && typeof parent.publisher_config.imp != "undefined" ) {
+                      parent.creatPixel(parent.publisher_config.imp, false);
+                     
+                    }
+                  } else {
+                    console.log("view")
+                  }
+                  frameToRunTimeout.clearInterval(intervalViewability);
+                  viewpixFierd = true;
+                }
+              }, 1000);
+            } else {
+              frameToRunTimeout.clearTimeout(timeOutForView);
+            }
+          }, 200);
+        }
+    
+        var impF = false;
+        var hidden, visibilityChange;
+
+        parent.creatPixel = function (url, cb){
+          var elem = frameElement.parentElement || parent.document.body || document.body;
+          var rand = Math.round(Math.random() * 9999999999999);
+          if(cb){
+            url += '&cb='+rand;
+          }
+          if(typeof parent.publisher_config.prod == 'undefined' || parent.publisher_config.prod){
+            var img = document.createElement('img');
+            img.src = url;
+            img.width = 1;
+            img.height=1;
+            img.style.border = 'none';
+            img.style.position = 'absolute';
+            img.style.bottom = '0';
+            img.style.zIndex = '-9999';
+            elem.appendChild(img);
+          }
+          else{
+            console.log(url);
+          }
+
+
+
+        }
+
+        var somploStartCount = new Date().getTime();
+        var userClicked = false;
+        var isBig = false;
+        var allowTrans = true;
+        var isBigMweb = false;
+        var stopAllAnimationsvar = false;
+        var somploFFirstClickH = false;
+          var animationStarted = false;
+          var SomploResizeEvent;
+          var SomploTimeoutReached;
+          var SomploStarMyAnimationFunction;
+          try{
+             SomploResizeEvent = new Event('SomploResizeEvent');
+          }
+          catch(e) {
+            SomploResizeEvent = document.createEvent('Event');
+            SomploResizeEvent.initEvent('SomploResizeEvent', true, true);
+          }
+
+          try{
+            SomploTimeoutReached = new Event('SomploTimeoutReached');
+          }
+          catch(e) {
+            SomploTimeoutReached = document.createEvent('Event');
+            SomploTimeoutReached.initEvent('SomploTimeoutReached', true, true);
+          }
+
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", function() {
+              window.dispatchEvent(SomploResizeEvent);
+            });
+          } else {
+            window.dispatchEvent(SomploResizeEvent);
+          }
+          var indexTemp = 0;
+          function reloadImage(elem){
+            if(indexTemp < 6){
+              var currentUrl = elem.src;
+              elem.src = currentUrl;
+              indexTemp++;
+            }
+          }
+          function displayImagesIos(elem){
+            console.log(this);
+            if(!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform)){
+
+              //var current = elem.style.display ? elem.style.display : 'block';
+              elem.style.display = 'none';
+              frameToRunTimeout.setTimeout(function(){
+                elem.style.display = 'block';
+              }, 200)
+            }
+
+          }
+          var allowClose = true;
+          
+        if (parent.publisher_config.prod || typeof parent.publisher_config.prod == "undefined") {
+          parent.creatPixel("https://pixel.somplo.com/pixel.png?e=0&tag_id=903355288&val=&order=19&tech=3", true);
+        } else {
+          console.log("init");
+        }
+          
+          var counterForFailFallBack = 0;
+          if(parent.isApp){
+            var activeViewInterval = setInterval(function(){
+              if(typeof parent.google_image_requests != 'undefined'){
+                try{
+                  parent.google_image_requests.forEach(pix=>{
+                    if(pix.src.includes('activeview')){
+                      if(false){
+                        parent.Visible = function(a,b){
+                          return true;
+                          }
+                      }
+                      startMyAnimation();
+                      clearInterval(activeViewInterval);
+                  }
+                  })
+                }
+                catch(e){
+                  if(counterForFailFallBack > 3){
+                  clearInterval(activeViewInterval);
+                  }
+                  counterForFailFallBack++
+                }
+              }else{
+                if(counterForFailFallBack > 3){
+                  clearInterval(activeViewInterval);
+                  }
+                  counterForFailFallBack++
+              }
+            }, 300)
+          }
+          </script><style>
+  @keyframes fadeOut {
+    0% { transform: scale(1); opacity: 1; }
+    25% { transform: scale(1.03); opacity: 0.75; }
+    50% { transform: scale(1.05); opacity: 0.5; }
+    100% {
+      transform: scale(1.1);
+      opacity: 0;
+      filter: blur(2px);
+    }
+  }
+
+  [data-ad-processed="true"] {
+    position: relative;
+  }
+
+  [data-ad-processed="true"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(26, 115, 232, 0.5);
+    border-radius: 50%;
+    z-index: 9999;
+  }
+
+  .ad-explode {
+    animation: fadeOut 0.5s ease-out forwards !important;
+  }
+
+  .ad-removed {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    z-index: -9999 !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+</style>
+
+
+
+
+<script>isMobilecheck = function() {
+  var check = false;
+  (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
+  return check;
+};</script>
+        
+    
+        
+        <script>
+        var mobile_click="null"
+        var main_click_url = "https://www.fiverr.com/search/gigs?query=";
+          if(mobile_click !== "" && mobile_click !== "null"){
+            if (isMobilecheck()) {
+               main_click_url = "null";
+            }
+          }
+          else{
+             main_click_url = "https://www.fiverr.com/search/gigs?query=";
+          }
+          </script>
+        <script>
+        var timeonpage = 5;
+        var pagesTime = true ? JSON.parse('[{"singlePageTime": 5, "singlePageAnimationSpeed": 1, "startAnimationOnTransitionStart":false }]') : JSON.parse('[{"singlePageTime":5,"singlePageAnimationSpeed":1,"autoplay":false,"startAnimationOnTransitionStart":null}]');
+        var applayToAll = true;
+        var amountLoops = null
+        var hasLoops = null
+          var clodeButtonTimeout;
+          var autoCloseTime;
+
+          if(null){
+            allowClose=false;
+          }
+
+
+        </script>
+        <script src="https://cdn.somplo.com/prod/JQuery-2.1.1/jquery-3.4.1.js" type="text/javascript"></script><style>
+  @keyframes fadeOut {
+    0% { transform: scale(1); opacity: 1; }
+    25% { transform: scale(1.03); opacity: 0.75; }
+    50% { transform: scale(1.05); opacity: 0.5; }
+    100% {
+      transform: scale(1.1);
+      opacity: 0;
+      filter: blur(2px);
+    }
+  }
+
+  [data-ad-processed="true"] {
+    position: relative;
+  }
+
+  [data-ad-processed="true"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(26, 115, 232, 0.5);
+    border-radius: 50%;
+    z-index: 9999;
+  }
+
+  .ad-explode {
+    animation: fadeOut 0.5s ease-out forwards !important;
+  }
+
+  .ad-removed {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    z-index: -9999 !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+</style>
+
+        
+      <script src="https://cdn.somplo.com/prod/animated-gradient/backgroundGradientAnimation1697619307.js"></script>
+      
+        <link rel="preload" crossorigin="" as="font" href="https://cdn.somplo.com/assets/130/1_Domaine_Display_Medium_Regular_1654607643.ttf">
+        <script>
+        var autofitElements;
+        var autoFitResizeObzerver;
+          const runAutoFit1 = () => {
+            autofitElements.forEach(container => {
+              const containerVerticalPadding = parseFloat(window.getComputedStyle(container).paddingTop.replace('px', ''))*2;
+              const containerHorizontalPadding = parseFloat(window.getComputedStyle(container).paddingLeft.replace('px', ''))*2;
+              const textSpan = container.querySelector('span');
+              const containerWidth = container.offsetWidth;
+              const containerHeight = container.offsetHeight;
+              const initialFontSize = Math.min(containerWidth, containerHeight);
+              let shouldRun = true;
+              let currentFontSize = parseFloat(textSpan.style.fontSize);
+              textSpan.style.fontSize = initialFontSize + 'px';
+              while (((textSpan.scrollWidth) > (containerWidth -  ((containerHorizontalPadding) ?? 0)) || (textSpan.scrollHeight) > (containerHeight  -  (containerVerticalPadding ?? 0)) || currentFontSize >= container.dataset.max || currentFontSize <= container.dataset.min) && shouldRun) {
+                  currentFontSize = parseFloat(textSpan.style.fontSize);
+                  textSpan.style.fontSize = (currentFontSize - 1) + 'px';
+                  currentFontSize = parseFloat(textSpan.style.fontSize);
+                  if(currentFontSize <= container.dataset.min || (currentFontSize >= container.dataset.max && !((textSpan.scrollWidth + (containerHorizontalPadding ?? 0)) > containerWidth || (textSpan.scrollHeight + (containerVerticalPadding ?? 0)) > containerHeight))){
+                    if(currentFontSize >= container.dataset.max){
+                      textSpan.style.fontSize = container.dataset.max + 'px';
+                    }
+                    else if(currentFontSize <= container.dataset.max){
+                      textSpan.style.fontSize = container.dataset.min + 'px';
+                    }
+                    shouldRun = false;
+                   // break;
+                  }
+              }
+            })
+          }
+          window.addEventListener('load', function() {
+            autofitElements = document.querySelectorAll('.autofit')
+            runAutoFit1()
+        var autofitLimmiter;
+         autoFitResizeObzerver = new ResizeObserver(entries => {
+          clearInterval(autofitLimmiter);
+          autofitLimmiter = setTimeout(function(){
+            runAutoFit1();
+          }, 300)
+        });
+        // Observe one or multiple elements
+        try{
+          autofitElements.forEach((element)=>{
+            autoFitResizeObzerver.observe(element);
+          })
+        }
+        catch(e){
+        }
+          });
+          window.addEventListener('reinitautofit', ()=>{
+            if(!autofitElements){
+              return false;
+            }
+            autofitElements.forEach((element)=>{
+              autoFitResizeObzerver.unobserve(element);
+            })
+            autofitElements = document.querySelectorAll('.autofit')
+            autofitElements.forEach((element)=>{
+              autoFitResizeObzerver.observe(element);
+            })
+
+          });
+        </script>
+        <link rel="stylesheet" href="https://cdn.somplo.com/prod/new-caru/110522/carousel.css">
+<script src="https://cdn.somplo.com/prod/new-caru/160124/carousel.js"></script>
+    <style type="text/css">
+    
+    
+        #closeButton {
+          margin: 0px 0px -32px;
+          position: fixed;
+          left: 0px;
+          top: 11px;
+          width: 32px;
+          height: 32px;
+          z-index: 99996;
+          background-image: url(https://cdn.somplo.com/2017/11/14/numbers2.png);
+          background-position: 0px 672px;
+          display: none !important;
+      }
+      body{
+        background: #000000;
+        padding: 0 !important;
+        margin:0;
+      }
+      .somplomain-page-slide{
+        background: #000000;
+      }
+      .hiddenComponent{
+        display:none !important;
+      }
+      #somploIcon{
+        position: fixed;
+        z-index: 99999;
+        width: 16px;
+        max-width: 11%;
+        opacity:0.7;
+        cursor: pointer;
+      }
+      #somploIcon:hover{
+        opacity:1;
+      }
+      .bottom-left{
+        bottom: 2px;
+        left: 2px;
+      }
+      .bottom-right{
+        bottom: 2px;
+        right: 2px;
+      }
+      .top-right{
+        top: 2px;
+        right: 2px;
+      }
+      .top-left{
+        top: 2px;
+        left: 2px;
+      }
+      
+      .diamond{
+        background-size: 50.1% 50.1% !important;
+        background-position: bottom right, bottom left, top right, top left !important;
+        background-repeat: no-repeat !important;
+      }
+      #backgeoudImage10{
+         cursor: pointer;
+         object-fit: fill;
+         height: 100%;
+         width: 100%;
+       }
+       #backgeoudImageCon10{
+        cursor: pointer;
+        display:block;
+        background:rgba(255,128,174,1);
+
+       }
+       #backgeoudImageCon10{
+        animation-name: null;
+        animation-duration: 3s;
+        animation-repeat: 4;
+
+       }
+       @keyframes slideRightToLeft {
+        0%   {background-position: 0% 0%;}
+        50%  {background-position: 100% 0%;}
+        100% {background-position: 0% 0%;}
+      }
+      
+      #imageDom10 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+    
+      
+        
+        #imageCon11{
+          position: absolute;
+          pointer-events: none;
+          z-index:11;
+          width : 100%;
+          height : 100%;
+          left : 0%;
+    top : 0%;
+    transform : translate3d(0%, 0%, 0px);
+    
+          
+          display:block;
+          max-width: 100vw;
+          max-height: 100vh;
+        }
+        #imageCon11 img {
+          filter: drop-shadow(none);
+        }
+        
+        #imageCon11 img{
+          pointer-events: initial;
+        }
+        
+
+        
+        
+        #imgAniCon11{
+          width:100%;
+          height:100%;
+          cursor: pointer;
+          transform : rotateZ(0deg);
+      transform-origin : center;
+        }
+        #image-enter-exit-container11 {
+          width: 100%;
+          height: 100%;
+          overflow: unset;
+        }
+        
+
+        
+
+        
+        
+        
+        
+      
+      
+
+        
+        @font-face {
+        font-family:"Domaine Display";
+       src:url(https://cdn.somplo.com/assets/130/1_Domaine_Display_Medium_Regular_1654607643.ttf);
+        font-weight:500;
+        }
+
+        .textPositionClass12{
+          left : 10%;
+    top : 48%;
+    transform : translate3d(-10%, -48%, 0px);
+    
+         }
+         #textChild12{
+          align-items: center;
+          display: flex;
+          justify-content:left;
+          width:100%;
+          height:100%;
+          transform : rotateZ(0deg);
+      transform-origin : center;
+          
+        }
+        #text-enter-exit-container12 {
+          width: 100%;
+          height: 100%;
+        }
+        
+        .isBuilder #textCon12{
+         /* */
+        }
+        #textCon12 {
+        padding: 0px 0px;
+        box-sizing: border-box;
+        
+        position: absolute;
+        cursor:pointer;
+        
+        z-index:12;
+        width:50%;
+        font-family:"Domaine Display", display;
+      box-sizing: border-box;
+        font-size:40px;
+        font-weight:500;
+        display:block;
+        text-align:left;
+        
+        direction:ltr;
+        letter-spacing:0px;
+        }
+        #textCon12.autofit {
+          
+        }
+        
+        #textCon12 span{
+        font-family:"Domaine Display", display;
+        color: rgba(255,255,255,1);
+        font-size:40px;
+        font-weight:500;
+        line-height:1;
+        text-shadow:none;
+        display:block;
+        transform: rotate(0deg);
+        max-height:100%;
+        max-width:100%;
+        box-sizing: border-box;
+        }
+        #textCon12 span i{
+          font-style: inherit;
+         }
+         #textCon12 span i.line{
+          width: 0px;
+          display: none;
+         }
+        
+        
+        
+        
+        
+        
+
+        
+      
+
+        
+        @font-face {
+        font-family:"Domaine Display";
+       src:url(https://cdn.somplo.com/assets/130/1_domaine-display-web-medium-italic_1626362584.otf);
+        font-weight:500italic;
+        }
+
+        .textPositionClass13{
+          left : 8%;
+    top : 75%;
+    transform : translate3d(-8%, -75%, 0px);
+    
+         }
+         #textChild13{
+          align-items: center;
+          display: flex;
+          justify-content:left;
+          width:100%;
+          height:100%;
+          transform : rotateZ(0deg);
+      transform-origin : center;
+          
+        }
+        #text-enter-exit-container13 {
+          width: 100%;
+          height: 100%;
+        }
+        
+        .isBuilder #textCon13{
+         /* */
+        }
+        #textCon13 {
+        padding: 0px 0px;
+        box-sizing: border-box;
+        
+        position: absolute;
+        cursor:pointer;
+        
+        z-index:13;
+        width:45%;
+        font-family:"Domaine Display", sans-serif;
+      box-sizing: border-box;
+        font-size:48px;
+        font-weight:500italic;
+        display:block;
+        text-align:left;
+        
+        direction:ltr;
+        letter-spacing:0px;
+        }
+        #textCon13.autofit {
+          
+        }
+        
+        #textCon13 span{
+        font-family:"Domaine Display", sans-serif;
+        color: rgba(37,66,0,0);
+        font-size:48px;
+        font-weight:500italic;
+        line-height:1;
+        text-shadow:none;
+        display:block;
+        transform: rotate(0deg);
+        max-height:100%;
+        max-width:100%;
+        box-sizing: border-box;
+        }
+        #textCon13 span i{
+          font-style: inherit;
+         }
+         #textCon13 span i.line{
+          width: 0px;
+          display: none;
+         }
+        
+        
+        
+        
+        
+        
+
+        
+      
+      .buttonPositionClass14{
+        left : 97%;
+    top : 50%;
+    transform : translate3d(-97%, -50%, 0px);
+    
+      }
+      
+
+      #buttonChild14 {
+        width:100%;
+        height:100%;
+        transform : rotateZ(0deg);
+      transform-origin : center;
+      }
+      #button-enter-exit-container14 {
+        width: 100%;
+        height: 100%;
+      }
+      
+      
+      
+      
+      
+        @font-face {
+          font-family:"Macan";
+          src: url(https://cdn.somplo.com/assets/90/1_macan-semibold.d147812_1622478449.otf);
+          font-weight: 600;
+        }
+
+
+        #buttonContainer14 {
+          position: absolute;
+          display:block;
+          z-index: 14;
+          
+        }
+
+        #buttonElement14 {
+          cursor: pointer;
+        }
+
+        #buttonContainer14 button {
+          background: rgba(37,66,0,1);
+          font-size: 18px;
+          direction:ltr;
+          padding: 15px 24px;
+          border-radius: 28px;
+          border: 0px rgba(255,255,255,1) solid;
+          color: rgba(255,255,255,1);
+          font-family:"Macan", sans-serif;
+          font-weight:600;
+          position: relative;
+          overflow: hidden;
+          white-space: nowrap;
+          line-height: 1;
+        }
+        
+      
+
+    
+
+    .slide .bg-img img {
+      display: block;
+    }
+    
+
+    #carousel15{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display:block;
+      z-index:15;
+      pointer-events: none;
+    }
+    .carousel15-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display:block;
+      z-index:15;
+      pointer-events: none;
+    }
+    .carousel15-wrapper .dots-wrap {
+      top:83%;
+      left:50%;
+      transform: translate3d(-50%, -83%, 0px);
+    }
+
+    .carousel15-wrapper * {
+      pointer-events: initial;
+    }
+
+    .carousel15-wrapper .arrows-container {
+      width : 57.5%;
+      top: 50%;
+      left : 50%;
+      transform: translate3d(-50%, -50%, 0px);
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    
+    .carousel15-wrapper .arrows-container .carousel-arrow {
+      pointer-events: initial;
+    }
+
+    .carousel15-wrapper .arrows-container .carousel-arrow {
+      width : 13.043478260869565%;
+    }
+    .carousel15-wrapper .arrows-container .carousel-arrow svg{
+      fill: rgba(2,178,253,1);
+    }
+
+    
+      #carousel15_0{
+        position: absolute;
+        display:block;
+        height: 91%;
+        
+        
+        z-index : 0;
+      }
+      #carousel15_0.carouselNewPositionClass15{
+        top:59%;
+        left:60%;
+        transform: translate3d(-60%, -59%, 0px);
+      }
+      
+
+      
+      
+
+      
+    
+    
+      
+  
+  
+    
+  #carousel15_0.somplo-carousel{
+    width: 200px!important;
+    height: 217px!important;
+}
+#carousel15_0 .slide{
+    border-radius: 16px;
+    box-shadow: 0px 5px 5px #0000003d;
+    overflow: hidden;
+    font-family: 'Macan';
+    font-weight: 700;
+    font-size: 0.928em;
+    line-height: 107%;
+    color: #404145;
+}
+#carousel15_0 box {
+    display: flex;
+    flex-direction: column;
+}
+#carousel15_0 picture {
+    height: 50%
+}
+#carousel15_0 .container16{
+    height: 50%;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+}
+#carousel15_0 .header16{
+    display: flex;
+    padding: 5% 6% 0 6%;
+    width: 88%;
+    position: relative;
+}
+#carousel15_0 .title16{
+    width: auto;
+    font-size: 8px;
+}
+#carousel15_0 .content16{
+    box-shadow: 0 0.5px 0.5px #DADBDD;
+    font-size: 16px;
+    padding: 0px 6% 2px 6%;
+    width: 88%;
+    height: 49px;
+}
+#carousel15_0 .footer16{
+    width: 88%;
+    padding: 4% 6% 0 6%;
+    display: flex;
+    justify-content: space-between;
+}
+#carousel15_0 .footer16 .icons16{
+    width: auto;
+}
+#carousel15_0 .footer16 .icons16 svg{
+    width: 30px;
+}
+#carousel15_0 .footer16 .price16{
+    width: auto;
+    font-size: 0.585em;
+    color: #595959;
+}
+#carousel15_0 .avatar16{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+#carousel15_0 .star{
+    position: absolute;
+    left: 36%;
+}
+#carousel15_0 .cost16{
+    color: #0c141f;
+    font-size: 1.357em;
+}
+#carousel15_0 .bg-img img{
+    object-fit: cover;
+}
+.all-text-con {
+    position: absolute;
+    top: 70%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 300px;
+    height: 50px;
+    font-size: 100px;
+    font-family: "Domaine Display", serif;
+    color: #254200;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1;
+    text-align: left;
+}
+
+.sec-con {
+    display: inline-flex;
+}
+.all-text-con1 {
+    z-index: 9999;
+    width: 100%;
+    height: 49px;
+    font-size: 200px;
+    line-height: 1.4;
+    letter-spacing: -0.01428em;
+    color: #222325;
+    font-weight: 600;
+}
+.sec-con1 {
+    display: inline-flex;
+}
+.header16 span {
+    font-family: 'Macan';
+    font-style: normal;
+    font-weight: 700;
+    color: #1DBF73;
+    position: absolute;
+    left: 90%;
+    font-size: 12px;
+}
+.bg-img img {
+    width: 100%!important;
+}
+
+    .disable-pointer-events-17 {
+      pointer-events: none;
+    }
+      
+      .somplo-hand-17-container {
+        position: absolute;
+        display: none;
+        z-index: 17;
+        display:block;
+        
+          width: auto;
+          height: 30%;
+        
+        
+      filter:unset;
+      
+      }
+
+      .somplo-hand-17 {
+        
+          width: auto;
+          height: 100%;
+        
+      }
+
+      .somplo-hand-17-animation {
+        animation-name: somplo-hand-17-steps;
+        animation-duration: 1.6s;
+        animation-iteration-count: 3;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: both;
+      }
+
+      @keyframes somplo-hand-17-steps {
+        
+        0% {
+          transform: scaleX(1) scaleY(1) translateY(-40%) translateX(-80%) translateZ(0px);
+          left: 80%;
+           top: 40%;
+        }
+      
+        50% {
+          transform: scaleX(1) scaleY(1) translateY(-40%) translateX(-45%) translateZ(0px);
+          left: 45%;
+           top: 40%;
+        }
+      
+        100% {
+          transform: scaleX(1) scaleY(1) translateY(-40%) translateX(-80%) translateZ(0px);
+          left: 80%;
+           top: 40%;
+        }
+      
+      }
+
+      .somplo-hand-17-animation-rorate {
+        animation-name: somplo-hand-17-rotate;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-direction: alternate;
+
+        -webkit-transform-origin: 50% 50%;
+        -moz-transform-origin: 50% 50%;
+        -o-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+      }
+
+      @keyframes somplo-hand-17-rotate {
+        0% {
+          transform: rotate(50deg);
+        }
+        100% {
+          transform: rotate(-50deg);
+        }
+      }
+    
+    </style>
+    
+
+<script>
+function checkIosVersionN(){
+  var needPerspectiveFix = false;
+  function isSafari() {
+    var ua = window.navigator.userAgent.toLowerCase();
+    return ua.indexOf('safari') >= 0 && ua.indexOf('chrome') < 0 && ua.indexOf('android') < 0;
+  }
+  if (isSafari()) {
+    var ua = String(window.navigator.userAgent);
+    if (ua.includes('Version/')) {
+      var [major, minor] = ua.split('Version/')[1].split(' ')[0].split('.').map(num => Number(num));
+      needPerspectiveFix = major < 16 || major === 16 && minor < 2;
+    }
+  }
+  return {
+    isSafari: needPerspectiveFix || isSafari(),
+    needPerspectiveFix,
+    isWebView: /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(window.navigator.userAgent)
+  };
+}
+
+function checkIosVersion(){
+  var agent = window.navigator.userAgent,
+  start = agent.indexOf( 'OS ' );
+  if( ( agent.indexOf( 'iPhone' ) > -1 || agent.indexOf( 'iPad' ) > -1 ) && start > -1 ){
+      return window.Number( agent.substr( start + 3, 4 ).replace( '_', '.' ) );
+  }
+  return 0;
+}
+try{}catch(e){}
+function getAllUrlParams(url) {
+
+  // get query string from url (optional) or window
+  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+
+  // we'll store the parameters here
+  var obj = {};
+
+  // if query string exists
+  if (queryString) {
+
+    // stuff after # is not part of query string, so get rid of it
+    queryString = queryString.split('#')[0];
+
+    // split our query string into its component parts
+    var arr = queryString.split('&');
+
+    for (var i = 0; i < arr.length; i++) {
+      // separate the keys and the values
+      var a = arr[i].split('=');
+
+      // set parameter name and value (use 'true' if empty)
+      var paramName = a[0];
+      var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+
+      // (optional) keep case consistent
+      paramName = paramName.toLowerCase();
+      if (typeof paramValue === 'string') paramValue = paramValue.toLowerCase();
+
+      // if the paramName ends with square brackets, e.g. colors[] or colors[2]
+      if (paramName.match(/[(d+)?]$/)) {
+
+        // create key if it doesn't exist
+        var key = paramName.replace(/[(d+)?]/, '');
+        if (!obj[key]) obj[key] = [];
+
+        // if it's an indexed array e.g. colors[2]
+        if (paramName.match(/[d+]$/)) {
+          // get the index value and add the entry at the appropriate position
+          var index = /[(d+)]/.exec(paramName)[1];
+          obj[key][index] = paramValue;
+        } else {
+          // otherwise add the value to the end of the array
+          obj[key].push(paramValue);
+        }
+      } else {
+        // we're dealing with a string
+        if (!obj[paramName]) {
+          // if it doesn't exist, create property
+          obj[paramName] = paramValue;
+        } else if (obj[paramName] && typeof obj[paramName] === 'string'){
+          // if property does exist and it's a string, convert it to an array
+          obj[paramName] = [obj[paramName]];
+          obj[paramName].push(paramValue);
+        } else {
+          // otherwise add the property
+          obj[paramName].push(paramValue);
+        }
+      }
+    }
+  }
+
+  return obj;
+}
+
+
+function getMaxUrlEscapes(url) {
+  try{
+      let maxEscapes = 0;
+  let max_while = 0;
+const _url = new URL(url);
+const params = getAllUrlParams(url);
+  for (let index = 0; index < Object.keys(params).length; index++) {
+   if(params[Object.keys(params)[index]].includes('http')){
+      let urlParam =params[Object.keys(params)[index]];
+       let counter = 0;
+       while(urlParam !== decodeURIComponent(urlParam) && max_while < 100 && !urlParam.indexOf('=', urlParam.length - 1)){
+           urlParam = decodeURIComponent(urlParam);
+           counter++
+       max_while++;
+       }
+       try{
+          if(counter > maxEscapes && urlParam.indexOf('=', urlParam.length - 1)){
+           maxEscapes = counter;
+       } 
+       }
+       catch(e){
+           if(counter > maxEscapes){
+           maxEscapes = counter;
+       }
+       }
+       
+   }   
+  }
+return maxEscapes + 1; 
+  }
+  catch(e){
+      return 1;
+  }
+
+}
+</script>
+      <style>
+  @keyframes fadeOut {
+    0% { transform: scale(1); opacity: 1; }
+    25% { transform: scale(1.03); opacity: 0.75; }
+    50% { transform: scale(1.05); opacity: 0.5; }
+    100% {
+      transform: scale(1.1);
+      opacity: 0;
+      filter: blur(2px);
+    }
+  }
+
+  [data-ad-processed="true"] {
+    position: relative;
+  }
+
+  [data-ad-processed="true"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(26, 115, 232, 0.5);
+    border-radius: 50%;
+    z-index: 9999;
+  }
+
+  .ad-explode {
+    animation: fadeOut 0.5s ease-out forwards !important;
+  }
+
+  .ad-removed {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    z-index: -9999 !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+</style><style>
+  @keyframes fadeOut {
+    0% { transform: scale(1); opacity: 1; }
+    25% { transform: scale(1.03); opacity: 0.75; }
+    50% { transform: scale(1.05); opacity: 0.5; }
+    100% {
+      transform: scale(1.1);
+      opacity: 0;
+      filter: blur(2px);
+    }
+  }
+
+  [data-ad-processed="true"] {
+    position: relative;
+  }
+
+  [data-ad-processed="true"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(26, 115, 232, 0.5);
+    border-radius: 50%;
+    z-index: 9999;
+  }
+
+  .ad-explode {
+    animation: fadeOut 0.5s ease-out forwards !important;
+  }
+
+  .ad-removed {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    z-index: -9999 !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+</style></head>
+      <body class="">
+      <iframe id="timeouts" src="about:blank" style="width:1px;height:1px;border:none;position:absolute;pointer-events: none;top:0;left:0;"></iframe>
+      <script>
+      var frameToRunTimeout = document.getElementById('timeouts').contentWindow;
+      </script>
+        <div id="container" style="overflow: hidden; max-width: 100vw; max-height: 100vh; width: 970px; height: 250px; display: block;">
+          
+        <div id="closeButton" onclick="parent.publisher_config.close();"></div>
+        
+        <div id="somploIcon" class="bottom-left">
+        <img alt="Somplo" onclick="parent.somploClick(&#39;https://somplo.com?utm_source=icon&amp;utm_medium=icon&#39;)" src="https://cdn.somplo.com/assets/1/1037676_somplo_22_1545928755.png" width="100%">
+        </div>
+        
+        <script>
+        if(!checkIosVersionN().needPerspectiveFix && checkIosVersionN().isSafari){
+          frameToRunTimeout.setTimeout(function(){
+            document.body.style.perspective = '1px';
+            frameToRunTimeout.setTimeout(function(){
+              document.body.style.perspective = 'unset';
+            }, 500)
+            if(false){
+              somploMainSwiper.isSafari = false;
+            }
+          }, 500)
+          }
+        </script>
+        
+        <script>
+
+         clodeButtonTimeout = frameToRunTimeout.setTimeout(function(){
+           if ((parent.publisher_config.close_Button || parent.publisher_config.close_button) && (parent.publisher_config.platform === "mweb" || (false && !parent.isApp)) || parent.isApp) {
+            parent.releaseClose();
+          }
+         }, 500)
+
+         
+         
+         
+          </script>
+        
+
+
+    
+      <div id="backgeoudImageCon10" style="width:100%;height:100%;">
+      
+    
+
+    </div>
+
+    <script>
+   var indexTempPic = 0;
+   function pictureErrorHandler(elem){
+      if(indexTempPic < 6){
+        var currentUrl = elem.srcset;
+        elem.srcset = currentUrl;
+        indexTempPic++;
+      }
+    }
+
+
+        document.querySelector("#backgeoudImageCon10").onclick = function(event){
+          if(false){
+            null
+            somploSlideTo();
+          }
+          else if(false){
+            ;
+          }
+          else{
+            null
+            mainClick("null",null,event)
+          }
+        };
+
+
+
+        </script>
+        
+          
+      <div id="imageCon11" class="">
+      <div id="image-enter-exit-container11" class="imageConEnterAnimtion11">
+      <div id="imgAniCon11" class="continer-for-animation11 animated-image11">
+          
+    <picture>
+        
+        <img onerror="reloadImage(this)" id="image11" src="https://cdn.somplo.com/assets/130/1_logo_970x250_1654611479.png" width="100%" height="100%">
+    </picture>
+        </div>
+      </div>
+    </div>
+    <script>
+window.addEventListener('pageExitAnmation', function(event){
+  if (event.detail === 0) {
+    
+    
+
+    document.querySelector("#image-enter-exit-container11").classList.remove("imageConEnterAnimtion11");
+    
+    document.querySelector("#imgAniCon11").classList.remove("animated-image11");
+    
+  }
+})
+
+
+
+    document.querySelector("#imageCon11 img").onclick = function(event){
+
+      
+
+      if(false){
+        null
+        somploSlideTo();
+      }
+      else if(false){
+        ;
+      }
+      else{
+
+        
+        mainClick("null",null,event)
+      }
+
+
+    }
+
+          function imageInitLoacation11(){
+
+          }
+
+    </script>
+      
+       <div id="textCon12" class="textPositionClass12" data-min="4" data-paddingvertical="0" data-paddinghorizontal="0" data-max="80">
+          <div id="text-enter-exit-container12" class="textConEnterAnimtion12">
+            <div id="textChild12" class="animated-text12">
+            
+            <span id="text12">Still looking for</span>
+            
+            
+            </div>
+          </div>
+        </div>
+        <script>
+        window.addEventListener('pageExitAnmation', function(event){
+          if (event.detail === 0) {
+
+            
+    
+
+    document.querySelector("#text-enter-exit-container12").classList.remove("textConEnterAnimtion12");
+    
+    document.querySelector("#textChild12").classList.remove("animated-text12");
+    
+          }
+        })
+        function runTextTypewriterAnimationRun12 (startFromChar = 0){
+          var typewriterText = document.querySelector('#text12 .text');
+          var typewriterLine = document.querySelector('#text12 .line');
+          var component = document.querySelector('#textCon12');
+          if (typewriterText) {
+            var textIndex = 0;
+            var allText = 'Still looking for';
+            var textLength = allText.length;
+            var normalWidth = component.getBoundingClientRect().width;
+            var normalHeight = component.getBoundingClientRect().height;
+            component.style.width = normalWidth + 'px';
+            component.style.height = normalHeight + 'px';
+            typewriterText.innerHTML = '';
+            component.style.opacity = 1;
+            typewriterLine.style.display = 'inline-block';
+            var animationTime = 1 * 1000;
+            var intervalTime = animationTime / allText.length;
+            if (startFromChar) {
+              textIndex = startFromChar;
+              typewriterText.innerHTML = allText.slice(0, startFromChar); 
+            }
+            window.stopTypewriterAnimation12 = function () {
+              frameToRunTimeout.clearInterval(window.typewriteInterval12);
+              if (true) {
+                typewriterLine.style.color = 'transparent';
+                typewriterLine.style.textShadow = 'none';
+              }
+            }
+            window.afterStopTypewriterAnimation12 = function () {
+              component.currentChar = 0;
+              component.style.opacity = '';
+              typewriterText.innerHTML = allText;
+              component.style.width = '';
+              component.style.height = '';
+            }
+            window.typewriteInterval12 = frameToRunTimeout.setInterval(function(){
+              if (textIndex != textLength) {
+                var currentText = typewriterText.innerHTML;
+                var newText = currentText + allText.charAt(textIndex);
+                typewriterText.innerHTML = newText;
+                textIndex++;                
+                component.currentChar = textIndex;
+              } else {
+                window.stopTypewriterAnimation12();
+              }
+            }, intervalTime);
+
+          }
+        }
+        document.getElementById("text12").onclick = function(){
+        mainClick("null", "null");
+        }
+        
+        </script>
+      
+       <div id="textCon13" class="textPositionClass13" data-min="4" data-paddingvertical="0" data-paddinghorizontal="0" data-max="80">
+          <div id="text-enter-exit-container13" class="textConEnterAnimtion13">
+            <div id="textChild13" class="animated-text13">
+            
+            <span id="text13">Website design?</span>
+            
+            
+            </div>
+          </div>
+        </div>
+        <script>
+        window.addEventListener('pageExitAnmation', function(event){
+          if (event.detail === 0) {
+
+            
+    
+
+    document.querySelector("#text-enter-exit-container13").classList.remove("textConEnterAnimtion13");
+    
+    document.querySelector("#textChild13").classList.remove("animated-text13");
+    
+          }
+        })
+        function runTextTypewriterAnimationRun13 (startFromChar = 0){
+          var typewriterText = document.querySelector('#text13 .text');
+          var typewriterLine = document.querySelector('#text13 .line');
+          var component = document.querySelector('#textCon13');
+          if (typewriterText) {
+            var textIndex = 0;
+            var allText = 'Website design?';
+            var textLength = allText.length;
+            var normalWidth = component.getBoundingClientRect().width;
+            var normalHeight = component.getBoundingClientRect().height;
+            component.style.width = normalWidth + 'px';
+            component.style.height = normalHeight + 'px';
+            typewriterText.innerHTML = '';
+            component.style.opacity = 1;
+            typewriterLine.style.display = 'inline-block';
+            var animationTime = 1 * 1000;
+            var intervalTime = animationTime / allText.length;
+            if (startFromChar) {
+              textIndex = startFromChar;
+              typewriterText.innerHTML = allText.slice(0, startFromChar); 
+            }
+            window.stopTypewriterAnimation13 = function () {
+              frameToRunTimeout.clearInterval(window.typewriteInterval13);
+              if (true) {
+                typewriterLine.style.color = 'transparent';
+                typewriterLine.style.textShadow = 'none';
+              }
+            }
+            window.afterStopTypewriterAnimation13 = function () {
+              component.currentChar = 0;
+              component.style.opacity = '';
+              typewriterText.innerHTML = allText;
+              component.style.width = '';
+              component.style.height = '';
+            }
+            window.typewriteInterval13 = frameToRunTimeout.setInterval(function(){
+              if (textIndex != textLength) {
+                var currentText = typewriterText.innerHTML;
+                var newText = currentText + allText.charAt(textIndex);
+                typewriterText.innerHTML = newText;
+                textIndex++;                
+                component.currentChar = textIndex;
+              } else {
+                window.stopTypewriterAnimation13();
+              }
+            }, intervalTime);
+
+          }
+        }
+        document.getElementById("text13").onclick = function(){
+        mainClick("null", "null");
+        }
+        
+        </script>
+      
+        <div id="buttonContainer14" class="buttonPositionClass14">
+          <div id="button-enter-exit-container14" class="buttonContainerEnterAnimtion14">
+            <div id="buttonChild14">
+              <button id="buttonElement14" class="animated-button14">Hire an expert</button>
+            </div>
+          </div>
+
+        </div>
+          <script>
+          window.addEventListener('pageExitAnmation', function(){
+            if (event.detail === 0) {
+              
+    
+
+    document.querySelector("#button-enter-exit-container14").classList.remove("buttonContainerEnterAnimtion14");
+    
+    document.querySelector("#buttonContainer14 button").classList.remove("animated-button14");
+    
+
+           
+            }
+          })
+            if (!false) {
+              document.querySelector("#buttonContainer14 button").onclick = function(event){
+
+                
+
+                if(false){
+                  null
+                  somploSlideTo();
+                }
+                else if(false){
+                  
+                }
+                else{
+                  null
+                  mainClick("null",null,event);
+                }
+              };
+            }
+
+            function resize14Function() {
+
+
+              var isBigMweb = window.innerWidth / window.innerHeight < 640/1080;
+              var isBig = window.innerWidth / window.innerHeight < 640/1210;
+
+              if(false){
+              }
+              else{
+              }
+
+            }
+
+            resize14Function();
+
+
+            function animationEndHendler(){
+
+            }
+          </script>
+      
+    
+    <div class="carousel15-wrapper  ">
+        
+    <div id="carousel15_0" class="somplo-carousel keep-proportions carouselNewPositionClass15 ltr transform-coverflowAlt" style="height: 227.5px; width: 377.144px;">
+      <div class="overflow-box">
+        <div class="base-box">
+          <div class="slides-wrap">
+            
+      <div class="slide carouselslide0 not-clone" onclick="caruClick15(&#39;https://www.fiverr.com/251340629?utm_source=dv360&amp;utm_medium=cpm&amp;utm_campaign=dynamic_rmk&#39;, 7496834, 0)" style="width: 200px; margin-right: 2px; transform: scale(1) translateX(0%); opacity: 1; display: flex; z-index: 3;">
+        <div class="bg-box">
+          
+          
+    <picture class="bg-img">
+        
+        
+        <img draggable="false" style="width:unset;" src="https://vast.somplo.com/fiver/relay.php?requested_url=t_fb_prd_ctlg,q_auto,f_auto/gigs/251340629/original/986ab273bba64b63a49c6df0f05fcd800b24787d.jpg" alt="">
+    </picture>
+        <div class="container16"><div class="header16"><p class="title16">upenkumar</p><span class="number"></span></div><div class="content16"><div class="all-text-con1" style="font-size: 12px;"><div class="sec-con1"><span class="number">do graphic design in adobe illustrator, indesign, coreldraw</span></div></div></div><div class="footer16"><div class="icons16">
+    <svg class="bottom-icons" width="25" height="8" viewBox="0 0 30 12" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="0.915091" y1="1.42707" x2="11.0262" y2="1.42707" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="5.76026" x2="11.0259" y2="5.76026" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="10.0935" x2="11.0259" y2="10.0935" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><path d="M27.9597 2.1174C26.7229 1.06341 24.8835 1.25299 23.7482 2.42434L23.3036 2.8825L22.859 2.42434C21.726 1.25299 19.8844 1.06341 18.6475 2.1174C17.2302 3.32712 17.1557 5.49829 18.4241 6.80957L22.7913 11.3189C23.0734 11.6101 23.5316 11.6101 23.8137 11.3189L28.1809 6.80957C29.4515 5.49829 29.377 3.32712 27.9597 2.1174Z" fill="#DADBDD"></path></svg>
+    </div><div class="price16">Starting at <span class="cost16"> $25!</span></div></div></div></div>
+        
+      </div>
+    
+      <div class="slide carouselslide1 not-clone" onclick="caruClick15(&#39;https://www.fiverr.com/197460930?utm_source=dv360&amp;utm_medium=cpm&amp;utm_campaign=dynamic_rmk&#39;, 4701356, 1)" style="width: 200px; margin-right: 2px; transform: scale(0.7) translateX(74.2857%); opacity: 0.5; display: flex; z-index: 2;">
+        <div class="bg-box">
+          
+          
+    <picture class="bg-img">
+        
+        
+        <img draggable="false" style="width:unset;" src="https://vast.somplo.com/fiver/relay.php?requested_url=t_fb_prd_ctlg,q_auto,f_auto/gigs/197460930/original/e4b710554e3e7679721eb942b9e8d63db44fe2cc.png" alt="">
+    </picture>
+        <div class="container16"><div class="header16"><p class="title16">rashidhussain03</p><span class="number"></span></div><div class="content16"><div class="all-text-con1" style="font-size: 14px;"><div class="sec-con1"><span class="number">design ebook or pdf lead magnet and workbook</span></div></div></div><div class="footer16"><div class="icons16">
+    <svg class="bottom-icons" width="25" height="8" viewBox="0 0 30 12" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="0.915091" y1="1.42707" x2="11.0262" y2="1.42707" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="5.76026" x2="11.0259" y2="5.76026" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="10.0935" x2="11.0259" y2="10.0935" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><path d="M27.9597 2.1174C26.7229 1.06341 24.8835 1.25299 23.7482 2.42434L23.3036 2.8825L22.859 2.42434C21.726 1.25299 19.8844 1.06341 18.6475 2.1174C17.2302 3.32712 17.1557 5.49829 18.4241 6.80957L22.7913 11.3189C23.0734 11.6101 23.5316 11.6101 23.8137 11.3189L28.1809 6.80957C29.4515 5.49829 29.377 3.32712 27.9597 2.1174Z" fill="#DADBDD"></path></svg>
+    </div><div class="price16">Starting at <span class="cost16"> $20!</span></div></div></div></div>
+        
+      </div>
+    
+      <div class="slide carouselslide2 not-clone" onclick="caruClick15(&#39;https://www.fiverr.com/164967971?utm_source=dv360&amp;utm_medium=cpm&amp;utm_campaign=dynamic_rmk&#39;, 4701357, 2)" style="width: 200px; margin-right: 2px; display: none;">
+        <div class="bg-box">
+          
+          
+    <picture class="bg-img">
+        
+        
+        <img draggable="false" style="width:unset;" src="https://vast.somplo.com/fiver/relay.php?requested_url=t_fb_prd_ctlg,q_auto,f_auto/gigs/164967971/original/8b75e0ba84f7858e1badc5235429a5bff413d7a4.png" alt="">
+    </picture>
+        <div class="container16"><div class="header16"><p class="title16">fynnnn</p><span class="number"></span></div><div class="content16"><div class="all-text-con1"><div class="sec-con1"><span class="number">develop a high quality spigot plugin for you</span></div></div></div><div class="footer16"><div class="icons16">
+    <svg class="bottom-icons" width="25" height="8" viewBox="0 0 30 12" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="0.915091" y1="1.42707" x2="11.0262" y2="1.42707" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="5.76026" x2="11.0259" y2="5.76026" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="10.0935" x2="11.0259" y2="10.0935" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><path d="M27.9597 2.1174C26.7229 1.06341 24.8835 1.25299 23.7482 2.42434L23.3036 2.8825L22.859 2.42434C21.726 1.25299 19.8844 1.06341 18.6475 2.1174C17.2302 3.32712 17.1557 5.49829 18.4241 6.80957L22.7913 11.3189C23.0734 11.6101 23.5316 11.6101 23.8137 11.3189L28.1809 6.80957C29.4515 5.49829 29.377 3.32712 27.9597 2.1174Z" fill="#DADBDD"></path></svg>
+    </div><div class="price16">Starting at <span class="cost16"> $50!</span></div></div></div></div>
+        
+      </div>
+    
+      <div class="slide carouselslide3 not-clone" onclick="caruClick15(&#39;https://www.fiverr.com/230714881?utm_source=dv360&amp;utm_medium=cpm&amp;utm_campaign=dynamic_rmk&#39;, 5585272, 3)" style="width: 200px; margin-right: 2px; display: none;">
+        <div class="bg-box">
+          
+          
+    <picture class="bg-img">
+        
+        
+        <img draggable="false" style="width:unset;" src="https://vast.somplo.com/fiver/relay.php?requested_url=t_fb_prd_ctlg,q_auto,f_auto/gigs/230714881/original/252936c3c06758fdda5b1cb2ed67ff074a06de29.jpg" alt="">
+    </picture>
+        <div class="container16"><div class="header16"><p class="title16">rcampo</p><span class="number"></span></div><div class="content16"><div class="all-text-con1"><div class="sec-con1"><span class="number">professional graphic design any kind of service</span></div></div></div><div class="footer16"><div class="icons16">
+    <svg class="bottom-icons" width="25" height="8" viewBox="0 0 30 12" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="0.915091" y1="1.42707" x2="11.0262" y2="1.42707" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="5.76026" x2="11.0259" y2="5.76026" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="10.0935" x2="11.0259" y2="10.0935" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><path d="M27.9597 2.1174C26.7229 1.06341 24.8835 1.25299 23.7482 2.42434L23.3036 2.8825L22.859 2.42434C21.726 1.25299 19.8844 1.06341 18.6475 2.1174C17.2302 3.32712 17.1557 5.49829 18.4241 6.80957L22.7913 11.3189C23.0734 11.6101 23.5316 11.6101 23.8137 11.3189L28.1809 6.80957C29.4515 5.49829 29.377 3.32712 27.9597 2.1174Z" fill="#DADBDD"></path></svg>
+    </div><div class="price16">Starting at <span class="cost16"> $290!</span></div></div></div></div>
+        
+      </div>
+    
+      <div class="slide carouselslide4 not-clone" onclick="caruClick15(&#39;https://www.fiverr.com/195380085?utm_source=dv360&amp;utm_medium=cpm&amp;utm_campaign=dynamic_rmk&#39;, 5585298, 4)" style="width: 200px; margin-right: 2px; transform: scale(0.7) translateX(-74.2857%); opacity: 0.5; z-index: 2; display: flex;">
+        <div class="bg-box">
+          
+          
+    <picture class="bg-img">
+        
+        
+        <img draggable="false" style="width:unset;" src="https://vast.somplo.com/fiver/relay.php?requested_url=t_fb_prd_ctlg,q_auto,f_auto/gigs/195380085/original/7faf92f1b713409aa58c774d6e35e5dfe433c53a.png" alt="">
+    </picture>
+        <div class="container16"><div class="header16"><p class="title16">menatallah385</p><span class="number"></span></div><div class="content16"><div class="all-text-con1" style="font-size: 11px;"><div class="sec-con1"><span class="number">design your PDF workbook, worksheet, lead magnet, checklist, ebook design</span></div></div></div><div class="footer16"><div class="icons16">
+    <svg class="bottom-icons" width="25" height="8" viewBox="0 0 30 12" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="0.915091" y1="1.42707" x2="11.0262" y2="1.42707" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="5.76026" x2="11.0259" y2="5.76026" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="10.0935" x2="11.0259" y2="10.0935" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><path d="M27.9597 2.1174C26.7229 1.06341 24.8835 1.25299 23.7482 2.42434L23.3036 2.8825L22.859 2.42434C21.726 1.25299 19.8844 1.06341 18.6475 2.1174C17.2302 3.32712 17.1557 5.49829 18.4241 6.80957L22.7913 11.3189C23.0734 11.6101 23.5316 11.6101 23.8137 11.3189L28.1809 6.80957C29.4515 5.49829 29.377 3.32712 27.9597 2.1174Z" fill="#DADBDD"></path></svg>
+    </div><div class="price16">Starting at <span class="cost16"> $20!</span></div></div></div></div>
+        
+      </div>
+    
+          <div class="slide carouselslide0 clone-0 clone" onclick="caruClick15(&#39;null&#39;, 7496834, 0)" style="width: 200px; margin-right: 2px; display: none;">
+        <div class="bg-box">
+          
+          
+    <picture class="bg-img">
+        
+        
+        <img draggable="false" style="width:unset;" src="https://cdn.somplo.com/assets/90/1691050295_1370628.jpeg" alt="">
+    </picture>
+        </div>
+        
+      </div><div class="slide carouselslide1 clone-1 clone" onclick="caruClick15(&#39;null&#39;, 4701356, 1)" style="width: 200px; margin-right: 2px; display: none;">
+        <div class="bg-box">
+          
+          
+    <picture class="bg-img">
+        
+        
+        <img draggable="false" style="width:unset;" src="https://cdn.somplo.com/assets/90/1691050295_1370628.jpeg" alt="">
+    </picture>
+        </div>
+        
+      </div><div class="slide carouselslide2 clone-2 clone" onclick="caruClick15(&#39;null&#39;, 4701357, 2)" style="width: 200px; margin-right: 2px; display: none;">
+        <div class="bg-box">
+          
+          
+    <picture class="bg-img">
+        
+        
+        <img draggable="false" style="width:unset;" src="https://cdn.somplo.com/assets/90/1691050295_1370628.jpeg" alt="">
+    </picture>
+        </div>
+        
+      </div><div class="slide carouselslide3 clone-3 clone" onclick="caruClick15(&#39;null&#39;, 5585272, 3)" style="width: 200px; margin-right: 2px; display: none;">
+        <div class="bg-box">
+          
+          
+    <picture class="bg-img">
+        
+        
+        <img draggable="false" style="width:unset;" src="https://cdn.somplo.com/assets/90/1691050295_1370628.jpeg" alt="">
+    </picture>
+        </div>
+        
+      </div><div class="slide carouselslide4 clone-4 clone" onclick="caruClick15(&#39;null&#39;, 5585298, 4)" style="width: 200px; margin-right: 2px; display: none;">
+        <div class="bg-box">
+          
+          
+    <picture class="bg-img">
+        
+        
+        <img draggable="false" style="width:unset;" src="https://cdn.somplo.com/assets/90/1691050295_1370628.jpeg" alt="">
+    </picture>
+        </div>
+        
+      </div></div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    
+    <script>
+    window.addEventListener('pageExitAnmation', function(){
+      if (event.detail === 0) {
+        
+    
+
+    document.querySelector(".carousel15-wrapper").classList.remove("carouselEnterAnimation15_0");
+    
+    
+    
+      }
+    })
+    if (!carouselObj) {
+      var carouselObj = {};
+    }
+    var caruClick15;
+    newCarouselComponent15 ();
+    function newCarouselComponent15 () {
+      
+      var moveHappens = false;
+      var preventClickMouseDown;
+      window.addEventListener('mousedown', preventClickMousedown);
+      window.addEventListener('touchstart', preventClickMousedown);
+      window.addEventListener('mousemove', preventClickMousemove);
+      window.addEventListener('touchmove', preventClickMousemove);
+      window.addEventListener('mouseup', preventClickMouseUp);
+      window.addEventListener('touchend', preventClickMouseUp);
+      window.addEventListener('mouseleave', preventClickMouseUp);
+      function preventClickMousedown (event) {
+        moveHappens = false;
+        preventClickMouseDown = eventToVector (event);
+      }
+      function preventClickMousemove (event) {
+        if (preventClickMouseDown){
+          var xDiff = Math.abs(preventClickMouseDown.x - eventToVector(event).x);
+          var yDiff = Math.abs(preventClickMouseDown.y - eventToVector(event).y);
+          if (xDiff > 30 || yDiff > 30) {
+            moveHappens = true;
+          }
+        }
+      }
+      function preventClickMouseUp (event) {
+        preventClickMouseDown = null;
+      }
+      function eventToVector (event) {
+        var x,y;
+          if (event.changedTouches || event.touches ) {
+              if (event.changedTouches) {
+                  x = event.changedTouches[0].pageX;
+                  y = event.changedTouches[0].pageY;
+              } else {
+                  x = event.touches[0].pageX;
+                  y = event.touches[0].pageY;
+              }
+          } else {
+              x = event.pageX;
+              y = event.pageY;
+          }
+          return {
+              x : x,
+              y : y,
+          };
+      }
+    ;
+      caruClick15 = function (url, pixel, index){
+        if (!moveHappens) {
+          
+        if(index == 0){
+          mainClick(url, pixel);
+        }
+        
+        if(index == 1){
+          mainClick(url, pixel);
+        }
+        
+        if(index == 2){
+          mainClick(url, pixel);
+        }
+        
+        if(index == 3){
+          mainClick(url, pixel);
+        }
+        
+        if(index == 4){
+          mainClick(url, pixel);
+        }
+        
+        }
+      }
+      
+      if (!carouselObj.carouselComponent15)  {
+        carouselObj.carouselComponent15 = {};
+      }
+      carouselObj.carouselComponent15.carousel0 = {};
+      window.addEventListener('SomploResizeEvent', function () {
+        var carousel = document.querySelector('#carousel15_0');
+        carouselObj.carouselComponent15.carousel0.element = carousel;
+        var carouselOptions = {
+          index : 15,
+          selector : 'carousel0',
+          loop : true, // true/false
+          direction : 'ltr', // 'ltr', 'ttb'
+          arrows :  false, // true/false
+          
+          arrowsColor : 'rgba(2,178,253,1)', // ''
+          transformMode : 'coverflowAlt', // 'slide', 'cube', 'fade', 'coverflow', 'flip'
+          coverflowBaseAngle : 50,
+          slidesPerView : 1,
+          pagination : false,
+          easing : 'Quartic.InOut',
+          windmillBase : 'bottom', // 'top', 'left', 'right' , 'bottom'
+          autoplay : true,
+          timeOnSlide : 1.8,
+          timeBetweenSlides : 1,
+          spaceBetweenSlides : 2,
+          paginationColor : {
+            common : 'rgba(2,178,253,1)',
+            active : 'rgba(2,178,253,1)'
+          },
+          paginationSize : 12,
+          paginationSpacing : 10,
+          paginationVertical : 83,
+          slidesUpdateCallback : textOnSlidesUpdate15_0,
+          disableSwipe : false,
+          swipeDirection : 'ltr',
+          carouselDirection : 'ltr',
+          size: 91,
+          height: 100,
+          proportion : 1.6577777777777778,
+          carouselSet : false,
+          enterAnimation : false,
+          sizeId : 5,
+
+
+        }
+        carouselObj.carouselComponent15.carousel0.options = carouselOptions;
+        if(!checkIosVersionN().needPerspectiveFix){
+          carouselObj.carouselComponent15.carousel0.options.disableSafariDetect = true;
+          }
+
+        if (carousel) {
+          if (carousel.init) {
+            carousel.resize();
+          } else {
+            textOnSlidesUpdate15_0 ();
+            if (true) {
+              initCarousel('#carousel15_0', carouselOptions);
+              carousel.resize();
+              document.querySelectorAll('.carousel15-wrapper .arrows-container .carousel-arrow').forEach(function(arrow){
+              arrow.addEventListener('click', function () {
+              caruPlay15()
+                });
+              });
+            }
+            carousel.addEventListener('mousedown', caruPlay15);
+            carousel.addEventListener('touchstart', caruPlay15);
+            if (window.carouselPlayFired15 === undefined) {
+              window.carouselPlayFired15 = false;
+            }
+            function caruPlay15(){
+              try{
+                window.clearTimeout(autoCloseTime);
+              } catch(e){}
+              try{
+                allowClose = false;
+              } catch(e){}
+                if (!window.carouselPlayFired15) {
+                      if (parent.publisher_config.prod || typeof parent.publisher_config.prod == "undefined") {
+                          parent.creatPixel("https://pixel.somplo.com/pixel.png?e=21&tag_id=903355288&val=&order=40", true);
+                          
+                      }else{
+                         console.log("Pixel Play");
+                      }
+                      window.carouselPlayFired15 = true;
+                }
+            }
+
+            
+      carousel.addEventListener('somploCarouselEnd', function () {
+        if(false){
+          
+        }
+      });
+      
+
+            carousel.addEventListener('nextSlide', function (event) {
+              var i = 0;
+              while (i < undefined) {
+                var childCarousel = document.querySelector('#carousel15_' + i);
+                if (childCarousel) {
+                  if (childCarousel != carousel) {
+                    childCarousel.nextSlideClick(true);
+                  }
+                }
+                i++;
+              };
+            });
+            carousel.addEventListener('prevSlide', function (event) {
+              var i = 0;
+              while (i < undefined) {
+                var childCarousel = document.querySelector('#carousel15_' + i);
+                if (childCarousel) {
+                  if (childCarousel != carousel) {
+                    childCarousel.prevSlideClick(true);
+                  }
+                }
+                i++;
+              };
+            });
+            carousel.addEventListener('mouseDown', function (event) {
+              var i = 0;
+              while (i < undefined) {
+                var childCarousel = document.querySelector('#carousel15_' + i);
+                if (childCarousel) {
+                  if (childCarousel != carousel) {
+                    childCarousel.autoplayStop();
+                    childCarousel.mouseDownOnOtherCarousel(event);
+                  }
+                }
+                i++;
+              };
+            });
+            carousel.addEventListener('slideMoveToIndex', function (event) {
+              var i = 0;
+              while (i < undefined) {
+                var childCarousel = document.querySelector('#carousel15_' + i);
+                if (childCarousel) {
+                  if (childCarousel != carousel) {
+                    childCarousel.slideMoveToIndexOnOtherCarousel(event);
+                  }
+                }
+                i++;
+              };
+            });
+
+            carousel.addEventListener('mouseMove', function (event) {
+              var i = 0;
+              while (i < undefined) {
+                var childCarousel = document.querySelector('#carousel15_' + i);
+                if (childCarousel) {
+                  if (childCarousel != carousel) {
+                    childCarousel.mouseMoveOnOtherCarousel(event);
+                    childCarousel.child = true;
+                  }
+                }
+                i++;
+              };
+            });
+
+            carousel.addEventListener('mouseUp', function (event) {
+                var i = 0;
+                while (i < undefined) {
+                  var childCarousel = document.querySelector('#carousel15_' + i);
+                  if (childCarousel) {
+                    if (childCarousel != carousel) {
+
+                      childCarousel.mouseUpOnOtherCarousel(event);
+                      childCarousel.child = false;
+                    }
+                  }
+                  i++;
+                };
+            });
+            window.addEventListener('SomploTimeoutReached',function(){
+      
+            var carousel = document.querySelector('#carousel15_0');
+            if (carousel) {
+              carousel.autoplayStop();
+            }
+            
+    });
+          }
+        }
+      })
+      function textOnSlidesUpdate15_0 () {
+        
+        
+      }
+
+    
+    }
+  </script>
+
+ <script>
+  (function () {
+  function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    // Generate a random index between 0 and i (inclusive)
+    const j = Math.floor(Math.random() * (i + 1));
+    
+    // Swap elements at indices i and j
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+
+    var autoFitInterval
+    
+    function createElement({tagName = 'div', classes = [], textContent = '',}) {
+      var element = document.createElement(tagName)
+      
+      element.textContent = textContent
+      classes.forEach((className) => {
+        if (className.length) {
+          element.classList.add(className)
+        }
+      })
+      
+      return element
+    }
+    
+    var iconsSvg = `
+    <svg class="bottom-icons" width="25" height="8" viewBox="0 0 30 12" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="0.915091" y1="1.42707" x2="11.0262" y2="1.42707" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="5.76026" x2="11.0259" y2="5.76026" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><line x1="0.914847" y1="10.0935" x2="11.0259" y2="10.0935" stroke="#DADBDD" stroke-width="1.44444" stroke-linecap="round"></line><path d="M27.9597 2.1174C26.7229 1.06341 24.8835 1.25299 23.7482 2.42434L23.3036 2.8825L22.859 2.42434C21.726 1.25299 19.8844 1.06341 18.6475 2.1174C17.2302 3.32712 17.1557 5.49829 18.4241 6.80957L22.7913 11.3189C23.0734 11.6101 23.5316 11.6101 23.8137 11.3189L28.1809 6.80957C29.4515 5.49829 29.377 3.32712 27.9597 2.1174Z" fill="#DADBDD"></path></svg>
+    `
+    var starSvg = `
+    <svg class="star" width="7" height="6" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M5.35315 0.834532C5.43641 0.625731 5.73196 0.625731 5.81522 0.834532L6.93478 3.64226C6.97031 3.73134 7.05389 3.79207 7.1496 3.79833L10.1659 3.99546C10.3902 4.01012 10.4815 4.29121 10.3087 4.43492L7.98431 6.36732C7.91056 6.42864 7.87864 6.52689 7.90226 6.61985L8.64685 9.54941C8.70222 9.76727 8.46312 9.94099 8.27303 9.82101L5.71694 8.20758C5.63584 8.15638 5.53253 8.15638 5.45142 8.20758L2.89533 9.82101C2.70525 9.94099 2.46614 9.76727 2.52151 9.54941L3.2661 6.61985C3.28973 6.52689 3.2578 6.42864 3.18405 6.36732L0.859713 4.43492C0.68686 4.29121 0.77819 4.01012 1.0025 3.99546L4.01877 3.79833C4.11448 3.79207 4.19806 3.73134 4.23358 3.64226L5.35315 0.834532Z" fill="#1DBF73"></path></svg>
+    `
+  
+    var subcatid = (parent.publisher_config.dynamicint ?? 'affiliate-marketing').replaceAll('_', '-')
+    fetch('https://vast.somplo.com/fiver/feeder.php?sub_category_slug='+subcatid).then(res => {
+      return res.json()
+    }).then(_mockData => {
+      mockData = shuffleArray(_mockData);
+      var carousel0 = document.querySelector('div[id*=carousel]')
+      var slides0 = carousel0.querySelectorAll('.slide.not-clone')
+      var creative = document.querySelector('#container')
+      
+      var container = createElement({tagName: 'div', classes: ['all-text-con']})
+      container.onclick = function(){
+        mainClick('null', null)
+      }
+      var secondContainer = createElement({tagName: 'div', classes: ['sec-con']})
+      var span = createElement({tagName: 'span'})
+      
+      span.innerText = mockData.length ? mockData[0].sub_category + '?' : 'Freelance Services?'
+      span.style.cursor = 'pointer'
+      var subLink = mockData[0] ? mockData[0].sub_category : 'FreelanceServices'
+      if(!parent.publisher_config.prod){
+      console.log(mockData);
+      }
+      
+      main_click_url += encodeURIComponent(subLink)+'&utm_source=dv360&utm_medium=cpm&utm_campaign=dynamic_rmk'; 
+  
+      
+      secondContainer.append(span)
+      container.append(secondContainer)
+      creative.append(container)
+      
+      
+      slides0.forEach((slide, i) => {
+        
+        var link = mockData[i] ? mockData[i].link+'?utm_source=dv360&utm_medium=cpm&utm_campaign=dynamic_rmk' : 'https://www.fiverr.com'+'?utm_source=dv360&utm_medium=cpm&utm_campaign=dynamic_rmk'
+        var current = slide.getAttribute('onclick');
+        current = current.replace("'null'","'"+link+"'" );
+        slide.setAttribute('onclick', current)
+        
+        var box = slide.querySelector('.bg-box')
+        var container = createElement({tagName: 'div', classes: ['container16']})
+        var header = createElement({tagName: 'div', classes: ['header16']})
+        var title = createElement({tagName: 'p', classes: ['title16']})
+        var content = createElement({tagName: 'div', classes: ['content16']})
+        var number = createElement({tagName: 'span', classes: ['number']})
+        var footer = createElement({tagName: 'div', classes: ['footer16']})
+        var icons = createElement({tagName: 'div', classes: ['icons16']})
+        var price = createElement({tagName: 'div', classes: ['price16']})
+        var spanCost = createElement({tagName: 'span', classes: ['cost16']})
+        var container1 = createElement({tagName: 'div', classes: ['all-text-con1']})
+        var secondContainer = createElement({tagName: 'div', classes: ['sec-con1']})
+        var span = createElement({tagName: 'span', classes: ['number']})
+        
+        if (mockData[i]) {
+          span.innerText = mockData[i].title
+          icons.innerHTML = iconsSvg
+          price.innerText = mockData[i].description.split(/[$]+/)[0]
+          spanCost.innerText = mockData[i].description.split(' at')[1]
+          
+          // image.src = mockData[i].avatar
+          
+          box.querySelector('img').src = 'https://vast.somplo.com/fiver/relay.php?requested_url=' + mockData[i].image_link.replace('https://fiverr-res.cloudinary.com/', '')
+          
+          title.innerText = mockData[i].brand
+        } else {
+          var randomIndex = Math.floor(Math.random() * mockData.length)
+          
+          span.innerText = mockData.length ? mockData[randomIndex].title : 'Smile! You’re about to get the perfect shot.'
+          icons.innerHTML = iconsSvg
+          price.innerText = mockData.length ? mockData[randomIndex].description.split(/[$]+/)[0] : ''
+          spanCost.innerText = mockData.length ? mockData[randomIndex].description.split(' at')[1] : ''
+          if(mockData.length && mockData[randomIndex]?.image_link){
+            box.querySelector('img').src = 'https://cdn.somplo.com/assets/90/1691050295_1370628.jpeg'
+          }
+          if (!mockData.length) {
+            box.querySelector('img').src = 'https://cdn.somplo.com/assets/90/1691050295_1370628.jpeg'
+          }
+          title.innerText = mockData.length ? mockData[randomIndex].brand : 'Perfect Freelance'
+        }
+        
+        secondContainer.append(span)
+        container1.append(secondContainer)
+        content.append(container1)
+        price.append(spanCost)
+        if (mockData.length) {
+          footer.append(icons, price)
+        } else {
+          footer.append(icons)
+        }
+        header.prepend(title)
+        header.append(number)
+        container.append(header, content, footer)
+        box.append(container)
+      });
+      
+      autoFitInterval = setInterval(function () {
+        autoFit();
+      }, 300);
+      autoFit();
+      
+    })
+    
+    function autoFit() {
+      var textContainer = document.querySelector('.all-text-con');
+      var textContainers = document.querySelectorAll('.all-text-con1');
+      var slides0 = document.querySelectorAll('.slide.not-clone')
+      
+      if ([...textContainers].filter(item => item.isAutofited === true).length === [...slides0].length) {
+        clearInterval(autoFitInterval);
+      }
+      
+      textContainers.forEach(container => {
+        function isOverflown() {
+          textContainerCheck = container.scrollHeight > container.clientHeight || container.scrollWidth > container.clientWidth;
+          return textContainerCheck;
+        }
+        
+        var minSize = 1;
+        var current = parseInt(window.getComputedStyle(container).getPropertyValue('font-size').replace('px', ''));
+        while (isOverflown() && current > minSize) {
+          
+          container.style.fontSize =
+            parseInt(window.getComputedStyle(container).getPropertyValue('font-size').replace('px', '')) - 1 +
+            'px';
+          current--;
+        }
+        if (container.clientWidth) {
+          container.isAutofited = true
+        }
+      })
+      
+      function isOverflown() {
+        textContainerCheck = textContainer.scrollHeight > textContainer.clientHeight || textContainer.scrollWidth > textContainer.clientWidth;
+        return textContainerCheck;
+      }
+      
+      var minSize = 10;
+      var currenrt = parseInt(window.getComputedStyle(textContainer).getPropertyValue('font-size').replace('px', ''));
+      while (isOverflown() && currenrt > minSize) {
+        
+        textContainer.style.fontSize =
+          parseInt(window.getComputedStyle(textContainer).getPropertyValue('font-size').replace('px', '')) - 1 +
+          'px';
+        currenrt--;
+      }
+    }
+    
+
+  })() 
+</script>
+
+      <div id="hand17Container" style="display: inline-block;" class="somplo-hand-17-container disable-pointer-events-17 somplo-hand-17-animation">
+        <img alt="" onerror="reloadImage(this)" class="somplo-hand-17" src="https://cdn.somplo.com/assets/90/1691054463_1684819.png">
+      </div>
+
+      <script>
+        var hand17Timeout;
+        var somploHand17Element = document.querySelector(".somplo-hand-17-container");
+
+        somploHand17Element.addEventListener("animationend", function() {
+          hand17Timeout = frameToRunTimeout.setTimeout(function() {
+            
+            somploHand17Element.style.display = "none";
+          }, 0);
+        }, true);
+
+        window.addEventListener("click", function(){
+          if (true) {
+            frameToRunTimeout.clearTimeout(hand17Timeout);
+            somploHand17Element.style.display = "none";
+          }
+        });
+
+      </script>
+    
+
+        <div class="all-text-con" style="font-size: 43px;"><div class="sec-con"><span style="cursor: pointer;">Other?</span></div></div></div>
+        <script>
+        window.addEventListener("SomploResizeEvent", function(){
+          var isBigMweb = window.innerWidth / window.innerHeight < 640/1080;
+          var isBig = window.innerWidth / window.innerHeight < 640/1210;
+         
+           try {
+      
+        if (false) {
+          var container = document.getElementById('container');
+          if (container) {
+            if (container.offsetWidth != 0 && container.offsetHeight != 0) {
+              element = document.querySelector('#imageCon11');
+              if (element) {
+                
+      function imageContainerResize (element, container) {
+        var isBig = document.body.classList.contains('newBigClass')
+      
+        var elementProportion = 3.88;
+        var containerProportion = container.offsetWidth / container.offsetHeight;
+        
+
+        var elementWidth = container.offsetWidth;
+        var elementHeight = container.offsetHeight;
+        if (!false) {
+          if (true) {
+            if (containerProportion < elementProportion) {
+              elementWidth = elementWidth * (isBig && undefined ? undefined : 100) * 0.01;
+              elementHeight = elementWidth / elementProportion;
+            } else {
+            
+              elementHeight = elementHeight * (isBig && undefined ? undefined : 100) * 0.01;
+              elementWidth = elementHeight *  elementProportion;
+            }
+          } else {
+            elementWidth = container.offsetWidth * (isBig && undefined ? undefined : 100) *  0.01;
+            elementHeight = container.offsetHeight * (isBig && undefined ? undefined : 100) *  0.01;
+          }
+        }
+        element.style.width = elementWidth + 'px';
+        element.style.height = elementHeight + 'px';
+      }
+    
+                imageContainerResize(element, container);
+              }
+            }
+          }
+        }
+      
+      
+      } catch(e){console.log(e)};
+       try { 
+      try{
+        runAutoFit1();
+      }
+      catch(e){}
+      
+   
+      
+      } catch(e){console.log(e)};
+       try { 
+      try{
+        runAutoFit1();
+      }
+      catch(e){}
+      
+   
+      
+      } catch(e){console.log(e)};
+       try {
+        resize14Function();
+        
+      } catch(e){console.log(e)};
+      
+
+        });
+        </script>
+        <script>
+             try {
+          if (typeof parent.publisher_config.facebbokRec == 'undefined') {
+            document.getElementById("container").style.maxWidth = '100vw';
+            document.getElementById("container").style.maxHeight = '100vh';
+          }
+        }
+        catch(e){}
+
+        
+        
+
+
+
+        document.getElementById("container").style.width = parent.publisher_config.width + "px";
+        document.getElementById("container").style.height = parent.publisher_config.height + "px";
+
+
+          
+    
+   var stopAniimationTimeOut;
+   var startTimeMS;
+   window.addEventListener('click', function() {
+    frameToRunTimeout.clearTimeout(stopAniimationTimeOut);
+    document.body.classList.remove('stopallanimations');
+   })
+   window.addEventListener('touchstart', function() {
+    frameToRunTimeout.clearTimeout(stopAniimationTimeOut);
+    document.body.classList.remove('stopallanimations');
+   }, false)
+   
+   
+   
+    function startMyAnimation(event) {
+      if(startMyAnimationWorked){
+        return true;
+      }
+      startMyAnimationWorked = true;
+      
+      
+      
+      try{
+        SomploStarMyAnimationFunction = new Event('SomploStarMyAnimationFunction');
+     }
+     catch(e) {
+      SomploStarMyAnimationFunction = document.createEvent('Event');
+      SomploStarMyAnimationFunction.initEvent('SomploStarMyAnimationFunction', true, true);
+     }
+      
+      
+       startTimeMS = (new Date()).getTime();
+      stopAniimationTimeOut = frameToRunTimeout.setTimeout(function(){
+        document.body.classList.add('stopallanimations');
+        stopAllAnimationsvar = true;
+        window.dispatchEvent(SomploTimeoutReached);
+        
+      }, 30*1000)
+
+      
+
+     
+     
+      //animationStarted = true;
+
+      
+      
+      if(parent.isApp && typeof parent.somploElement != "undefined"){
+        fireImppretionfunc();
+
+      }
+      
+      
+
+
+      
+      if ((document.readyState === 'interactive' || document.readyState === 'complete') && !animationStarted) {
+        console.log('Done Loading')
+      
+
+      
+      autoCloseTime = frameToRunTimeout.setTimeout(function(){
+        if(allowClose){
+         parent.publisher_config.close();
+         }
+      }, 10000)
+
+      
+      
+
+      
+        frameToRunTimeout.clearTimeout(autoCloseTime);
+        allowClose = false;
+        
+      
+
+    
+    
+
+
+    
+      function imageStartAnimationFunction11 () {
+        var parentEl = document.getElementById("imageCon11");
+        if(false){
+          var childEl = document.getElementById("imgAniCon11");
+          frameToRunTimeout.setTimeout(function(){
+            parentEl.classList.add("custom-animation-parent11")
+            childEl.classList.add("custom-animation-child11")
+          }, 0);
+        }
+        
+    document.querySelector("#imageCon11").classList.remove("hiddenComponent");
+    document.querySelector("#image-enter-exit-container11").classList.remove("hiddenComponent");
+    document.querySelector("#image-enter-exit-container11").classList.add("imageConEnterAnimtion11");
+    document.querySelector("#image-enter-exit-container11").classList.remove("imageConExitAnimtion11");
+        ;
+
+    
+
+        frameToRunTimeout.setTimeout(function(){
+          document.querySelector("#imgAniCon11").classList.add("animated-image11");
+        },  10);
+      }
+      imageStartAnimationFunction11 ();
+      
+        function textStartAnimationFunction12 () {
+          var parentEl = document.getElementById("textCon12");
+          if(false){
+            var childEl = document.getElementById("textChild12");
+            frameToRunTimeout.setTimeout(function(){
+              parentEl.classList.add("custom-animation-parent12")
+              childEl.classList.add("custom-animation-child12")
+            }, 0);
+          }
+
+          
+    document.querySelector("#textCon12").classList.remove("hiddenComponent");
+    document.querySelector("#text-enter-exit-container12").classList.remove("hiddenComponent");
+    document.querySelector("#text-enter-exit-container12").classList.add("textConEnterAnimtion12");
+    document.querySelector("#text-enter-exit-container12").classList.remove("textConExitAnimtion12");
+        ;
+
+    
+            
+          setTimeout(function(){
+           document.querySelector("#textChild12").classList.add("animated-text12");
+          }, 10);
+        
+           };
+        textStartAnimationFunction12 ();
+      
+        function textStartAnimationFunction13 () {
+          var parentEl = document.getElementById("textCon13");
+          if(false){
+            var childEl = document.getElementById("textChild13");
+            frameToRunTimeout.setTimeout(function(){
+              parentEl.classList.add("custom-animation-parent13")
+              childEl.classList.add("custom-animation-child13")
+            }, 0);
+          }
+
+          
+    document.querySelector("#textCon13").classList.remove("hiddenComponent");
+    document.querySelector("#text-enter-exit-container13").classList.remove("hiddenComponent");
+    document.querySelector("#text-enter-exit-container13").classList.add("textConEnterAnimtion13");
+    document.querySelector("#text-enter-exit-container13").classList.remove("textConExitAnimtion13");
+        ;
+
+    
+            
+          setTimeout(function(){
+           document.querySelector("#textChild13").classList.add("animated-text13");
+          }, 10);
+        
+           };
+        textStartAnimationFunction13 ();
+      
+        function buttonStartAnimationFunction14 () {
+          var parentEl = document.getElementById("buttonContainer14");
+          if(false){
+            var childEl = document.getElementById("buttonChild14");
+            frameToRunTimeout.setTimeout(function(){
+              parentEl.classList.add("custom-animation-parent14")
+              childEl.classList.add("custom-animation-child14")
+            }, 0);
+          }
+
+          
+    document.querySelector("#buttonContainer14").classList.remove("hiddenComponent");
+    document.querySelector("#button-enter-exit-container14").classList.remove("hiddenComponent");
+    document.querySelector("#button-enter-exit-container14").classList.add("buttonContainerEnterAnimtion14");
+    document.querySelector("#button-enter-exit-container14").classList.remove("buttonContainerExitAnimtion14");
+        ;
+
+    
+
+          frameToRunTimeout.setTimeout(function(){
+              document.querySelector("#buttonContainer14 button").classList.add("animated-button14");
+            }, 10);
+        };
+        buttonStartAnimationFunction14 ();
+        
+      function carouselStartMyAnimationBefore15 () {
+        if (false) {
+          
+    document.querySelector(".carousel15-wrapper").classList.remove("hiddenComponent");
+    document.querySelector(".carousel15-wrapper").classList.remove("hiddenComponent");
+    document.querySelector(".carousel15-wrapper").classList.add("carouselEnterAnimation15_0");
+    document.querySelector(".carousel15-wrapper").classList.remove("carouselExitAnimation15_0");
+        ;
+
+    
+          Object.keys(carouselObj.carouselComponent15).forEach(function(key){
+            var carousel = carouselObj.carouselComponent15[key].element.resize();
+          });
+        }
+
+      }
+      carouselStartMyAnimationBefore15 ();
+    
+    function carouselStartMyAnimation15_0 () {
+      var carousel = document.querySelector("#carousel15_0");
+      if (true) {
+        if (true) {
+          if (!document.querySelector('.stopallanimations')) {
+            carousel.start();
+          }
+        }
+      }
+      carousel.startMyAnimation();
+    }
+    carouselStartMyAnimation15_0 ();
+    
+      hand17Timeout = frameToRunTimeout.setTimeout(function() {
+        if (false) {
+          document.querySelector(".somplo-hand-17").classList.add("somplo-hand-17-animation-rorate");
+        }
+        somploHand17Element.style.display = "inline-block";
+        somploHand17Element.classList.add("somplo-hand-17-animation");
+      }, 0);
+    
+      animationStarted = true;
+      }
+      else{
+        document.addEventListener('readystatechange', function(event) {
+        if ((document.readyState === 'interactive' || document.readyState === 'complete') && !animationStarted) {
+          console.log('Done Loading')
+          
+
+      
+      autoCloseTime = frameToRunTimeout.setTimeout(function(){
+        if(allowClose){
+         parent.publisher_config.close();
+         }
+      }, 10000)
+
+      
+      
+
+      
+        frameToRunTimeout.clearTimeout(autoCloseTime);
+        allowClose = false;
+        
+      
+
+    
+    
+
+
+    
+      function imageStartAnimationFunction11 () {
+        var parentEl = document.getElementById("imageCon11");
+        if(false){
+          var childEl = document.getElementById("imgAniCon11");
+          frameToRunTimeout.setTimeout(function(){
+            parentEl.classList.add("custom-animation-parent11")
+            childEl.classList.add("custom-animation-child11")
+          }, 0);
+        }
+        
+    document.querySelector("#imageCon11").classList.remove("hiddenComponent");
+    document.querySelector("#image-enter-exit-container11").classList.remove("hiddenComponent");
+    document.querySelector("#image-enter-exit-container11").classList.add("imageConEnterAnimtion11");
+    document.querySelector("#image-enter-exit-container11").classList.remove("imageConExitAnimtion11");
+        ;
+
+    
+
+        frameToRunTimeout.setTimeout(function(){
+          document.querySelector("#imgAniCon11").classList.add("animated-image11");
+        },  10);
+      }
+      imageStartAnimationFunction11 ();
+      
+        function textStartAnimationFunction12 () {
+          var parentEl = document.getElementById("textCon12");
+          if(false){
+            var childEl = document.getElementById("textChild12");
+            frameToRunTimeout.setTimeout(function(){
+              parentEl.classList.add("custom-animation-parent12")
+              childEl.classList.add("custom-animation-child12")
+            }, 0);
+          }
+
+          
+    document.querySelector("#textCon12").classList.remove("hiddenComponent");
+    document.querySelector("#text-enter-exit-container12").classList.remove("hiddenComponent");
+    document.querySelector("#text-enter-exit-container12").classList.add("textConEnterAnimtion12");
+    document.querySelector("#text-enter-exit-container12").classList.remove("textConExitAnimtion12");
+        ;
+
+    
+            
+          setTimeout(function(){
+           document.querySelector("#textChild12").classList.add("animated-text12");
+          }, 10);
+        
+           };
+        textStartAnimationFunction12 ();
+      
+        function textStartAnimationFunction13 () {
+          var parentEl = document.getElementById("textCon13");
+          if(false){
+            var childEl = document.getElementById("textChild13");
+            frameToRunTimeout.setTimeout(function(){
+              parentEl.classList.add("custom-animation-parent13")
+              childEl.classList.add("custom-animation-child13")
+            }, 0);
+          }
+
+          
+    document.querySelector("#textCon13").classList.remove("hiddenComponent");
+    document.querySelector("#text-enter-exit-container13").classList.remove("hiddenComponent");
+    document.querySelector("#text-enter-exit-container13").classList.add("textConEnterAnimtion13");
+    document.querySelector("#text-enter-exit-container13").classList.remove("textConExitAnimtion13");
+        ;
+
+    
+            
+          setTimeout(function(){
+           document.querySelector("#textChild13").classList.add("animated-text13");
+          }, 10);
+        
+           };
+        textStartAnimationFunction13 ();
+      
+        function buttonStartAnimationFunction14 () {
+          var parentEl = document.getElementById("buttonContainer14");
+          if(false){
+            var childEl = document.getElementById("buttonChild14");
+            frameToRunTimeout.setTimeout(function(){
+              parentEl.classList.add("custom-animation-parent14")
+              childEl.classList.add("custom-animation-child14")
+            }, 0);
+          }
+
+          
+    document.querySelector("#buttonContainer14").classList.remove("hiddenComponent");
+    document.querySelector("#button-enter-exit-container14").classList.remove("hiddenComponent");
+    document.querySelector("#button-enter-exit-container14").classList.add("buttonContainerEnterAnimtion14");
+    document.querySelector("#button-enter-exit-container14").classList.remove("buttonContainerExitAnimtion14");
+        ;
+
+    
+
+          frameToRunTimeout.setTimeout(function(){
+              document.querySelector("#buttonContainer14 button").classList.add("animated-button14");
+            }, 10);
+        };
+        buttonStartAnimationFunction14 ();
+        
+      function carouselStartMyAnimationBefore15 () {
+        if (false) {
+          
+    document.querySelector(".carousel15-wrapper").classList.remove("hiddenComponent");
+    document.querySelector(".carousel15-wrapper").classList.remove("hiddenComponent");
+    document.querySelector(".carousel15-wrapper").classList.add("carouselEnterAnimation15_0");
+    document.querySelector(".carousel15-wrapper").classList.remove("carouselExitAnimation15_0");
+        ;
+
+    
+          Object.keys(carouselObj.carouselComponent15).forEach(function(key){
+            var carousel = carouselObj.carouselComponent15[key].element.resize();
+          });
+        }
+
+      }
+      carouselStartMyAnimationBefore15 ();
+    
+    function carouselStartMyAnimation15_0 () {
+      var carousel = document.querySelector("#carousel15_0");
+      if (true) {
+        if (true) {
+          if (!document.querySelector('.stopallanimations')) {
+            carousel.start();
+          }
+        }
+      }
+      carousel.startMyAnimation();
+    }
+    carouselStartMyAnimation15_0 ();
+    
+      hand17Timeout = frameToRunTimeout.setTimeout(function() {
+        if (false) {
+          document.querySelector(".somplo-hand-17").classList.add("somplo-hand-17-animation-rorate");
+        }
+        somploHand17Element.style.display = "inline-block";
+        somploHand17Element.classList.add("somplo-hand-17-animation");
+      }, 0);
+    
+          animationStarted = true;
+          }
+
+        });
+
+
+      }
+      
+      try {
+        if (parent.isApp) {
+          if (typeof parent.document.getElementsByName('viewport')[0] != "undefined") {
+            var parentViewport = parent.document.getElementsByName('viewport')[0];
+            if (!parentViewport.getAttribute("content").includes('viewport-fit')) {
+              var parsedViewportC = parentViewport.getAttribute("content").split(",");
+              parsedViewportC.push('viewport-fit=cover');
+              parentViewport.setAttribute("content", parsedViewportC.toString());
+             // parent.document.body.style.paddingTop = 'env(safe-area-inset-top)';
+             //frameElement.style.maxHeight = 'calc(100vh - env(safe-area-inset-top))'
+            } else { }
+          } else {
+            var metaTag=document.createElement('meta');
+            metaTag.setAttribute("name", "viewport");
+            metaTag.setAttribute("content", "width=device-width, initial-scale=1.0, viewport-fit=cover");
+            parent.document.getElementsByTagName('head')[0].appendChild(metaTag);
+          //  parent.document.body.style.paddingTop = 'env(safe-area-inset-top)';
+          //  frameElement.style.maxHeight = 'calc(100vh - env(safe-area-inset-top))'
+          }
+        } else { }
+      } catch(e) {}
+      
+
+
+      reziseFunc();
+    }
+    
+          
+
+    
+  
+
+    if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+      hidden = "hidden";
+      visibilityChange = "visibilitychange";
+    } else if (typeof document.msHidden !== "undefined") {
+      hidden = "msHidden";
+      visibilityChange = "msvisibilitychange";
+    } else if (typeof document.webkitHidden !== "undefined") {
+      hidden = "webkitHidden";
+      visibilityChange = "webkitvisibilitychange";
+    }
+
+    var isAlive = false;
+      function isAliveLoop(timestamp) {
+        isAlive = true;
+        window.requestAnimationFrame(isAliveLoop);
+    }
+    window.requestAnimationFrame(isAliveLoop);
+
+
+    var tid = frameToRunTimeout.setInterval(function () {
+      if (parent.document.readyState !== "interactive" && parent.document.readyState !== "complete") return;
+
+      frameToRunTimeout.clearInterval(tid);
+      if (typeof parent.somploVisabilityWithElement == 'undefined') {
+
+        if (document[hidden] && true) {
+          document.addEventListener(visibilityChange, handleVisibilityChangeNew, false);
+        } else {
+          fireImppretionfunc();
+
+        }
+      } else {
+        if (typeof parent.googleData != "undefined" && parent.googleData != null) {
+
+
+          if ((document[hidden] || parent.googleData['18']) &&
+              true) {
+            parent.addEventListener('somploVisabilityWithElement', fireImppretionfunc, false);
+
+          } else {
+
+            fireImppretionfunc();
+
+
+          }
+        }
+        else if(false && parent.isApp){
+          if(!parent.Visible()){
+            fireImppretionfunc();
+         /*  var impInAppInterval =  frameToRunTimeout.setInterval(function(){
+            if(parent.Visible() || parent.mriadexposure > 1){
+              frameToRunTimeout.clearInterval(impInAppInterval);
+                fireImppretionfunc();
+              }
+            }, 200)*/
+              //document.addEventListener(visibilityChange, handleVisibilityChangeNew, false);
+          }
+          else{
+              fireImppretionfunc();
+
+          }
+      }
+        else {
+          
+          if(typeof parent.somploElement == "undefined"){
+            fireImppretionfunc();
+
+          }
+         else if(!parent.isApp){
+            fireImppretionfunc();
+
+          }
+          
+
+
+        }
+      }
+    }, 100);
+
+    
+    
+
+          
+          
+          if(parent.isApp && typeof parent.somploElement != "undefined"){
+            frameToRunTimeout.setTimeout(function(){parent.initAd()}, 200);
+          }
+          
+          parent.publisher_config.init();
+
+
+
+
+
+
+          
+          
+          if(!parent.publisher_config.gwd){
+          parent.somploClick = function(url){
+         try{
+            // parent.creatPixel("https://vast.somplo.com/pixel/pixel.png?creative_id=903355288&tech=3&fullurl="+encodeURIComponent(url), true);
+            if(typeof parent.maraid !== 'undefined'){
+              try{
+                parent.maraid.open(url);
+              }
+              catch(e){
+                var faceA = document.createElement('a');
+                faceA.href = url;
+                faceA.target = '_blank';
+                faceA.rel = 'nofollow';
+                document.body.appendChild(faceA);
+                faceA.click();
+              }
+             
+            }
+            else{
+              var faceA = document.createElement('a');
+              faceA.href = url;
+              faceA.target = '_blank';
+              faceA.rel = 'nofollow';
+              document.body.appendChild(faceA);
+              faceA.click();
+          }
+        }
+          catch(e){
+            // parent.creatPixel("https://vast.somplo.com/pixel/pixel.png?creative_id=903355288&tech=3&err="+encodeURIComponent(e), true);
+            window.open(url)
+          }
+            }
+          }
+          
+          
+
+          
+
+          
+          
+          var hasTouchStartEvent = 'ontouchstart' in document.createElement( 'div' );
+          if(hasTouchStartEvent){
+            window.addEventListener("touchstart", heatMapHandler);
+            window.addEventListener("touchend", heatMapHandler);
+            window.addEventListener("click", heatMapHandler);
+          }
+          else{
+            window.addEventListener("mousedown", heatMapHandler);
+          }
+          
+function heatMapHandler(event){
+  try{
+    if (event.isTrusted){
+      var clientX = event.clientX ?? event.touches[0]?.clientX ?? event.changedTouches[0].clientX
+      var clientY = event.clientY ?? event.touches[0]?.clientY ?? event.changedTouches[0].clientY
+      var screenX = event.screenX ?? event.touches[0]?.screenX ?? event.changedTouches[0].screenX
+      var screenY = event.screenY ?? event.touches[0]?.screenY ?? event.changedTouches[0].screenY
+      var pageX = event.pageX ?? event.touches[0]?.pageX ?? event.changedTouches[0].pageX
+      var pageY = event.pageY ?? event.touches[0]?.pageY ?? event.changedTouches[0].pageY
+      var layerX = event.layerX ?? event.touches[0]?.layerX ?? event.changedTouches[0]?.layerX ?? 0;
+      var layerY = event.layerY ?? event.touches[0]?.layerY ?? event.changedTouches[0]?.layerY ?? 0;
+      if(event.type == 'touchstart'){
+        window.touchStartDataHeatmap['clientX'] = clientX;
+        window.touchStartDataHeatmap['clientY'] = clientY;
+        window.touchStartDataHeatmap['screenX'] = screenX;
+        window.touchStartDataHeatmap['screenY'] = screenY;
+        window.touchStartDataHeatmap['pageX'] = pageX;
+        window.touchStartDataHeatmap['pageY'] = pageY;
+        window.touchStartDataHeatmap['layerX'] = layerX;
+        window.touchStartDataHeatmap['layerY'] = layerY;
+        return;
+      }
+      if(event.type == 'touchend'){
+        if(Math.ceil(Math.abs(window.touchStartDataHeatmap['clientY'] - clientY)) != Math.ceil(Math.abs(window.touchStartDataHeatmap['screenY'] - screenY)) || (Math.abs(window.touchStartDataHeatmap['clientY'] - clientY) < 70 && Math.abs(window.touchStartDataHeatmap['clientX'] - clientX) < 70)){
+          //user scrolled the page or clicked;
+          console.log('user scrolled or clicked')
+          return;
+        }else{
+          clientY = window.touchStartDataHeatmap['clientY'];
+          clientX = window.touchStartDataHeatmap['clientX'];
+        }
+      }
+      if(!somploFFirstClickH){
+        var objToSend = {
+          x:clientX,
+          y:clientY,
+          width:window.innerWidth,
+          height:window.innerHeight,
+          timeDiff:Math.round((new Date().getTime() - somploStartCount)/1000)
+        }
+      }
+      else{
+        var objToSend = {
+          x:clientX,
+          y:clientY,
+          width:window.innerWidth,
+          height:window.innerHeight,
+        }
+  
+      }
+      somploFFirstClickH = true;
+      if (typeof somploMainSwiper !== 'undefined') {
+        objToSend.page = somploMainSwiper.activeIndex + 1;
+      }
+      parent.creatPixel('https://pixel.somplo.com/pixel.png?e=135&tag_id='+parent.somplo_config.placement_id+'&val='+encodeURI(JSON.stringify(objToSend)), true)
+    }
+  }catch(e){
+    
+  }
+
+}
+
+
+
+    
+          function mainClick(url, pixel) {
+            try{
+              var patt = new RegExp("http", "g");
+              var clickMacroVar;
+              if(typeof parent.publisher_config.clickMacro == 'undefined'){
+                clickMacroVar = parent.publisher_config.clickmacro ?? '';
+              }
+              else{
+                clickMacroVar = parent.publisher_config.clickMacro ?? '';
+              }
+              try{
+                //var regex = /(?={)(.*?)(})/g;
+                //clickMacroVar = clickMacroVar.replace(regex, '')
+              }
+              catch(e){}
+              // parent.creatPixel("https://vast.somplo.com/pixel/pixel.png?creative_id=903355288&tech=3&clickmac="+encodeURIComponent(clickMacroVar), true);
+             if (parent.publisher_config.click_url != '' && typeof parent.publisher_config.click_url != "undefined" ) {
+  
+              var needToDecodeClickurl;
+               try{
+                needToDecodeClickurl = parent.publisher_config.click_url.startsWith('https%3A%2F%2F') ||
+                parent.publisher_config.click_url.startsWith('http%3A%2F%2F');
+               }
+               catch(e){
+                needToDecodeClickurl = parent.publisher_config.click_url.match("^https%3A%2F%2F") != null || parent.publisher_config.click_url.match("^http%3A%2F%2F") != null
+               }
+  
+  
+              if (needToDecodeClickurl) {
+                parent.publisher_config.click_url = decodeURIComponent(parent.publisher_config.click_url);
+              }
+               url = parent.publisher_config.click_url;
+             }
+             if (pixel == "null" || typeof pixel === "null" || typeof pixel === "undefined" || pixel == null) {
+  
+             } else {
+               if (parent.publisher_config.prod || typeof parent.publisher_config.prod == "undefined") {
+                 parent.creatPixel("https://pixel.somplo.com/pixel.png?e=" + pixel + "&tag_id=" +
+                     parent.somplo_config.placement_id + "&val=&order=2&tech=3", true);
+               } else {
+                 console.log("pixel" + pixel)
+               }
+             }
+             var finalURL;
+             var tempUrl;
+             if (url == "null" || typeof url === "null" || typeof url === "undefined" || url == null || url == "") {
+               tempUrl = main_click_url.trim();
+             } else {
+               tempUrl = url.trim()
+             }
+             if (parent.publisher_config.prod || typeof parent.publisher_config.prod == "undefined") {
+               allowClose = false;
+               if(!userClicked){
+                
+                parent.creatPixel("https://pixel.somplo.com/pixel.png?e=3&tag_id=" + parent.somplo_config.placement_id + "&val=&order=2&tech=3", true);
+                
+  
+                userClicked = true;
+                
+               }
+  
+              // finalURL = "https://pixel.somplo.com/RedirectPixel/pixel.png?e=3&tag_id="+parent.somplo_config.placement_id+ "&val=&tech=3&order=2&url=" + encodeURIComponent(tempUrl);
+               finalURL = tempUrl;
+             }
+             else{
+              finalURL = tempUrl;
+             }
+             try{
+  
+              
+              finalURL = finalURL.replace(/{/g, '%7B')
+              finalURL = finalURL.replace(/}/g, '%7D')
+              //finalURL = finalURL.replace(/$/g, '%24')
+              
+  
+             }
+             catch(e){}
+             //finalURL = "https://pixel.somplo.com/RedirectPixel/pixel.png?e=3&tag_id="+parent.somplo_config.placement_id+ "&val=&tech=3&order=2&url=" + encodeURIComponent(finalURL);
+             if (clickMacroVar !="") {
+              var uri_enc = finalURL;
+              var i;
+              
+              try{
+                for (i = 0; i < getMaxUrlEscapes(clickMacroVar); i++) {
+                  uri_enc = encodeURIComponent(uri_enc)
+                 }
+              }
+              catch(e){}
+              
+               allowClose = false;
+  
+               var uri_dec = clickMacroVar;
+               var needToDecodeClickMacro;
+               try{
+                needToDecodeClickMacro = clickMacroVar.startsWith('https%3A%2F%2F') ||
+                clickMacroVar.startsWith('http%3A%2F%2F');
+               }
+               catch(e){
+                needToDecodeClickMacro = clickMacroVar.match("^https%3A%2F%2F") != null || clickMacroVar.match("^http%3A%2F%2F") != null
+               }
+  
+               if (needToDecodeClickMacro) {
+                 uri_dec = decodeURIComponent(clickMacroVar);
+               }
+               
+               
+               //parent.creatPixel(uri_dec, false);
+               try{
+                new URL(uri_dec + uri_enc);
+               
+                parent.somploClick(uri_dec + uri_enc);
+                
+                
+               }
+               catch(e){
+                parent.creatPixel("https://pixel.somplo.com/pixel.png?e=182&tag_id=903355288&val=&order=125", true);
+                parent.somploClick(finalURL);
+               }
+              
+               
+  
+             } else {
+               allowClose = false;
+               
+               parent.somploClick(finalURL);
+               
+  
+             }
+            }
+            catch(e){
+              // parent.creatPixel("https://vast.somplo.com/pixel/pixel.png?creative_id=903355288&tech=3&err="+encodeURIComponent(e), true);
+              window.open(main_click_url);
+            }
+           
+         }
+         
+
+
+          
+
+          
+      
+      var resizeFallBackMargin = 0;
+      function reziseFunc() {
+        
+        try{
+          frameElement.style.width = parent.publisher_config.width + "px";
+          frameElement.style.height = parent.publisher_config.height + "px";
+        }
+        catch(e){}
+        
+        
+        
+
+        
+       try{
+        document.getElementById("container").style.width = parent.publisher_config.width + "px";
+        document.getElementById("container").style.height = parent.publisher_config.height + "px"; 
+      }
+       catch(e){}
+        
+        
+
+        if (document.body.style.zoom != "") {
+          document.getElementById("container").style.maxWidth = "unset";
+          document.getElementById("container").style.maxHeight = "unset";
+        }
+
+        /* if (resizeFallBackMargin <= 0) {
+          document.body.style.margin = 1;
+          frameToRunTimeout.setTimeout(function() {
+            document.body.style.margin = 0;
+            // resizeFallBackMargin = true;
+          }, 200);
+          resizeFallBackMargin++;
+        }*/
+
+        window.dispatchEvent(SomploResizeEvent);
+
+      }
+      
+
+
+      
+
+
+             parent.addEventListener("resize", reziseFunc);
+          try {
+            window.top.addEventListener("resize", reziseFunc);
+          }
+          catch(e) {
+
+          }
+
+         // addResizeListener(document.body, reziseFunc);
+          //addResizeListener(parent.document.body, reziseFunc);
+
+
+          
+
+                  parent.addEventListener("beforeunload", function(event) {
+           try{
+          //  removeResizeListener(document.body, reziseFunc);
+          //  removeResizeListener(parent.document.body, reziseFunc);
+           }
+           catch(e){}
+
+            try{
+              window.top.removeEventListener("resize", reziseFunc);
+            }
+            catch(e){}
+
+            parent.removeEventListener("resize", reziseFunc);
+            window.removeEventListener("resize", reziseFunc);
+            console.log('unload')
+           });
+
+           
+
+
+
+
+    try{
+      if(typeof parent.isBuilder != "undefined" && parent.isBuilder) {
+        document.body.classList.add('isBuilder');
+      }
+    }
+    catch(e){}
+
+    
+
+    
+//     try{
+//       var windowToCheck = parent;
+//       try{
+//         if(typeof window.top.AFMA_AddEventListener === 'function'){
+//           windowToCheck = window.top;
+//         }
+//       }
+//         catch(e){
+//           try{
+//             if(typeof parent.parent.AFMA_AddEventListener === 'function'){
+//               windowToCheck = parent.parent;
+//             }
+//             else{
+//               if(typeof parent.AFMA_AddEventListener === 'function'){
+//                 windowToCheck = parent;
+//               }
+//             } 
+//           }
+//           catch(e){
+//             if(typeof parent.AFMA_AddEventListener === 'function'){
+//               windowToCheck = parent;
+//             }
+//           }
+//         }
+      
+//       if(parent.isApp && typeof windowToCheck.AFMA_AddEventListener === 'function'){
+//       if(typeof windowToCheck.window.Goog_Omid_SdkImpressionReceived === 'boolean'){
+//       if(windowToCheck.window.Goog_Omid_SdkImpressionReceived){
+//       parent.initAd();
+//       
+//       if(!startMyAnimationWorked){
+//         startMyAnimation()
+//         }
+//       
+    
+//       }
+//       else{
+//         windowToCheck.AFMA_AddEventListener('onSdkImpression', function(){
+//          parent.initAd();
+//           if(!startMyAnimationWorked){
+//            startMyAnimation()
+//            }
+//        })
+//       }
+//       }else{
+//         windowToCheck.AFMA_AddEventListener('onSdkImpression', function(){
+//          parent.initAd();
+//          
+//          if(!startMyAnimationWorked){
+//            startMyAnimation()
+//            }
+//          
+         
+//        })
+//       }
+//       try{
+     
+//         windowToCheck.AFMA_AddEventListener('onshow', function(){
+//           parent.Visible = function(a,b){
+//             return true;
+//  }
+//           try{
+//             fireImppretionfunc();
+//           }
+//           catch(e){}
+        
+      
+//         // frameToRunTimeout.setTimeout(function(){
+//         if(!startMyAnimationWorked){
+//           startMyAnimation();
+//          }
+//         // }, 500)
+               
+//        })
+//       }
+//       catch(e){}
+        
+//       }
+       
+//       }
+//       catch(e){}
+
+        </script>
+      <script>
+        (function(){
+        setTimeout(()=>{
+        try{
+        const currenPG = typeof getPublisherConfigRef === "function" ? getPublisherConfigRef().publisher_config : parent.publisher_config;
+        const currenSG = typeof getSomploConfig === "function" ? getSomploConfig().placement_id : parent.somplo_config.placement_id
+            if (currenPG.prod || typeof currenPG.prod == "undefined") {
+                var encodedParams = '';
+                    var params = window.params || {};
+            for (var i in params) {
+                encodedParams = i + "=" + encodeURIComponent(params[i]) + "&";
+            }
+            var elm = document.createElement('script');
+            elm.defer = true;
+            elm.src = "https://serve.somplo.com/pixtag/js/"+currenSG+"/tag.js?" + encodedParams;
+            (document.body||document.documentElement).appendChild(elm);
+            }
+    }
+            catch(e){
+            }
+            }, 10)
+        })();
+                    </script>
+                  
+    <script defer="" src="https://serve.somplo.com/pixtag/js/903355288/tag.js?"></script></body></html>
