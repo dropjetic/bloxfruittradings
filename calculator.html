@@ -1,4 +1,3 @@
-<!-- calculator.html -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,15 +5,6 @@
 <title>Blox Fruits Calculator</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="/fruits.js"></script>
-<style>
-@keyframes shimmer {
-  0% { transform: translateX(-100%) skewX(-12deg); }
-  100% { transform: translateX(100%) skewX(-12deg); }
-}
-.animate-shimmer {
-  animation: shimmer 1.5s infinite;
-}
-</style>
 </head>
 <body class="relative bg-black text-white">
 <div class="absolute inset-0">
@@ -44,16 +34,24 @@
 <div class="flex flex-1 justify-center">
 <nav aria-label="Main" data-orientation="horizontal" dir="ltr" class="relative z-10 flex max-w-max flex-1 items-center justify-center">
 <ul data-orientation="horizontal" class="group flex-1 list-none space-x-2 flex items-center justify-center" dir="ltr">
-<li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/trading.html">
+<li><button class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground focus:bg-foreground/5 focus:text-accent-foreground focus:outline-none" data-radix-collection-item="">
+<div class="flex flex-col items-center gap-2 py-1">
 <div class="relative">
 <span class="flex h-7 w-7 items-center justify-center">
 <svg width="31" height="24" viewBox="0 0 31 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M30.0625 7.00016L23.3958 0.333496V5.3335H11.7292V8.66683H23.3958V13.6668M6.72917 10.3335L0.0625 17.0002L6.72917 23.6668V18.6668H18.3958V15.3335H6.72917V10.3335Z" fill="currentColor"></path>
 </svg>
 </span>
+<span class="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">99+</span>
 </div>
+<div class="flex items-center gap-1">
 <span class="text-xs font-medium">Trade Ads</span>
-</a></li>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-3 w-3 opacity-50 transition-transform duration-200 group-data-[state=open]:rotate-180">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</div>
+</div>
+</button></li>
 <li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/values">
 <div class="relative">
 <span class="flex h-7 w-7 items-center justify-center">
@@ -64,8 +62,7 @@
 </div>
 <span class="text-xs font-medium">Value List</span>
 </a></li>
-<li><button class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground focus:bg-foreground/5 focus:text-accent-foreground focus:outline-none" data-radix-collection-item="">
-<div class="flex flex-col items-center gap-2 py-1">
+<li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/calculator.html">
 <div class="relative">
 <span class="flex h-7 w-7 items-center justify-center">
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator">
@@ -83,8 +80,7 @@
 </span>
 </div>
 <span class="text-xs font-medium">Calculator</span>
-</div>
-</button></li>
+</a></li>
 <li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/rate">
 <div class="relative">
 <span class="flex h-7 w-7 items-center justify-center">
@@ -126,64 +122,178 @@
 <path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path>
 </svg>
 </a>
-<button class="group rounded-full hover:-translate-y-0.5 active:scale-[0.98] bg-primary relative z-10 hover:bg-primary/90 border border-primary text-primary-foreground md:text-sm transition font-medium duration-200 flex items-center justify-center shadow-[0px_-1px_0px_0px_rgba(255,255,255,0.4)_inset,_0px_1px_0px_0px_rgba(255,255,255,0.4)_inset] px-6 py-2.5 text-base" onclick="showPostTrade()">Post Trade</button>
 <a href="/login.html">
 <button class="group rounded-full hover:-translate-y-0.5 active:scale-[0.98] bg-primary relative z-10 hover:bg-primary/90 border border-primary text-primary-foreground md:text-sm transition font-medium duration-200 flex items-center justify-center shadow-[0px_-1px_0px_0px_rgba(255,255,255,0.4)_inset,_0px_1px_0px_0px_rgba(255,255,255,0.4)_inset] px-6 py-2.5 text-base">Login</button>
 </a>
 </div>
 </div>
 </div>
-<main class="relative z-10 container mx-auto px-4 py-8 min-h-screen">
-<div class="flex justify-between mb-4">
-<button class="px-4 py-2 bg-primary text-primary-foreground rounded" id="offer-btn" onclick="switchMode('offer')">Your Offer</button>
-<button class="px-4 py-2 bg-purple-500 text-white rounded" id="request-btn" onclick="switchMode('request')">Requesting</button>
+<main class="relative z-10 flex flex-col items-center justify-center min-h-screen py-10">
+<div class="min-h-[300px] sm:min-h-[400px] w-full max-w-4xl mx-auto">
+<div class="space-y-6 md:space-y-8 transition-all duration-500 rounded-xl p-4 md:p-6 border bg-gray-500/5 border-gray-500/15 shadow-gray-500/10 shadow-sm">
+<div class="flex flex-col gap-4 md:gap-6">
+<div class="group relative overflow-hidden rounded-xl text-card-foreground transition-all duration-300 hover:border-primary/20 hover:shadow-md border border-border/20 bg-background/95 backdrop-blur-sm shadow-lg">
+<div class="p-4 md:p-6">
+<div class="grid gap-4 md:gap-6 grid-cols-2 relative">
+<div class="flex flex-col items-center space-y-3 md:space-y-4">
+<h2 class="flex items-center justify-center gap-3 text-lg font-semibold">
+<div class="inline-flex items-center gap-1 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-2 hover:border-primary/60 hover:bg-primary/10 backdrop-blur-md ring-white/5 bg-primary/10 text-primary border-primary/30 px-3 py-1 text-sm">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down mr-2 h-3 w-3" aria-hidden="true"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>You
 </div>
-<button class="w-full bg-primary p-2 rounded mb-4" onclick="showItemModal()">Add Item</button>
-<div class="grid grid-cols-3 gap-2 mb-4" id="selected-fruits"></div>
-<div class="flex justify-between items-center mb-4">
-<span class="text-lg font-semibold">Total Value: <span id="total-value">0</span></span>
-<span id="trade-result" class="text-lg font-semibold"></span>
-</div>
-<div role="dialog" id="item-modal" class="hidden fixed left-[50%] top-[50%] grid w-full translate-x-[-50%] translate-y-[-50%] rounded-lg border shadow-xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg max-h-[92vh] sm:max-h-[80vh] max-w-[95vw] gap-0 border-foreground/10 bg-background/95 p-0 sm:min-w-[500px] sm:max-w-[1000px]" tabindex="-1" style="z-index: 120; pointer-events: auto;">
-<div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-4 pb-3">
-<h2 class="font-semibold tracking-tight flex items-center gap-2 text-xl">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-5 w-5" aria-hidden="true">
-<circle cx="11" cy="11" r="8"></circle>
-<path d="m21 21-4.3-4.3"></path>
-</svg>Search Items</h2>
-<p class="text-sm text-muted-foreground">Search and select an item to add to your calculator</p>
-</div>
-<div class="overflow-hidden p-4">
-<div class="space-y-4">
-<div class="flex w-full items-center">
-<div class="relative w-full">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true">
-<circle cx="11" cy="11" r="8"></circle>
-<path d="m21 21-4.3-4.3"></path>
-</svg>
-<input id="fruit-search" class="flex h-10 rounded-md border border-input px-3 py-2 text-base ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full bg-background/50 pl-9 pr-9 focus-visible:ring-primary/30 placeholder:text-muted-foreground/50" placeholder="Search items..." maxlength="100" aria-label="Search items" value="">
-</div>
-</div>
-<div class="overflow-hidden rounded-lg border border-foreground/10 bg-background/30">
-<div class="flex items-center justify-between border-b border-foreground/10 bg-foreground/5 px-4 py-2">
+</h2>
+<div class="flex items-center justify-center gap-4 md:gap-6 rounded-xl bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20 px-3 py-2 md:px-4 md:py-3 text-sm backdrop-blur-sm transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
 <div class="flex items-center gap-2">
-<span class="text-sm font-medium">Available Items</span>
-<div class="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-transparent bg-gradient-to-br from-secondary/95 to-secondary/85 text-secondary-foreground shadow-md hover:shadow-lg ring-white/5 bg-foreground/10" id="item-count"></div>
+<div class="flex h-5 md:h-6 w-5 md:w-6 items-center justify-center rounded-full bg-primary/20">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 md:h-3 w-2.5 md:w-3 text-primary" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+</div>
+<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Value</span><span class="font-bold text-base text-primary" id="your-value">0</span></div>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex h-5 md:h-6 w-5 md:w-6 items-center justify-center rounded-full bg-yellow-500/20">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 md:h-3 w-2.5 md:w-3 text-yellow-500" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+</div>
+<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Price</span><span class="font-bold text-base text-yellow-500">0</span></div>
+</div>
+<div class="hidden sm:flex items-center gap-2">
+<div class="flex h-5 md:h-6 w-5 md:w-6 items-center justify-center rounded-full bg-green-500/20">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-2.5 md:h-3 w-2.5 md:w-3 text-green-500" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+</div>
+<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Demand</span><span class="font-bold text-base text-green-500">0/10</span></div>
 </div>
 </div>
-<div class="h-[62vh] min-h-[300px] sm:h-[420px] sm:min-h-[360px] overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10 hover:scrollbar-thumb-white/20 scrollbar-thumb-rounded" id="fruit-list"></div>
+<div class="w-full rounded-lg bg-background/80 p-2 md:p-4 shadow-sm min-h-[160px] md:min-h-[200px]">
+<div class="mx-auto grid max-w-[1000px] gap-3 md:gap-4 rounded-lg p-2 md:p-4 min-h-[120px] md:min-h-[160px] grid-cols-3">
+<div class="group text-card-foreground backdrop-blur-sm hover:shadow-md item-grid group relative mx-auto flex aspect-square w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl transition-all duration-300 border-2 border-dashed bg-primary/10 border-primary/30 shadow-lg shadow-primary/10 hover:border-primary/50 hover:bg-primary/15 add-fruit" data-side="left">
+<div class="absolute inset-0 bg-gradient-to-br transition-all duration-300 from-primary/20 to-primary/5 opacity-100 group-hover:opacity-100"></div>
+<div class="relative z-10 flex flex-col items-center gap-2" tabindex="0">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus transition-all duration-300 h-8 w-8 text-primary opacity-80 group-hover:opacity-100" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+<span class="text-xs font-medium text-primary/70 group-hover:text-primary/90 hidden sm:block">Add Item</span>
+</div>
+</div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="0"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="1"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="2"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="3"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="4"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="5"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="6"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="7"></div>
 </div>
 </div>
 </div>
-<button type="button" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-popover transition-opacity data-[state=open]:bg-accent data-[state=open]:text-muted-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" onclick="closeItemModal()">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4" aria-hidden="true">
-<path d="M18 6 6 18"></path>
-<path d="m6 6 12 12"></path>
-</svg>
-<span class="sr-only">Close</span>
+<div class="flex flex-col items-center space-y-3 md:space-y-4">
+<h2 class="flex items-center justify-center gap-3 text-lg font-semibold">
+<div class="inline-flex items-center gap-1 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-2 hover:border-purple-500/60 hover:bg-purple-500/10 backdrop-blur-md ring-white/5 bg-purple-500/10 text-purple-500 border-purple-500/30 px-3 py-1 text-sm">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up mr-2 h-3 w-3" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg>Them
+</div>
+</h2>
+<div class="flex items-center justify-center gap-4 md:gap-6 rounded-xl bg-gradient-to-r from-purple-500/5 to-purple-500/10 border border-purple-500/20 px-3 py-2 md:px-4 md:py-3 text-sm backdrop-blur-sm transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
+<div class="flex items-center gap-2">
+<div class="flex h-5 md:h-6 w-5 md:w-6 items-center justify-center rounded-full bg-purple-500/20">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 md:h-3 w-2.5 md:w-3 text-purple-500" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+</div>
+<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Value</span><span class="font-bold text-base text-purple-500" id="their-value">0</span></div>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex h-5 md:h-6 w-5 md:w-6 items-center justify-center rounded-full bg-yellow-500/20">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 md:h-3 w-2.5 md:w-3 text-yellow-500" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+</div>
+<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Price</span><span class="font-bold text-base text-yellow-500">0</span></div>
+</div>
+<div class="hidden sm:flex items-center gap-2">
+<div class="flex h-5 md:h-6 w-5 md:w-6 items-center justify-center rounded-full bg-green-500/20">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-2.5 md:h-3 w-2.5 md:w-3 text-green-500" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+</div>
+<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Demand</span><span class="font-bold text-base text-green-500">0/10</span></div>
+</div>
+</div>
+<div class="w-full rounded-lg bg-background/80 p-2 md:p-4 shadow-sm min-h-[160px] md:min-h-[200px]">
+<div class="mx-auto grid max-w-[1000px] gap-3 md:gap-4 rounded-lg p-2 md:p-4 min-h-[120px] md:min-h-[160px] grid-cols-3">
+<div class="group text-card-foreground backdrop-blur-sm hover:shadow-md item-grid group relative mx-auto flex aspect-square w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl transition-all duration-300 border-2 border-dashed bg-primary/10 border-primary/30 shadow-lg shadow-primary/10 hover:border-primary/50 hover:bg-primary/15 add-fruit" data-side="right">
+<div class="absolute inset-0 bg-gradient-to-br transition-all duration-300 from-primary/20 to-primary/5 opacity-100 group-hover:opacity-100"></div>
+<div class="relative z-10 flex flex-col items-center gap-2" tabindex="0">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus transition-all duration-300 h-8 w-8 text-primary opacity-80 group-hover:opacity-100" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+<span class="text-xs font-medium text-primary/70 group-hover:text-primary/90 hidden sm:block">Add Item</span>
+</div>
+</div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="0"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="1"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="2"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="3"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="4"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="5"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="6"></div>
+<div class="item-grid relative mx-auto aspect-square w-full rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="7"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl border bg-card text-card-foreground backdrop-blur-sm transition-all duration-300 hover:border-primary/20 hover:shadow-md border-border/40 shadow-lg">
+<div class="p-4 md:p-6">
+<div class="w-full space-y-4 md:space-y-5">
+<div class="flex flex-col items-center gap-4 md:gap-6">
+<div class="flex items-center gap-3 md:gap-4 rounded-2xl border-2 px-4 md:px-8 py-3 md:py-4 font-bold text-xl md:text-2xl backdrop-blur-sm transition-all duration-300 shadow-lg bg-muted/20 border-muted-foreground/20 shadow-muted-foreground/10">
+<div class="h-6 md:h-8 w-6 md:w-8">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus h-full w-full" aria-hidden="true"><path d="M5 12h14"></path></svg>
+</div>
+<span class="text-muted-foreground" id="result">Neutral</span>
+</div>
+<div class="flex items-center gap-6 md:gap-12 text-center">
+<div class="flex flex-col items-center space-y-2">
+<span class="text-sm font-medium text-muted-foreground uppercase tracking-wide">Your Offer</span>
+<span class="text-2xl md:text-3xl font-bold text-primary" id="your-offer">0</span>
+<span class="text-sm text-muted-foreground/80">Demand: 0/10</span>
+<span class="text-sm text-yellow-500">Price: 0</span>
+</div>
+<div class="text-muted-foreground text-base md:text-lg font-medium">vs</div>
+<div class="flex flex-col items-center space-y-2">
+<span class="text-sm font-medium text-muted-foreground uppercase tracking-wide">Their Offer</span>
+<span class="text-2xl md:text-3xl font-bold text-purple-500" id="their-offer">0</span>
+<span class="text-sm text-muted-foreground/80">Demand: 0/10</span>
+<span class="text-sm text-yellow-500">Price: 0</span>
+</div>
+</div>
+</div>
+<div class="space-y-4 md:space-y-6">
+<div class="space-y-3 md:space-y-4">
+<div class="relative h-10 md:h-12 w-full overflow-hidden rounded-full bg-muted/30 shadow-inner border-2 border-border/20">
+<div class="absolute left-0 top-0 h-full bg-gradient-to-r from-primary/80 to-primary/60 shadow-sm transition-all duration-1000 shadow-primary/20" style="filter:brightness(1) saturate(1);width:50%"></div>
+<div class="absolute right-0 top-0 h-full bg-gradient-to-l from-purple-500/80 to-purple-500/60 shadow-sm transition-all duration-1000 shadow-purple-500/20" style="filter:brightness(1) saturate(1);width:50%"></div>
+<div class="absolute left-1/2 top-0 h-full w-1 bg-background/90 shadow-sm -translate-x-px rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 md:pt-4">
+<div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/20 border border-border/10 transition-all hover:bg-muted/30">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash h-4 w-4 text-muted-foreground" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+<span class="text-sm font-medium text-muted-foreground">Click to Delete</span>
+<form class="flex items-center space-x-4">
+<label for="delete-toggle" class="relative flex h-5 w-[40px] cursor-pointer items-center rounded-full border border-transparent px-1 shadow-[inset_0px_0px_12px_rgba(0,0,0,0.25)] transition duration-200 bg-accent">
+<div class="z-10 block h-[12px] w-[12px] rounded-full bg-accent-foreground shadow-md" style="transform: translateX(20px);"></div>
+<input type="checkbox" class="hidden" id="delete-toggle" checked>
+</label>
+</form>
+</div>
+<button class="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-2 bg-background/70 backdrop-blur-md hover:text-accent-foreground hover:shadow-md hover:border-border/80 active:scale-[0.97] ring-1 ring-white/5 h-10 gap-2 border-destructive/30 text-destructive transition-all hover:bg-destructive/10 px-4 py-2 text-base reset-calculator">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash h-4 w-4" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+<span class="hidden sm:inline">Reset Calculator</span><span class="sm:hidden">Reset</span>
 </button>
 </div>
+</div>
+</div>
+<div class="mt-4 text-center">
+<a href="https://bloxfruittrading.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-purple-400 hover:text-purple-300 hover:underline transition-colors font-medium px-3 py-1.5 rounded-lg hover:bg-purple-500/10">
+<span>bloxfruittrading.com</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+</a>
+</div>
+</div>
 </main>
+<div role="dialog" id="fruit-modal" class="fixed left-[50%] top-[50%] grid w-full translate-x-[-50%] translate-y-[-50%] rounded-lg border shadow-xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg modal-safe-positioning dialog-content-safe max-h-[92vh] sm:max-h-[80vh] max-w-[95vw] gap-0 border-foreground/10 bg-background/95 p-0 sm:min-w-[500px] sm:max-w-[1000px]" tabindex="-1" style="z-index: 120; pointer-events: auto; display: none;">
+<div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-4 pb-3"><h2 id="radix-:r1u:" class="font-semibold tracking-tight flex items-center gap-2 text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-5 w-5" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Search Items</h2><p id="radix-:r1v:" class="text-sm text-muted-foreground">Search and select an item to add to your calculator</p></div><div class="overflow-hidden p-4"><div class="space-y-4"><div class="flex flex-col gap-1"><div class="flex flex-wrap justify-center gap-1"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/85 text-primary-foreground hover:from-primary/90 hover:via-primary/85 hover:to-primary/80 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] border border-primary/20 ring-1 ring-white/10 rounded-full h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm">All<div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"><div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-shimmer"></div></div></button></div></div><div class="flex w-full items-center"><div class="relative w-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><div class="relative"><input id="fruit-search" class="flex h-10 rounded-md border border-input px-3 py-2 text-base ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full bg-background/50 pl-9 pr-9 focus-visible:ring-primary/30 placeholder:text-muted-foreground/50" placeholder="Search items..." maxlength="100" aria-label="Search items" value=""></div></div></div><div class="overflow-hidden rounded-lg border border-foreground/10 bg-background/30"><div class="flex items-center justify-between border-b border-foreground/10 bg-foreground/5 px-4 py-2"><div class="flex items-center gap-2"><span class="text-sm font-medium">Available Items</span><div class="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-transparent bg-gradient-to-br from-secondary/95 to-secondary/85 text-secondary-foreground shadow-md hover:shadow-lg ring-white/5 bg-foreground/10" id="item-count"></div></div></div><div class="h-[62vh] min-h-[300px] sm:h-[420px] sm:min-h-[360px] overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10 hover:scrollbar-thumb-white/20 scrollbar-thumb-rounded"><div id="fruit-grid" class="grid grid-cols-6 gap-2 p-2 sm:gap-3 sm:p-3"></div><div class="flex h-12 w-full items-center justify-center"></div></div></div></div></div><button type="button" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-popover transition-opacity data-[state=open]:bg-accent data-[state=open]:text-muted-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" id="close-modal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span class="sr-only">Close</span></button></div>
 <footer class="relative z-10 mt-auto py-12 bg-black/90 backdrop-blur-md border-t border-white/10">
 <div class="max-w-7xl mx-auto px-6">
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -226,151 +336,154 @@
 </div>
 </footer>
 <script>
+const leftSlots = document.querySelectorAll('.fruit-slot[data-side="left"]');
+const rightSlots = document.querySelectorAll('.fruit-slot[data-side="right"]');
+const addButtons = document.querySelectorAll('.add-fruit');
+const yourValueEl = document.getElementById('your-value');
+const theirValueEl = document.getElementById('their-value');
+const resultEl = document.getElementById('result');
+const yourOfferEl = document.getElementById('your-offer');
+const theirOfferEl = document.getElementById('their-offer');
+const modal = document.getElementById('fruit-modal');
+const closeModal = document.getElementById('close-modal');
+const fruitGrid = document.getElementById('fruit-grid');
+const fruitSearch = document.getElementById('fruit-search');
+const itemCount = document.getElementById('item-count');
+let leftFruits = Array(8).fill(null);
+let rightFruits = Array(8).fill(null);
+let currentSide = null;
 const fruitImages = {
-  'Blade': 'https://i.postimg.cc/sg2wZcs2/Blade.png',
+  'Blade': 'https://i.postimg.cc/9F9Z7p0r/Blade.png',
   'Blizzard': 'https://i.postimg.cc/fTDBV72v/Blizzard.png',
-  'Bomb': 'https://i.postimg.cc/VsV0X6vF/Bomb.png',
+  'Bomb': 'https://i.postimg.cc/5y4y2wH2/Bomb.png',
   'Buddha': 'https://i.postimg.cc/02nZD6h1/Buddha.png',
   'Control': 'https://i.postimg.cc/9QNpg6Wx/Control.png',
   'Creation': 'https://i.postimg.cc/HLctq6nT/Creation.png',
-  'Dark': 'https://i.postimg.cc/76qXHM5r/Dark.png',
-  'Diamond': 'https://i.postimg.cc/MG2ZqV5k/Diamond.png',
+  'Dark': 'https://i.postimg.cc/R0Jq0P8w/Dark.png',
+  'Diamond': 'https://i.postimg.cc/3xXJ3z0N/Diamond.png',
   'Dough': 'https://i.postimg.cc/wxckYyqR/Dough.png',
-  'Eagle': 'https://i.postimg.cc/8c6xQNwk/Eagle.png',
+  'Eagle': 'https://i.postimg.cc/4xZ3S5fC/Eagle.png',
   'East Dragon': 'https://i.postimg.cc/gkzHzzjS/East-Dragon.png',
-  'Emerald': 'https://i.postimg.cc/7h0rKxYJ/Emerald.png',
-  'Flame': 'https://i.postimg.cc/4dT2Y2Y0/Flame.png',
+  'Emerald': 'https://i.postimg.cc/4x9P0Z4C/Emerald.png',
+  'Flame': 'https://i.postimg.cc/3x8Q6QdP/Flame.png',
   'Gas': 'https://i.postimg.cc/nzKqxgJf/Gas.png',
-  'Ghost': 'https://i.postimg.cc/4y2VqW2Y/Ghost.png',
+  'Ghost': 'https://i.postimg.cc/Sx1gYvPj/Ghost.png',
   'Gravity': 'https://i.postimg.cc/D02Lw6vJ/Gravity.png',
-  'Green Lightning': 'https://i.postimg.cc/4yqB0qC6/Green-Lightning.png',
-  'Ice': 'https://i.postimg.cc/4N5Y6S2W/Ice.png',
+  'Green Lightning': 'https://i.postimg.cc/3w0C3b1X/Green-Lightning.png',
+  'Ice': 'https://i.postimg.cc/t4C8G1dD/Ice.png',
   'Kitsune': 'https://i.postimg.cc/CLxbycr9/Kitsune.png',
   'Leopard': 'https://i.postimg.cc/rwdWsKkJ/Leopard.png',
-  'Love': 'https://i.postimg.cc/8CjdL5T2/Love.png',
-  'Magma': 'https://i.postimg.cc/8cL3gRN6/Magma.png',
+  'Love': 'https://i.postimg.cc/0Q0f2XgZ/Love.png',
+  'Magma': 'https://i.postimg.cc/4yB5d1Z3/Magma.png',
   'Mammoth': 'https://i.postimg.cc/sXJGqWYV/Mammoth.png',
   'Pain': 'https://i.postimg.cc/mk21srj7/Pain.png',
-  'Parrot': 'https://i.postimg.cc/8CD4kVZd/Parrot.png',
-  'Permanent Dragon Token': 'https://i.postimg.cc/NM0N6t1D/Permanent-Dragon-Token.png',
-  'Phoenix': 'https://i.postimg.cc/8CD4kVZd/Phoenix.png',
+  'Parrot': 'https://i.postimg.cc/nhmZf0q0/Parrot.png',
+  'Permanent Dragon Token': 'https://i.postimg.cc/5yqZ9y2x/Permanent-Dragon-Token.png',
+  'Phoenix': 'https://i.postimg.cc/nhk9F5d6/Phoenix.png',
   'Portal': 'https://i.postimg.cc/DzkWz65v/Portal.png',
-  'Purple Lightning': 'https://i.postimg.cc/7YqL2Y2k/Purple-Lightning.png',
-  'Quake': 'https://i.postimg.cc/3wL3qW2k/Quake.png',
-  'Rocket': 'https://i.postimg.cc/4yqB0qC6/Rocket.png',
-  'Rose Quartz': 'https://i.postimg.cc/4yqB0qC6/Rose-Quartz.png',
-  'Rubber': 'https://i.postimg.cc/4yqB0qC6/Rubber.png',
-  'Ruby': 'https://i.postimg.cc/4yqB0qC6/Ruby.png',
+  'Purple Lightning': 'https://i.postimg.cc/3wY6yY7P/Purple-Lightning.png',
+  'Quake': 'https://i.postimg.cc/3xP4w5f0/Quake.png',
+  'Rocket': 'https://i.postimg.cc/tgq3H7p4/Rocket.png',
+  'Rose Quartz': 'https://i.postimg.cc/0y1D1Z2x/Rose-Quartz.png',
+  'Rubber': 'https://i.postimg.cc/3x6y6y6y/Rubber.png',
+  'Ruby': 'https://i.postimg.cc/3x6y6y6y/Ruby.png',
   'Rumble': 'https://i.postimg.cc/MHTHLFZD/Rumble.png',
-  'Sand': 'https://i.postimg.cc/4yqB0qC6/Sand.png',
+  'Sand': 'https://i.postimg.cc/3x6y6y6y/Sand.png',
   'Shadow': 'https://i.postimg.cc/kGpGPvBd/Shadow.png',
-  'Smoke': 'https://i.postimg.cc/4yqB0qC6/Smoke.png',
-  'Sound': 'https://i.postimg.cc/4yqB0qC6/Sound.png',
-  'Spider': 'https://i.postimg.cc/4yqB0qC6/Spider.png',
-  'Spike': 'https://i.postimg.cc/4yqB0qC6/Spike.png',
-  'Spin': 'https://i.postimg.cc/4yqB0qC6/Spin.png',
+  'Smoke': 'https://i.postimg.cc/3x6y6y6y/Smoke.png',
+  'Sound': 'https://i.postimg.cc/3x6y6y6y/Sound.png',
+  'Spider': 'https://i.postimg.cc/3x6y6y6y/Spider.png',
+  'Spike': 'https://i.postimg.cc/3x6y6y6y/Spike.png',
+  'Spin': 'https://i.postimg.cc/3x6y6y6y/Spin.png',
   'Spirit': 'https://i.postimg.cc/wTpbhYvL/Spirit.png',
-  'Spring': 'https://i.postimg.cc/4yqB0qC6/Spring.png',
+  'Spring': 'https://i.postimg.cc/3x6y6y6y/Spring.png',
   'T-Rex': 'https://i.postimg.cc/zGDtcwTf/T-Rex.png',
-  'Topaz': 'https://i.postimg.cc/4yqB0qC6/Topaz.png',
+  'Topaz': 'https://i.postimg.cc/3x6y6y6y/Topaz.png',
   'Venom': 'https://i.postimg.cc/zGdtZLkF/Venom.png',
   'West Dragon': 'https://i.postimg.cc/7LfBxxs8/West-Dragon.png',
-  'Yellow Lightning': 'https://i.postimg.cc/4yqB0qC6/Yellow-Lightning.png',
+  'Yellow Lightning': 'https://i.postimg.cc/3x6y6y6y/Yellow-Lightning.png',
   'Yeti': 'https://i.postimg.cc/mrJmk0Jc/Yeti.png'
 };
-let selectedOffers = [];
-let selectedRequests = [];
-let mode = 'offer';
-function showPostTrade() {
-  selectedOffers = [];
-  selectedRequests = [];
-  mode = 'offer';
-  updateSelectedFruits();
-}
-function showItemModal() {
-  document.getElementById('item-modal').classList.remove('hidden');
-  populateFruitList('');
-}
-function closeItemModal() {
-  document.getElementById('item-modal').classList.add('hidden');
-  document.getElementById('fruit-search').value = '';
-}
-function switchMode(newMode) {
-  mode = newMode;
-  document.getElementById('offer-btn').classList.toggle('bg-primary', mode === 'offer');
-  document.getElementById('offer-btn').classList.toggle('text-primary-foreground', mode === 'offer');
-  document.getElementById('offer-btn').classList.toggle('bg-gray-600', mode !== 'offer');
-  document.getElementById('request-btn').classList.toggle('bg-purple-500', mode === 'request');
-  document.getElementById('request-btn').classList.toggle('text-white', mode === 'request');
-  document.getElementById('request-btn').classList.toggle('bg-gray-600', mode !== 'request');
-  updateSelectedFruits();
-}
-function populateFruitList(search) {
-  const fruitList = document.getElementById('fruit-list');
-  const itemCount = document.getElementById('item-count');
-  fruitList.innerHTML = '';
-  const filteredFruits = Object.keys(fruitImages).filter(f => f.toLowerCase().includes(search.toLowerCase()));
-  itemCount.textContent = filteredFruits.length;
-  filteredFruits.forEach(fruit => {
-    const button = document.createElement('button');
-    button.classList.add('group', 'relative', 'flex', 'w-full', 'flex-col', 'items-center', 'overflow-hidden', 'rounded-lg', 'p-3', 'sm:p-2', 'text-left', 'transition-all', 'duration-200', 'ease-out', 'hover:scale-[1.02]', 'active:scale-[0.98]', 'bg-foreground/[0.02]', 'hover:bg-foreground/[0.06]', 'border', 'border-transparent', 'hover:border-foreground/10', 'outline-none', 'focus:ring-2', 'focus:ring-white/10');
-    button.innerHTML = `
+addButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    currentSide = btn.dataset.side;
+    modal.style.display = 'block';
+    renderFruits();
+  });
+});
+closeModal.addEventListener('click', () => modal.style.display = 'none');
+fruitSearch.addEventListener('input', renderFruits);
+function renderFruits() {
+  fruitGrid.innerHTML = '';
+  const query = fruitSearch.value.toLowerCase();
+  const filtered = Object.entries(fruitImages).filter(([f]) => f.toLowerCase().includes(query));
+  filtered.forEach(([f, url]) => {
+    const btn = document.createElement('button');
+    btn.className = 'group relative flex w-full flex-col items-center overflow-hidden rounded-lg p-3 sm:p-2 text-left transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] bg-foreground/[0.02] hover:bg-foreground/[0.06] border border-transparent hover:border-foreground/10 outline-none focus:ring-2 focus:ring-white/10';
+    btn.innerHTML = `
       <div class="relative mb-2 h-24 w-24 sm:h-20 sm:w-20">
-        <img draggable="false" alt="${fruit}" loading="lazy" decoding="async" class="object-contain transition-transform duration-200 group-hover:scale-110" sizes="80px" src="${fruitImages[fruit]}" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+        <img src="${url}" class="object-contain transition-transform duration-200 group-hover:scale-110" alt="${f}">
         <div class="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
       </div>
       <div class="w-full space-y-0.5">
-        <div class="flex items-center gap-1">
-          <span class="truncate text-xs font-medium sm:text-sm">${fruit}</span>
-        </div>
+        <div class="flex items-center gap-1"><span class="truncate text-xs font-medium sm:text-sm">${f}</span></div>
         <span class="block truncate text-xs text-muted-foreground">Fruits</span>
       </div>
     `;
-    button.onclick = () => addFruit(fruit);
-    fruitList.appendChild(button);
+    btn.addEventListener('click', () => addFruit(f));
+    fruitGrid.appendChild(btn);
   });
+  itemCount.textContent = filtered.length;
 }
-function addFruit(fruit) {
-  if (mode === 'offer' && !selectedOffers.includes(fruit)) selectedOffers.push(fruit);
-  if (mode === 'request' && !selectedRequests.includes(fruit)) selectedRequests.push(fruit);
-  updateSelectedFruits();
-  closeItemModal();
-}
-function removeFruit(fruit, type) {
-  if (type === 'offer') selectedOffers = selectedOffers.filter(f => f !== fruit);
-  if (type === 'request') selectedRequests = selectedRequests.filter(f => f !== fruit);
-  updateSelectedFruits();
-}
-function updateSelectedFruits() {
-  const selectedFruits = document.getElementById('selected-fruits');
-  selectedFruits.innerHTML = '';
-  const fruits = mode === 'offer' ? selectedOffers : selectedRequests;
-  fruits.forEach(fruit => {
-    const div = document.createElement('div');
-    div.classList.add('flex', 'flex-col', 'items-center', 'relative');
-    div.innerHTML = `
-      <img src="${fruitImages[fruit]}" class="w-12 h-12 object-contain" alt="${fruit}">
-      <span class="text-xs text-white mt-1">${fruit}</span>
-      <button class="absolute top-0 right-0 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs" onclick="removeFruit('${fruit}', '${mode}')">✕</button>
-    `;
-    selectedFruits.appendChild(div);
-  });
-  calculateTotalValue();
-}
-function calculateTotalValue() {
-  const offerValue = selectedOffers.reduce((sum, f) => sum + (fruits[f.trim()]?.value || 0), 0);
-  const requestValue = selectedRequests.reduce((sum, f) => sum + (fruits[f.trim()]?.value || 0), 0);
-  const totalValue = mode === 'offer' ? offerValue : requestValue;
-  document.getElementById('total-value').textContent = totalValue;
-  let result = '';
-  if (selectedOffers.length > 0 && selectedRequests.length > 0) {
-    if (offerValue < requestValue) result = 'W for you';
-    else if (offerValue > requestValue) result = 'L for you';
-    else result = 'Fair';
+function addFruit(value) {
+  const fruitsArr = currentSide === 'left' ? leftFruits : rightFruits;
+  const slots = currentSide === 'left' ? leftSlots : rightSlots;
+  const index = fruitsArr.findIndex(f => !f);
+  if (index !== -1) {
+    fruitsArr[index] = value;
+    slots[index].innerHTML = `<img src="${fruitImages[value]}" class="w-3/4 h-3/4 object-contain" alt="${value}"><span class="text-xs text-white mt-1">${value}</span>`;
+    calculate();
   }
-  document.getElementById('trade-result').textContent = result;
+  modal.style.display = 'none';
 }
-document.getElementById('fruit-search').addEventListener('input', e => populateFruitList(e.target.value));
+[...leftSlots, ...rightSlots].forEach(slot => {
+  slot.addEventListener('click', () => {
+    const side = slot.dataset.side;
+    const index = slot.dataset.index;
+    const fruitsArr = side === 'left' ? leftFruits : rightFruits;
+    if (fruitsArr[index]) {
+      fruitsArr[index] = null;
+      slot.innerHTML = '';
+      calculate();
+    }
+  });
+});
+document.querySelector('.reset-calculator').addEventListener('click', () => {
+  leftFruits.fill(null);
+  rightFruits.fill(null);
+  leftSlots.forEach(s => s.innerHTML = '');
+  rightSlots.forEach(s => s.innerHTML = '');
+  yourValueEl.textContent = '0';
+  theirValueEl.textContent = '0';
+  yourOfferEl.textContent = '0';
+  theirOfferEl.textContent = '0';
+  resultEl.textContent = 'Neutral';
+});
+function calculate() {
+  const leftValue = leftFruits.reduce((sum, f) => sum + (fruits[f]?.value || 0), 0);
+  const rightValue = rightFruits.reduce((sum, f) => sum + (fruits[f]?.value || 0), 0);
+  yourValueEl.textContent = leftValue.toLocaleString();
+  theirValueEl.textContent = rightValue.toLocaleString();
+  yourOfferEl.textContent = leftValue.toLocaleString();
+  theirOfferEl.textContent = rightValue.toLocaleString();
+  if (leftValue < rightValue) {
+    resultEl.textContent = `Win (Gain: ${(rightValue - leftValue).toLocaleString()})`;
+  } else if (leftValue > rightValue) {
+    resultEl.textContent = `Loss (Loss: ${(leftValue - rightValue).toLocaleString()})`;
+  } else {
+    resultEl.textContent = `Neutral`;
+  }
+}
 </script>
 </body>
 </html>
