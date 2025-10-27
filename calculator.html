@@ -4,7 +4,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blox Fruits Calculator</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="/fruits.js"></script>
+<script src="fruits.js"></script>
+<style>
+  /* Disable scrolling when modal is open */
+  body.modal-open {
+    overflow: hidden;
+  }
+</style>
 </head>
 <body class="relative bg-black text-white">
 <div class="absolute inset-0">
@@ -284,16 +290,9 @@
 </div>
 </div>
 </div>
-<div class="mt-4 text-center">
-<a href="https://bloxfruittrading.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-purple-400 hover:text-purple-300 hover:underline transition-colors font-medium px-3 py-1.5 rounded-lg hover:bg-purple-500/10">
-<span>bloxfruittrading.com</span>
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-</a>
-</div>
-</div>
 </main>
-<div role="dialog" id="fruit-modal" class="fixed left-[50%] top-[50%] grid w-full translate-x-[-50%] translate-y-[-50%] rounded-lg border shadow-xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg modal-safe-positioning dialog-content-safe max-h-[92vh] sm:max-h-[80vh] max-w-[95vw] gap-0 border-foreground/10 bg-background/95 p-0 sm:min-w-[500px] sm:max-w-[1000px]" tabindex="-1" style="z-index: 120; pointer-events: auto; display: none;">
-<div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-4 pb-3"><h2 id="radix-:r1u:" class="font-semibold tracking-tight flex items-center gap-2 text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-5 w-5" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Search Items</h2><p id="radix-:r1v:" class="text-sm text-muted-foreground">Search and select an item to add to your calculator</p></div><div class="overflow-hidden p-4"><div class="space-y-4"><div class="flex flex-col gap-1"><div class="flex flex-wrap justify-center gap-1"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/85 text-primary-foreground hover:from-primary/90 hover:via-primary/85 hover:to-primary/80 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] border border-primary/20 ring-1 ring-white/10 rounded-full h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm">All<div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"><div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-shimmer"></div></div></button></div></div><div class="flex w-full items-center"><div class="relative w-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><div class="relative"><input id="fruit-search" class="flex h-10 rounded-md border border-input px-3 py-2 text-base ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full bg-background/50 pl-9 pr-9 focus-visible:ring-primary/30 placeholder:text-muted-foreground/50" placeholder="Search items..." maxlength="100" aria-label="Search items" value=""></div></div></div><div class="overflow-hidden rounded-lg border border-foreground/10 bg-background/30"><div class="flex items-center justify-between border-b border-foreground/10 bg-foreground/5 px-4 py-2"><div class="flex items-center gap-2"><span class="text-sm font-medium">Available Items</span><div class="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-transparent bg-gradient-to-br from-secondary/95 to-secondary/85 text-secondary-foreground shadow-md hover:shadow-lg ring-white/5 bg-foreground/10" id="item-count"></div></div></div><div class="h-[62vh] min-h-[300px] sm:h-[420px] sm:min-h-[360px] overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10 hover:scrollbar-thumb-white/20 scrollbar-thumb-rounded"><div id="fruit-grid" class="grid grid-cols-6 gap-2 p-2 sm:gap-3 sm:p-3"></div><div class="flex h-12 w-full items-center justify-center"></div></div></div></div></div><button type="button" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-popover transition-opacity data-[state=open]:bg-accent data-[state=open]:text-muted-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" id="close-modal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span class="sr-only">Close</span></button></div>
+<div role="dialog" id="fruit-modal" class="fixed left-[50%] top-[50%] grid w-full translate-x-[-50%] translate-y-[-50%] rounded-lg border shadow-xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg modal-safe-positioning dialog-content-safe max-h-[92vh] sm:max-h-[80vh] max-w-[95vw] gap-0 border-foreground/10 bg-black p-0 sm:min-w-[500px] sm:max-w-[1000px]" tabindex="-1" style="z-index: 120; pointer-events: auto; display: none;">
+<div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-4 pb-3"><h2 id="radix-:r1u:" class="font-semibold tracking-tight flex items-center gap-2 text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-5 w-5" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Search Items</h2><p id="radix-:r1v:" class="text-sm text-muted-foreground">Search and select an item to add to your calculator</p></div><div class="overflow-hidden p-4"><div class="space-y-4"><div class="flex flex-col gap-1"><div class="flex flex-wrap justify-center gap-1"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/85 text-primary-foreground hover:from-primary/90 hover:via-primary/85 hover:to-primary/80 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] border border-primary/20 ring-1 ring-white/10 rounded-full h-8 px-3 text-xs sm:h-9 sm:px-4 sm:text-sm">All<div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"><div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-shimmer"></div></div></button></div></div><div class="flex w-full items-center"><div class="relative w-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><div class="relative"><input id="fruit-search" class="flex h-10 rounded-md border border-input px-3 py-2 text-base ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full bg-background/50 pl-9 pr-9 focus-visible:ring-primary/30 placeholder:text-muted-foreground/50 font-bold text-black" placeholder="Search items..." maxlength="100" aria-label="Search items" value=""></div></div></div><div class="overflow-hidden rounded-lg border border-foreground/10 bg-black"><div class="flex items-center justify-between border-b border-foreground/10 bg-foreground/5 px-4 py-2"><div class="flex items-center gap-2"><span class="text-sm font-medium">Available Items</span><div class="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-transparent bg-gradient-to-br from-secondary/95 to-secondary/85 text-secondary-foreground shadow-md hover:shadow-lg ring-white/5 bg-foreground/10" id="item-count"></div></div></div><div class="h-[62vh] min-h-[300px] sm:h-[420px] sm:min-h-[360px] overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10 hover:scrollbar-thumb-white/20 scrollbar-thumb-rounded"><div id="fruit-grid" class="grid grid-cols-6 gap-2 p-2 sm:gap-3 sm:p-3"></div><div class="flex h-12 w-full items-center justify-center"></div></div></div></div></div><button type="button" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-popover transition-opacity data-[state=open]:bg-accent data-[state=open]:text-muted-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" id="close-modal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span class="sr-only">Close</span></button></div>
 <footer class="relative z-10 mt-auto py-12 bg-black/90 backdrop-blur-md border-t border-white/10">
 <div class="max-w-7xl mx-auto px-6">
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -353,65 +352,69 @@ let leftFruits = Array(8).fill(null);
 let rightFruits = Array(8).fill(null);
 let currentSide = null;
 const fruitImages = {
-  'Blade': 'https://i.postimg.cc/9F9Z7p0r/Blade.png',
-  'Blizzard': 'https://i.postimg.cc/fTDBV72v/Blizzard.png',
-  'Bomb': 'https://i.postimg.cc/5y4y2wH2/Bomb.png',
-  'Buddha': 'https://i.postimg.cc/02nZD6h1/Buddha.png',
-  'Control': 'https://i.postimg.cc/9QNpg6Wx/Control.png',
-  'Creation': 'https://i.postimg.cc/HLctq6nT/Creation.png',
-  'Dark': 'https://i.postimg.cc/R0Jq0P8w/Dark.png',
-  'Diamond': 'https://i.postimg.cc/3xXJ3z0N/Diamond.png',
-  'Dough': 'https://i.postimg.cc/wxckYyqR/Dough.png',
-  'Eagle': 'https://i.postimg.cc/4xZ3S5fC/Eagle.png',
-  'East Dragon': 'https://i.postimg.cc/gkzHzzjS/East-Dragon.png',
-  'Emerald': 'https://i.postimg.cc/4x9P0Z4C/Emerald.png',
-  'Flame': 'https://i.postimg.cc/3x8Q6QdP/Flame.png',
-  'Gas': 'https://i.postimg.cc/nzKqxgJf/Gas.png',
-  'Ghost': 'https://i.postimg.cc/Sx1gYvPj/Ghost.png',
-  'Gravity': 'https://i.postimg.cc/D02Lw6vJ/Gravity.png',
-  'Green Lightning': 'https://i.postimg.cc/3w0C3b1X/Green-Lightning.png',
-  'Ice': 'https://i.postimg.cc/t4C8G1dD/Ice.png',
-  'Kitsune': 'https://i.postimg.cc/CLxbycr9/Kitsune.png',
-  'Leopard': 'https://i.postimg.cc/rwdWsKkJ/Leopard.png',
-  'Love': 'https://i.postimg.cc/0Q0f2XgZ/Love.png',
-  'Magma': 'https://i.postimg.cc/4yB5d1Z3/Magma.png',
-  'Mammoth': 'https://i.postimg.cc/sXJGqWYV/Mammoth.png',
-  'Pain': 'https://i.postimg.cc/mk21srj7/Pain.png',
-  'Parrot': 'https://i.postimg.cc/nhmZf0q0/Parrot.png',
-  'Permanent Dragon Token': 'https://i.postimg.cc/5yqZ9y2x/Permanent-Dragon-Token.png',
-  'Phoenix': 'https://i.postimg.cc/nhk9F5d6/Phoenix.png',
-  'Portal': 'https://i.postimg.cc/DzkWz65v/Portal.png',
-  'Purple Lightning': 'https://i.postimg.cc/3wY6yY7P/Purple-Lightning.png',
-  'Quake': 'https://i.postimg.cc/3xP4w5f0/Quake.png',
-  'Rocket': 'https://i.postimg.cc/tgq3H7p4/Rocket.png',
-  'Rose Quartz': 'https://i.postimg.cc/0y1D1Z2x/Rose-Quartz.png',
-  'Rubber': 'https://i.postimg.cc/3x6y6y6y/Rubber.png',
-  'Ruby': 'https://i.postimg.cc/3x6y6y6y/Ruby.png',
-  'Rumble': 'https://i.postimg.cc/MHTHLFZD/Rumble.png',
-  'Sand': 'https://i.postimg.cc/3x6y6y6y/Sand.png',
-  'Shadow': 'https://i.postimg.cc/kGpGPvBd/Shadow.png',
-  'Smoke': 'https://i.postimg.cc/3x6y6y6y/Smoke.png',
-  'Sound': 'https://i.postimg.cc/3x6y6y6y/Sound.png',
-  'Spider': 'https://i.postimg.cc/3x6y6y6y/Spider.png',
-  'Spike': 'https://i.postimg.cc/3x6y6y6y/Spike.png',
-  'Spin': 'https://i.postimg.cc/3x6y6y6y/Spin.png',
-  'Spirit': 'https://i.postimg.cc/wTpbhYvL/Spirit.png',
-  'Spring': 'https://i.postimg.cc/3x6y6y6y/Spring.png',
-  'T-Rex': 'https://i.postimg.cc/zGDtcwTf/T-Rex.png',
-  'Topaz': 'https://i.postimg.cc/3x6y6y6y/Topaz.png',
-  'Venom': 'https://i.postimg.cc/zGdtZLkF/Venom.png',
-  'West Dragon': 'https://i.postimg.cc/7LfBxxs8/West-Dragon.png',
-  'Yellow Lightning': 'https://i.postimg.cc/3x6y6y6y/Yellow-Lightning.png',
-  'Yeti': 'https://i.postimg.cc/mrJmk0Jc/Yeti.png'
+  'Blade': 'Blade.webp',
+  'Blizzard': 'Blizzard.webp',
+  'Bomb': 'Bomb.webp',
+  'Buddha': 'Buddha.webp',
+  'Control': 'Control.webp',
+  'Creation': 'Creation.webp',
+  'Dark': 'Dark.webp',
+  'Diamond': 'Diamond.webp',
+  'Dough': 'Dough.webp',
+  'Eagle': 'Eagle.webp',
+  'East Dragon': 'East-Dragon.webp',
+  'Emerald': 'Emerald.webp',
+  'Flame': 'Flame.webp',
+  'Gas': 'Gas.webp',
+  'Ghost': 'Ghost.webp',
+  'Gravity': 'Gravity.webp',
+  'Green Lightning': 'Green-Lightning.webp',
+  'Ice': 'Ice.webp',
+  'Kitsune': 'Kitsune.webp',
+  'Leopard': 'Leopard.webp',
+  'Love': 'Love.webp',
+  'Magma': 'Magma.webp',
+  'Mammoth': 'Mammoth.webp',
+  'Pain': 'Pain.webp',
+  'Parrot': 'Parrot.webp',
+  'Permanent Dragon Token': 'Permanent-Dragon-Token.webp',
+  'Phoenix': 'Phoenix.webp',
+  'Portal': 'Portal.webp',
+  'Purple Lightning': 'Purple-Lightning.webp',
+  'Quake': 'Quake.webp',
+  'Rocket': 'Rocket.webp',
+  'Rose Quartz': 'Rose-Quartz.webp',
+  'Rubber': 'Rubber.webp',
+  'Ruby': 'Ruby.webp',
+  'Rumble': 'Rumble.webp',
+  'Sand': 'Sand.webp',
+  'Shadow': 'Shadow.webp',
+  'Smoke': 'Smoke.webp',
+  'Sound': 'Sound.webp',
+  'Spider': 'Spider.webp',
+  'Spike': 'Spike.webp',
+  'Spin': 'Spin.webp',
+  'Spirit': 'Spirit.webp',
+  'Spring': 'Spring.webp',
+  'T-Rex': 'T-RexFruit.svg',
+  'Topaz': 'Topaz.webp',
+  'Venom': 'Venom.webp',
+  'West Dragon': 'West-Dragon.webp',
+  'Yellow Lightning': 'Yellow-Lightning.webp',
+  'Yeti': 'Yeti.webp'
 };
 addButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     currentSide = btn.dataset.side;
     modal.style.display = 'block';
+    document.body.classList.add('modal-open');
     renderFruits();
   });
 });
-closeModal.addEventListener('click', () => modal.style.display = 'none');
+closeModal.addEventListener('click', () => {
+  modal.style.display = 'none';
+  document.body.classList.remove('modal-open');
+});
 fruitSearch.addEventListener('input', renderFruits);
 function renderFruits() {
   fruitGrid.innerHTML = '';
@@ -445,6 +448,7 @@ function addFruit(value) {
     calculate();
   }
   modal.style.display = 'none';
+  document.body.classList.remove('modal-open');
 }
 [...leftSlots, ...rightSlots].forEach(slot => {
   slot.addEventListener('click', () => {
