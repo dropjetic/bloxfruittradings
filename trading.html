@@ -129,9 +129,10 @@
 </div>
 </div>
 </div>
-<main class="relative z-10 container mx-auto px-4 py-8">
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="trades-list"></div>
-<div class="hidden fixed inset-0 bg-black/50 flex items-center justify-center" id="post-trade-modal">
+<main class="relative z-10 container mx-auto px-4 py-8 min-h-screen flex items-center justify-center">
+<div class="absolute inset-0 flex items-center justify-center text-4xl font-bold text-white" id="no-trades" style="display: none;">No Ads Available</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-20" id="trades-list"></div>
+<div class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-30" id="post-trade-modal">
 <div class="bg-black/80 p-6 rounded-xl border border-white/20 w-full max-w-md relative">
 <button class="absolute top-2 right-2 text-white" onclick="closePostTrade()">✕</button>
 <div class="flex justify-between mb-4">
@@ -246,11 +247,13 @@ async function loadTrades() {
   const res = await fetch('/api/trades');
   const trades = await res.json();
   const list = document.getElementById('trades-list');
+  const noTrades = document.getElementById('no-trades');
   list.innerHTML = '';
   if (trades.length === 0) {
-    list.innerHTML = '<div class="col-span-full text-center text-2xl font-bold text-white">No Trades Available</div>';
+    noTrades.style.display = 'block';
     return;
   }
+  noTrades.style.display = 'none';
   trades.forEach(trade => {
     const card = document.createElement('div');
     card.classList.add('bg-black/60', 'rounded-xl', 'p-4', 'border', 'border-gray-700');
