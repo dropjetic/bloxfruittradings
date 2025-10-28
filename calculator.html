@@ -16,11 +16,11 @@
   }
   @media (max-width: 640px) {
     #fruit-grid {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     .item-grid {
-      width: 50px;
-      height: 50px;
+      width: 80px;
+      height: 80px;
     }
     #fruit-search {
       font-size: 0.875rem;
@@ -42,11 +42,11 @@
   }
   @media (min-width: 641px) and (max-width: 768px) {
     #fruit-grid {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
     .item-grid {
-      width: 60px;
-      height: 60px;
+      width: 100px;
+      height: 100px;
     }
   }
 </style>
@@ -207,22 +207,22 @@
 </div>
 </div>
 <div class="w-full rounded-lg bg-background/80 p-2 sm:p-4 shadow-sm min-h-[120px] sm:min-h-[200px]">
-<div class="mx-auto grid max-w-[1000px] gap-1 sm:gap-2 rounded-lg p-1 sm:p-2 min-h-[100px] sm:min-h-[160px] grid-cols-6 sm:grid-cols-6">
-<div class="group text-card-foreground backdrop-blur-sm hover:shadow-md item-grid group relative mx-auto flex aspect-square w-full max-w-[60px] cursor-pointer items-center justify-center overflow-hidden rounded-2xl transition-all duration-300 border-2 border-dashed bg-primary/10 border-primary/30 shadow-lg shadow-primary/10 hover:border-primary/50 hover:bg-primary/15 add-fruit" data-side="left">
+<div class="mx-auto grid max-w-[1000px] gap-2 sm:gap-4 rounded-lg p-2 sm:p-4 min-h-[100px] sm:min-h-[160px] grid-cols-3 sm:grid-cols-3">
+<div class="group text-card-foreground backdrop-blur-sm hover:shadow-md item-grid group relative mx-auto flex aspect-square w-full max-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-2xl transition-all duration-300 border-2 border-dashed bg-primary/10 border-primary/30 shadow-lg shadow-primary/10 hover:border-primary/50 hover:bg-primary/15 add-fruit" data-side="left">
 <div class="absolute inset-0 bg-gradient-to-br transition-all duration-300 from-primary/20 to-primary/5 opacity-100 group-hover:opacity-100"></div>
 <div class="relative z-10 flex flex-col items-center gap-2" tabindex="0">
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus transition-all duration-300 h-6 sm:h-8 w-6 sm:w-8 text-primary opacity-80 group-hover:opacity-100" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
 <span class="text-xs font-medium text-primary/70 group-hover:text-primary/90 hidden sm:block">Add Item</span>
 </div>
 </div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="0"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="1"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="2"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="3"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="4"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="5"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="6"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="7"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="0"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="1"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="2"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="3"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="4"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="5"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="6"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="7"></div>
 </div>
 </div>
 </div>
@@ -253,22 +253,22 @@
 </div>
 </div>
 <div class="w-full rounded-lg bg-background/80 p-2 sm:p-4 shadow-sm min-h-[120px] sm:min-h-[200px]">
-<div class="mx-auto grid max-w-[1000px] gap-1 sm:gap-2 rounded-lg p-1 sm:p-2 min-h-[100px] sm:min-h-[160px] grid-cols-6 sm:grid-cols-6">
-<div class="group text-card-foreground backdrop-blur-sm hover:shadow-md item-grid group relative mx-auto flex aspect-square w-full max-w-[60px] cursor-pointer items-center justify-center overflow-hidden rounded-2xl transition-all duration-300 border-2 border-dashed bg-primary/10 border-primary/30 shadow-lg shadow-primary/10 hover:border-primary/50 hover:bg-primary/15 add-fruit" data-side="right">
+<div class="mx-auto grid max-w-[1000px] gap-2 sm:gap-4 rounded-lg p-2 sm:p-4 min-h-[100px] sm:min-h-[160px] grid-cols-3 sm:grid-cols-3">
+<div class="group text-card-foreground backdrop-blur-sm hover:shadow-md item-grid group relative mx-auto flex aspect-square w-full max-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-2xl transition-all duration-300 border-2 border-dashed bg-primary/10 border-primary/30 shadow-lg shadow-primary/10 hover:border-primary/50 hover:bg-primary/15 add-fruit" data-side="right">
 <div class="absolute inset-0 bg-gradient-to-br transition-all duration-300 from-primary/20 to-primary/5 opacity-100 group-hover:opacity-100"></div>
 <div class="relative z-10 flex flex-col items-center gap-2" tabindex="0">
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus transition-all duration-300 h-6 sm:h-8 w-6 sm:w-8 text-primary opacity-80 group-hover:opacity-100" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
 <span class="text-xs font-medium text-primary/70 group-hover:text-primary/90 hidden sm:block">Add Item</span>
 </div>
 </div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="0"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="1"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="2"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="3"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="4"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="5"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="6"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[60px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="7"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="0"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="1"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="2"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="3"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="4"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="5"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="6"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="7"></div>
 </div>
 </div>
 </div>
@@ -331,7 +331,7 @@
 </div>
 </main>
 <div role="dialog" id="fruit-modal" class="fixed left-[50%] top-[50%] grid w-full translate-x-[-50%] translate-y-[-50%] rounded-lg border shadow-xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg modal-safe-positioning dialog-content-safe max-h-[90vh] max-w-[95vw] gap-0 border-foreground/10 bg-black p-0" tabindex="-1" style="z-index: 120; pointer-events: auto; display: none;">
-<div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-3 sm:p-4 pb-3"><h2 id="radix-:r1u:" class="font-semibold tracking-tight flex items-center gap-2 text-lg sm:text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-4 sm:h-5 w-4 sm:w-5" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Search Items</h2><p id="radix-:r1v:" class="text-xs sm:text-sm text-muted-foreground">Search and select an item to add to your calculator</p></div><div class="overflow-hidden p-3 sm:p-4"><div class="space-y-4"><div class="flex flex-col gap-1"><div class="flex flex-wrap justify-center gap-1"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/85 text-primary-foreground hover:from-primary/90 hover:via-primary/85 hover:to-primary/80 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] border border-primary/20 ring-1 ring-white/10 rounded-full h-7 sm:h-9 px-3 sm:px-4 text-xs sm:text-sm">All<div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"><div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-shimmer"></div></div></button></div></div><div class="flex w-full items-center"><div class="relative w-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><div class="relative"><input id="fruit-search" class="flex h-8 sm:h-10 rounded-md border border-input px-3 py-2 text-sm sm:text-base ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full bg-background/50 pl-9 pr-9 focus-visible:ring-primary/30 placeholder:text-muted-foreground/50 font-bold text-black" placeholder="Search items..." maxlength="100" aria-label="Search items" value=""></div></div></div><div class="overflow-hidden rounded-lg border border-foreground/10 bg-black"><div class="flex items-center justify-between border-b border-foreground/10 bg-foreground/5 px-3 sm:px-4 py-2"><div class="flex items-center gap-2"><span class="text-xs sm:text-sm font-medium">Available Items</span><div class="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-transparent bg-gradient-to-br from-secondary/95 to-secondary/85 text-secondary-foreground shadow-md hover:shadow-lg ring-white/5 bg-foreground/10" id="item-count"></div></div></div><div class="h-[60vh] min-h-[250px] sm:h-[420px] sm:min-h-[300px] overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10 hover:scrollbar-thumb-white/20 scrollbar-thumb-rounded"><div id="fruit-grid" class="grid grid-cols-6 sm:grid-cols-6 gap-1 p-1 sm:gap-2 sm:p-2"></div><div class="flex h-12 w-full items-center justify-center"></div></div></div></div></div><button type="button" class="absolute right-3 sm:right-4 top-3 sm:top-4 rounded-sm opacity-70 ring-offset-popover transition-opacity data-[state=open]:bg-accent data-[state=open]:text-muted-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" id="close-modal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span class="sr-only">Close</span></button></div>
+<div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-3 sm:p-4 pb-3"><h2 id="radix-:r1u:" class="font-semibold tracking-tight flex items-center gap-2 text-lg sm:text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-4 sm:h-5 w-4 sm:w-5" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Search Items</h2><p id="radix-:r1v:" class="text-xs sm:text-sm text-muted-foreground">Search and select an item to add to your calculator</p></div><div class="overflow-hidden p-3 sm:p-4"><div class="space-y-4"><div class="flex flex-col gap-1"><div class="flex flex-wrap justify-center gap-1"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/85 text-primary-foreground hover:from-primary/90 hover:via-primary/85 hover:to-primary/80 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] border border-primary/20 ring-1 ring-white/10 rounded-full h-7 sm:h-9 px-3 sm:px-4 text-xs sm:text-sm">All<div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"><div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-shimmer"></div></div></button></div></div><div class="flex w-full items-center"><div class="relative w-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><div class="relative"><input id="fruit-search" class="flex h-8 sm:h-10 rounded-md border border-input px-3 py-2 text-sm sm:text-base ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full bg-background/50 pl-9 pr-9 focus-visible:ring-primary/30 placeholder:text-muted-foreground/50 font-bold text-black" placeholder="Search items..." maxlength="100" aria-label="Search items" value=""></div></div></div><div class="overflow-hidden rounded-lg border border-foreground/10 bg-black"><div class="flex items-center justify-between border-b border-foreground/10 bg-foreground/5 px-3 sm:px-4 py-2"><div class="flex items-center gap-2"><span class="text-xs sm:text-sm font-medium">Available Items</span><div class="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-transparent bg-gradient-to-br from-secondary/95 to-secondary/85 text-secondary-foreground shadow-md hover:shadow-lg ring-white/5 bg-foreground/10" id="item-count"></div></div></div><div class="h-[60vh] min-h-[250px] sm:h-[420px] sm:min-h-[300px] overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10 hover:scrollbar-thumb-white/20 scrollbar-thumb-rounded"><div id="fruit-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-2 p-2 sm:gap-3 sm:p-3"></div><div class="flex h-12 w-full items-center justify-center"></div></div></div></div></div><button type="button" class="absolute right-3 sm:right-4 top-3 sm:top-4 rounded-sm opacity-70 ring-offset-popover transition-opacity data-[state=open]:bg-accent data-[state=open]:text-muted-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" id="close-modal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span class="sr-only">Close</span></button></div>
 <footer class="relative z-10 mt-auto py-8 sm:py-12 bg-black/90 backdrop-blur-md border-t border-white/10">
 <div class="max-w-[95vw] sm:max-w-7xl mx-auto px-4 sm:px-6">
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
@@ -461,13 +461,13 @@ function renderFruits() {
   const filtered = Object.entries(fruitImages).filter(([f]) => f.toLowerCase().includes(query));
   filtered.forEach(([f, url]) => {
     const btn = document.createElement('button');
-    btn.className = 'group relative flex w-full flex-col items-start overflow-hidden rounded-lg p-1 sm:p-2 text-left transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] bg-foreground/[0.02] hover:bg-foreground/[0.06] border border-transparent hover:border-foreground/10 outline-none focus:ring-2 focus:ring-white/10';
+    btn.className = 'group relative flex w-full flex-col items-center overflow-hidden rounded-lg p-2 sm:p-3 text-left transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] bg-foreground/[0.02] hover:bg-foreground/[0.06] border border-transparent hover:border-foreground/10 outline-none focus:ring-2 focus:ring-white/10';
     btn.innerHTML = `
-      <div class="relative mb-0 h-10 w-10 sm:h-12 sm:w-12">
+      <div class="relative mb-2 h-16 w-16 sm:h-20 sm:w-20">
         <img src="${url}" class="object-contain transition-transform duration-200 group-hover:scale-110" alt="${f}">
         <div class="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
       </div>
-      <div class="w-full space-y-0">
+      <div class="w-full space-y-0.5">
         <div class="flex items-center gap-1"><span class="truncate text-xs sm:text-sm font-medium">${f}</span></div>
         <span class="block truncate text-xs text-muted-foreground">Fruits</span>
       </div>
@@ -483,7 +483,7 @@ function addFruit(value) {
   const index = fruitsArr.findIndex(f => !f);
   if (index !== -1) {
     fruitsArr[index] = value;
-    slots[index].innerHTML = `<img src="${fruitImages[value]}" class="w-3/4 h-3/4 object-contain" alt="${value}"><span class="text-xs text-white mt-0">${value}</span>`;
+    slots[index].innerHTML = `<img src="${fruitImages[value]}" class="w-3/4 h-3/4 object-contain" alt="${value}"><span class="text-xs text-white mt-1">${value}</span>`;
     calculate();
   }
   modal.style.display = 'none';
