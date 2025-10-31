@@ -16,7 +16,7 @@ body::before {content:"";position:fixed;inset:0;background-image:linear-gradient
     <div class="flex w-full flex-row items-center justify-between">
       <div class="flex w-[80px] sm:w-[90px] flex-row items-center gap-2">
         <a href="/">
-          <img alt="logo" loading="lazy" width="48" height="48" class="min-w-8 min-h-8 w-full h-full object-contain" src="https://cdn.discordapp.com/attachments/1409125833108357130/1426495042909900871/ezgif-7c0ed28951c6ba.gif?ex=68fb4089&is=68f9ef09&hm=faff9e0a99f88d00d6ddb271d14ab12add14911c932c00e5f5d24be29ecdbea6">
+          <img alt="logo" loading="lazy" width="48" height="48" class="min-w-8 min-h-8 w-full h-full object-contain" src="https://cdn.discordapp.com/attachments/1409125833108357130/1426495042909900871/ezgif-7c0ed28951c6ba.gif?ex=68fb4089&amp;is=68f9ef09&amp;hm=faff9e0a99f88d00d6ddb271d14ab12add14911c932c00e5f5d24be29ecdbea6">
         </a>
         <div class="relative z-50">
           <button class="group flex items-center gap-2 sm:gap-3 rounded-xl border border-border/60 bg-black/40 px-3 sm:px-4 py-2 sm:py-2.5 backdrop-blur-md transition-all hover:border-primary/50 hover:bg-black/60 hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]">
@@ -89,7 +89,57 @@ body::before {content:"";position:fixed;inset:0;background-image:linear-gradient
 </main>
 
 <script>
-const items = [/* same items array */];
+const items = [
+  { name: "West Dragon", value: "1.5B", trend: "Overpaid", demand: "10/10", beli: "15M", type: "Beast", rarity: "Mythical", image: "West-Dragon.webp" },
+  { name: "East Dragon", value: "1.2B", trend: "Overpaid", demand: "10/10", beli: "15M", type: "Beast", rarity: "Mythical", image: "East-Dragon.webp" },
+  { name: "Kitsune", value: "300M", trend: "Overpaid", demand: "10/10", beli: "8M", type: "Beast", rarity: "Mythical", image: "Kitsune.webp" },
+  { name: "Yeti", value: "150M", trend: "Stable", demand: "10/10", beli: "5M", type: "Beast", rarity: "Mythical", image: "Yeti.webp" },
+  { name: "Gas", value: "65M", trend: "Stable", demand: "8/10", beli: "3.2M", type: "Logia", rarity: "Mythical", image: "Gas.webp" },
+  { name: "Leopard", value: "150M", trend: "Overpaid", demand: "10/10", beli: "5M", type: "Beast", rarity: "Mythical", image: "Leopard.webp" },
+  { name: "Dough", value: "30M", trend: "Stable", demand: "10/10", beli: "2.8M", type: "Logia", rarity: "Mythical", image: "Dough.webp" },
+  { name: "Pain", value: "15M", trend: "SOON", demand: "6/10", beli: "2.3M", type: "Natural", rarity: "Legendary", image: "Pain.webp" },
+  { name: "T-Rex", value: "20M", trend: "Stable", demand: "8/10", beli: "2.7M", type: "Beast", rarity: "Mythical", image: "T-RexFruit.svg" },
+  { name: "Gravity", value: "15M", trend: "Stable", demand: "4/10", beli: "2.5M", type: "Natural", rarity: "Mythical", image: "Gravity.webp" },
+  { name: "Mammoth", value: "10M", trend: "Stable", demand: "5/10", beli: "2.7M", type: "Beast", rarity: "Mythical", image: "Mammoth.webp" },
+  { name: "Spirit", value: "10M", trend: "Stable", demand: "6/10", beli: "3.4M", type: "Natural", rarity: "Mythical", image: "Spirit.webp" },
+  { name: "Control", value: "10M", trend: "Stable", demand: "5/10", beli: "3.2M", type: "Natural", rarity: "Mythical", image: "Control.webp" },
+  { name: "Venom", value: "10M", trend: "Stable", demand: "6/10", beli: "3M", type: "Natural", rarity: "Mythical", image: "Venom.webp" },
+  { name: "Portal", value: "10M", trend: "Overpaid", demand: "10/10", beli: "1.9M", type: "Natural", rarity: "Legendary", image: "Portal.webp" },
+  { name: "Buddha", value: "10M", trend: "Overpaid", demand: "10/10", beli: "1.2M", type: "Beast", rarity: "Legendary", image: "Buddha.webp" },
+  { name: "Shadow", value: "6.5M", trend: "Stable", demand: "5/10", beli: "2.9M", type: "Natural", rarity: "Mythical", image: "Shadow.webp" },
+  { name: "Blizzard", value: "5M", trend: "Stable", demand: "5/10", beli: "2.4M", type: "Logia", rarity: "Legendary", image: "Blizzard.webp" },
+  { name: "Creation", value: "3.5M", trend:_INTEL "Stable", demand: "3/10", beli: "1.4M", type: "Natural", rarity: "Legendary", image: "Creation.webp" },
+  { name: "Phoenix", value: "2.75M", trend: "Stable", demand: "3/10", beli: "1.8M", type: "Beast", rarity: "Legendary", image: "Phoenix.webp" },
+  { name: "Sound", value: "2.5M", trend: "Stable", demand: "4/10", beli: "1.7M", type: "Natural", rarity: "Legendary", image: "Sound.webp" },
+  { name: "Spider", value: "1.5M", trend: "Stable", demand: "2/10", beli: "1.5M", type: "Natural", rarity: "Legendary", image: "Spider.webp" },
+  { name: "Love", value: "1.5M", trend: "Stable", demand: "3/10", beli: "1.3M", type: "Natural", rarity: "Legendary", image: "Love.webp" },
+  { name: "Magma", value: "1.15M", trend: "Overpaid", demand: "8/10", beli: "960K", type: "Logia", rarity: "Rare", image: "Magma.webp" },
+  { name: "Quake", value: "1M", trend: "Stable", demand: "2/10", beli: "1M", type: "Natural", rarity: "Legendary", image: "Quake.webp" },
+  { name: "Diamond", value: "1M", trend: "Stable", demand: "2/10", beli: "600K", type: "Natural", rarity: "Uncommon", image: "Diamond.webp" },
+  { name: "Ghost", value: "800K", trend: "Underpaid", demand: "1/10", beli: "940K", type: "Natural", rarity: "Rare", image: "Ghost.webp" },
+  { name: "Eagle", value: "800K", trend: "Stable", demand: "2/10", beli: "550K", type: "Beast", rarity: "Uncommon", image: "Eagle.webp" },
+  { name: "Rubber", value: "700K", trend: "Stable", demand: "1/10", beli: "750K", type: "Natural", rarity: "Rare", image: "Rubber.webp" },
+  { name: "Ice", value: "550K", trend: "Stable", demand: "2/10", beli: "350K", type: "Logia", rarity: "Uncommon", image: "Ice.webp" },
+  { name: "Sand", value: "420K", trend: "Stable", demand: "1/10", beli: "420K", type: "Logia", rarity: "Uncommon", image: "Sand.webp" },
+  { name: "Dark", value: "400K", trend: "Stable", demand: "1/10", beli: "500K", type: "Logia", rarity: "Uncommon", image: "Dark.webp" },
+  { name: "Flame", value: "250K", trend: "Stable", demand: "1/10", beli: "250K", type: "Logia", rarity: "Uncommon", image: "Flame.webp" },
+  { name: "Spike", value: "180K", trend: "Stable", demand: "1/10", beli: "180K", type: "Natural", rarity: "Common", image: "Spike.webp" },
+  { name: "Smoke", value: "100K", trend: "Stable", demand: "1/10", beli: "100K", type: "Logia", rarity: "Common", image: "Smoke.webp" },
+  { name: "Bomb", value: "80K", trend: "Stable", demand: "1/10", beli: "80K", type: "Natural", rarity: "Common", image: "Bomb.webp" },
+  { name: "Spring", value: "60K", trend: "Stable", demand: "1/10", beli: "60K", type: "Natural", rarity: "Common", image: "Spring.webp" },
+  { name: "Blade", value: "50K", trend: "Stable", demand: "1/10", beli: "30K", type: "Natural", rarity: "Common", image: "Blade.webp" },
+  { name: "Spin", value: "7.5K", trend: "Stable", demand: "1/10", beli: "7.5K", type: "Natural", rarity: "Common", image: "Spin.webp" },
+  { name: "Rocket", value: "5K", trend: "Stable", demand: "1/10", beli: "5K", type: "Natural", rarity: "Common", image: "Rocket.webp" },
+  { name: "Permanent Dragon Token", value: "2.81B", trend: "Overpaid", demand: "6/10", beli: "N/A", type: "Limited", rarity: "Limited", image: "PermDragonToken.webp" },
+  { name: "Purple Lightning", value: "1.1B", trend: "Overpaid", demand: "10/10", beli: "N/A", type: "Limited", rarity: "Limited", image: "Purple-Lightning.webp" },
+  { name: "Parrot", value: "230M", trend: "Stable", demand: "1/10", beli: "499", type: "Limited", rarity: "Limited", image: "Parrot.webp" },
+  { name: "Yellow Lightning", value: "320M", trend: "Overpaid", demand: "10/10", beli: "N/A", type: "Limited", rarity: "Limited", image: "Yellow-Lightning.webp" },
+  { name: "Green Lightning", value: "160M", trend: "Overpaid", demand: "8/10", beli: "N/A", type: "Limited", rarity: "Limited", image: "Green-Lightning.webp" },
+  { name: "Rose Quartz Diamond", value: "35M", trend: "Stable", demand: "5/10", beli: "N/A", type: "Limited", rarity: "Limited", image: "Rose-Quartz.webp" },
+  { name: "Emerald Diamond", value: "32.5M", trend: "Stable", demand: "3/10", beli: "N/A", type: "Limited", rarity: "Limited", image: "Emerald.webp" },
+  { name: "Topaz Diamond", value: "32.5M", trend: "Stable", demand: "4/10", beli: "N/A", type: "Limited", rarity: "Limited", image: "Topaz.webp" },
+  { name: "Ruby Diamond", value: "25M", trend: "Stable", demand: "4/10", beli: "N/A", type: "Limited", rarity: "Limited", image: "Ruby.webp" }
+];
 
 function getRarityColor(r) {
   const colors = { Mythical: "from-red-500 via-red-600 to-red-700", Legendary: "from-purple-500 to-purple-700", Rare: "from-blue-500 to-blue-700", Uncommon: "from-green-500 to-green-700", Common: "from-gray-500 to-gray-700", Limited: "from-yellow-500 to-orange-600" };
