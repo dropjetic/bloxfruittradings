@@ -1,532 +1,313 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blox Fruits Calculator</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="fruits.js"></script>
 <style>
-  body.modal-open {
-    overflow: hidden;
-  }
-  #fruit-modal {
-    max-height: 90vh;
-    max-width: 95vw;
-    min-width: 0;
-  }
+  body.modal-open { overflow: hidden; }
+  #fruit-modal { max-height: 90vh; max-width: 95vw; }
   @media (max-width: 640px) {
-    #fruit-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-    .item-grid {
-      width: 80px;
-      height: 80px;
-    }
-    #fruit-search {
-      font-size: 0.875rem;
-    }
-    .fruit-slot img {
-      width: 60%;
-      height: 60%;
-    }
-    .fruit-slot span {
-      font-size: 0.65rem;
-    }
-    .add-fruit svg {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-    .add-fruit span {
-      font-size: 0.65rem;
-    }
+    #fruit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .item-grid { width: 80px; height: 80px; }
+    #fruit-search { font-size: 0.875rem; }
+    .fruit-slot img { width: 60%; height: 60%; }
+    .fruit-slot span { font-size: 0.65rem; }
+    .add-fruit svg { width: 1.5rem; height: 1.5rem; }
+    .add-fruit span { font-size: 0.65rem; }
   }
   @media (min-width: 641px) and (max-width: 768px) {
-    #fruit-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-    .item-grid {
-      width: 100px;
-      height: 100px;
-    }
+    #fruit-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .item-grid { width: 100px; height: 100px; }
   }
 </style>
 </head>
 <body class="relative bg-black text-white">
-<div class="absolute inset-0">
 <div class="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black"></div>
 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(120,119,198,0.06),transparent_70%)]"></div>
 <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
 <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black via-black/95 to-transparent"></div>
-</div>
+
+<!-- Header (unchanged) -->
 <div class="relative mx-auto flex w-full max-w-[95vw] justify-between px-4 py-3 transition duration-200 rounded-full bg-transparent">
 <div class="flex w-full flex-row items-center justify-between">
 <div class="flex w-[80px] sm:w-[90px] flex-row items-center gap-2">
-<a href="/">
-<img alt="logo" loading="lazy" width="48" height="48" class="min-w-8 min-h-8 w-full h-full object-contain" src="https://cdn.discordapp.com/attachments/1409125833108357130/1426495042909900871/ezgif-7c0ed28951c6ba.gif?ex=68fb4089&is=68f9ef09&hm=faff9e0a99f88d00d6ddb271d14ab12add14911c932c00e5f5d24be29ecdbea6">
-</a>
+<a href="/"><img alt="logo" loading="lazy" width="48" height="48" class="min-w-8 min-h-8 w-full h-full object-contain" src="https://cdn.discordapp.com/attachments/1409125833108357130/1426495042909900871/ezgif-7c0ed28951c6ba.gif?ex=68fb4089&amp;is=68f9ef09&amp;hm=faff9e0a99f88d00d6ddb271d14ab12add14911c932c00e5f5d24be29ecdbea6"></a>
 <div class="relative z-50">
 <button class="group flex items-center gap-2 sm:gap-3 rounded-xl border border-border/60 bg-black/40 px-3 sm:px-4 py-2 sm:py-2.5 backdrop-blur-md transition-all hover:border-primary/50 hover:bg-black/60 hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]">
-<div class="flex flex-col items-start">
-<span class="max-w-[120px] sm:max-w-[150px] truncate text-sm sm:text-base font-bold text-white">Blox Fruits</span>
-<span class="text-xs text-neutral-400">Switch Game</span>
-</div>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-chevron-down ml-1 h-3 w-3 sm:h-4 sm:w-4 text-neutral-400">
-<path d="M6 9l6 6l6 -6"></path>
-</svg>
+<div class="flex flex-col items-start"><span class="max-w-[120px] sm:max-w-[150px] truncate text-sm sm:text-base font-bold text-white">Blox Fruits</span><span class="text-xs text-neutral-400">Switch Game</span></div>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 h-3 w-3 sm:h-4 sm:w-4 text-neutral-400"><path d="M6 9l6 6l6 -6"></path></svg>
 </button>
 </div>
 </div>
 <div class="hidden sm:flex flex-1 justify-center">
-<nav aria-label="Main" data-orientation="horizontal" dir="ltr" class="relative z-10 flex max-w-max flex-1 items-center justify-center">
-<ul data-orientation="horizontal" class="group flex-1 list-none space-x-2 flex items-center justify-center" dir="ltr">
-<li><button class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground focus:bg-foreground/5 focus:text-accent-foreground focus:outline-none" data-radix-collection-item="">
-<div class="flex flex-col items-center gap-2 py-1">
-<div class="relative">
-<span class="flex h-7 w-7 items-center justify-center">
-<svg width="31" height="24" viewBox="0 0 31 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M30.0625 7.00016L23.3958 0.333496V5.3335H11.7292V8.66683H23.3958V13.6668M6.72917 10.3335L0.0625 17.0002L6.72917 23.6668V18.6668H18.3958V15.3335H6.72917V10.3335Z" fill="currentColor"></path>
-</svg>
-</span>
-<span class="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">99+</span>
-</div>
-<div class="flex items-center gap-1">
-<span class="text-xs font-medium">Trade Ads</span>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-3 w-3 opacity-50 transition-transform duration-200 group-data-[state=open]:rotate-180">
-<path d="m6 9 6 6 6-6"></path>
-</svg>
-</div>
-</div>
-</button></li>
-<li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/values">
-<div class="relative">
-<span class="flex h-7 w-7 items-center justify-center">
-<svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M20.6875 5.625H25.375V27.1875H4.75V5.625H9.4375V7.5H20.6875V5.625ZM8.5 15H21.625V13.125H8.5V15ZM8.5 22.5H21.625V20.625H8.5V22.5ZM11.3125 5.625V2.8125H18.8125V5.625H11.3125Z" fill="currentColor"></path>
-</svg>
-</span>
-</div>
-<span class="text-xs font-medium">Value List</span>
-</a></li>
-<li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/calculator.html">
-<div class="relative">
-<span class="flex h-7 w-7 items-center justify-center">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator">
-<rect width="16" height="20" x="4" y="2" rx="2"></rect>
-<line x1="8" x2="16" y1="6" y2="6"></line>
-<line x1="16" x2="16" y1="14" y2="18"></line>
-<path d="M16 10h.01"></path>
-<path d="M12 10h.01"></path>
-<path d="M8 10h.01"></path>
-<path d="M12 14h.01"></path>
-<path d="M8 14h.01"></path>
-<path d="M12 18h.01"></path>
-<path d="M8 18h.01"></path>
-</svg>
-</span>
-</div>
-<span class="text-xs font-medium">Calculator</span>
-</a></li>
-<li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/rate">
-<div class="relative">
-<span class="flex h-7 w-7 items-center justify-center">
-<img src="https://cdn.discordapp.com/attachments/1429567260246282280/1430685161447620719/istockphoto-1032803298-612x612-removebg-preview.png?ex=68fb55a3&is=68fa0423&hm=ae241b64a4624ac6abef2887cb368257be397fc3c4dd6ed176743ed60fbc0e9c&" alt="Community Logo" class="h-6 w-6 object-contain">
-</span>
-</div>
-<span class="text-xs font-medium">Community</span>
-</a></li>
-<li><div class="flex cursor-pointer flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent">
-<div class="relative">
-<span class="flex h-7 w-7 items-center justify-center">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-5 w-5">
-<circle cx="11" cy="11" r="8"></circle>
-<path d="m21 21-4.3-4.3"></path>
-</svg>
-</span>
-</div>
-<span class="text-xs font-medium">Search</span>
-</div></li>
-<li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/giveaways">
-<div class="relative">
-<span class="flex h-7 w-7 items-center justify-center">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift h-6 w-6">
-<rect x="3" y="8" width="18" height="4" rx="1"></rect>
-<path d="M12 8v13"></path>
-<path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
-<path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path>
-</svg>
-</span>
-</div>
-<span class="text-xs font-medium">Giveaways</span>
-</a></li>
+<nav class="relative z-10 flex max-w-max flex-1 items-center justify-center">
+<ul class="flex-1 list-none space-x-2 flex items-center justify-center">
+<li><a class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/values"><span class="flex h-7 w-7 items-center justify-center"><svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.6875 5.625H25.375V27.1875H4.75V5.625H9.4375V7.5H20.6875V5.625ZM8.5 15H21.625V13.125H8.5V15ZM8.5 22.5H21.625V20.625H8.5V22.5ZM11.3125 5.625V2.8125H18.8125V5.625H11.3125Z" fill="currentColor"></path></svg></span><span class="text-xs font-medium">Value List</span></a></li>
+<li><a class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/calculator.html"><span class="flex h-7 w-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg></span><span class="text-xs font-medium">Calculator</span></a></li>
 </ul>
 </nav>
 </div>
 <div class="flex items-center space-x-2 sm:space-x-4">
-<a target="_blank" class="flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50" href="https://discord.com/invite/bfhs">
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-5 w-5 sm:h-6 sm:w-6">
-<path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path>
-</svg>
-</a>
-<a href="/login.html">
-<button class="group rounded-full hover:-translate-y-0.5 active:scale-[0.98] bg-primary relative z-10 hover:bg-primary/90 border border-primary text-primary-foreground text-sm sm:text-base transition font-medium duration-200 flex items-center justify-center shadow-[0px_-1px_0px_0px_rgba(255,255,255,0.4)_inset,_0px_1px_0px_0px_rgba(255,255,255,0.4)_inset] px-4 sm:px-6 py-2 sm:py-2.5">Login</button>
-</a>
+<a target="_blank" class="flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50" href="https://discord.com/invite/bfhs"><svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-5 w-5 sm:h-6 sm:w-6"><path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path></svg></a>
+<a href="/login.html"><button class="group rounded-full hover:-translate-y-0.5 active:scale-[0.98] bg-primary hover:bg-primary/90 border border-primary text-primary-foreground text-sm sm:text-base transition font-medium duration-200 flex items-center justify-center shadow-[0px_-1px_0px_0px_rgba(255,255,255,0.4)_inset,_0px_1px_0px_0px_rgba(255,255,255,0.4)_inset] px-4 sm:px-6 py-2 sm:py-2.5">Login</button></a>
 </div>
 </div>
 </div>
+
 <main class="relative z-10 flex flex-col items-center justify-center min-h-screen py-6 sm:py-10">
-<div class="w-full max-w-[95vw] sm:max-w-4xl mx-auto">
-<div class="space-y-4 sm:space-y-8 transition-all duration-500 rounded-xl p-3 sm:p-6 border bg-gray-500/5 border-gray-500/15 shadow-gray-500/10 shadow-sm">
-<div class="flex flex-col gap-4 sm:gap-6">
-<div class="group relative overflow-hidden rounded-xl text-card-foreground transition-all duration-300 hover:border-primary/20 hover:shadow-md border border-border/20 bg-background/95 backdrop-blur-sm shadow-lg">
-<div class="p-3 sm:p-6">
-<div class="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 relative">
+<div class="w-full max-w-[95vw] sm:max-w-4xl mx-auto space-y-4 sm:space-y-8 rounded-xl p-3 sm:p-6 border bg-gray-500/5 border-gray-500/15 shadow-sm">
+<div class="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
 <div class="flex flex-col items-center space-y-3 sm:space-y-4">
 <h2 class="flex items-center justify-center gap-3 text-base sm:text-lg font-semibold">
-<div class="inline-flex items-center gap-1 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-2 hover:border-primary/60 hover:bg-primary/10 backdrop-blur-md ring-white/5 bg-primary/10 text-primary border-primary/30 px-3 py-1 text-sm">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down mr-2 h-3 w-3" aria-hidden="true"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>You
+<div class="inline-flex items-center gap-1 rounded-full font-semibold border-2 hover:border-primary/60 hover:bg-primary/10 backdrop-blur-md bg-primary/10 text-primary border-primary/30 px-3 py-1 text-sm">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-down mr-2 h-3 w-3"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>You
 </div>
 </h2>
 <div class="flex items-center justify-center gap-4 sm:gap-6 rounded-xl bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/20 px-3 py-2 sm:px-4 sm:py-3 text-sm backdrop-blur-sm transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-<div class="flex items-center gap-2">
-<div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-primary/20">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 sm:h-3 w-2.5 sm:w-3 text-primary" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+<div class="flex items-center gap-2"><div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-primary/20"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 sm:h-3 w-2.5 sm:w-3 text-primary"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Value</span><span class="font-bold text-sm sm:text-base text-primary" id="your-value">0</span></div></div>
+<div class="flex items-center gap-2"><div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-yellow-500/20"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 sm:h-3 w-2.5 sm:w-3 text-yellow-500"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Price</span><span class="font-bold text-sm sm:text-base text-yellow-500" id="your-price">0</span></div></div>
+<div class="hidden sm:flex items-center gap-2"><div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-green-500/20"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-2.5 sm:h-3 w-2.5 sm:w-3 text-green-500"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></div><div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Demand</span><span class="font-bold text-sm sm:text-base text-green-500" id="your-demand">0/10</span></div></div>
 </div>
-<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Value</span><span class="font-bold text-sm sm:text-base text-primary" id="your-value">0</span></div>
+<div class="w-full rounded-lg bg-black/80 p-2 sm:p-4 shadow-sm min-h-[120px] sm:min-h-[200px]">
+<div class="grid gap-2 sm:gap-4 grid-cols-3 sm:grid-cols-3">
+<div class="group relative mx-auto flex aspect-square w-full max-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed bg-primary/10 border-primary/30 shadow-lg add-fruit" data-side="left">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 opacity-100 group-hover:opacity-100"></div>
+<div class="relative z-10 flex flex-col items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-6 sm:h-8 w-6 sm:w-8 text-primary"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg><span class="text-xs font-medium text-primary/70 hidden sm:block">Add Item</span></div>
 </div>
-<div class="flex items-center gap-2">
-<div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-yellow-500/20">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 sm:h-3 w-2.5 sm:w-3 text-yellow-500" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-</div>
-<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Price</span><span class="font-bold text-sm sm:text-base text-yellow-500">0</span></div>
-</div>
-<div class="hidden sm:flex items-center gap-2">
-<div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-green-500/20">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-2.5 sm:h-3 w-2.5 sm:w-3 text-green-500" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
-</div>
-<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Demand</span><span class="font-bold text-sm sm:text-base text-green-500">0/10</span></div>
-</div>
-</div>
-<div class="w-full rounded-lg bg-background/80 p-2 sm:p-4 shadow-sm min-h-[120px] sm:min-h-[200px]">
-<div class="mx-auto grid max-w-[1000px] gap-2 sm:gap-4 rounded-lg p-2 sm:p-4 min-h-[100px] sm:min-h-[160px] grid-cols-3 sm:grid-cols-3">
-<div class="group text-card-foreground backdrop-blur-sm hover:shadow-md item-grid group relative mx-auto flex aspect-square w-full max-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-2xl transition-all duration-300 border-2 border-dashed bg-primary/10 border-primary/30 shadow-lg shadow-primary/10 hover:border-primary/50 hover:bg-primary/15 add-fruit" data-side="left">
-<div class="absolute inset-0 bg-gradient-to-br transition-all duration-300 from-primary/20 to-primary/5 opacity-100 group-hover:opacity-100"></div>
-<div class="relative z-10 flex flex-col items-center gap-2" tabindex="0">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus transition-all duration-300 h-6 sm:h-8 w-6 sm:w-8 text-primary opacity-80 group-hover:opacity-100" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
-<span class="text-xs font-medium text-primary/70 group-hover:text-primary/90 hidden sm:block">Add Item</span>
-</div>
-</div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="0"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="1"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="2"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="3"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="4"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="5"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="6"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="7"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="0"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="1"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="2"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="3"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="4"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="5"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="6"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="left" data-index="7"></div>
 </div>
 </div>
 </div>
 <div class="flex flex-col items-center space-y-3 sm:space-y-4">
 <h2 class="flex items-center justify-center gap-3 text-base sm:text-lg font-semibold">
-<div class="inline-flex items-center gap-1 rounded-full font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-2 hover:border-purple-500/60 hover:bg-purple-500/10 backdrop-blur-md ring-white/5 bg-purple-500/10 text-purple-500 border-purple-500/30 px-3 py-1 text-sm">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up mr-2 h-3 w-3" aria-hidden="true"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg>Them
+<div class="inline-flex items-center gap-1 rounded-full font-semibold border-2 hover:border-purple-500/60 hover:bg-purple-500/10 backdrop-blur-md bg-purple-500/10 text-purple-500 border-purple-500/30 px-3 py-1 text-sm">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up mr-2 h-3 w-3"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg>Them
 </div>
 </h2>
 <div class="flex items-center justify-center gap-4 sm:gap-6 rounded-xl bg-gradient-to-r from-purple-500/5 to-purple-500/10 border border-purple-500/20 px-3 py-2 sm:px-4 sm:py-3 text-sm backdrop-blur-sm transition-all duration-200 hover:shadow-md hover:scale-[1.02]">
-<div class="flex items-center gap-2">
-<div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-purple-500/20">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 sm:h-3 w-2.5 sm:w-3 text-purple-500" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+<div class="flex items-center gap-2"><div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-purple-500/20"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 sm:h-3 w-2.5 sm:w-3 text-purple-500"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Value</span><span class="font-bold text-sm sm:text-base text-purple-500" id="their-value">0</span></div></div>
+<div class="flex items-center gap-2"><div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-yellow-500/20"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 sm:h-3 w-2.5 sm:w-3 text-yellow-500"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Price</span><span class="font-bold text-sm sm:text-base text-yellow-500" id="their-price">0</span></div></div>
+<div class="hidden sm:flex items-center gap-2"><div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-green-500/20"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-2.5 sm:h-3 w-2.5 sm:w-3 text-green-500"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></div><div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Demand</span><span class="font-bold text-sm sm:text-base text-green-500" id="their-demand">0/10</span></div></div>
 </div>
-<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Value</span><span class="font-bold text-sm sm:text-base text-purple-500" id="their-value">0</span></div>
+<div class="w-full rounded-lg bg-black/80 p-2 sm:p-4 shadow-sm min-h-[120px] sm:min-h-[200px]">
+<div class="grid gap-2 sm:gap-4 grid-cols-3 sm:grid-cols-3">
+<div class="group relative mx-auto flex aspect-square w-full max-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed bg-primary/10 border-primary/30 shadow-lg add-fruit" data-side="right">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 opacity-100 group-hover:opacity-100"></div>
+<div class="relative z-10 flex flex-col items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-6 sm:h-8 w-6 sm:w-8 text-primary"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg><span class="text-xs font-medium text-primary/70 hidden sm:block">Add Item</span></div>
 </div>
-<div class="flex items-center gap-2">
-<div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-yellow-500/20">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign h-2.5 sm:h-3 w-2.5 sm:w-3 text-yellow-500" aria-hidden="true"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-</div>
-<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Price</span><span class="font-bold text-sm sm:text-base text-yellow-500">0</span></div>
-</div>
-<div class="hidden sm:flex items-center gap-2">
-<div class="flex h-5 sm:h-6 w-5 sm:w-6 items-center justify-center rounded-full bg-green-500/20">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up h-2.5 sm:h-3 w-2.5 sm:w-3 text-green-500" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
-</div>
-<div class="flex flex-col"><span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Demand</span><span class="font-bold text-sm sm:text-base text-green-500">0/10</span></div>
-</div>
-</div>
-<div class="w-full rounded-lg bg-background/80 p-2 sm:p-4 shadow-sm min-h-[120px] sm:min-h-[200px]">
-<div class="mx-auto grid max-w-[1000px] gap-2 sm:gap-4 rounded-lg p-2 sm:p-4 min-h-[100px] sm:min-h-[160px] grid-cols-3 sm:grid-cols-3">
-<div class="group text-card-foreground backdrop-blur-sm hover:shadow-md item-grid group relative mx-auto flex aspect-square w-full max-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-2xl transition-all duration-300 border-2 border-dashed bg-primary/10 border-primary/30 shadow-lg shadow-primary/10 hover:border-primary/50 hover:bg-primary/15 add-fruit" data-side="right">
-<div class="absolute inset-0 bg-gradient-to-br transition-all duration-300 from-primary/20 to-primary/5 opacity-100 group-hover:opacity-100"></div>
-<div class="relative z-10 flex flex-col items-center gap-2" tabindex="0">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus transition-all duration-300 h-6 sm:h-8 w-6 sm:w-8 text-primary opacity-80 group-hover:opacity-100" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
-<span class="text-xs font-medium text-primary/70 group-hover:text-primary/90 hidden sm:block">Add Item</span>
-</div>
-</div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="0"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="1"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="2"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="3"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="4"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="5"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="6"></div>
-<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-foreground/5 border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="7"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="0"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="1"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="2"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="3"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="4"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="5"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="6"></div>
+<div class="item-grid relative mx-auto aspect-square w-full max-w-[100px] rounded-2xl bg-black border border-border/10 flex flex-col items-center justify-center fruit-slot cursor-pointer" data-side="right" data-index="7"></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="group relative overflow-hidden rounded-xl border bg-card text-card-foreground backdrop-blur-sm transition-all duration-300 hover:border-primary/20 hover:shadow-md border-border/40 shadow-lg">
-<div class="p-3 sm:p-6">
 <div class="w-full space-y-4 sm:space-y-5">
 <div class="flex flex-col items-center gap-4 sm:gap-6">
 <div class="flex items-center gap-3 sm:gap-4 rounded-2xl border-2 px-4 sm:px-8 py-2 sm:py-4 font-bold text-lg sm:text-2xl backdrop-blur-sm transition-all duration-300 shadow-lg bg-muted/20 border-muted-foreground/20 shadow-muted-foreground/10">
-<div class="h-5 sm:h-8 w-5 sm:w-8">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus h-full w-full" aria-hidden="true"><path d="M5 12h14"></path></svg>
-</div>
+<div class="h-5 sm:h-8 w-5 sm:w-8"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus h-full w-full"><path d="M5 12h14"></path></svg></div>
 <span class="text-muted-foreground" id="result">Neutral</span>
 </div>
 <div class="flex items-center gap-4 sm:gap-12 text-center flex-col sm:flex-row">
-<div class="flex flex-col items-center space-y-2">
-<span class="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wide">Your Offer</span>
-<span class="text-xl sm:text-3xl font-bold text-primary" id="your-offer">0</span>
-<span class="text-xs sm:text-sm text-muted-foreground/80">Demand: 0/10</span>
-<span class="text-xs sm:text-sm text-yellow-500">Price: 0</span>
-</div>
+<div class="flex flex-col items-center space-y-2"><span class="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wide">Your Offer</span><span class="text-xl sm:text-3xl font-bold text-primary" id="your-offer">0</span><span class="text-xs sm:text-sm text-muted-foreground/80" id="your-demand-total">Demand: 0/10</span><span class="text-xs sm:text-sm text-yellow-500" id="your-price-total">Price: 0</span></div>
 <div class="text-muted-foreground text-sm sm:text-lg font-medium">vs</div>
-<div class="flex flex-col items-center space-y-2">
-<span class="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wide">Their Offer</span>
-<span class="text-xl sm:text-3xl font-bold text-purple-500" id="their-offer">0</span>
-<span class="text-xs sm:text-sm text-muted-foreground/80">Demand: 0/10</span>
-<span class="text-xs sm:text-sm text-yellow-500">Price: 0</span>
+<div class="flex flex-col items-center space-y-2"><span class="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wide">Their Offer</span><span class="text-xl sm:text-3xl font-bold text-purple-500" id="their-offer">0</span><span class="text-xs sm:text-sm text-muted-foreground/80" id="their-demand-total">Demand: 0/10</span><span class="text-xs sm:text-sm text-yellow-500" id="their-price-total">Price: 0</span></div>
 </div>
 </div>
-</div>
-<div class="space-y-4 sm:space-y-6">
 <div class="space-y-3 sm:space-y-4">
 <div class="relative h-8 sm:h-12 w-full overflow-hidden rounded-full bg-muted/30 shadow-inner border-2 border-border/20">
-<div class="absolute left-0 top-0 h-full bg-gradient-to-r from-primary/80 to-primary/60 shadow-sm transition-all duration-1000 shadow-primary/20" style="filter:brightness(1) saturate(1);width:50%"></div>
-<div class="absolute right-0 top-0 h-full bg-gradient-to-l from-purple-500/80 to-purple-500/60 shadow-sm transition-all duration-1000 shadow-purple-500/20" style="filter:brightness(1) saturate(1);width:50%"></div>
+<div id="left-bar" class="absolute left-0 top-0 h-full bg-gradient-to-r from-primary/80 to-primary/60 shadow-sm transition-all duration-1000" style="width:50%"></div>
+<div id="right-bar" class="absolute right-0 top-0 h-full bg-gradient-to-l from-purple-500/80 to-purple-500/60 shadow-sm transition-all duration-1000" style="width:50%"></div>
 <div class="absolute left-1/2 top-0 h-full w-1 bg-background/90 shadow-sm -translate-x-px rounded-full"></div>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div class="flex items-center justify-between pt-3 sm:pt-4 flex-col sm:flex-row gap-3 sm:gap-0">
 <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/20 border border-border/10 transition-all hover:bg-muted/30">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash h-4 w-4 text-muted-foreground" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash h-4 w-4 text-muted-foreground"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
 <span class="text-xs sm:text-sm font-medium text-muted-foreground">Click to Delete</span>
-<form class="flex items-center space-x-4">
-<label for="delete-toggle" class="relative flex h-5 w-[40px] cursor-pointer items-center rounded-full border border-transparent px-1 shadow-[inset_0px_0px_12px_rgba(0,0,0,0.25)] transition duration-200 bg-accent">
-<div class="z-10 block h-[12px] w-[12px] rounded-full bg-accent-foreground shadow-md" style="transform: translateX(20px);"></div>
-<input type="checkbox" class="hidden" id="delete-toggle" checked>
-</label>
-</form>
 </div>
-<button class="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border-2 bg-background/70 backdrop-blur-md hover:text-accent-foreground hover:shadow-md hover:border-border/80 active:scale-[0.97] ring-1 ring-white/5 h-8 sm:h-10 gap-2 border-destructive/30 text-destructive transition-all hover:bg-destructive/10 px-4 py-2 text-sm sm:text-base reset-calculator">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash h-4 w-4" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
-<span class="hidden sm:inline">Reset Calculator</span><span class="sm:hidden">Reset</span>
+<button class="inline-flex items-center justify-center rounded-md font-medium duration-300 border-2 bg-background/70 backdrop-blur-md hover:shadow-md hover:border-border/80 active:scale-[0.97] ring-1 ring-white/5 h-8 sm:h-10 gap-2 border-destructive/30 text-destructive hover:bg-destructive/10 px-4 py-2 text-sm sm:text-base reset-calculator">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash h-4 w-4"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+<span class="hidden sm:inline">Reset</span><span class="sm:hidden">Reset</span>
 </button>
 </div>
 </div>
 </div>
 </main>
-<div role="dialog" id="fruit-modal" class="fixed left-[50%] top-[50%] grid w-full translate-x-[-50%] translate-y-[-50%] rounded-lg border shadow-xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg modal-safe-positioning dialog-content-safe max-h-[90vh] max-w-[95vw] gap-0 border-foreground/10 bg-black p-0" tabindex="-1" style="z-index: 120; pointer-events: auto; display: none;">
-<div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-3 sm:p-4 pb-3"><h2 id="radix-:r1u:" class="font-semibold tracking-tight flex items-center gap-2 text-lg sm:text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-4 sm:h-5 w-4 sm:w-5" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Search Items</h2><p id="radix-:r1v:" class="text-xs sm:text-sm text-muted-foreground">Search and select an item to add to your calculator</p></div><div class="overflow-hidden p-3 sm:p-4"><div class="space-y-4"><div class="flex flex-col gap-1"><div class="flex flex-wrap justify-center gap-1"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 relative overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/85 text-primary-foreground hover:from-primary/90 hover:via-primary/85 hover:to-primary/80 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.97] border border-primary/20 ring-1 ring-white/10 rounded-full h-7 sm:h-9 px-3 sm:px-4 text-xs sm:text-sm">All<div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"><div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-shimmer"></div></div></button></div></div><div class="flex w-full items-center"><div class="relative w-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><div class="relative"><input id="fruit-search" class="flex h-8 sm:h-10 rounded-md border border-input px-3 py-2 text-sm sm:text-base ring-offset-background transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full bg-background/50 pl-9 pr-9 focus-visible:ring-primary/30 placeholder:text-muted-foreground/50 font-bold text-black" placeholder="Search items..." maxlength="100" aria-label="Search items" value=""></div></div></div><div class="overflow-hidden rounded-lg border border-foreground/10 bg-black"><div class="flex items-center justify-between border-b border-foreground/10 bg-foreground/5 px-3 sm:px-4 py-2"><div class="flex items-center gap-2"><span class="text-xs sm:text-sm font-medium">Available Items</span><div class="inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ring-1 ring-inset border-transparent bg-gradient-to-br from-secondary/95 to-secondary/85 text-secondary-foreground shadow-md hover:shadow-lg ring-white/5 bg-foreground/10" id="item-count"></div></div></div><div class="h-[60vh] min-h-[250px] sm:h-[420px] sm:min-h-[300px] overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10 hover:scrollbar-thumb-white/20 scrollbar-thumb-rounded"><div id="fruit-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-2 p-2 sm:gap-3 sm:p-3"></div><div class="flex h-12 w-full items-center justify-center"></div></div></div></div></div><button type="button" class="absolute right-3 sm:right-4 top-3 sm:top-4 rounded-sm opacity-70 ring-offset-popover transition-opacity data-[state=open]:bg-accent data-[state=open]:text-muted-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" id="close-modal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span class="sr-only">Close</span></button></div>
-<footer class="relative z-10 mt-auto py-8 sm:py-12 bg-black/90 backdrop-blur-md border-t border-white/10">
-<div class="max-w-[95vw] sm:max-w-7xl mx-auto px-4 sm:px-6">
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
-<div class="flex flex-col items-center sm:items-start space-y-4">
-<p class="text-lg sm:text-xl font-bold text-white">Pages</p>
-<ul class="text-neutral-300 list-none space-y-3 text-sm sm:text-base">
-<li><a class="hover:text-primary transition-colors" href="/">Home</a></li>
-<li><a class="hover:text-primary transition-colors" href="/trading.html">Trade</a></li>
-<li><a class="hover:text-primary transition-colors" href="/values">Values</a></li>
-<li><a class="hover:text-primary transition-colors" href="/donators">Top Donators</a></li>
-</ul>
+
+<div id="fruit-modal" class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg border shadow-xl w-[95vw] max-w-2xl max-h-[90vh] bg-black border-foreground/10 p-0 hidden z-50" style="display:none;">
+<div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-3 sm:p-4"><h2 class="font-semibold tracking-tight flex items-center gap-2 text-lg sm:text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-4 sm:h-5 w-4 sm:w-5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>Search Items</h2></div>
+<div class="p-3 sm:p-4 overflow-y-auto max-h-[70vh]"><div id="fruit-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3"></div></div>
+<input id="fruit-search" class="w-full mx-4 mb-3 px-3 py-2 rounded border border-input bg-background/50 text-sm" placeholder="Search...">
+<button id="close-modal" class="absolute right-3 top-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-5 w-5"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
 </div>
-<div class="flex flex-col items-center sm:items-start space-y-4">
-<p class="text-lg sm:text-xl font-bold text-white">Socials</p>
-<ul class="text-neutral-300 list-none space-y-3 text-sm sm:text-base">
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://discord.gg/bfhs">Discord</a></li>
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://x.com/FlareTradings">X</a></li>
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://youtube.com/@">YouTube</a></li>
-</ul>
-</div>
-<div class="flex flex-col items-center sm:items-start space-y-4">
-<p class="text-lg sm:text-xl font-bold text-white">Legal</p>
-<ul class="text-neutral-300 list-none space-y-3 text-sm sm:text-base">
-<li><a class="hover:text-primary transition-colors" href="/privacy-policy">Privacy Policy</a></li>
-<li><a class="hover:text-primary transition-colors" href="/terms-of-service">Terms of Service</a></li>
-</ul>
-</div>
-<div class="flex flex-col items-center sm:items-start space-y-4">
-<p class="text-lg sm:text-xl font-bold text-white">Support</p>
-<ul class="text-neutral-300 list-none space-y-3 text-sm sm:text-base">
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://discord.com/oauth2/authorize?client_id=1409137207964598344&permissions=8935008880848&integration_type=0&scope=bot">Discord Bot</a></li>
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://FlareTrading.gg/#faq">FAQ</a></li>
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://FlareTrading.gg/#our-games">Our Games</a></li>
-</ul>
-</div>
-</div>
-<div class="mt-8 sm:mt-12 text-center text-neutral-400 text-xs sm:text-sm">
-<p>&copy; 2025 FlareTrading. All rights reserved.</p>
-</div>
-</div>
-</footer>
+
 <script>
+const fruits = {
+  "West Dragon": {value:1500000000, beli:"15M", demand:"10/10", image:"West-Dragon.webp"},
+  "East Dragon": {value:1200000000, beli:"15M", demand:"10/10", image:"East-Dragon.webp"},
+  "Kitsune": {value:300000000, beli:"8M", demand:"10/10", image:"Kitsune.webp"},
+  "Yeti": {value:150000000, beli:"5M", demand:"10/10", image:"Yeti.webp"},
+  "Gas": {value:65000000, beli:"3.2M", demand:"8/10", image:"Gas.webp"},
+  "Leopard": {value:150000000, beli:"5M", demand:"10/10", image:"Leopard.webp"},
+  "Dough": {value:30000000, beli:"2.8M", demand:"10/10", image:"Dough.webp"},
+  "Pain": {value:15000000, beli:"2.3M", demand:"6/10", image:"Pain.webp"},
+  "T-Rex": {value:20000000, beli:"2.7M", demand:"8/10", image:"T-RexFruit.svg"},
+  "Gravity": {value:15000000, beli:"2.5M", demand:"4/10", image:"Gravity.webp"},
+  "Mammoth": {value:10000000, beli:"2.7M", demand:"5/10", image:"Mammoth.webp"},
+  "Spirit": {value:10000000, beli:"3.4M", demand:"6/10", image:"Spirit.webp"},
+  "Control": {value:10000000, beli:"3.2M", demand:"5/10", image:"Control.webp"},
+  "Venom": {value:10000000, beli:"3M", demand:"6/10", image:"Venom.webp"},
+  "Portal": {value:10000000, beli:"1.9M", demand:"10/10", image:"Portal.webp"},
+  "Buddha": {value:10000000, beli:"1.2M", demand:"10/10", image:"Buddha.webp"},
+  "Shadow": {value:6500000, beli:"2.9M", demand:"5/10", image:"Shadow.webp"},
+  "Blizzard": {value:5000000, beli:"2.4M", demand:"5/10", image:"Blizzard.webp"},
+  "Creation": {value:3500000, beli:"1.4M", demand:"3/10", image:"Creation.webp"},
+  "Phoenix": {value:2750000, beli:"1.8M", demand:"3/10", image:"Phoenix.webp"},
+  "Sound": {value:2500000, beli:"1.7M", demand:"4/10", image:"Sound.webp"},
+  "Spider": {value:1500000, beli:"1.5M", demand:"2/10", image:"Spider.webp"},
+  "Love": {value:1500000, beli:"1.3M", demand:"3/10", image:"Love.webp"},
+  "Magma": {value:1150000, beli:"960K", demand:"8/10", image:"Magma.webp"},
+  "Quake": {value:1000000, beli:"1M", demand:"2/10", image:"Quake.webp"},
+  "Diamond": {value:1000000, beli:"600K", demand:"2/10", image:"Diamond.webp"},
+  "Ghost": {value:800000, beli:"940K", demand:"1/10", image:"Ghost.webp"},
+  "Eagle": {value:800000, beli:"550K", demand:"2/10", image:"Eagle.webp"},
+  "Rubber": {value:700000, beli:"750K", demand:"1/10", image:"Rubber.webp"},
+  "Ice": {value:550000, beli:"350K", demand:"2/10", image:"Ice.webp"},
+  "Sand": {value:420000, beli:"420K", demand:"1/10", image:"Sand.webp"},
+  "Dark": {value:400000, beli:"500K", demand:"1/10", image:"Dark.webp"},
+  "Flame": {value:250000, beli:"250K", demand:"1/10", image:"Flame.webp"},
+  "Spike": {value:180000, beli:"180K", demand:"1/10", image:"Spike.webp"},
+  "Smoke": {value:100000, beli:"100K", demand:"1/10", image:"Smoke.webp"},
+  "Bomb": {value:80000, beli:"80K", demand:"1/10", image:"Bomb.webp"},
+  "Spring": {value:60000, beli:"60K", demand:"1/10", image:"Spring.webp"},
+  "Blade": {value:50000, beli:"30K", demand:"1/10", image:"Blade.webp"},
+  "Spin": {value:7500, beli:"7.5K", demand:"1/10", image:"Spin.webp"},
+  "Rocket": {value:5000, beli:"5K", demand:"1/10", image:"Rocket.webp"}
+};
+
 const leftSlots = document.querySelectorAll('.fruit-slot[data-side="left"]');
 const rightSlots = document.querySelectorAll('.fruit-slot[data-side="right"]');
 const addButtons = document.querySelectorAll('.add-fruit');
 const yourValueEl = document.getElementById('your-value');
 const theirValueEl = document.getElementById('their-value');
+const yourPriceEl = document.getElementById('your-price');
+const theirPriceEl = document.getElementById('their-price');
+const yourDemandEl = document.getElementById('your-demand');
+const theirDemandEl = document.getElementById('their-demand');
 const resultEl = document.getElementById('result');
 const yourOfferEl = document.getElementById('your-offer');
 const theirOfferEl = document.getElementById('their-offer');
+const yourDemandTotal = document.getElementById('your-demand-total');
+const theirDemandTotal = document.getElementById('their-demand-total');
+const yourPriceTotal = document.getElementById('your-price-total');
+const theirPriceTotal = document.getElementById('their-price-total');
+const leftBar = document.getElementById('left-bar');
+const rightBar = document.getElementById('right-bar');
 const modal = document.getElementById('fruit-modal');
 const closeModal = document.getElementById('close-modal');
 const fruitGrid = document.getElementById('fruit-grid');
 const fruitSearch = document.getElementById('fruit-search');
-const itemCount = document.getElementById('item-count');
 let leftFruits = Array(8).fill(null);
 let rightFruits = Array(8).fill(null);
 let currentSide = null;
-const fruitImages = {
-  'Blade': 'Blade.webp',
-  'Blizzard': 'Blizzard.webp',
-  'Bomb': 'Bomb.webp',
-  'Buddha': 'Buddha.webp',
-  'Control': 'Control.webp',
-  'Creation': 'Creation.webp',
-  'Dark': 'Dark.webp',
-  'Diamond': 'Diamond.webp',
-  'Dough': 'Dough.webp',
-  'Eagle': 'Eagle.webp',
-  'East Dragon': 'East-Dragon.webp',
-  'Emerald': 'Emerald.webp',
-  'Flame': 'Flame.webp',
-  'Gas': 'Gas.webp',
-  'Ghost': 'Ghost.webp',
-  'Gravity': 'Gravity.webp',
-  'Green Lightning': 'Green-Lightning.webp',
-  'Ice': 'Ice.webp',
-  'Kitsune': 'Kitsune.webp',
-  'Leopard': 'Leopard.webp',
-  'Love': 'Love.webp',
-  'Magma': 'Magma.webp',
-  'Mammoth': 'Mammoth.webp',
-  'Pain': 'Pain.webp',
-  'Parrot': 'Parrot.webp',
-  'Permanent Dragon Token': 'Permanent-Dragon-Token.webp',
-  'Phoenix': 'Phoenix.webp',
-  'Portal': 'Portal.webp',
-  'Purple Lightning': 'Purple-Lightning.webp',
-  'Quake': 'Quake.webp',
-  'Rocket': 'Rocket.webp',
-  'Rose Quartz': 'Rose-Quartz.webp',
-  'Rubber': 'Rubber.webp',
-  'Ruby': 'Ruby.webp',
-  'Rumble': 'Rumble.webp',
-  'Sand': 'Sand.webp',
-  'Shadow': 'Shadow.webp',
-  'Smoke': 'Smoke.webp',
-  'Sound': 'Sound.webp',
-  'Spider': 'Spider.webp',
-  'Spike': 'Spike.webp',
-  'Spin': 'Spin.webp',
-  'Spirit': 'Spirit.webp',
-  'Spring': 'Spring.webp',
-  'T-Rex': 'T-RexFruit.svg',
-  'Topaz': 'Topaz.webp',
-  'Venom': 'Venom.webp',
-  'West Dragon': 'West-Dragon.webp',
-  'Yellow Lightning': 'Yellow-Lightning.webp',
-  'Yeti': 'Yeti.webp'
-};
-addButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    currentSide = btn.dataset.side;
-    modal.style.display = 'block';
-    document.body.classList.add('modal-open');
-    renderFruits();
-  });
-});
-closeModal.addEventListener('click', () => {
-  modal.style.display = 'none';
-  document.body.classList.remove('modal-open');
-});
+
+addButtons.forEach(b => b.addEventListener('click', () => { currentSide = b.dataset.side; modal.style.display = 'block'; renderFruits(); }));
+closeModal.addEventListener('click', () => modal.style.display = 'none');
 fruitSearch.addEventListener('input', renderFruits);
+
 function renderFruits() {
   fruitGrid.innerHTML = '';
-  const query = fruitSearch.value.toLowerCase();
-  const filtered = Object.entries(fruitImages).filter(([f]) => f.toLowerCase().includes(query));
-  filtered.forEach(([f, url]) => {
+  const q = fruitSearch.value.toLowerCase();
+  Object.entries(fruits).filter(([n]) => n.toLowerCase().includes(q)).forEach(([n, f]) => {
     const btn = document.createElement('button');
-    btn.className = 'group relative flex w-full flex-col items-center overflow-hidden rounded-lg p-2 sm:p-3 text-left transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] bg-foreground/[0.02] hover:bg-foreground/[0.06] border border-transparent hover:border-foreground/10 outline-none focus:ring-2 focus:ring-white/10';
-    btn.innerHTML = `
-      <div class="relative mb-2 h-16 w-16 sm:h-20 sm:w-20">
-        <img src="${url}" class="object-contain transition-transform duration-200 group-hover:scale-110" alt="${f}">
-        <div class="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
-      </div>
-      <div class="w-full space-y-0.5">
-        <div class="flex items-center gap-1"><span class="truncate text-xs sm:text-sm font-medium">${f}</span></div>
-        <span class="block truncate text-xs text-muted-foreground">Fruits</span>
-      </div>
-    `;
-    btn.addEventListener('click', () => addFruit(f));
+    btn.className = 'group flex flex-col items-center p-2 rounded-lg bg-foreground/5 hover:bg-foreground/10 transition';
+    btn.innerHTML = `<img src="${f.image}" class="w-12 h-12 object-contain"><span class="text-xs mt-1 truncate w-full">${n}</span>`;
+    btn.onclick = () => addFruit(n);
     fruitGrid.appendChild(btn);
   });
-  itemCount.textContent = filtered.length;
 }
-function addFruit(value) {
-  const fruitsArr = currentSide === 'left' ? leftFruits : rightFruits;
+
+function addFruit(name) {
+  const arr = currentSide === 'left' ? leftFruits : rightFruits;
   const slots = currentSide === 'left' ? leftSlots : rightSlots;
-  const index = fruitsArr.findIndex(f => !f);
-  if (index !== -1) {
-    fruitsArr[index] = value;
-    slots[index].innerHTML = `<img src="${fruitImages[value]}" class="w-3/4 h-3/4 object-contain" alt="${value}"><span class="text-xs text-white mt-1">${value}</span>`;
+  const i = arr.indexOf(null);
+  if (i > -1) {
+    arr[i] = name;
+    slots[i].innerHTML = `<img src="${fruits[name].image}" class="w-3/5 h-3/5 object-contain"><span class="text-[10px] mt-1 truncate w-full">${name}</span>`;
     calculate();
   }
   modal.style.display = 'none';
-  document.body.classList.remove('modal-open');
 }
-[...leftSlots, ...rightSlots].forEach(slot => {
-  slot.addEventListener('click', () => {
-    const side = slot.dataset.side;
-    const index = slot.dataset.index;
-    const fruitsArr = side === 'left' ? leftFruits : rightFruits;
-    if (fruitsArr[index]) {
-      fruitsArr[index] = null;
-      slot.innerHTML = '';
-      calculate();
-    }
-  });
-});
-document.querySelector('.reset-calculator').addEventListener('click', () => {
-  leftFruits.fill(null);
-  rightFruits.fill(null);
-  leftSlots.forEach(s => s.innerHTML = '');
-  rightSlots.forEach(s => s.innerHTML = '');
-  yourValueEl.textContent = '0';
-  theirValueEl.textContent = '0';
-  yourOfferEl.textContent = '0';
-  theirOfferEl.textContent = '0';
-  resultEl.textContent = 'Neutral';
-});
+
+[...leftSlots, ...rightSlots].forEach(s => s.addEventListener('click', () => {
+  const side = s.dataset.side;
+  const i = s.dataset.index;
+  const arr = side === 'left' ? leftFruits : rightFruits;
+  if (arr[i]) { arr[i] = null; s.innerHTML = ''; calculate(); }
+}));
+
+document.querySelector('.reset-calculator').onclick = () => {
+  leftFruits.fill(null); rightFruits.fill(null);
+  leftSlots.forEach(s => s.innerHTML = ''); rightSlots.forEach(s => s.innerHTML = '');
+  calculate();
+};
+
 function calculate() {
-  const leftValue = leftFruits.reduce((sum, f) => sum + (fruits[f]?.value || 0), 0);
-  const rightValue = rightFruits.reduce((sum, f) => sum + (fruits[f]?.value || 0), 0);
-  yourValueEl.textContent = leftValue.toLocaleString();
-  theirValueEl.textContent = rightValue.toLocaleString();
-  yourOfferEl.textContent = leftValue.toLocaleString();
-  theirOfferEl.textContent = rightValue.toLocaleString();
-  if (leftValue < rightValue) {
-    resultEl.textContent = `Win (Gain: ${(rightValue - leftValue).toLocaleString()})`;
-  } else if (leftValue > rightValue) {
-    resultEl.textContent = `Loss (Loss: ${(leftValue - rightValue).toLocaleString()})`;
-  } else {
-    resultEl.textContent = `Neutral`;
-  }
+  const left = {val:0, beli:0, dem:0};
+  const right = {val:0, beli:0, dem:0};
+  leftFruits.filter(Boolean).forEach(f => { const d = fruits[f]; left.val += d.value; left.beli += parseBeli(d.beli); left.dem += parseDemand(d.demand); });
+  rightFruits.filter(Boolean).forEach(f => { const d = fruits[f]; right.val += d.value; right.beli += parseBeli(d.beli); right.dem += parseDemand(d.demand); });
+
+  yourValueEl.textContent = formatNum(left.val);
+  theirValueEl.textContent = formatNum(right.val);
+  yourPriceEl.textContent = formatNum(left.beli);
+  theirPriceEl.textContent = formatNum(right.beli);
+  yourDemandEl.textContent = `${Math.round(left.dem)}/10`;
+  theirDemandEl.textContent = `${Math.round(right.dem)}/10`;
+  yourOfferEl.textContent = formatNum(left.val);
+  theirOfferEl.textContent = formatNum(right.val);
+  yourDemandTotal.textContent = `Demand: ${Math.round(left.dem)}/10`;
+  theirDemandTotal.textContent = `Demand: ${Math.round(right.dem)}/10`;
+  yourPriceTotal.textContent = `Price: ${formatNum(left.beli)}`;
+  theirPriceTotal.textContent = `Price: ${formatNum(right.beli)}`;
+
+  const total = left.val + right.val || 1;
+  const leftPct = (left.val / total) * 100;
+  leftBar.style.width = `${leftPct}%`;
+  rightBar.style.width = `${100 - leftPct}%`;
+
+  const diff = left.val - right.val;
+  let color = "bg-purple-500";
+  let msg = "Neutral";
+  if (Math.abs(diff) / total < 0.05) { color = "bg-purple-500"; msg = "Fair"; }
+  else if (diff > 0) { color = diff / total > 0.3 ? "bg-red-500" : "bg-orange-500"; msg = `Loss: ${formatNum(diff)}`; }
+  else { color = -diff / total > 0.3 ? "bg-green-500" : "bg-orange-500"; msg = `Win: ${formatNum(-diff)}`; }
+  resultEl.textContent = msg;
+  leftBar.className = `absolute left-0 top-0 h-full ${color} shadow-sm transition-all duration-1000`;
+  rightBar.className = `absolute right-0 top-0 h-full bg-gradient-to-l ${color.replace('from-', 'from-purple-500/').replace('to-', 'to-purple-500/')} shadow-sm transition-all duration-1000`;
 }
+
+function parseBeli(s) { return parseFloat(s.replace(/[^0-9.]/g,'')) * (s.includes('M')?1e6:s.includes('K')?1e3:1); }
+function parseDemand(s) { return parseInt(s.split('/')[0]); }
+function formatNum(n) { return n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(1)+'K' : n; }
+
+calculate();
 </script>
 </body>
 </html>
