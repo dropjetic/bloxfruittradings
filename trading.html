@@ -2,117 +2,77 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blox Fruits Trading</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<title>Blox Fruit Trading</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Montserrat,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh;display:flex;flex-direction:column}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer}
+.topbar{background:#11111a;border-bottom:1px solid #2a2a3a;padding:.5rem 1rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;gap:.5rem}
+.logo img{width:40px;height:40px}
+.game-switch{background:#00000066;border:1px solid #ffffff1a;border-radius:.75rem;padding:.5rem 1rem;color:#fff;font-weight:bold;display:flex;align-items:center;gap:.5rem}
+.game-switch span{font-size:.875rem;color:#9ca3af}
+.nav{flex:1;display:flex;justify-content:center;gap:1.5rem}
+.nav a{color:#9ca3af;font-size:.875rem;transition:color .2s}
+.nav a:hover{color:#fff}
+.user-area{display:flex;gap:.5rem}
+.user-area button{background:#0000001a;border:1px solid #ffffff0d;border-radius:.5rem;padding:.25rem .75rem;color:#d4d4ff;font-size:.75rem;display:flex;align-items:center;gap:.25rem;transition:all .2s}
+.user-area button:hover{background:#00000033;color:#e0e0ff}
+.container{flex:1;max-width:1200px;margin:2rem auto;padding:0 1rem}
+.trade-card{background:#11111a;border:1px solid #2a2a3a;border-radius:1rem;overflow:hidden;margin-bottom:1.5rem}
+.trade-header{background:#11111a;padding:1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2a2a3a}
+.user-info{display:flex;align-items:center;gap:.75rem}
+.avatar{width:36px;height:36px;border-radius:50%;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.username{font-weight:600;font-size:.875rem}
+.time{font-size:.75rem;color:#9ca3af}
+.trade-body{display:flex;flex-direction:column;gap:1rem;padding:1rem}
+.offer,.request{flex:1}
+.offer-title,.request-title{font-size:.875rem;font-weight:600;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+.offer-title svg,.request-title svg{width:1rem;height:1rem}
+.items{display:flex;gap:.75rem;flex-wrap:wrap}
+.item{background:#11111a;border:1px solid #2a2a3a;border-radius:.75rem;width:110px;height:140px;display:flex;flex-direction:column;transition:transform .2s}
+.item:hover{transform:translateY(-4px)}
+.item-img{flex:1;padding:.5rem;display:flex;align-items:center;justify-content:center;position:relative}
+.item-img img{max-width:100%;max-height:100%}
+.item-value{background:#000000cc;border-top:1px solid #ffffff33;padding:.5rem;text-align:center;font-size:.75rem}
+.arrow{display:flex;justify-content:center;align-items:center;font-size:1.5rem;color:#9ca3af}
+.post-btn{background:#7c3aed;color:#fff;border:none;border-radius:.5rem;padding:.75rem 1.5rem;font-weight:600;margin:1rem auto;display:block}
+.footer{background:#0f0f1a;border-top:1px solid #2a2a3a;padding:2rem 1rem;font-size:.875rem;color:#9ca3af}
+.footer .inner{max-width:1200px;margin:auto;display:flex;flex-direction:column;gap:2rem}
+.footer a:hover{color:#fff}
+@media(min-width:640px){.trade-body{flex-direction:row;align-items:center}.offer,.request{flex:1}.arrow{margin:0 1rem}}
+</style>
 </head>
-<body class="relative bg-black text-white min-h-screen flex flex-col">
-<div class="absolute inset-0">
-<div class="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black"></div>
-<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(120,119,198,0.06),transparent_70%)]"></div>
-<div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black via-black/95 to-transparent"></div>
+<body>
+<div class="topbar">
+<div class="logo"><a href="https://bloxfruittrading.com"><img src="https://bloxfruittrading.com/static/logo.gif" alt="logo"></a><div class="game-switch">Blox Fruits <span>Switch Game</span></div></div>
+<nav class="nav"><a href="https://bloxfruittrading.com">Home</a><a href="https://dropjetic.github.io/bloxfruittradings/trading.html">Trade</a><a href="https://bloxfruittrading.com/values">Values</a><a href="https://bloxfruittrading.com/donators">Top Donators</a></nav>
+<div class="user-area"><button onclick="location.href='https://dropjetic.pythonanywhere.com/auth/roblox'">Login with Roblox</button></div>
 </div>
-
-<!-- Header -->
-<div class="relative z-10 mx-auto flex w-full max-w-[95vw] justify-between px-4 py-3 transition duration-200 rounded-full bg-transparent">
-<div class="flex w-full flex-row items-center justify-between">
-<div class="flex w-[80px] sm:w-[90px] flex-row items-center gap-2">
-<a href="/">
-<img alt="logo" loading="lazy" width="48" height="48" class="min-w-8 min-h-8 w-full h-full object-contain" src="https://cdn.discordapp.com/attachments/1409125833108357130/1426495042909900871/ezgif-7c0ed28951c6ba.gif">
-</a>
-<div class="relative z-50">
-<button class="group flex items-center gap-2 sm:gap-3 rounded-xl border border-border/60 bg-black/40 px-3 sm:px-4 py-2 sm:py-2.5 backdrop-blur-md transition-all hover:border-primary/50 hover:bg-black/60 hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]">
-<div class="flex flex-col items-start">
-<span class="max-w-[120px] sm:max-w-[150px] truncate text-sm sm:text-base font-bold text-white">Blox Fruits</span>
-<span class="text-xs text-neutral-400">Switch Game</span>
+<div class="container">
+<button class="post-btn" onclick="location.href='https://dropjetic.pythonanywhere.com/post'">Post Trade</button>
+<div id="trades"></div>
 </div>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 h-3 w-3 sm:h-4 sm:w-4 text-neutral-400">
-<path d="M6 9l6 6l6 -6"></path>
-</svg>
-</button>
-</div>
-</div>
-<div class="hidden sm:flex flex-1 justify-center">
-<nav class="relative z-10 flex max-w-max flex-1 items-center justify-center">
-<ul class="flex items-center justify-center space-x-2">
-<li><a class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/values">
-<span class="flex h-7 w-7 items-center justify-center">
-<svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M20.6875 5.625H25.375V27.1875H4.75V5.625H9.4375V7.5H20.6875V5.625ZM8.5 15H21.625V13.125H8.5V15ZM8.5 22.5H21.625V20.625H8.5V22.5ZM11.3125 5.625V2.8125H18.8125V5.625H11.3125Z" fill="currentColor"></path>
-</svg>
-</span>
-<span class="text-xs font-medium">Value List</span>
-</a></li>
-<li><a class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" href="/calculator.html">
-<span class="flex h-7 w-7 items-center justify-center">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line>
-<path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path>
-</svg>
-</span>
-<span class="text-xs font-medium">Calculator</span>
-</a></li>
-</ul>
-</nav>
-</div>
-<div class="flex items-center space-x-2 sm:space-x-4">
-<a target="_blank" class="flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50" href="https://discord.com/invite/bfhs">
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-5 w-5 sm:h-6 sm:w-6">
-<path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path>
-</svg>
-</a>
-<a href="/login.html">
-<button class="group rounded-full hover:-translate-y-0.5 active:scale-[0.98] bg-primary hover:bg-primary/90 border border-primary text-primary-foreground text-sm sm:text-base transition font-medium duration-200 flex items-center justify-center shadow-[0px_-1px_0px_0px_rgba(255,255,255,0.4)_inset,_0px_1px_0px_0px_rgba(255,255,255,0.4)_inset] px-4 sm:px-6 py-2 sm:py-2.5">Login</button>
-</a>
-</div>
-</div>
-</div>
-
-<main class="relative z-10 flex-1 container mx-auto px-4 py-8 flex items-center justify-center">
-  <div class="text-5xl sm:text-6xl font-bold text-white text-center">COMING SOON!</div>
-</main>
-
-<footer class="relative z-10 py-12 bg-black/90 backdrop-blur-md border-t border-white/10">
-<div class="max-w-7xl mx-auto px-6">
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-<div class="flex flex-col items-center sm:items-start space-y-4">
-<p class="text-xl font-bold text-white">Pages</p>
-<ul class="text-neutral-300 list-none space-y-3">
-<li><a class="hover:text-primary transition-colors" href="/">Home</a></li>
-<li><a class="hover:text-primary transition-colors" href="/trading.html">Trade</a></li>
-<li><a class="hover:text-primary transition-colors" href="/values">Values</a></li>
-<li><a class="hover:text-primary transition-colors" href="/donators">Top Donators</a></li>
-</ul>
-</div>
-<div class="flex flex-col items-center sm:items-start space-y-4">
-<p class="text-xl font-bold text-white">Socials</p>
-<ul class="text-neutral-300 list-none space-y-3">
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://discord.gg/bfhs">Discord</a></li>
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://x.com/FlareTradings">X</a></li>
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://youtube.com/@">YouTube</a></li>
-</ul>
-</div>
-<div class="flex flex-col items-center sm:items-start space-y-4">
-<p class="text-xl font-bold text-white">Legal</p>
-<ul class="text-neutral-300 list-none space-y-3">
-<li><a class="hover:text-primary transition-colors" href="/privacy-policy">Privacy Policy</a></li>
-<li><a class="hover:text-primary transition-colors" href="/terms-of-service">Terms of Service</a></li>
-</ul>
-</div>
-<div class="flex flex-col items-center sm:items-start space-y-4">
-<p class="text-xl font-bold text-white">Support</p>
-<ul class="text-neutral-300 list-none space-y-3">
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://discord.com/oauth2/authorize?client_id=1409137207964598344&permissions=8935008880848&integration_type=0&scope=bot">Discord Bot</a></li>
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://FlareTrading.gg/#faq">FAQ</a></li>
-<li><a class="hover:text-primary transition-colors" target="_blank" href="https://FlareTrading.gg/#our-games">Our Games</a></li>
-</ul>
-</div>
-</div>
-<div class="mt-12 text-center text-neutral-400 text-sm">
-<p>&copy; 2025 FlareTrading. All rights reserved.</p>
-</div>
-</div>
-</footer>
+<div class="footer">
+<div class="inner">
+<div><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1rem"><img src="https://bloxfruittrading.com/static/logo.png" width="36" height="36" alt="logo"><span style="background:linear-gradient(to right,#a78bfa,#ec4899);-webkit-background-clip:text;color:transparent;font-weight:800">Blox Fruit Trading</span></div><div>© 2025 Blox Fruit Trading All rights reserved.<br>All trademarks are property of their respective owners.</div><div style="margin-top:1rem">https://bloxfruittrading.com is a 3rd party website that is not affiliated or partnered with Blox Fruits. We are not endorsed by their respective owners.</div></div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2rem">
+<div><p style="font-weight:700;margin-bottom:1rem">Pages</p><ul style="list-style:none"><li><a href="https://bloxfruittrading.com">Home</a></li><li><a href="https://dropjetic.github.io/bloxfruittradings/trading.html">Trade</a></li><li><a href="https://bloxfruittrading.com/values">Values</a></li><li><a href="https://bloxfruittrading.com/donators">Top Donators</a></li></ul></div>
+<div><p style="font-weight:700;margin-bottom:1rem">Socials</p><ul style="list-style:none"><li><a href="https://discord.gg/bfhs" target="_blank">Discord</a></li><li><a href="https://x.com/FlareTradings" target="_blank">X</a></li><li><a href="https://youtube.com/@FlareFruitTrading" target="_blank">YouTube</a></li></ul></div>
+<div><p style="font-weight:700;margin-bottom:1rem">Legal</p><ul style="list-style:none"><li><a href="https://bloxfruittrading.com/privacy-policy">Privacy Policy</a></li><li><a href="https://bloxfruittrading.com/terms-of-service">Terms of Service</a></li></ul></div>
+<div><p style="font-weight:700;margin-bottom:1rem">Support</p><ul style="list-style:none"><li><a href="https://discord.com/discovery/applications/878633004640124998" target="_blank">Discord Bot</a></li><li><a href="https://bloxfruittrading.com">FAQ</a></li><li><a href="https://bloxfruittrading.com">Our games</a></li></ul></div>
+</div></div></div>
+<script>
+function fmt(v){return(v/1000000).toFixed(v%1000000===0?0:1)+'M'}
+function renderTrade(t){
+ const offer=t.offer.map(i=>`<div class="item"><div class="item-img"><img src="${i.img}" alt="${i.name}"><span style="position:absolute;top:4px;left:4px;background:#7c3aed;color:#fff;padding:2px 6px;border-radius:4px;font-size:10px">R</span></div><div class="item-value"><span style="color:#fbbf24">${fmt(i.value)}</span></div></div>`).join('')
+ const request=t.request.map(i=>`<div class="item"><div class="item-img"><img src="${i.img}" alt="${i.name}"></div><div class="item-value"><span style="color:#fbbf24">${fmt(i.value)}</span></div></div>`).join('')
+ return `<div class="trade-card"><div class="trade-header"><div class="user-info"><div class="avatar"><img src="${t.avatar}" alt="${t.user}"></div><div><div class="username">${t.user}</div><div class="time">less than a minute ago</div></div></div><div class="user-area"><button onclick="location.href='https://dropjetic.pythonanywhere.com/chat/${t.id}'">Chat</button><button onclick="location.href='https://dropjetic.pythonanywhere.com/trade/${t.id}'">Trade</button></div></div><div class="trade-body"><div class="offer"><div class="offer-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4M22 5h-4M4 17v2M5 18H3"></path></svg> Offering</div><div class="items">${offer}</div></div><div class="arrow">→</div><div class="request"><div class="request-title"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4M22 5h-4M4 17v2M5 18H3"></path></svg> Requesting</div><div class="items">${request}</div></div></div></div>`
+}
+fetch('https://dropjetic.pythonanywhere.com/api/trades').then(r=>r.json()).then(d=>document.getElementById('trades').innerHTML=d.map(renderTrade).join(''))
+</script>
 </body>
 </html>
