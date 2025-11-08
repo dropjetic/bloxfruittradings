@@ -59,7 +59,7 @@ button{cursor:pointer}
 </div>
 </div>
 <div class="container">
-<button class="post-btn" id="postBtn">Post Trade</button>
+<button class="post-btn" id="postBtn" style="display:none">Post Trade</button>
 <div id="trades"></div>
 </div>
 <div class="footer">
@@ -83,10 +83,12 @@ async function checkLogin(){
     }else{
       document.getElementById('loginBtn').style.display='block';
       document.getElementById('postBtn').style.display='none';
+      document.getElementById('userInfo').innerHTML='';
     }
   }catch{
     document.getElementById('loginBtn').style.display='block';
     document.getElementById('postBtn').style.display='none';
+    document.getElementById('userInfo').innerHTML='';
   }
   loadTrades();
 }
@@ -106,13 +108,19 @@ async function loadTrades(){
 }
 
 document.getElementById('loginBtn').onclick=()=>{location.href='https://dropjetic.pythonanywhere.com/auth/roblox';};
-document.getElementById('postBtn').onclick=()=>{
+
+document.getElementById('postBtn').onclick=async ()=>{
+  const r=await fetch('https://dropjetic.pythonanywhere.com/api/me',{credentials:'include'});
+  if(!r.ok){
+    location.href='https://dropjetic.pythonanywhere.com/auth/roblox';
+    return;
+  }
   const w=window.open('','_blank','width=600,height=700');
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Post Trade</title><style>body{background:#0f0f1a;color:#fff;font-family:Montserrat,sans-serif;padding:2rem}.box{max-width:600px;margin:auto;background:#11111a;padding:2rem;border-radius:1rem;border:1px solid #2a2a3a}select{width:100%;padding:.5rem;margin:.5rem 0;background:#000;color:#fff;border:1px solid #2a2a3a;border-radius:.5rem}button{background:#7c3aed;color:#fff;padding:.75rem 1.5rem;border:none;border-radius:.5rem;margin-top:1rem;cursor:pointer}</style></head><body><div class="box"><h2>Post Trade</h2><form id="f"><h3>Offering</h3><div id="offer"></div><button type="button" onclick="add('offer')">+ Add</button><h3>Requesting</h3><div id="request"></div><button type="button" onclick="add('request')">+ Add</button><button type="submit">Post</button></form></div><script>const items=${JSON.stringify(Object.keys(ITEMS))};function add(s){const e=document.createElement('select');e.name=s;e.innerHTML='<option>--</option>'+items.map(i=>`<option value="${i}">${i}</option>`).join('');document.getElementById(s).appendChild(e)}document.getElementById('f').onsubmit=async e=>{e.preventDefault();const d=new FormData(e.target);const r=await fetch('https://dropjetic.pythonanywhere.com/api/post',{method:'POST',body:d,credentials:'include'});if(r.ok){alert('Posted!');setTimeout(()=>{window.close();opener.location.reload();},1000)}else{alert('Login required')}}</script></body></html>`);
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Post Trade</title><style>body{background:#0f0f1a;color:#fff;font-family:Montserrat,sans-serif;padding:2rem}.box{max-width:600px;margin:auto;background:#11111a;padding:2rem;border-radius:1rem;border:1px solid #2a2a3a}select{width:100%;padding:.5rem;margin:.5rem 0;background:#000;color:#fff;border:1px solid #2a2a3a;border-radius:.5rem}button{background:#7c3aed;color:#fff;padding:.75rem 1.5rem;border:none;border-radius:.5rem;margin-top:1rem;cursor:pointer}</style></head><body><div class="box"><h2>Post Trade</h2><form id="f"><h3>Offering</h3><div id="offer"></div><button type="button" onclick="add('offer')">+ Add</button><h3>Requesting</h3><div id="request"></div><button type="button" onclick="add('request')">+ Add</button><button type="submit">Post</button></form></div><script>const items=${JSON.stringify(Object.keys(ITEMS))};function add(s){const e=document.createElement('select');e.name=s;e.innerHTML='<option>--</option>'+items.map(i=>`<option value="${i}">${i}</option>`).join('');document.getElementById(s).appendChild(e)}document.getElementById('f').onsubmit=async e=>{e.preventDefault();const d=new FormData(e.target);const r=await fetch('https://dropjetic.pythonanywhere.com/api/post',{method:'POST',body:d,credentials:'include'});if(r.ok){alert('Posted!');setTimeout(()=>{window.close();opener.location.reload();},1000)}else{alert('Error')}}</script></body></html>`);
 };
 
 checkLogin();
-setInterval(loadTrades,30000);
+setInterval(()=>{checkLogin();loadTrades();},30000);
 </script>
 </body>
 </html>
