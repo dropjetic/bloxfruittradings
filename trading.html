@@ -30,16 +30,17 @@
       <h2 class="text-2xl font-bold flex items-center gap-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Create Trade</h2>
       <p class="text-sm text-gray-400 mt-1">Select items you're offering and requesting</p>
     </div>
-   
+
     <div class="flex gap-3 p-4 border-b border-white/10">
       <button id="offeringTab" class="px-6 py-3 rounded-full bg-purple-600 font-semibold text-sm transition">Offering</button>
       <button id="requestingTab" class="px-6 py-3 rounded-full bg-gray-700 font-semibold text-sm transition">Requesting</button>
     </div>
+
     <div class="p-4">
       <input id="searchInput" type="text" placeholder="Search fruits..." class="w-full px-4 py-3 bg-gray-800 rounded-lg border border-white/20 focus:border-purple-500 outline-none">
     </div>
 
-    <!-- 4 items per row -->
+    <!-- 4 items per row (2 on xs) -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 max-h-96 overflow-y-auto" id="itemGridContainer">
       <div id="itemGrid"></div>
     </div>
@@ -75,6 +76,7 @@ const fruits = {
   "Blizzard": {value:5000000, beli:"2.4M", demand:"5/10", image:"https://i.postimg.cc/fTDBV72v/Blizzard.png"},
   "Creation": {value:3500000, beli:"1.4M", demand:"3/10", image:"https://i.postimg.cc/HLctq6nT/Creation.png"}
 };
+
 let currentSide = 'offering';
 const selectedOffering = new Set();
 const selectedWanting = new Set();
