@@ -1,3 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blox Fruits Trading</title>
+<style>
+  body{background:#0f0f1a;color:#fff;font-family:Montserrat,sans-serif;padding:2rem}
+  .trade-card{background:#11111a;padding:1rem;margin:1rem 0;border-radius:1rem;border:1px solid #2a2a3a;display:flex;flex-direction:column}
+  .trade-header{display:flex;justify-content:space-between;margin-bottom:1rem}
+  .trade-body{display:flex;align-items:center;justify-content:space-between}
+  .items{display:flex;gap:0.5rem;flex-wrap:wrap}
+  .item{position:relative;text-align:center}
+  .item-img img{width:50px;height:50px;border-radius:8px}
+  .item-value{margin-top:4px;font-size:0.85rem;color:#ccc}
+  #postBtn{background:#7c3aed;color:#fff;padding:.75rem 1.5rem;border:none;border-radius:.5rem;margin-top:1rem;cursor:pointer}
+</style>
+</head>
+<body>
+
+<h1>Blox Fruits Trades</h1>
+<div id="trades"></div>
+<button id="postBtn">Post Trade</button>
+<button id="exportBtn">Export Trades JSON</button>
+
 <script>
 const ITEMS = {
   "Kitsune": {"value":8000000,"img":"https://bloxfruittrading.com/static/items/kitsune.png"},
@@ -36,9 +60,9 @@ function renderTrade(t) {
   return `<div class="trade-card">
     <div class="trade-header"><div class="user-info"><div class="username">Guest #${t.id}</div><div class="time">just now</div></div></div>
     <div class="trade-body">
-      <div class="offer"><div class="offer-title">Offering</div><div class="items">${t.offer.map(i=>`<div class="item"><div class="item-img"><img src="${i.img}"><span style="position:absolute;top:4px;left:4px;background:#7c3aed;color:#fff;padding:2px 6px;border-radius:4px;font-size:10px">R</span></div><div class="item-value">${fmt(i.value)}</div></div>`).join('')}</div></div>
+      <div class="offer"><div class="offer-title">Offering</div><div class="items">${t.offer.map(i=>'<div class="item"><div class="item-img"><img src="'+i.img+'"><span style="position:absolute;top:4px;left:4px;background:#7c3aed;color:#fff;padding:2px 6px;border-radius:4px;font-size:10px">R</span></div><div class="item-value">'+fmt(i.value)+'</div></div>').join('')}</div></div>
       <div class="arrow">→</div>
-      <div class="request"><div class="request-title">Requesting</div><div class="items">${t.request.map(i=>`<div class="item"><div class="item-img"><img src="${i.img}"></div><div class="item-value">${fmt(i.value)}</div></div>`).join('')}</div></div>
+      <div class="request"><div class="request-title">Requesting</div><div class="items">${t.request.map(i=>'<div class="item"><div class="item-img"><img src="'+i.img+'"></div><div class="item-value">'+fmt(i.value)+'</div></div>').join('')}</div></div>
     </div>
   </div>`;
 }
@@ -49,41 +73,7 @@ function updateUI() {
 
 document.getElementById('postBtn').onclick = () => {
   const win = window.open('', 'post', 'width=600,height=700');
-  win.document.write(`<!DOCTYPE html>
-  <html><head><title>Post Trade</title>
-  <style>
-    body{background:#0f0f1a;color:#fff;font-family:Montserrat,sans-serif;padding:2rem}
-    .box{max-width:600px;margin:auto;background:#11111a;padding:2rem;border-radius:1rem;border:1px solid #2a2a3a}
-    select{width:100%;padding:.5rem;margin:.5rem 0;background:#000;color:#fff;border:1px solid #2a2a3a;border-radius:.5rem}
-    button{background:#7c3aed;color:#fff;padding:.75rem 1.5rem;border:none;border-radius:.5rem;margin-top:1rem;cursor:pointer}
-  </style></head>
-  <body><div class="box">
-    <h2>Post Trade</h2>
-    <form id="f">
-      <h3>Offering</h3><div id="offer"></div><button type="button" onclick="add('offer')">+ Add</button>
-      <h3>Requesting</h3><div id="request"></div><button type="button" onclick="add('request')">+ Add</button>
-      <button type="submit">POST</button>
-    </form>
-  </div>
-  <script>
-    const ITEMS = ${JSON.stringify(ITEMS)};
-    const names = Object.keys(ITEMS);
-    window.add = side => {
-      const sel = document.createElement('select');
-      sel.innerHTML = '<option value="">--</option>' + names.map(n => `<option value="${n}">${n} (${ITEMS[n].value/1e6}M)</option>`).join('');
-      document.getElementById(side).appendChild(sel);
-    };
-    document.getElementById('f').onsubmit = e => {
-      e.preventDefault();
-      const offer = [...document.querySelectorAll('#offer select')].map(s => ITEMS[s.value]).filter(Boolean);
-      const request = [...document.querySelectorAll('#request select')].map(s => ITEMS[s.value]).filter(Boolean);
-      if (!offer.length || !request.length) return alert('Add items both sides');
-      window.opener.postMessage({type:'newtrade', offer, request}, '*');
-      document.body.innerHTML = '<h2 style="text-align:center;color:#7c3aed">Posted! Closing...</h2>';
-      setTimeout(() => window.close(), 1500);
-    };
-    add('offer'); add('request');
-  </script></body></html>`);
+  win.document.write('<!DOCTYPE html><html><head><title>Post Trade</title><style>body{background:#0f0f1a;color:#fff;font-family:Montserrat,sans-serif;padding:2rem}.box{max-width:600px;margin:auto;background:#11111a;padding:2rem;border-radius:1rem;border:1px solid #2a2a3a}select{width:100%;padding:.5rem;margin:.5rem 0;background:#000;color:#fff;border:1px solid #2a2a3a;border-radius:.5rem}button{background:#7c3aed;color:#fff;padding:.75rem 1.5rem;border:none;border-radius:.5rem;margin-top:1rem;cursor:pointer}</style></head><body><div class="box"><h2>Post Trade</h2><form id="f"><h3>Offering</h3><div id="offer"></div><button type="button" onclick="add(\'offer\')">+ Add</button><h3>Requesting</h3><div id="request"></div><button type="button" onclick="add(\'request\')">+ Add</button><button type="submit">POST</button></form></div><script>const ITEMS='+JSON.stringify(ITEMS)+';const names=Object.keys(ITEMS);function add(side){const sel=document.createElement("select");sel.innerHTML="<option value=\"\">--</option>"+names.map(function(n){return "<option value=\'"+n+"\'>"+n+" ("+(ITEMS[n].value/1e6)+"M)</option>"}).join("");document.getElementById(side).appendChild(sel);}add("offer");add("request");document.getElementById("f").onsubmit=function(e){e.preventDefault();const offer=[...document.querySelectorAll("#offer select")].map(s=>ITEMS[s.value]).filter(Boolean);const request=[...document.querySelectorAll("#request select")].map(s=>ITEMS[s.value]).filter(Boolean);if(!offer.length||!request.length)return alert("Add items both sides");window.opener.postMessage({type:"newtrade",offer:offer,request:request},"*");document.body.innerHTML="<h2 style=\'text-align:center;color:#7c3aed\'>Posted! Closing...</h2>";setTimeout(()=>window.close(),1500);};</script></body></html>');
 };
 
 window.addEventListener('message', e => {
@@ -94,5 +84,18 @@ window.addEventListener('message', e => {
   }
 });
 
+document.getElementById('exportBtn').onclick = () => {
+  const blob = new Blob([JSON.stringify(trades, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'trades.json';
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
 updateUI();
 </script>
+
+</body>
+</html>
