@@ -2,100 +2,138 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Blox Fruits Trading</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Board</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body{background:#0f0f1a;color:#fff;font-family:Montserrat,sans-serif;padding:2rem}
-  .trade-card{background:#11111a;padding:1rem;margin:1rem 0;border-radius:1rem;border:1px solid #2a2a3a;display:flex;flex-direction:column}
-  .trade-header{display:flex;justify-content:space-between;margin-bottom:1rem}
-  .trade-body{display:flex;align-items:center;justify-content:space-between}
-  .items{display:flex;gap:0.5rem;flex-wrap:wrap}
-  .item{position:relative;text-align:center}
-  .item-img img{width:50px;height:50px;border-radius:8px}
-  .item-value{margin-top:4px;font-size:0.85rem;color:#ccc}
-  #postBtn{background:#7c3aed;color:#fff;padding:.75rem 1.5rem;border:none;border-radius:.5rem;margin-top:1rem;cursor:pointer}
+.gradient-text { @apply bg-gradient-to-r from-purple-300 to-indigo-400 bg-clip-text text-transparent; }
+.bg-grid-pattern { background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10h20M10 0v20' stroke='%23ffffff' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E"); }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
 </style>
 </head>
-<body>
+<body class="bg-gray-900 text-white min-h-screen p-8">
 
-<h1>Blox Fruits Trades</h1>
-<div id="trades"></div>
-<button id="postBtn">Post Trade</button>
-<button id="exportBtn">Export Trades JSON</button>
+<button id="postBtn" class="fixed bottom-8 right-8 z-50 px-6 py-4 bg-purple-600 rounded-full font-bold text-lg shadow-2xl hover:bg-purple-700">
+  + Post Trade
+</button>
+
+<div id="trades" class="space-y-6 max-w-5xl mx-auto"></div>
 
 <script>
-const ITEMS = {
-  "Kitsune": {"value":8000000,"img":"https://bloxfruittrading.com/static/items/kitsune.png"},
-  "Dragon": {"value":6500000,"img":"https://bloxfruittrading.com/static/items/dragon.png"},
-  "Leopard": {"value":5000000,"img":"https://bloxfruittrading.com/static/items/leopard.png"},
-  "Venom": {"value":4500000,"img":"https://bloxfruittrading.com/static/items/venom.png"},
-  "Dough": {"value":4200000,"img":"https://bloxfruittrading.com/static/items/dough.png"},
-  "Shadow": {"value":4000000,"img":"https://bloxfruittrading.com/static/items/shadow.png"},
-  "T-Rex": {"value":3800000,"img":"https://bloxfruittrading.com/static/items/t-rex.png"},
-  "Mammoth": {"value":3500000,"img":"https://bloxfruittrading.com/static/items/mammoth.png"},
-  "Control": {"value":3200000,"img":"https://bloxfruittrading.com/static/items/control.png"},
-  "Spirit": {"value":3100000,"img":"https://bloxfruittrading.com/static/items/spirit.png"},
-  "Blizzard": {"value":3000000,"img":"https://bloxfruittrading.com/static/items/blizzard.png"},
-  "Gravity": {"value":2800000,"img":"https://bloxfruittrading.com/static/items/gravity.png"},
-  "Magma": {"value":2700000,"img":"https://bloxfruittrading.com/static/items/magma.png"},
-  "Rumble": {"value":2600000,"img":"https://bloxfruittrading.com/static/items/rumble.png"},
-  "Phoenix": {"value":2500000,"img":"https://bloxfruittrading.com/static/items/phoenix.png"},
-  "Buddha": {"value":2400000,"img":"https://bloxfruittrading.com/static/items/buddha.png"},
-  "Dark": {"value":2300000,"img":"https://bloxfruittrading.com/static/items/dark.png"},
-  "Light": {"value":2200000,"img":"https://bloxfruittrading.com/static/items/light.png"},
-  "Ice": {"value":2100000,"img":"https://bloxfruittrading.com/static/items/ice.png"},
-  "Flame": {"value":2000000,"img":"https://bloxfruittrading.com/static/items/flame.png"}
-};
+const API = "https://dropjetic.pythonanywhere.com/trades";
 
-const fmt = v => (v/1000000).toFixed(v%1000000===0?0:1) + 'M';
-
-let trades = JSON.parse(localStorage.getItem('bf_trades') || '[]');
-let nextId = parseInt(localStorage.getItem('bf_nextid') || '1');
-
-function save() {
-  localStorage.setItem('bf_trades', JSON.stringify(trades));
-  localStorage.setItem('bf_nextid', nextId);
-}
-
-function renderTrade(t) {
-  return `<div class="trade-card">
-    <div class="trade-header"><div class="user-info"><div class="username">Guest #${t.id}</div><div class="time">just now</div></div></div>
-    <div class="trade-body">
-      <div class="offer"><div class="offer-title">Offering</div><div class="items">${t.offer.map(i=>'<div class="item"><div class="item-img"><img src="'+i.img+'"><span style="position:absolute;top:4px;left:4px;background:#7c3aed;color:#fff;padding:2px 6px;border-radius:4px;font-size:10px">R</span></div><div class="item-value">'+fmt(i.value)+'</div></div>').join('')}</div></div>
-      <div class="arrow">→</div>
-      <div class="request"><div class="request-title">Requesting</div><div class="items">${t.request.map(i=>'<div class="item"><div class="item-img"><img src="'+i.img+'"></div><div class="item-value">'+fmt(i.value)+'</div></div>').join('')}</div></div>
+// Create the small trade item card
+function itemHTML(i, color = "pink") {
+  const grad = color === "rose" ? "from-rose-400/50 to-rose-600/40" : "from-pink-400/50 to-pink-600/40";
+  return `
+  <div class="group relative rounded-md border bg-gradient-to-br transition-transform hover:-translate-y-1 hover:z-10 ${grad} p-0.5 border-purple-500/20 h-[120px] w-[90px] sm:h-[150px] sm:w-[120px] shrink-0">
+    <div class="bg-grid-pattern absolute inset-0 opacity-10"></div>
+    <div class="relative z-10 flex h-full w-full flex-col">
+      <div class="relative flex flex-1 items-center justify-center p-0.5">
+        <img src="${i.img}" alt="${i.name}" class="h-auto max-h-full w-auto max-w-full object-contain drop-shadow-md">
+        <div class="absolute left-1 top-1"><span class="rounded-md px-1.5 py-0.5 text-[10px] font-bold uppercase bg-purple-600/80 text-white">R</span></div>
+      </div>
+      <div class="flex flex-col items-center gap-0.5 pb-1">
+        <div class="bg-black/80 backdrop-blur-md rounded-md border border-white/20 p-1.5">
+          <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1">
+              <svg class="h-3 w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg>
+              <span class="text-xs font-bold text-amber-300">${i.value}</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <svg class="lucide lucide-trending-up h-3 w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+              <span class="text-xs font-bold text-white">${i.rate}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-x-0 bottom-0.5 flex justify-center"><span class="rounded-full bg-pink-400 h-1.5 w-1.5"></span></div>
     </div>
   </div>`;
 }
 
-function updateUI() {
-  document.getElementById('trades').innerHTML = trades.length ? trades.map(renderTrade).join('') : '<p style="text-align:center;color:#777">No trades yet</p>';
+// Create a trade section (offering/requesting)
+function renderTrade(t) {
+  const offerHTML = t.offering.map(i => itemHTML(i, "pink")).join('');
+  const wantHTML = t.wanting.map(i => itemHTML(i, "rose")).join('');
+  return `
+<div class="flex flex-row items-center space-x-1 space-y-0 sm:space-y-1.5 animate-in fade-in duration-500">
+  <div class="flex-1 rounded-lg border border-purple-500/10 bg-background/30 p-1.5">
+    <h3 class="mb-1.5 flex items-center gap-1.5 text-sm font-medium text-purple-300">
+      <span class="gradient-text">Offering</span>
+    </h3>
+    <div class="scrollbar-hide flex space-x-1.5 overflow-x-auto pt-1">${offerHTML}</div>
+  </div>
+  <div class="flex items-center justify-center">
+    <div class="flex h-8 w-8 items-center justify-center rounded-full bg-purple-500/20 border border-purple-500/30">
+      <svg class="lucide lucide-arrow-right h-4 w-4 text-purple-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+    </div>
+  </div>
+  <div class="flex-1 rounded-lg border border-purple-500/10 bg-background/30 p-1.5">
+    <h3 class="mb-1.5 flex items-center gap-1.5 text-sm font-medium text-purple-300">
+      <span class="gradient-text">Requesting</span>
+    </h3>
+    <div class="scrollbar-hide flex space-x-1.5 overflow-x-auto pt-1">${wantHTML}</div>
+  </div>
+</div>`;
 }
 
-document.getElementById('postBtn').onclick = () => {
-  const win = window.open('', 'post', 'width=600,height=700');
-  win.document.write('<!DOCTYPE html><html><head><title>Post Trade</title><style>body{background:#0f0f1a;color:#fff;font-family:Montserrat,sans-serif;padding:2rem}.box{max-width:600px;margin:auto;background:#11111a;padding:2rem;border-radius:1rem;border:1px solid #2a2a3a}select{width:100%;padding:.5rem;margin:.5rem 0;background:#000;color:#fff;border:1px solid #2a2a3a;border-radius:.5rem}button{background:#7c3aed;color:#fff;padding:.75rem 1.5rem;border:none;border-radius:.5rem;margin-top:1rem;cursor:pointer}</style></head><body><div class="box"><h2>Post Trade</h2><form id="f"><h3>Offering</h3><div id="offer"></div><button type="button" onclick="add(\'offer\')">+ Add</button><h3>Requesting</h3><div id="request"></div><button type="button" onclick="add(\'request\')">+ Add</button><button type="submit">POST</button></form></div><script>const ITEMS='+JSON.stringify(ITEMS)+';const names=Object.keys(ITEMS);function add(side){const sel=document.createElement("select");sel.innerHTML="<option value=\"\">--</option>"+names.map(function(n){return "<option value=\'"+n+"\'>"+n+" ("+(ITEMS[n].value/1e6)+"M)</option>"}).join("");document.getElementById(side).appendChild(sel);}add("offer");add("request");document.getElementById("f").onsubmit=function(e){e.preventDefault();const offer=[...document.querySelectorAll("#offer select")].map(s=>ITEMS[s.value]).filter(Boolean);const request=[...document.querySelectorAll("#request select")].map(s=>ITEMS[s.value]).filter(Boolean);if(!offer.length||!request.length)return alert("Add items both sides");window.opener.postMessage({type:"newtrade",offer:offer,request:request},"*");document.body.innerHTML="<h2 style=\'text-align:center;color:#7c3aed\'>Posted! Closing...</h2>";setTimeout(()=>window.close(),1500);};</script></body></html>');
-};
-
-window.addEventListener('message', e => {
-  if (e.data.type === 'newtrade') {
-    trades.unshift({id: nextId++, offer: e.data.offer, request: e.data.request});
-    save();
-    updateUI();
+// Load all trades from backend
+async function loadTrades() {
+  try {
+    const res = await fetch(API);
+    const data = await res.json();
+    document.getElementById("trades").innerHTML =
+      data.length ? data.map(renderTrade).join("") :
+      "<p class='text-center text-gray-500'>No trades yet.</p>";
+  } catch (err) {
+    console.error(err);
+    document.getElementById("trades").innerHTML =
+      "<p class='text-center text-red-500'>Error loading trades.</p>";
   }
-});
+}
 
-document.getElementById('exportBtn').onclick = () => {
-  const blob = new Blob([JSON.stringify(trades, null, 2)], {type: 'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'trades.json';
-  a.click();
-  URL.revokeObjectURL(url);
+// Post a new trade to the backend
+document.getElementById("postBtn").onclick = async () => {
+  const offer = prompt("Offering (Name|ImageURL|Value|Rate , comma separate)") || "";
+  const want = prompt("Want (Name|ImageURL|Value|Rate , comma separate)") || "";
+  if (!offer || !want) return;
+
+  const offering = offer.split(",").map(s => {
+    const [n, u="https://via.placeholder.com/80", v="0M", r="0/10"] = s.trim().split("|");
+    return {name:n, img:u, value:v, rate:r};
+  });
+  const wanting = want.split(",").map(s => {
+    const [n, u="https://via.placeholder.com/80", v="0M", r="0/10"] = s.trim().split("|");
+    return {name:n, img:u, value:v, rate:r};
+  });
+
+  const trade = {
+    id: Date.now(),
+    offerValue: offering.reduce((a,i)=>a+(parseFloat(i.value)||0),0)+"M",
+    offerRate: "9.3/10",
+    wantValue: wanting.reduce((a,i)=>a+(parseFloat(i.value)||0),0)+"B",
+    wantRate: "10/10",
+    offering, wanting
+  };
+
+  try {
+    const res = await fetch(API, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(trade)
+    });
+    if (!res.ok) throw new Error("API error");
+    alert("Trade saved!");
+    loadTrades();
+  } catch (err) {
+    console.error(err);
+    alert("Error saving trade. Make sure the API is running.");
+  }
 };
 
-updateUI();
+loadTrades();
 </script>
-
 </body>
 </html>
