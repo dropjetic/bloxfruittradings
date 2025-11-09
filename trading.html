@@ -21,8 +21,8 @@
 <div id="trades" class="space-y-6 max-w-5xl mx-auto"></div>
 
 <!-- Modal -->
-<div id="tradeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
-  <div class="relative w-full max-w-4xl max-h-[92vh] overflow-hidden rounded-xl bg-gray-900 border border-purple-500/20 shadow-2xl">
+<div id="tradeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 overflow-y-auto">
+  <div class="relative w-full max-w-4xl my-8 rounded-xl bg-gray-900 border border-purple-500/20 shadow-2xl">
     <button id="closeModal" class="absolute top-4 right-4 text-white/70 hover:text-white z-10">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
@@ -30,17 +30,17 @@
       <h2 class="text-2xl font-bold flex items-center gap-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Create Trade</h2>
       <p class="text-sm text-gray-400 mt-1">Select items you're offering and requesting</p>
     </div>
-    
+   
     <div class="flex gap-3 p-4 border-b border-white/10">
       <button id="offeringTab" class="px-6 py-3 rounded-full bg-purple-600 font-semibold text-sm transition">Offering</button>
       <button id="requestingTab" class="px-6 py-3 rounded-full bg-gray-700 font-semibold text-sm transition">Requesting</button>
     </div>
-
     <div class="p-4">
       <input id="searchInput" type="text" placeholder="Search fruits..." class="w-full px-4 py-3 bg-gray-800 rounded-lg border border-white/20 focus:border-purple-500 outline-none">
     </div>
 
-    <div class="grid grid-cols-4 gap-4 p-6 max-h-96 overflow-y-auto">
+    <!-- 4 items per row -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 max-h-96 overflow-y-auto" id="itemGridContainer">
       <div id="itemGrid"></div>
     </div>
 
@@ -53,7 +53,6 @@
 
 <script>
 const API = "https://dropjetic.pythonanywhere.com/trades";
-
 const fruits = {
   "West Dragon": {value:1500000000, beli:"15M", demand:"10/10", image:"https://i.postimg.cc/7LfBxxs8/West-Dragon.png"},
   "East Dragon": {value:1200000000, beli:"15M", demand:"10/10", image:"https://i.postimg.cc/gkzHzzjS/East-Dragon.png"},
@@ -76,11 +75,9 @@ const fruits = {
   "Blizzard": {value:5000000, beli:"2.4M", demand:"5/10", image:"https://i.postimg.cc/fTDBV72v/Blizzard.png"},
   "Creation": {value:3500000, beli:"1.4M", demand:"3/10", image:"https://i.postimg.cc/HLctq6nT/Creation.png"}
 };
-
 let currentSide = 'offering';
 const selectedOffering = new Set();
 const selectedWanting = new Set();
-
 const modal = document.getElementById('tradeModal');
 const itemGrid = document.getElementById('itemGrid');
 const searchInput = document.getElementById('searchInput');
@@ -112,10 +109,7 @@ function renderItems() {
 function toggleItem(name) {
   const set = currentSide === 'offering' ? selectedOffering : selectedWanting;
   if (set.has(name)) set.delete(name);
-  else {
-    if (set.size >= 4) return alert("Max 4 items per side!");
-    set.add(name);
-  }
+  else set.add(name);
   renderItems();
 }
 
@@ -124,8 +118,19 @@ itemGrid.addEventListener('click', e => {
   if (btn) toggleItem(btn.dataset.name);
 });
 
-offeringTab.onclick = () => { currentSide = 'offering'; offeringTab.classList.replace('bg-gray-700', 'bg-purple-600'); requestingTab.classList.replace('bg-purple-600', 'bg-gray-700'); renderItems(); };
-requestingTab.onclick = () => { currentSide = 'requesting'; requestingTab.classList.replace('bg-gray-700', 'bg-purple-600'); offeringTab.classList.replace('bg-purple-600', 'bg-gray-700'); renderItems(); };
+offeringTab.onclick = () => { 
+  currentSide = 'offering'; 
+  offeringTab.classList.replace('bg-gray-700', 'bg-purple-600'); 
+  requestingTab.classList.replace('bg-purple-600', 'bg-gray-700'); 
+  renderItems(); 
+};
+requestingTab.onclick = () => { 
+  currentSide = 'requesting'; 
+  requestingTab.classList.replace('bg-gray-700', 'bg-purple-600'); 
+  offeringTab.classList.replace('bg-purple-600', 'bg-gray-700'); 
+  renderItems(); 
+};
+
 searchInput.oninput = renderItems;
 
 document.getElementById('postBtn').onclick = () => {
@@ -139,7 +144,7 @@ document.getElementById('postBtn').onclick = () => {
   modal.classList.remove('hidden');
 };
 
-document.getElementById('closeModal').onclick = 
+document.getElementById('closeModal').onclick =
 document.getElementById('cancelPost').onclick = () => modal.classList.add('hidden');
 
 confirmPost.onclick = async () => {
@@ -153,7 +158,6 @@ confirmPost.onclick = async () => {
   const wanting = Array.from(selectedWanting).map(name => ({
     name, img: fruits[name].image, value: fruits[name].beli, rate: fruits[name].demand
   }));
-
   const trade = {
     id: Date.now(),
     offering, wanting,
@@ -161,7 +165,6 @@ confirmPost.onclick = async () => {
     wantValue: wanting.reduce((a,i)=>a+(parseFloat(i.value)||0),0)+"M",
     offerRate: "9.5/10", wantRate: "9.5/10"
   };
-
   try {
     const res = await fetch(API, {
       method: "POST",
@@ -175,7 +178,7 @@ confirmPost.onclick = async () => {
   } catch { alert("Failed to post trade."); }
 };
 
-// Original render functions
+/* ---------- Trade card rendering (unchanged) ---------- */
 function itemHTMLCard(i, color = "pink") {
   const grad = color === "rose" ? "from-rose-400/50 to-rose-600/40" : "from-pink-400/50 to-pink-600/40";
   return `
@@ -204,12 +207,13 @@ function itemHTMLCard(i, color = "pink") {
     </div>
   </div>`;
 }
-
 function renderTrade(t) {
+  const totalItems = t.offering.length + t.wanting.length;
+  const scrollClass = totalItems > 8 ? 'max-h-40 overflow-y-auto' : '';
   const offerHTML = t.offering.map(i => itemHTMLCard(i, "pink")).join('');
   const wantHTML = t.wanting.map(i => itemHTMLCard(i, "rose")).join('');
   return `
-  <div class="flex flex-row items-center space-x-1 space-y-0 sm:space-y-1.5 animate-in fade-in duration-500">
+  <div class="flex flex-row items-center space-x-1 space-y-0 sm:space-y-1.5 animate-in fade-in duration-500 ${scrollClass}">
     <div class="flex-1 rounded-lg border border-purple-500/10 bg-background/30 p-1.5">
       <h3 class="mb-1.5 flex items-center gap-1.5 text-sm font-medium text-purple-300">
         <span class="gradient-text">Offering</span>
@@ -229,7 +233,6 @@ function renderTrade(t) {
     </div>
   </div>`;
 }
-
 async function loadTrades() {
   try {
     const res = await fetch(API);
@@ -242,7 +245,6 @@ async function loadTrades() {
       "<p class='text-center text-red-500'>Error loading trades.</p>";
   }
 }
-
 loadTrades();
 renderItems();
 </script>
