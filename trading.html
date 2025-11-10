@@ -17,10 +17,12 @@
   .trade-card:hover {transform:translateY(-4px);box-shadow:0 20px 25px -5px rgba(139,92,246,0.2),0 10px 10px -5px rgba(0,0,0,0.3);}
   .tick {position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
   .tick.show {opacity:1;}
+  .item-card-container {position:relative;}
+  .item-card {transition:transform .2s;}
+  .item-card.selected {transform:scale(0.95);}
 </style>
 </head>
 <body class="bg-black text-white min-h-screen flex flex-col">
-<!-- ==== GENDER MODAL ==== -->
 <div id="genderModal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 px-4">
   <div class="relative w-full max-w-sm rounded-2xl bg-gray-800 p-8 border border-purple-500/30 shadow-2xl">
     <h2 class="text-2xl font-bold text-center mb-6">Choose Your Avatar</h2>
@@ -36,7 +38,6 @@
     </div>
   </div>
 </div>
-<!-- ==== MOBILE TOP BAR ==== -->
 <div class="lg:hidden fixed top-0 left-0 right-0 bg-gray-800/95 backdrop-blur z-50 border-b border-purple-500/20">
   <div class="flex items-center justify-between p-3">
     <button id="mobileMenuBtn" class="p-2">
@@ -44,14 +45,13 @@
     </button>
     <div class="flex items-center gap-3">
       <button id="mobileMsgBtn" class="relative p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-6 w-6"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round,round" stroke-linejoin="round" class="lucide lucide-message-circle h-6 w-6"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
         <span id="mobileMsgBadge" class="notification-badge hidden">0</span>
       </button>
       <img id="mobileAvatar" class="w-8 h-8 rounded-full" src="">
     </div>
   </div>
 </div>
-<!-- ==== MOBILE MENU ==== -->
 <div id="mobileMenu" class="mobile-menu fixed inset-0 bg-gray-800/95 backdrop-blur z-40 -translate-x-full lg:hidden">
   <div class="p-4 border-b border-white/10 flex justify-between items-center">
     <h3 class="font-bold">Menu</h3>
@@ -67,11 +67,9 @@
     <button id="mobileNewAccount" class="w-full p-3 rounded-lg bg-gray-700/50 text-left">New Account</button>
   </div>
 </div>
-<!-- ==== DESKTOP TOP BAR ==== -->
 <div class="hidden lg:block w-full">
   <div class="relative mx-auto flex w-full justify-between px-4 py-3 transition duration-200 rounded-full bg-transparent">
     <div class="flex w-full flex-row items-center justify-between">
-      <!-- Logo + Game Switcher -->
       <div class="flex w-[90px] flex-row items-center gap-2">
         <a href="https://bloxfruittrading.com/"><img alt="logo" loading="lazy" width="48" height="48" decoding="async" class="min-w-10 min-h-10 w-full h-full object-contain" src="./final ones_files/KL1P0ib.gif"></a>
         <div class="relative z-50">
@@ -86,20 +84,18 @@
           </button>
         </div>
       </div>
-      <!-- Nav Links -->
       <nav aria-label="Main" class="relative z-10 flex max-w-max flex-1 items-center justify-center">
         <ul class="group flex-1 list-none space-x-5 flex items-center justify-center">
           <li><a href="https://bloxfruittrading.com/trading" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center"><img src="./final ones_files/KL12OJt.png" alt="Icon" class="h-full w-full object-contain"></span><span class="text-xs font-medium">Trading</span></a></li>
           <li><a href="https://bloxfruittrading.com/values" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center"><svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.6875 5.625H25.375V27.1875H4.75V5.625H9.4375V7.5H20.6875V5.625ZM8.5 15H21.625V13.125H8.5V15ZM8.5 22.5H21.625V20.625H8.5V22.5ZM11.3125 5.625V2.8125H18.8125V5.625H11.3125Z" fill="currentColor"></path></svg></span><span class="text-xs font-medium">Values</span></a></li>
-          <li><a href="https://bloxfruittrading.com/calculator" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg></span><span class="text-xs font-medium">Calculator</span></a></li>
+          <li><a href="https://bloxfruittrading.com/calculator" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucジェクト calculator"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg></span><span class="text-xs font-medium">Calculator</span></a></li>
           <li><a href="https://bloxfruittrading.com/rate" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center text-gray-400 text-lg">Stars</span><span class="text-xs font-medium">Reviews</span></a></li>
           <li><a href="https://bloxfruittrading.com/giveaways" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center text-gray-400 text-lg">Chart</span><span class="text-xs font-medium">Stocks</span></a></li>
         </ul>
       </nav>
-      <!-- Right Icons -->
       <div class="flex items-center space-x-4">
         <a target="_blank" href="https://bloxfruittrading.com/discord" class="flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50">
-          <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-6 w-6"><path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-6 w-6"><path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-衹-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path></svg>
         </a>
         <button id="openMessagesBtn" class="relative flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-6 w-6"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
@@ -116,7 +112,6 @@
     </div>
   </div>
 </div>
-<!-- ==== MAIN CONTENT ==== -->
 <main class="flex-1 pt-16 lg:pt-0 px-4 lg:px-8 max-w-7xl mx-auto w-full">
   <header class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 mt-6 lg:mt-10">
     <div>
@@ -156,7 +151,6 @@
   </nav>
   <div id="trades" class="grid gap-6 lg:gap-8"></div>
 </main>
-<!-- ==== MESSAGING PANEL ==== -->
 <div id="messagingPanel" class="hidden fixed inset-0 lg:right-0 lg:left-auto lg:top-0 lg:h-full lg:w-96 bg-gray-800 border-l lg:border-purple-500/30 shadow-2xl flex flex-col z-40">
   <div class="p-4 border-b border-white/10 flex items-center justify-between">
     <h3 class="font-bold text-lg">Messages</h3>
@@ -177,7 +171,6 @@
     </div>
   </div>
 </div>
-<!-- ==== TRADE MODAL ==== -->
 <div id="tradeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 overflow-y-auto">
   <div class="relative w-full max-w-4xl my-8 rounded-xl bg-gray-900 border border-purple-500/20 shadow-2xl">
     <button id="closeModal" class="absolute top-4 right-4 text-white/70 hover:text-white z-10">
@@ -199,7 +192,6 @@
     </div>
   </div>
 </div>
-<!-- ==== FOOTER ==== -->
 <footer class="border-t border-white/10 px-4 lg:px-8 py-10 lg:py-20 bg-black/50 w-full text-xs lg:text-sm mt-16">
   <div class="max-w-7xl mx-auto text-gray-500 text-center">
     © 2025 Blox Fruit Trading. All rights reserved.<br>
@@ -209,8 +201,6 @@
 <script>
 const API = "https://dropjetic.pythonanywhere.com/trades";
 const MSG_API = "https://dropjetic.pythonanywhere.com/messages";
-
-/* ==== REAL FRUITS FROM FIRST SITE ==== */
 const fruits = {
   "West Dragon":{beli:"15M",demand:"10/10",image:"https://i.postimg.cc/7LfBxxs8/West-Dragon.png"},
   "East Dragon":{beli:"15M",demand:"10/10",image:"https://i.postimg.cc/gkzHzzjS/East-Dragon.png"},
@@ -233,8 +223,6 @@ const fruits = {
   "Blizzard":{beli:"2.4M",demand:"5/10",image:"https://i.postimg.cc/fTDBV72v/Blizzard.png"},
   "Creation":{beli:"1.4M",demand:"3/10",image:"https://i.postimg.cc/HLctq6nT/Creation.png"}
 };
-
-/* ==== STATE ==== */
 let currentUser = null;
 let trades = [];
 let messages = {};
@@ -245,8 +233,7 @@ let searchTerm = '';
 let currentSide = 'offering';
 let selectedOffering = new Set();
 let selectedWanting = new Set();
-
-/* ==== DOM ELEMENTS ==== */
+let itemCardCache = {};
 const genderModal = document.getElementById('genderModal');
 const selectMale = document.getElementById('selectMale');
 const selectFemale = document.getElementById('selectFemale');
@@ -273,8 +260,6 @@ const itemGrid = document.getElementById('itemGrid');
 const confirmPost = document.getElementById('confirmPost');
 const cancelPost = document.getElementById('cancelPost');
 const closeModal = document.getElementById('closeModal');
-
-/* ==== USER / GENDER ==== */
 function generateUser(gender){
   const id = Date.now().toString(36)+Math.random().toString(36).substr(2);
   const username = "User_"+Math.random().toString(36).substr(2,5);
@@ -304,44 +289,42 @@ function updateUserUI(){
   document.getElementById('mobileAvatar').src = currentUser.avatar;
   document.getElementById('userName') && (document.getElementById('userName').textContent = currentUser.username);
 }
-
-/* ==== NEW ACCOUNT ==== */
 document.getElementById('newAccount')?.addEventListener('click',()=>{ if(confirm('Create new account?')){ localStorage.removeItem('bf_user'); currentUser=null; showGenderModal(); } });
 document.getElementById('mobileNewAccount')?.addEventListener('click',()=>{ if(confirm('Create new account?')){ localStorage.removeItem('bf_user'); currentUser=null; showGenderModal(); } });
-
-/* ==== ITEM CARD (EXACT FROM FIRST SITE) ==== */
-function itemHTMLCard(i,color="pink"){
+function itemHTMLCard(name,data,color="pink"){
   const grad = color==="rose"?"from-rose-400/50 to-rose-600/40":"from-pink-400/50 to-pink-600/40";
-  return `<div class="group relative rounded-md border bg-gradient-to-br transition-transform hover:-translate-y-1 hover:z-10 ${grad} p-0.5 border-purple-500/20 h-[100px] w-[75px] sm:h-[120px] sm:w-[90px] lg:h-[150px] lg:w-[120px] shrink-0">
-    <div class="bg-grid-pattern absolute inset-0 opacity-10"></div>
-    <div class="relative z-10 flex h-full w-full flex-col">
-      <div class="relative flex flex-1 items-center justify-center p-0.5">
-        <img src="${i.image}" alt="${i.name}" class="h-auto max-h-full w-auto max-w-full object-contain drop-shadow-md">
-        <div class="absolute left-1 top-1"><span class="rounded-md px-1.5 py-0.5 text-[9px] lg:text-[10px] font-bold uppercase bg-purple-600/80 text-white">R</span></div>
-      </div>
-      <div class="flex flex-col items-center gap-0.5 pb-1">
-        <div class="bg-black/80 backdrop-blur-md rounded-md border border-white/20 p-1">
-          <div class="flex items-center gap-1 lg:gap-2">
-            <div class="flex items-center gap-1"><svg class="h-2.5 w-2.5 lg:h-3 lg:w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg>
-              <span class="text-[10px] lg:text-xs font-bold text-amber-300">${i.beli}</span>
-            </div>
-            <div class="flex items-center gap-1"><svg class="lucide lucide-trending-up h-2.5 w-2.5 lg:h-3 lg:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
-              <span class="text-[10px] lg:text-xs font-bold text-white">${i.demand}</span>
+  const key = `${name}_${color}`;
+  if(!itemCardCache[key]){
+    itemCardCache[key] = `<div class="group relative rounded-md border bg-gradient-to-br transition-transform hover:-translate-y-1 hover:z-10 ${grad} p-0.5 border-purple-500/20 h-[100px] w-[75px] sm:h-[120px] sm:w-[90px] lg:h-[150px] lg:w-[120px] shrink-0">
+      <div class="bg-grid-pattern absolute inset-0 opacity-10"></div>
+      <div class="relative z-10 flex h-full w-full flex-col">
+        <div class="relative flex flex-1 items-center justify-center p-0.5">
+          <img src="${data.image}" alt="${name}" class="h-auto max-h-full w-auto max-w-full object-contain drop-shadow-md">
+          <div class="absolute left-1 top-1"><span class="rounded-md px-1.5 py-0.5 text-[9px] lg:text-[10px] font-bold uppercase bg-purple-600/80 text-white">R</span></div>
+        </div>
+        <div class="flex flex-col items-center gap-0.5 pb-1">
+          <div class="bg-black/80 backdrop-blur-md rounded-md border border-white/20 p-1">
+            <div class="flex items-center gap-1 lg:gap-2">
+              <div class="flex items-center gap-1"><svg class="h-2.5 w-2.5 lg:h-3 lg:w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg>
+                <span class="text-[10px] lg:text-xs font-bold text-amber-300">${data.beli}</span>
+              </div>
+              <div class="flex items-center gap-1"><svg class="lucide lucide-trending-up h-2.5 w-2.5 lg:h-3 lg:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                <span class="text-[10px] lg:text-xs font-bold text-white">${data.demand}</span>
+              </div>
             </div>
           </div>
         </div>
+        <div class="absolute inset-x-0 bottom-0.5 flex justify-center"><span class="rounded-full bg-pink-400 h-1.5 w-1.5"></span></div>
       </div>
-      <div class="absolute inset-x-0 bottom-0.5 flex justify-center"><span class="rounded-full bg-pink-400 h-1.5 w-1.5"></span></div>
-    </div>
-  </div>`;
+    </div>`;
+  }
+  return itemCardCache[key];
 }
-
-/* ==== TRADE CARD (EXACT FROM FIRST SITE) ==== */
 function renderTrade(t){
   const totalItems = t.offering.length + t.wanting.length;
   const scrollClass = totalItems > 8 ? 'max-h-32 lg:max-h-40 overflow-y-auto' : '';
-  const offerHTML = t.offering.map(i => itemHTMLCard(i,"pink")).join('');
-  const wantHTML = t.wanting.map(i => itemHTMLCard(i,"rose")).join('');
+  const offerHTML = t.offering.map(i => itemHTMLCard(i.name,fruits[i.name],"pink")).join('');
+  const wantHTML = t.wanting.map(i => itemHTMLCard(i.name,fruits[i.name],"rose")).join('');
   const isOwner = t.user.id === currentUser?.id;
   const deleteBtn = isOwner ? `<button onclick="deleteTrade(${t.id})" class="ml-2 p-1.5 bg-red-600/80 hover:bg-red-700 rounded-full"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>` : '';
   return `<div class="bg-gray-800/50 rounded-xl p-3 lg:p-4 border border-purple-500/20 trade-card">
@@ -374,8 +357,6 @@ function renderTrade(t){
     </div>
   </div>`;
 }
-
-/* ==== LOAD TRADES ==== */
 async function loadTrades(){
   try{
     const res = await fetch(API);
@@ -385,8 +366,6 @@ async function loadTrades(){
     document.getElementById("trades").innerHTML = `<p class="text-center text-red-400">Failed to load trades.</p>`;
   }
 }
-
-/* ==== FILTER & SEARCH ==== */
 function filterAndRender(){
   let filtered = trades;
   if(searchTerm){
@@ -404,7 +383,7 @@ function filterAndRender(){
 searchFilter.oninput = e=>{ searchTerm=e.target.value.toLowerCase(); filterAndRender(); };
 clearSearch.onclick = ()=>{ searchFilter.value=''; searchTerm=''; filterAndRender(); };
 filterAll.onclick = ()=>{ filterMode='all'; updateFilterButtons(); filterAndRender(); };
-filterOffering.onclick = ()=>{ filterMode='offering'; updateFilterButtons(); filterAndRender(); };
+filterOffering.onclick = ()=>{ filter missãoMode='offering'; updateFilterButtons(); filterAndRender(); };
 filterRequesting.onclick = ()=>{ filterMode='requesting'; updateFilterButtons(); filterAndRender(); };
 function updateFilterButtons(){
   filterAll.classList.toggle('bg-gradient-to-r',filterMode==='all');
@@ -415,37 +394,34 @@ function updateFilterButtons(){
   if(filterMode==='offering') filterOffering.classList.add('bg-gradient-to-r','from-purple-500','to-purple-600','text-white');
   if(filterMode==='requesting') filterRequesting.classList.add('bg-gradient-to-r','from-purple-500','to-purple-600','text-white');
 }
-
-/* ==== MODAL ITEM GRID (WITH TICK) ==== */
 function renderModalItems(){
   const term = modalSearch.value.toLowerCase();
   const filtered = Object.entries(fruits).filter(([name])=>name.toLowerCase().includes(term));
   itemGrid.innerHTML = filtered.map(([name,data])=>{
     const selected = currentSide==='offering' ? selectedOffering.has(name) : selectedWanting.has(name);
-    return `<button data-name="${name}" class="relative group flex flex-col items-center p-2 lg:p-3 rounded-xl bg-gray-800/50 border border-white/10 hover:border-purple-500/50 transition">
-      <div class="relative">
+    return `<div class="item-card-container relative group flex flex-col items-center p-2 lg:p-3 rounded-xl bg-gray-800/50 border border-white/10 hover:border-purple-500/50 transition">
+      <div class="item-card relative ${selected?'selected':''}">
         <img src="${data.image}" class="w-16 h-16 lg:w-20 lg:h-20 object-contain">
-        <div class="tick ${selected?'show':''}">
-          <svg class="w-12 h-12 lg:w-16 lg:h-16 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/></svg>
-        </div>
+      </div>
+      <div class="tick ${selected?'show':''}">
+        <svg class="w-12 h-12 lg:w-16 lg:h-16 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/></svg>
       </div>
       <span class="mt-1 lg:mt-2 text-xs font-medium truncate w-full text-center">${name}</span>
       <span class="text-[9px] lg:text-[10px] text-gray-400">${data.beli} • ${data.demand}</span>
-    </button>`;
+    </div>`;
   }).join('');
 }
 itemGrid.addEventListener('click', e=>{
-  const btn = e.target.closest('button[data-name]');
-  if(btn){
-    const name = btn.dataset.name;
+  const container = e.target.closest('.item-card-container');
+  if(container){
+    const img = container.querySelector('img');
+    const name = img.alt;
     const set = currentSide==='offering'?selectedOffering:selectedWanting;
     set.has(name)?set.delete(name):set.add(name);
     renderModalItems();
     confirmPost.disabled = selectedOffering.size===0 || selectedWanting.size===0;
   }
 });
-
-/* ==== CREATE TRADE MODAL ==== */
 createTradeBtn.onclick = ()=>{ if(!currentUser?.gender) return; openTradeModal(); };
 function openTradeModal(){
   selectedOffering.clear(); selectedWanting.clear(); currentSide='offering';
@@ -458,7 +434,6 @@ closeModal.onclick = cancelPost.onclick = ()=>{ tradeModal.classList.add('hidden
 offeringTab.onclick = ()=>{ currentSide='offering'; offeringTab.classList.replace('bg-gray-700','bg-purple-600'); requestingTab.classList.replace('bg-purple-600','bg-gray-700'); renderModalItems(); };
 requestingTab.onclick = ()=>{ currentSide='requesting'; requestingTab.classList.replace('bg-gray-700','bg-purple-600'); offeringTab.classList.replace('bg-purple-600','bg-gray-700'); renderModalItems(); };
 modalSearch.oninput = renderModalItems;
-
 confirmPost.onclick = async ()=>{
   if(selectedOffering.size===0 || selectedWanting.size===0) return;
   const offering = Array.from(selectedOffering).map(name=>({name,img:fruits[name].image,beli:fruits[name].beli,demand:fruits[name].demand}));
@@ -474,8 +449,6 @@ confirmPost.onclick = async ()=>{
     loadTrades();
   }catch{ alert("Failed to post trade."); }
 };
-
-/* ==== CHAT ==== */
 function openChat(partnerId){
   currentChatPartner = partnerId;
   const trade = trades.find(t=>t.user.id===partnerId);
@@ -545,8 +518,6 @@ function updateBadges(){
   document.getElementById('mobileMsgBadge').textContent = total;
   document.getElementById('mobileMsgBadge').classList.toggle('hidden',!total);
 }
-
-/* ==== DELETE TRADE ==== */
 window.deleteTrade = async (id)=>{
   if(!confirm('Delete this trade?')) return;
   try{
@@ -555,12 +526,8 @@ window.deleteTrade = async (id)=>{
     filterAndRender();
   }catch(e){ alert('Failed to delete'); }
 };
-
-/* ==== MOBILE MENU ==== */
 document.getElementById('mobileMenuBtn').onclick = ()=>{ document.getElementById('mobileMenu').classList.add('open'); };
 document.getElementById('closeMobileMenu').onclick = ()=>{ document.getElementById('mobileMenu').classList.remove('open'); };
-
-/* ==== INIT ==== */
 if(!loadUser()) showGenderModal();
 else{ loadTrades(); loadMessages(); setInterval(()=>{loadTrades();loadMessages();},15000); }
 renderModalItems();
