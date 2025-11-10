@@ -150,14 +150,23 @@
 </main>
 <div id="messagingPanel" class="hidden fixed inset-0 lg:right-0 lg:left-auto lg:top-0 lg:h-full lg:w-96 bg-gray-800 border-l lg:border-purple-500/30 shadow-2xl flex flex-col z-40">
   <div class="p-4 border-b border-white/10 flex items-center justify-between">
-    <h3 class="font-bold text-lg">Messages</h3>
-    <button id="closeChat" class="text-white/70 hover:text-white">
+    <button id="backToList" class="lg:hidden p-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <h3 id="panelTitle" class="font-bold text-lg flex-1 text-center lg:text-left">Messages</h3>
+    <button id="closeChatMobile" class="lg:hidden p-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <button id="closeChatDesktop" class="hidden lg:block text-white/70 hover:text-white">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
   </div>
   <div id="conversations" class="flex-1 overflow-y-auto p-2"></div>
   <div id="chatArea" class="hidden flex-1 flex flex-col">
     <div class="p-3 border-b border-white/10 flex items-center gap-3">
+      <button id="backToListDesktop" class="hidden lg:block p-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </button>
       <img id="chatAvatar" class="w-10 h-10 rounded-full" src="">
       <div><div id="chatUser" class="font-semibold"></div><div class="text-xs text-gray-400">Trading with you</div></div>
     </div>
@@ -221,7 +230,7 @@ const fruits = {
   "Creation":{beli:"1.4M",demand:"3/10",image:"https://i.postimg.cc/HLctq6nT/Creation.png"}
 };
 let currentUser=null,trades=[],messages={},unreadCounts={},currentChatPartner=null,filterMode='all',searchTerm='',currentSide='offering',selectedOffering=new Set(),selectedWanting=new Set();
-const genderModal=document.getElementById('genderModal'),selectMale=document.getElementById('selectMale'),selectFemale=document.getElementById('selectFemale'),tradeModal=document.getElementById('tradeModal'),createTradeBtn=document.getElementById('createTradeBtn'),searchFilter=document.getElementById('searchFilter'),clearSearch=document.getElementById('clearSearch'),filterAll=document.getElementById('filterAll'),filterOffering=document.getElementById('filterOffering'),filterRequesting=document.getElementById('filterRequesting'),messagingPanel=document.getElementById('messagingPanel'),conversationsDiv=document.getElementById('conversations'),chatArea=document.getElementById('chatArea'),messagesDiv=document.getElementById('messages'),msgInput=document.getElementById('msgInput'),sendMsgBtn=document.getElementById('sendMsg'),openMessagesBtn=document.getElementById('openMessagesBtn'),mobileMsgBtn=document.getElementById('mobileMsgBtn'),closeChatBtn=document.getElementById('closeChat'),offeringTab=document.getElementById('offeringTab'),requestingTab=document.getElementById('requestingTab'),modalSearch=document.getElementById('modalSearch'),itemGrid=document.getElementById('itemGrid'),confirmPost=document.getElementById('confirmPost'),cancelPost=document.getElementById('cancelPost'),closeModal=document.getElementById('closeModal');
+const genderModal=document.getElementById('genderModal'),selectMale=document.getElementById('selectMale'),selectFemale=document.getElementById('selectFemale'),tradeModal=document.getElementById('tradeModal'),createTradeBtn=document.getElementById('createTradeBtn'),searchFilter=document.getElementById('searchFilter'),clearSearch=document.getElementById('clearSearch'),filterAll=document.getElementById('filterAll'),filterOffering=document.getElementById('filterOffering'),filterRequesting=document.getElementById('filterRequesting'),messagingPanel=document.getElementById('messagingPanel'),conversationsDiv=document.getElementById('conversations'),chatArea=document.getElementById('chatArea'),messagesDiv=document.getElementById('messages'),msgInput=document.getElementById('msgInput'),sendMsgBtn=document.getElementById('sendMsg'),openMessagesBtn=document.getElementById('openMessagesBtn'),mobileMsgBtn=document.getElementById('mobileMsgBtn'),closeChatMobile=document.getElementById('closeChatMobile'),closeChatDesktop=document.getElementById('closeChatDesktop'),backToList=document.getElementById('backToList'),backToListDesktop=document.getElementById('backToListDesktop'),panelTitle=document.getElementById('panelTitle'),offeringTab=document.getElementById('offeringTab'),requestingTab=document.getElementById('requestingTab'),modalSearch=document.getElementById('modalSearch'),itemGrid=document.getElementById('itemGrid'),confirmPost=document.getElementById('confirmPost'),cancelPost=document.getElementById('cancelPost'),closeModal=document.getElementById('closeModal');
 function generateUser(gender){const id=Date.now().toString(36)+Math.random().toString(36).substr(2);const username="User_"+Math.random().toString(36).substr(2,5);const avatar=gender==="male"?"https://iili.io/KmAE9MF.webp":"https://iili.io/KmAEH6g.webp";return{id,username,avatar,gender};}
 function loadUser(){const saved=localStorage.getItem('bf_user');if(saved){const u=JSON.parse(saved);if(u.gender){currentUser=u;updateUserUI();return true;}else localStorage.removeItem('bf_user');}return false;}
 function showGenderModal(){genderModal.classList.remove('hidden');document.body.style.overflow='hidden';}
@@ -282,7 +291,7 @@ function renderTrade(t){const totalItems=t.offering.length+t.wanting.length;cons
       </div>
     </div>
   </div>`;}
-async function loadTrades(){try{const res=await fetch(API);trades=await res.json();filterAndRender();}catch(e){document.getElementById("trades").innerHTML=`<p class="text-center text-red-400">Failed to load trades.</p>`;}}
+async function loadTrades(){try{const res=await fetch(API);trades=await res.json();filterAndRender();renderConversationList();}catch(e){document.getElementById("trades").innerHTML=`<p class="text-center text-red-400">Failed to load trades.</p>`;}}
 function filterAndRender(){let filtered=trades;if(searchTerm){filtered=filtered.filter(t=>t.offering.some(i=>i.name.toLowerCase().includes(searchTerm))||t.wanting.some(i=>i.name.toLowerCase().includes(searchTerm)));}if(filterMode==='offering')filtered=filtered.filter(t=>t.offering.length>0);if(filterMode==='requesting')filtered=filtered.filter(t=>t.wanting.length>0);document.getElementById("trades").innerHTML=filtered.length?filtered.map(renderTrade).join(""):`<p class="text-center text-gray-500 col-span-full">No trades found.</p>`;}
 searchFilter.oninput=e=>{searchTerm=e.target.value.toLowerCase();filterAndRender();};
 clearSearch.onclick=()=>{searchFilter.value='';searchTerm='';filterAndRender();};
@@ -308,26 +317,28 @@ offeringTab.onclick=()=>{currentSide='offering';offeringTab.classList.replace('b
 requestingTab.onclick=()=>{currentSide='requesting';requestingTab.classList.replace('bg-gray-700','bg-purple-600');offeringTab.classList.replace('bg-purple-600','bg-gray-700');renderModalItems();};
 modalSearch.oninput=renderModalItems;
 confirmPost.onclick=async()=>{if(selectedOffering.size===0||selectedWanting.size===0)return;const offering=Array.from(selectedOffering).map(name=>({name:name,img:fruits[name].image,beli:fruits[name].beli,demand:fruits[name].demand}));const wanting=Array.from(selectedWanting).map(name=>({name:name,img:fruits[name].image,beli:fruits[name].beli,demand:fruits[name].demand}));const trade={id:Date.now(),user:currentUser,offering,wanting,offerValue:offering.reduce((a,i)=>a+(parseFloat(i.beli)||0),0)+"M",wantValue:wanting.reduce((a,i)=>a+(parseFloat(i.beli)||0),0)+"M"};try{await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(trade)});tradeModal.classList.add('hidden');loadTrades();}catch{alert("Failed to post trade.");}};
-function openChat(partnerId){currentChatPartner=partnerId;const trade=trades.find(t=>t.user.id===partnerId);document.getElementById('chatAvatar').src=trade?.user.avatar||'';document.getElementById('chatUser').textContent=trade?.user.username||'User';renderConversationList();renderMessages();chatArea.classList.remove('hidden');conversationsDiv.classList.add('hidden');messagingPanel.classList.remove('hidden');unreadCounts[partnerId]=0;updateBadges();}
-function closeChat(){messagingPanel.classList.add('hidden');currentChatPartner=null;}
-openMessagesBtn.onclick=mobileMsgBtn.onclick=()=>{if(!currentUser?.gender)return;messagingPanel.classList.remove('hidden');renderConversationList();};
-closeChatBtn.onclick=closeChat;
-function renderConversationList(){const partners=[...new Set(trades.map(t=>t.user.id).filter(id=>id!==currentUser?.id))];conversationsDiv.innerHTML=partners.map(id=>{const user=trades.find(t=>t.user.id===id).user;const last=messages[id]?.[messages[id].length-1];const unread=unreadCounts[id]||0;return `<div onclick="openChat('${id}')" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-700 cursor-pointer">
+function openChat(partnerId){currentChatPartner=partnerId;const trade=trades.find(t=>t.user.id===partnerId);document.getElementById('chatAvatar').src=trade?.user.avatar||'';document.getElementById('chatUser').textContent=trade?.user.username||'User';panelTitle.textContent=trade?.user.username||'Chat';renderMessages();chatArea.classList.remove('hidden');conversationsDiv.classList.add('hidden');unreadCounts[partnerId]=0;updateBadges();}
+function backToConversations(){chatArea.classList.add('hidden');conversationsDiv.classList.remove('hidden');panelTitle.textContent='Messages';currentChatPartner=null;}
+function closeChat(){messagingPanel.classList.add('hidden');backToConversations();}
+backToList.onclick=backToListDesktop.onclick=backToConversations;
+closeChatMobile.onclick=closeChatDesktop.onclick=closeChat;
+openMessagesBtn.onclick=mobileMsgBtn.onclick=()=>{if(!currentUser?.gender)return;messagingPanel.classList.remove('hidden');backToConversations();renderConversationList();};
+function renderConversationList(){const partners=Object.keys(messages).filter(id=>messages[id].length>0);conversationsDiv.innerHTML=partners.length?partners.map(id=>{const user=trades.find(t=>t.user.id===id)?.user||{username:'Unknown',avatar:''};const last=messages[id][messages[id].length-1];const unread=unreadCounts[id]||0;return `<div onclick="openChat('${id}')" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-700 cursor-pointer">
       <img src="${user.avatar}" class="w-10 h-10 rounded-full">
       <div class="flex-1">
         <div class="font-medium">${user.username}</div>
-        <div class="text-xs text-gray-400 truncate">${last?last.msg:'Start chatting'}</div>
+        <div class="text-xs text-gray-400 truncate">${last.msg}</div>
       </div>
       ${unread?`<span class="notification-badge">${unread}</span>`:''}
-    </div>`;}).join('')||'<p class="text-center text-gray-500 p-4">No conversations yet.</p>';}
+    </div>`;}).join(''):'<p class="text-center text-gray-500 p-4">No messages yet.</p>';}
 function renderMessages(){const msgs=messages[currentChatPartner]||[];messagesDiv.innerHTML=msgs.map(m=>`<div class="${m.from===currentUser.id?'ml-auto bg-purple-600 text-white':'bg-gray-700 text-gray-200'} max-w-[75%] rounded-lg p-2">
       <div class="text-xs">${m.msg}</div>
       <div class="text-[10px] opacity-70">${new Date(m.time).toLocaleTimeString()}</div>
     </div>`).join('');messagesDiv.scrollTop=messagesDiv.scrollHeight;}
-sendMsgBtn.onclick=async()=>{if(!msgInput.value.trim()||!currentChatPartner)return;const txt=msgInput.value.trim();msgInput.value='';const payload={from:currentUser.id,to:currentChatPartner,msg:txt,time:Date.now()};try{await fetch(MSG_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }catch(e){console.error(e);}if(!messages[currentChatPartner])messages[currentChatPartner]=[];messages[currentChatPartner].push({...payload,from:currentUser.id});renderMessages();};
-async function loadMessages(){try{const res=await fetch(MSG_API);const all=await res.json();messages={};unreadCounts={};all.forEach(m=>{const partner=m.from===currentUser.id?m.to:m.from;if(!messages[partner])messages[partner]=[];messages[partner].push(m);if(m.from!==currentUser.id)unreadCounts[partner]=(unreadCounts[partner]||0)+1;});updateBadges();}catch(e){console.error(e);}}
+sendMsgBtn.onclick=async()=>{if(!msgInput.value.trim()||!currentChatPartner)return;const txt=msgInput.value.trim();msgInput.value='';const payload={from:currentUser.id,to:currentChatPartner,msg:txt,time:Date.now()};try{await fetch(MSG_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }catch(e){console.error(e);}if(!messages[currentChatPartner])messages[currentChatPartner]=[];messages[currentChatPartner].push({...payload,from:currentUser.id});renderMessages();renderConversationList();updateBadges();};
+async function loadMessages(){try{const res=await fetch(MSG_API);const all=await res.json();messages={};unreadCounts={};all.forEach(m=>{const partner=m.from===currentUser.id?m.to:m.from;if(!messages[partner])messages[partner]=[];messages[partner].push(m);if(m.from!==currentUser.id)unreadCounts[partner]=(unreadCounts[partner]||0)+1;});renderConversationList();updateBadges();}catch(e){console.error(e);}}
 function updateBadges(){const total=Object.values(unreadCounts).reduce((a,b)=>a+b,0);document.getElementById('msgBadge').textContent=total;document.getElementById('msgBadge').classList.toggle('hidden',!total);document.getElementById('mobileMsgBadge').textContent=total;document.getElementById('mobileMsgBadge').classList.toggle('hidden',!total);}
-window.deleteTrade=async(id)=>{if(!confirm('Delete this trade?'))return;try{await fetch(`${API}/${id}`,{method:'DELETE'});trades=trades.filter(t=>t.id!==id);filterAndRender();}catch(e){alert('Failed to delete');}};
+window.deleteTrade=async(id)=>{if(!confirm('Delete this trade?'))return;try{await fetch(`${API}/${id}`,{method:'DELETE'});trades=trades.filter(t=>t.id!==id);filterAndRender();renderConversationList();}catch(e){alert('Failed to delete');}};
 document.getElementById('mobileMenuBtn').onclick=()=>{document.getElementById('mobileMenu').classList.add('open');};
 document.getElementById('closeMobileMenu').onclick=()=>{document.getElementById('mobileMenu').classList.remove('open');};
 if(!loadUser())showGenderModal();else{loadTrades();loadMessages();setInterval(()=>{loadTrades();loadMessages();},15000);}
