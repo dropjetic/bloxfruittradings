@@ -15,6 +15,7 @@
   .mobile-menu.open {transform:translateX(0);}
   .trade-card {transition:transform .3s ease,box-shadow .3s ease;}
   .trade-card:hover {transform:translateY(-4px);box-shadow:0 20px 25px -5px rgba(139,92,246,0.2),0 10px 10px -5px rgba(0,0,0,0.3);}
+  .item-selected {outline:2px solid #a855f7;outline-offset:2px;}
 </style>
 </head>
 
@@ -200,15 +201,35 @@
       <h2 class="text-xl lg:text-2xl font-bold flex items-center gap-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Create Trade</h2>
       <p class="text-sm text-gray-400 mt-1">Select items you're offering and requesting</p>
     </div>
+
+    <!-- Tabs -->
     <div class="flex gap-2 lg:gap-3 p-4 border-b border-white/10">
       <button id="offeringTab" class="px-5 py-2.5 lg:px-6 lg:py-3 rounded-full bg-purple-600 font-semibold text-sm transition">Offering</button>
       <button id="requestingTab" class="px-5 py-2.5 lg:px-6 lg:py-3 rounded-full bg-gray-700 font-semibold text-sm transition">Requesting</button>
     </div>
-    <div class="p-4"><input id="searchInput" type="text" placeholder="Search fruits..." class="w-full px-4 py-3 bg-gray-800 rounded-lg border border-white/20 focus:border-purple-500 outline-none"></div>
-    <div id="itemGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 lg:gap4 p-4 lg:p-6 max-h-96 overflow-y-auto"></div>
+
+    <!-- Search -->
+    <div class="p-4"><input id="modalSearch" type="text" placeholder="Search fruits..." class="w-full px-4 py-3 bg-gray-800 rounded-lg border border-white/20 focus:border-purple-500 outline-none"></div>
+
+    <!-- Item Grid -->
+    <div id="itemGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 lg:gap-4 p-4 lg:p-6 max-h-96 overflow-y-auto"></div>
+
+    <!-- Summary -->
+    <div class="p-4 border-t border-white/10">
+      <div class="flex justify-between text-sm">
+        <div>Offering: <span id="offerTotal">0</span> fruits</div>
+        <div>Value: <span id="offerValue">0</span></div>
+      </div>
+      <div class="flex justify-between text-sm mt-2">
+        <div>Requesting: <span id="wantTotal">0</span> fruits</div>
+        <div>Value: <span id="wantValue">0</span></div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
     <div class="flex justify-end gap-3 p-4 lg:p-6 border-t border-white/10">
       <button id="cancelPost" class="px-5 py-2.5 lg:px-6 lg:py-3 bg-gray-700 rounded-lg font-medium">Cancel</button>
-      <button id="confirmPost" class="px-5 py-2.5 lg:px-6 lg:py-3 bg-purple-600 rounded-lg font-medium hover:bg-purple-700">Post Trade</button>
+      <button id="confirmPost" class="px-5 py-2.5 lg:px-6 lg:py-3 bg-purple-600 rounded-lg font-medium hover:bg-purple-700 disabled:opacity-50" disabled>Post Trade</button>
     </div>
   </div>
 </div>
@@ -226,6 +247,38 @@
 const API = "https://dropjetic.pythonanywhere.com/trades";
 const MSG_API = "https://dropjetic.pythonanywhere.com/messages";
 
+/* ==== FRUITS (paste your original fruits object here) ==== */
+const fruits = {
+  "Kitsune": {img:"https://iili.io/2s7QdGJ.png",value:8500,rate:"9.8"},
+  "Dragon": {img:"https://iili.io/2s7QdGJ.png",value:7500,rate:"9.5"},
+  "Leopard": {img:"https://iili.io/2s7QdGJ.png",value:7000,rate:"9.3"},
+  "Venom": {img:"https://iili.io/2s7QdGJ.png",value:6500,rate:"9.0"},
+  "Dough": {img:"https://iili.io/2s7QdGJ.png",value:6000,rate:"8.8"},
+  "Shadow": {img:"https://iili.io/2s7QdGJ.png",value:5500,rate:"8.5"},
+  "Control": {img:"https://iili.io/2s7QdGJ.png",value:5000,rate:"8.2"},
+  "Spirit": {img:"https://iili.io/2s7QdGJ.png",value:4800,rate:"8.0"},
+  "T-Rex": {img:"https://iili.io/2s7QdGJ.png",value:4600,rate:"7.8"},
+  "Mammoth": {img:"https://iili.io/2s7QdGJ.png",value:4400,rate:"7.6"},
+  "Buddha": {img:"https://iili.io/2s7QdGJ.png",value:4200,rate:"7.4"},
+  "Blizzard": {img:"https://iili.io/2s7QdGJ.png",value:4000,rate:"7.2"},
+  "Gravity": {img:"https://iili.io/2s7QdGJ.png",value:3800,rate:"7.0"},
+  "Magma": {img:"https://iili.io/2s7QdGJ.png",value:3600,rate:"6.8"},
+  "Rumble": {img:"https://iili.io/2s7QdGJ.png",value:3400,rate:"6.6"},
+  "Light": {img:"https://iili.io/2s7QdGJ.png",value:3200,rate:"6.4"},
+  "Dark": {img:"https://iili.io/2s7QdGJ.png",value:3000,rate:"6.2"},
+  "Ice": {img:"https://iili.io/2s7QdGJ.png",value:2800,rate:"6.0"},
+  "Sand": {img:"https://iili.io/2s7QdGJ.png",value:2600,rate:"5.8"},
+  "Flame": {img:"https://iili.io/2s7QdGJ.png",value:2400,rate:"5.6"},
+  "Bomb": {img:"https://iili.io/2s7QdGJ.png",value:2200,rate:"5.4"},
+  "Spike": {img:"https://iili.io/2s7QdGJ.png",value:2000,rate:"5.2"},
+  "Spin": {img:"https://iili.io/2s7QdGJ.png",value:1800,rate:"5.0"},
+  "Spring": {img:"https://iili.io/2s7QdGJ.png",value:1600,rate:"4.8"},
+  "Chop": {img:"https://iili.io/2s7QdGJ.png",value:1400,rate:"4.6"},
+  "Smoke": {img:"https://iili.io/2s7QdGJ.png",value:1200,rate:"4.4"},
+  "Rocket": {img:"https://iili.io/2s7QdGJ.png",value:1000,rate:"4.2"},
+  "Kilo": {img:"https://iili.io/2s7QdGJ.png",value:800,rate:"4.0"}
+};
+
 /* ==== STATE ==== */
 let currentUser = null;
 let trades = [];
@@ -234,6 +287,9 @@ let unreadCounts = {};           // {partnerId: count}
 let currentChatPartner = null;
 let filterMode = 'all';
 let searchTerm = '';
+let currentSide = 'offering';
+let selectedOffering = {};       // {fruitName: quantity}
+let selectedWanting = {};        // {fruitName: quantity}
 
 /* ==== DOM ELEMENTS ==== */
 const genderModal = document.getElementById('genderModal');
@@ -255,6 +311,17 @@ const sendMsgBtn = document.getElementById('sendMsg');
 const openMessagesBtn = document.getElementById('openMessagesBtn');
 const mobileMsgBtn = document.getElementById('mobileMsgBtn');
 const closeChatBtn = document.getElementById('closeChat');
+const offeringTab = document.getElementById('offeringTab');
+const requestingTab = document.getElementById('requestingTab');
+const modalSearch = document.getElementById('modalSearch');
+const itemGrid = document.getElementById('itemGrid');
+const offerTotal = document.getElementById('offerTotal');
+const offerValue = document.getElementById('offerValue');
+const wantTotal = document.getElementById('wantTotal');
+const wantValue = document.getElementById('wantValue');
+const confirmPost = document.getElementById('confirmPost');
+const cancelPost = document.getElementById('cancelPost');
+const closeModal = document.getElementById('closeModal');
 
 /* ==== USER / GENDER ==== */
 function generateUser(gender){
@@ -365,7 +432,7 @@ function renderTrade(t){
               <div class="flex items-center gap-0.5 sm:gap-1"><svg class="lucide lucide-trending-up h-2.5 w-2.5 sm:h-3 sm:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><span class="text-[8px] xs:text-[9px] sm:text-xs font-semibold text-white">8/10</span></div>
             </div>
           </h3>
-          <div class="scrollbar-hide flex space-x-1.5 overflow-x-auto pt-1">${wantHTML}</div>
+          <div class="scrollbar-hide flex space-x-1.5 overflow-x-all pt-1">${wantHTML}</div>
         </div>
       </div>
     </div>
@@ -413,27 +480,78 @@ function updateFilterButtons(){
   if(filterMode==='requesting') filterRequesting.classList.add('bg-gradient-to-r','from-purple-500','to-purple-600','text-white');
 }
 
+/* ==== CREATE TRADE MODAL ==== */
+createTradeBtn.onclick = ()=>{ if(!currentUser?.gender) return; openTradeModal(); };
+function openTradeModal(){
+  selectedOffering = {}; selectedWanting = {}; currentSide = 'offering';
+  tradeModal.classList.remove('hidden'); renderModalItems(); updateSummary();
+}
+closeModal.onclick = cancelPost.onclick = ()=>{ tradeModal.classList.add('hidden'); };
+offeringTab.onclick = ()=>{ currentSide='offering'; offeringTab.classList.replace('bg-gray-700','bg-purple-600'); requestingTab.classList.replace('bg-purple-600','bg-gray-700'); renderModalItems(); };
+requestingTab.onclick = ()=>{ currentSide='requesting'; requestingTab.classList.replace('bg-gray-700','bg-purple-600'); offeringTab.classList.replace('bg-purple-600','bg-gray-700'); renderModalItems(); };
+modalSearch.oninput = ()=>{ renderModalItems(); };
+
+function renderModalItems(){
+  const term = modalSearch.value.toLowerCase();
+  const filtered = Object.entries(fruits).filter(([name])=>name.toLowerCase().includes(term));
+  itemGrid.innerHTML = filtered.map(([name,data])=>{
+    const qty = (currentSide==='offering'?selectedOffering:selectedWanting)[name] || 0;
+    const selected = qty>0?'item-selected':'';
+    return `<div class="relative cursor-pointer ${selected}" onclick="toggleItem('${name}')">
+      <img src="${data.img}" class="w-full h-auto rounded-lg">
+      <div class="text-center text-xs mt-1">${name}</div>
+      ${qty>0?`<div class="absolute top-1 right-1 bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">${qty}</div>`:''}
+    </div>`;
+  }).join('');
+}
+window.toggleItem = function(name){
+  const obj = currentSide==='offering'?selectedOffering:selectedWanting;
+  if(!obj[name]) obj[name]=0;
+  obj[name] = (obj[name]+1)%100 || 1;
+  if(obj[name]===1 && obj===selectedWanting && selectedOffering[name]) delete selectedOffering[name];
+  renderModalItems(); updateSummary();
+};
+function updateSummary(){
+  const offerCount = Object.values(selectedOffering).reduce((a,b)=>a+b,0);
+  const wantCount = Object.values(selectedWanting).reduce((a,b)=>a+b,0);
+  const offerVal = Object.entries(selectedOffering).reduce((a,[n,q])=>a+q*fruits[n].value,0);
+  const wantVal = Object.entries(selectedWanting).reduce((a,[n,q])=>a+q*fruits[n].value,0);
+  offerTotal.textContent = offerCount; wantTotal.textContent = wantCount;
+  offerValue.textContent = offerVal; wantValue.textContent = wantVal;
+  confirmPost.disabled = offerCount===0 || wantCount===0;
+}
+confirmPost.onclick = async ()=>{
+  if(confirmPost.disabled) return;
+  const payload = {
+    user: currentUser,
+    offering: Object.entries(selectedOffering).map(([name,qty])=>({...fruits[name],name,quantity:qty})),
+    wanting: Object.entries(selectedWanting).map(([name,qty])=>({...fruits[name],name,quantity:qty})),
+    offerValue: offerValue.textContent,
+    wantValue: wantValue.textContent,
+    timestamp: Date.now()
+  };
+  try{
+    await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    tradeModal.classList.add('hidden');
+    loadTrades();
+  }catch(e){ alert('Failed to post trade'); }
+};
+
 /* ==== CHAT ==== */
 function openChat(partnerId){
   currentChatPartner = partnerId;
-  document.getElementById('chatAvatar').src = trades.find(t=>t.user.id===partnerId)?.user.avatar || '';
-  document.getElementById('chatUser').textContent = trades.find(t=>t.user.id===partnerId)?.user.username || 'User';
-  renderConversationList();
-  renderMessages();
-  chatArea.classList.remove('hidden');
-  conversationsDiv.classList.add('hidden');
+  const trade = trades.find(t=>t.user.id===partnerId);
+  document.getElementById('chatAvatar').src = trade?.user.avatar || '';
+  document.getElementById('chatUser').textContent = trade?.user.username || 'User';
+  renderConversationList(); renderMessages();
+  chatArea.classList.remove('hidden'); conversationsDiv.classList.add('hidden');
   messagingPanel.classList.remove('hidden');
-  unreadCounts[partnerId] = 0;
-  updateBadges();
+  unreadCounts[partnerId] = 0; updateBadges();
 }
-function closeChat(){
-  messagingPanel.classList.add('hidden');
-  currentChatPartner = null;
-}
+function closeChat(){ messagingPanel.classList.add('hidden'); currentChatPartner = null; }
 openMessagesBtn.onclick = mobileMsgBtn.onclick = ()=>{ if(!currentUser?.gender) return; messagingPanel.classList.remove('hidden'); renderConversationList(); };
 closeChatBtn.onclick = closeChat;
 
-/* ---- Conversation list ---- */
 function renderConversationList(){
   const partners = [...new Set(trades.map(t=>t.user.id).filter(id=>id!==currentUser?.id))];
   conversationsDiv.innerHTML = partners.map(id=>{
@@ -450,8 +568,6 @@ function renderConversationList(){
     </div>`;
   }).join('') || '<p class="text-center text-gray-500 p-4">No conversations yet.</p>';
 }
-
-/* ---- Messages ---- */
 function renderMessages(){
   const msgs = messages[currentChatPartner]||[];
   messagesDiv.innerHTML = msgs.map(m=>`
@@ -463,8 +579,7 @@ function renderMessages(){
 }
 sendMsgBtn.onclick = async ()=>{
   if(!msgInput.value.trim() || !currentChatPartner) return;
-  const txt = msgInput.value.trim();
-  msgInput.value = '';
+  const txt = msgInput.value.trim(); msgInput.value = '';
   const payload = {from:currentUser.id,to:currentChatPartner,msg:txt,time:Date.now()};
   try{ await fetch(MSG_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }
   catch(e){ console.error(e); }
@@ -472,20 +587,16 @@ sendMsgBtn.onclick = async ()=>{
   messages[currentChatPartner].push({...payload,from:currentUser.id});
   renderMessages();
 };
-
-/* ---- Load messages ---- */
 async function loadMessages(){
   try{
     const res = await fetch(MSG_API);
     const all = await res.json();
-    messages = {};
-    unreadCounts = {};
+    messages = {}; unreadCounts = {};
     all.forEach(m=>{
       const partner = m.from===currentUser.id?m.to:m.from;
       if(!messages[partner]) messages[partner]=[];
       messages[partner].push(m);
-      if(m.from!==currentUser.id && !unreadCounts[partner]) unreadCounts[partner]=0;
-      if(m.from!==currentUser.id) unreadCounts[partner]++;
+      if(m.from!==currentUser.id) unreadCounts[partner] = (unreadCounts[partner]||0)+1;
     });
     updateBadges();
   }catch(e){ console.error(e); }
@@ -507,9 +618,6 @@ window.deleteTrade = async (id)=>{
     filterAndRender();
   }catch(e){ alert('Failed to delete'); }
 };
-
-/* ==== CREATE TRADE (stub – you already have the full modal logic) ==== */
-createTradeBtn.onclick = ()=>{ if(!currentUser?.gender) return; /* open your existing modal */ };
 
 /* ==== MOBILE MENU ==== */
 document.getElementById('mobileMenuBtn').onclick = ()=>{ document.getElementById('mobileMenu').classList.add('open'); };
