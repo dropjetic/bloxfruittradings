@@ -3,23 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trade Board</title>
+<title>Blox Fruits Trading</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-.gradient-text {@apply bg-gradient-to-r from-purple-300 to-indigo-400 bg-clip-text text-transparent;}
-.bg-grid-pattern {background-image:url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10h20M10 0v20' stroke='%23ffffff' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E");}
-.scrollbar-hide {-ms-overflow-style:none;scrollbar-width:none;}
-.scrollbar-hide::-webkit-scrollbar{display:none;}
-.tick {position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
-.tick.show {opacity:1;}
-.chat-bubble {max-width:75%;}
-.notification-badge {position:absolute;top:-6px;right:-6px;background:#ef4444;color:white;font-size:10px;font-weight:bold;min-width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
-.mobile-menu {transition:transform .3s ease;}
-.mobile-menu.open {transform:translateX(0);}
+  .gradient-text {@apply bg-gradient-to-r from-purple-300 to-indigo-400 bg-clip-text text-transparent;}
+  .bg-grid-pattern {background-image:url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10h20M10 0v20' stroke='%23ffffff' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E");}
+  .scrollbar-hide {-ms-overflow-style:none;scrollbar-width:none;}
+  .scrollbar-hide::-webkit-scrollbar{display:none;}
+  .notification-badge {position:absolute;top:-6px;right:-6px;background:#ef4444;color:white;font-size:10px;font-weight:bold;min-width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .mobile-menu {transition:transform .3s ease;}
+  .mobile-menu.open {transform:translateX(0);}
+  .trade-card {transition:transform .3s ease,box-shadow .3s ease;}
+  .trade-card:hover {transform:translateY(-4px);box-shadow:0 20px 25px -5px rgba(139,92,246,0.2),0 10px 10px -5px rgba(0,0,0,0.3);}
+  .tick {position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+  .tick.show {opacity:1;}
 </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col">
-
+<body class="bg-black text-white min-h-screen flex flex-col">
+<!-- ==== GENDER MODAL ==== -->
+<div id="genderModal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 px-4">
+  <div class="relative w-full max-w-sm rounded-2xl bg-gray-800 p-8 border border-purple-500/30 shadow-2xl">
+    <h2 class="text-2xl font-bold text-center mb-6">Choose Your Avatar</h2>
+    <div class="grid grid-cols-2 gap-6">
+      <button id="selectMale" class="group flex flex-col items-center p-6 rounded-xl bg-gray-700/50 hover:bg-purple-600/30 transition border-2 border-transparent hover:border-purple-500">
+        <img src="https://iili.io/KmAE9MF.webp" class="w-32 h-32 object-contain mb-3">
+        <span class="text-lg font-semibold">Male</span>
+      </button>
+      <button id="selectFemale" class="group flex flex-col items-center p-6 rounded-xl bg-gray-700/50 hover:bg-purple-600/30 transition border-2 border-transparent hover:border-purple-500">
+        <img src="https://iili.io/KmAEH6g.webp" class="w-32 h-32 object-contain mb-3">
+        <span class="text-lg font-semibold">Female</span>
+      </button>
+    </div>
+  </div>
+</div>
 <!-- ==== MOBILE TOP BAR ==== -->
 <div class="lg:hidden fixed top-0 left-0 right-0 bg-gray-800/95 backdrop-blur z-50 border-b border-purple-500/20">
   <div class="flex items-center justify-between p-3">
@@ -35,7 +51,6 @@
     </div>
   </div>
 </div>
-
 <!-- ==== MOBILE MENU ==== -->
 <div id="mobileMenu" class="mobile-menu fixed inset-0 bg-gray-800/95 backdrop-blur z-40 -translate-x-full lg:hidden">
   <div class="p-4 border-b border-white/10 flex justify-between items-center">
@@ -52,41 +67,95 @@
     <button id="mobileNewAccount" class="w-full p-3 rounded-lg bg-gray-700/50 text-left">New Account</button>
   </div>
 </div>
-
-<!-- ==== DESKTOP TOP BAR (unchanged) ==== -->
-<div class="hidden w-full lg:block"><div class="relative mx-auto flex w-full justify-between px-4 py-3 transition duration-200 rounded-full bg-transparent" style="width:100%;background:transparent;"><div class="flex w-full flex-row items-center justify-between"><div class="flex w-[90px] flex-row items-center gap-2"><div class="flex items-center justify-center" style="opacity:1;"><a href="https://bloxfruittrading.com/"><div style="width:40px;height:40px;"><img alt="logo" loading="lazy" width="48" height="48" decoding="async" class="min-w-10 min-h-10 w-full h-full object-contain" src="./final ones_files/KL1P0ib.gif" style="color:transparent;"></div></a></div><div class="flex items-center justify-center" style="opacity:1;transform:none;"><div class="relative z-50"><button class="group flex items-center gap-3 rounded-xl border border-border/60 bg-black/40 px-4 py-2.5 backdrop-blur-md transition-all hover:border-primary/50 hover:bg-black/60 hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]" aria-expanded="false" aria-haspopup="true" tabindex="0" style="pointer-events:auto;"><div class="relative flex items-center gap-3"><div class="flex flex-col items-start"><span class="max-w-[150px] truncate text-base font-bold text-white">Blox Fruits</span><span class="text-xs text-neutral-400">Switch Game</span></div></div><div style="transform:none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-chevron-down ml-1 h-4 w-4 text-neutral-400"><path d="M6 9l6 6l6 -6"></path></svg></div></button></div></div></div><div class="flex flex-1 justify-center"><nav aria-label="Main" data-orientation="horizontal" dir="ltr" class="relative z-10 flex max-w-max flex-1 items-center justify-center"><div style="position:relative;"><ul data-orientation="horizontal" class="group flex-1 list-none space-x-5 flex items-center justify-center" dir="ltr"><li><button id="radix-_r_5a_-trigger-radix-_r_5b_" data-state="closed" aria-expanded="false" aria-controls="radix-_r_5a_-content-radix-_r_5b_" class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground focus:bg-foreground/5 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-foreground/5 data-[state=open]:bg-foreground/5 group" data-radix-collection-item=""><div class="flex flex-col items-center gap-2 py-1"><span class="flex h-10 w-8 items-center justify-center"><img src="./final ones_files/KL12OJt.png" alt="Icon" class="h-full w-full object-contain"></span><div class="flex items-center gap-1"><span class="text-xs font-medium">Trading</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-3 w-3 opacity-50 transition-transform duration-200 group-data-[state=open]:rotate-180" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></div></div></button></li><li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" data-radix-collection-item="" href="https://bloxfruittrading.com/values"><div class="relative"><span class="flex h-7 w-7 items-center justify-center"><svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.6875 5.625H25.375V27.1875H4.75V5.625H9.4375V7.5H20.6875V5.625ZM8.5 15H21.625V13.125H8.5V15ZM8.5 22.5H21.625V20.625H8.5V22.5ZM11.3125 5.625V2.8125H18.8125V5.625H11.3125Z" fill="currentColor"></path></svg></span><div class="absolute -right-2 -top-1"></div></div><span class="text-xs font-medium">Values</span></a></li><li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" data-radix-collection-item="" href="https://bloxfruittrading.com/calculator"><div class="relative"><span class="flex h-7 w-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator" aria-hidden="true"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg></span><div class="absolute -right-2 -top-1"></div></div><span class="text-xs font-medium">Calculator</span></a></li><li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" data-radix-collection-item="" href="https://bloxfruittrading.com/rate"><div class="relative"><span class="flex h-7 w-7 items-center justify-center text-gray-400 text-lg">Stars</span><div class="absolute -right-2 -top-1"></div></div><span class="text-xs font-medium">Reviews</span></a></li><li><div class="flex cursor-pointer flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" data-radix-collection-item=""><div class="relative"><span class="flex h-7 w-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-5 w-5" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span><div class="absolute -right-2 -top-1"></div></div><span class="text-xs font-medium">Search</span></div></li><li><a target="_self" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent" data-radix-collection-item="" href="https://bloxfruittrading.com/giveaways"><div class="relative"><span class="flex h-7 w-7 items-center justify-center text-gray-400 text-lg">Chart</span><div class="absolute -right-2 -top-1"></div></div><span class="text-xs font-medium">Stocks</span></a></li></ul></div><div class="absolute left-0 top-full flex justify-center"></div></nav></div><div class="flex items-center space-x-4"><a target="_blank" class="flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50" data-state="closed" href="https://bloxfruittrading.com/discord"><svg xmlns="http://www.w3.org/2000/svg" width="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-6 w-6"><path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path></svg></a><div class="relative"><button id="openMessagesBtn" class="flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-6 w-6"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span id="msgBadge" class="notification-badge hidden">0</span></button></div><div id="userInfo" class="items-center gap-3"><img id="userAvatar" class="w-10 h-10 rounded-full" src=""><div class="flex flex-col"><span id="userName" class="font-semibold"></span><button id="newAccount" class="text-xs text-purple-400 hover:underline">New Account</button></div></div></div></div></div></div></div>
-
-<main class="flex-1 flex pt-16 lg:pt-0">
-<div class="flex-1 p-4 lg:p-8 overflow-y-auto">
-<button id="postBtn" class="fixed bottom-6 right-6 z-40 lg:bottom-8 lg:right-8 px-5 py-3 lg:px-6 lg:py-4 bg-purple-600 rounded-full font-bold text-base lg:text-lg shadow-2xl hover:bg-purple-700">+ Post Trade</button>
-<div id="trades" class="space-y-4 lg:space-y-6 max-w-5xl mx-auto"></div>
-
-<!-- ==== TRADE MODAL ==== -->
-<div id="tradeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 overflow-y-auto">
-  <div class="relative w-full max-w-4xl my-8 rounded-xl bg-gray-900 border border-purple-500/20 shadow-2xl">
-    <button id="closeModal" class="absolute top-4 right-4 text-white/70 hover:text-white z-10">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
-    <div class="p-6 pb-4 border-b border-white/10">
-      <h2 class="text-xl lg:text-2xl font-bold flex items-center gap-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Create Trade</h2>
-      <p class="text-sm text-gray-400 mt-1">Select items you're offering and requesting</p>
-    </div>
-    <div class="flex gap-2 lg:gap-3 p-4 border-b border-white/10">
-      <button id="offeringTab" class="px-5 py-2.5 lg:px-6 lg:py-3 rounded-full bg-purple-600 font-semibold text-sm transition">Offering</button>
-      <button id="requestingTab" class="px-5 py-2.5 lg:px-6 lg:py-3 rounded-full bg-gray-700 font-semibold text-sm transition">Requesting</button>
-    </div>
-    <div class="p-4">
-      <input id="searchInput" type="text" placeholder="Search fruits..." class="w-full px-4 py-3 bg-gray-800 rounded-lg border border-white/20 focus:border-purple-500 outline-none">
-    </div>
-    <div id="itemGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 lg:gap-4 p-4 lg:p-6 max-h-96 overflow-y-auto"></div>
-    <div class="flex justify-end gap-3 p-4 lg:p-6 border-t border-white/10">
-      <button id="cancelPost" class="px-5 py-2.5 lg:px-6 lg:py-3 bg-gray-700 rounded-lg font-medium">Cancel</button>
-      <button id="confirmPost" class="px-5 py-2.5 lg:px-6 lg:py-3 bg-purple-600 rounded-lg font-medium hover:bg-purple-700">Post Trade</button>
+<!-- ==== DESKTOP TOP BAR ==== -->
+<div class="hidden lg:block w-full">
+  <div class="relative mx-auto flex w-full justify-between px-4 py-3 transition duration-200 rounded-full bg-transparent">
+    <div class="flex w-full flex-row items-center justify-between">
+      <!-- Logo + Game Switcher -->
+      <div class="flex w-[90px] flex-row items-center gap-2">
+        <a href="https://bloxfruittrading.com/"><img alt="logo" loading="lazy" width="48" height="48" decoding="async" class="min-w-10 min-h-10 w-full h-full object-contain" src="./final ones_files/KL1P0ib.gif"></a>
+        <div class="relative z-50">
+          <button class="group flex items-center gap-3 rounded-xl border border-border/60 bg-black/40 px-4 py-2.5 backdrop-blur-md transition-all hover:border-primary/50 hover:bg-black/60 hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]">
+            <div class="relative flex items-center gap-3">
+              <div class="flex flex-col items-start">
+                <span class="max-w-[150px] truncate text-base font-bold text-white">Blox Fruits</span>
+                <span class="text-xs text-neutral-400">Switch Game</span>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-chevron-down ml-1 h-4 w-4 text-neutral-400"><path d="M6 9l6 6l6 -6"></path></svg>
+          </button>
+        </div>
+      </div>
+      <!-- Nav Links -->
+      <nav aria-label="Main" class="relative z-10 flex max-w-max flex-1 items-center justify-center">
+        <ul class="group flex-1 list-none space-x-5 flex items-center justify-center">
+          <li><a href="https://bloxfruittrading.com/trading" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center"><img src="./final ones_files/KL12OJt.png" alt="Icon" class="h-full w-full object-contain"></span><span class="text-xs font-medium">Trading</span></a></li>
+          <li><a href="https://bloxfruittrading.com/values" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center"><svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.6875 5.625H25.375V27.1875H4.75V5.625H9.4375V7.5H20.6875V5.625ZM8.5 15H21.625V13.125H8.5V15ZM8.5 22.5H21.625V20.625H8.5V22.5ZM11.3125 5.625V2.8125H18.8125V5.625H11.3125Z" fill="currentColor"></path></svg></span><span class="text-xs font-medium">Values</span></a></li>
+          <li><a href="https://bloxfruittrading.com/calculator" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg></span><span class="text-xs font-medium">Calculator</span></a></li>
+          <li><a href="https://bloxfruittrading.com/rate" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center text-gray-400 text-lg">Stars</span><span class="text-xs font-medium">Reviews</span></a></li>
+          <li><a href="https://bloxfruittrading.com/giveaways" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center text-gray-400 text-lg">Chart</span><span class="text-xs font-medium">Stocks</span></a></li>
+        </ul>
+      </nav>
+      <!-- Right Icons -->
+      <div class="flex items-center space-x-4">
+        <a target="_blank" href="https://bloxfruittrading.com/discord" class="flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50">
+          <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-6 w-6"><path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path></svg>
+        </a>
+        <button id="openMessagesBtn" class="relative flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-6 w-6"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          <span id="msgBadge" class="notification-badge hidden">0</span>
+        </button>
+        <div id="userInfo" class="flex items-center gap-3">
+          <img id="userAvatar" class="w-10 h-10 rounded-full" src="">
+          <div class="flex flex-col">
+            <span id="userName" class="font-semibold"></span>
+            <button id="newAccount" class="text-xs text-purple-400 hover:underline">New Account</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
+<!-- ==== MAIN CONTENT ==== -->
+<main class="flex-1 pt-16 lg:pt-0 px-4 lg:px-8 max-w-7xl mx-auto w-full">
+  <header class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 mt-6 lg:mt-10">
+    <div>
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Trade Ads</h1>
+      <p class="pt-2 text-sm text-gray-400 sm:text-base">Browse and find the perfect trade for your items.</p>
+    </div>
+    <button id="createTradeBtn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:shadow-lg hover:shadow-purple-500/25 active:scale-[0.97] border border-purple-500/20 ring-1 ring-white/10 h-10 px-4 py-2 w-full sm:w-auto text-white transition-all duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus mr-2 h-5 w-5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+      <span class="font-medium">Create Trade Ad</span>
+    </button>
+  </header>
+  <nav aria-label="Trade filters" class="my-5">
+    <div class="grid gap-4 rounded-xl bg-white/5 p-4 border border-purple-500/10">
+      <div class="space-y-2">
+        <label class="flex items-center gap-2 text-sm font-medium">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-4 w-4 text-gray-400"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          Search Items
+        </label>
+        <div class="flex flex-col gap-3">
+          <div class="relative flex-1">
+            <input id="searchFilter" class="flex h-10 w-full border-0 bg-gray-800/50 pl-4 pr-10 rounded-lg text-base placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-purple-500 transition-colors" placeholder="Search items by name..." value="">
+            <button id="clearSearch" class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-white">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-medium text-gray-400">Search in:</span>
+            <div class="flex rounded-lg bg-gray-800/50 p-1">
+              <button id="filterAll" class="px-3 py-1.5 text-xs font-medium transition-all duration-200 rounded-md bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-sm">All</button>
+              <button id="filterOffering" class="px-3 py-1.5 text-xs font-medium transition-all duration-200 rounded-md text-gray-400 hover:text-white hover:bg-gray-700/50">Offering</button>
+              <button id="filterRequesting" class="px-3 py-1.5 text-xs font-medium transition-all duration-200 rounded-md text-gray-400 hover:text-white hover:bg-gray-700/50">Requesting</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div id="trades" class="grid gap-6 lg:gap-8"></div>
+</main>
 <!-- ==== MESSAGING PANEL ==== -->
 <div id="messagingPanel" class="hidden fixed inset-0 lg:right-0 lg:left-auto lg:top-0 lg:h-full lg:w-96 bg-gray-800 border-l lg:border-purple-500/30 shadow-2xl flex flex-col z-40">
   <div class="p-4 border-b border-white/10 flex items-center justify-between">
@@ -104,248 +173,160 @@
     <div id="messages" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
     <div class="p-3 border-t border-white/10 flex gap-2">
       <input id="msgInput" type="text" placeholder="Type a message..." class="flex-1 bg-gray-700 rounded-lg px-4 py-2 outline-none focus:border-purple-500 border border-transparent">
-      <button id="sendMsg" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg font-medium">">Send</button>
+      <button id="sendMsg" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg font-medium">Send</button>
     </div>
   </div>
 </div>
-</main>
-
-<!-- ==== FOOTER ==== -->
-<footer class="border-t border-neutral-100 dark:border-white/[0.1] px-4 lg:px-8 py-10 lg:py-20 bg-foreground/[3%] w-full relative overflow-hidden text-xs lg:text-sm">
-  <div class="max-w-7xl mx-auto text-neutral-500 flex flex-col lg:flex-row justify-between items-center lg:items-start">
-    <div class="text-center lg:text-left w-full lg:w-auto">
-      <div class="flex mb-4 justify-center lg:justify-start">
-        <a class="flex items-center space-x-2" href="https://bloxfruittrading.com/">
-          <img alt="Logo" loading="lazy" width="36" height="36" decoding="async" class="min-w-8 min-h-8" src="./final ones_files/logo.png" style="color:transparent;">
-          <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text font-extrabold">Blox Fruit Trading</span>
-        </a>
-      </div>
-      <div class="mt-2 text-foreground/70">© 2025 Blox Fruit Trading All rights reserved.<br>All trademarks are property of their respective owners.</div>
-      <div class="mt-4 text-foreground/70 max-w-md mx-auto lg:mx-0">https://bloxfruittrading.com is a 3rd party website that is not affiliated or partnered with Blox Fruits.</div>
+<!-- ==== TRADE MODAL ==== -->
+<div id="tradeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 overflow-y-auto">
+  <div class="relative w-full max-w-4xl my-8 rounded-xl bg-gray-900 border border-purple-500/20 shadow-2xl">
+    <button id="closeModal" class="absolute top-4 right-4 text-white/70 hover:text-white z-10">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="p-6 pb-4 border-b border-white/10">
+      <h2 class="text-xl lg:text-2xl font-bold flex items-center gap-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Create Trade</h2>
+      <p class="text-sm text-gray-400 mt-1">Select items you're offering and requesting</p>
     </div>
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-10 mt-8 lg:mt-0 w-full lg:w-auto justify-center lg:justify-start">
-      <!-- (footer links unchanged) -->
+    <div class="flex gap-2 lg:gap-3 p-4 border-b border-white/10">
+      <button id="offeringTab" class="px-5 py-2.5 lg:px-6 lg:py-3 rounded-full bg-purple-600 font-semibold text-sm transition">Offering</button>
+      <button id="requestingTab" class="px-5 py-2.5 lg:px-6 lg:py-3 rounded-full bg-gray-700 font-semibold text-sm transition">Requesting</button>
+    </div>
+    <div class="p-4"><input id="modalSearch" type="text" placeholder="Search fruits..." class="w-full px-4 py-3 bg-gray-800 rounded-lg border border-white/20 focus:border-purple-500 outline-none"></div>
+    <div id="itemGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 lg:gap-4 p-4 lg:p-6 max-h-96 overflow-y-auto"></div>
+    <div class="flex justify-end gap-3 p-4 lg:p-6 border-t border-white/10">
+      <button id="cancelPost" class="px-5 py-2.5 lg:px-6 lg:py-3 bg-gray-700 rounded-lg font-medium">Cancel</button>
+      <button id="confirmPost" class="px-5 py-2.5 lg:px-6 lg:py-3 bg-purple-600 rounded-lg font-medium hover:bg-purple-700 disabled:opacity-50" disabled>Post Trade</button>
     </div>
   </div>
+</div>
+<!-- ==== FOOTER ==== -->
+<footer class="border-t border-white/10 px-4 lg:px-8 py-10 lg:py-20 bg-black/50 w-full text-xs lg:text-sm mt-16">
+  <div class="max-w-7xl mx-auto text-gray-500 text-center">
+    © 2025 Blox Fruit Trading. All rights reserved.<br>
+    <span class="text-gray-600">https://bloxfruittrading.com is a 3rd party website not affiliated with Blox Fruits.</span>
+  </div>
 </footer>
-
 <script>
-/* ==== CONFIG ==== */
 const API = "https://dropjetic.pythonanywhere.com/trades";
 const MSG_API = "https://dropjetic.pythonanywhere.com/messages";
 
-/* ==== FRUITS – IMAGES FROM YOUR SECOND SNIPPET ==== */
+/* ==== REAL FRUITS FROM FIRST SITE ==== */
 const fruits = {
-  "West Dragon": { beli: "15M", demand: "10/10", image: "https://i.postimg.cc/7LfBxxs8/West-Dragon.png" },
-  "East Dragon": { beli: "15M", demand: "10/10", image: "https://i.postimg.cc/gkzHzzjS/East-Dragon.png" },
-  "Kitsune": { beli: "8M", demand: "10/10", image: "https://i.postimg.cc/CLxbycr9/Kitsune.png" },
-  "Yeti": { beli: "5M", demand: "10/10", image: "https://i.postimg.cc/mrJmk0Jc/Yeti.png" },
-  "Gas": { beli: "3.2M", demand: "8/10", image: "https://i.postimg.cc/nzKqxgJf/Gas.png" },
-  "Leopard": { beli: "5M", demand: "10/10", image: "https://i.postimg.cc/rwdWsKkJ/Leopard.png" },
-  "Lightning": { beli: "2.1M", demand: "6/10", image: "https://i.postimg.cc/MHTHLFZD/Rumble.png" },
-  "Dough": { beli: "2.8M", demand: "10/10", image: "https://i.postimg.cc/wxckYyqR/Dough.png" },
-  "Pain": { beli: "2.3M", demand: "6/10", image: "https://i.postimg.cc/mk21srj7/Pain.png" },
-  "T-Rex": { beli: "2.7M", demand: "8/10", image: "https://i.postimg.cc/zGDtcwTf/T-Rex.png" },
-  "Gravity": { beli: "2.5M", demand: "4/10", image: "https://i.postimg.cc/D02Lw6vJ/Gravity.png" },
-  "Mammoth": { beli: "2.7M", demand: "5/10", image: "https://i.postimg.cc/sXJGqWYV/Mammoth.png" },
-  "Spirit": { beli: "3.4M", demand: "6/10", image: "https://i.postimg.cc/wTpbhYvL/Spirit.png" },
-  "Control": { beli: "3.2M", demand: "5/10", image: "https://i.postimg.cc/9QNpg6Wx/Control.png" },
-  "Venom": { beli: "3M", demand: "6/10", image: "https://i.postimg.cc/zGdtZLkF/Venom.png" },
-  "Shadow": { beli: "2.9M", demand: "5/10", image: "https://i.postimg.cc/kGpGPvBd/Shadow.png" },
-  "Portal": { beli: "1.9M", demand: "10/10", image: "https://i.postimg.cc/DzkWz65v/Portal.png" },
-  "Buddha": { beli: "1.2M", demand: "10/10", image: "https://i.postimg.cc/02nZD6h1/Buddha.png" },
-  "Blizzard": { beli: "2.4M", demand: "5/10", image: "https://i.postimg.cc/fTDBV72v/Blizzard.png" },
-  "Creation": { beli: "1.4M", demand: "3/10", image: "https://i.postimg.cc/HLctq6nT/Creation.png" }
+  "West Dragon":{beli:"15M",demand:"10/10",image:"https://i.postimg.cc/7LfBxxs8/West-Dragon.png"},
+  "East Dragon":{beli:"15M",demand:"10/10",image:"https://i.postimg.cc/gkzHzzjS/East-Dragon.png"},
+  "Kitsune":{beli:"8M",demand:"10/10",image:"https://i.postimg.cc/CLxbycr9/Kitsune.png"},
+  "Yeti":{beli:"5M",demand:"10/10",image:"https://i.postimg.cc/mrJmk0Jc/Yeti.png"},
+  "Gas":{beli:"3.2M",demand:"8/10",image:"https://i.postimg.cc/nzKqxgJf/Gas.png"},
+  "Leopard":{beli:"5M",demand:"10/10",image:"https://i.postimg.cc/rwdWsKkJ/Leopard.png"},
+  "Lightning":{beli:"2.1M",demand:"6/10",image:"https://i.postimg.cc/MHTHLFZD/Rumble.png"},
+  "Dough":{beli:"2.8M",demand:"10/10",image:"https://i.postimg.cc/wxckYyqR/Dough.png"},
+  "Pain":{beli:"2.3M",demand:"6/10",image:"https://i.postimg.cc/mk21srj7/Pain.png"},
+  "T-Rex":{beli:"2.7M",demand:"8/10",image:"https://i.postimg.cc/zGDtcwTf/T-Rex.png"},
+  "Gravity":{beli:"2.5M",demand:"4/10",image:"https://i.postimg.cc/D02Lw6vJ/Gravity.png"},
+  "Mammoth":{beli:"2.7M",demand:"5/10",image:"https://i.postimg.cc/sXJGqWYV/Mammoth.png"},
+  "Spirit":{beli:"3.4M",demand:"6/10",image:"https://i.postimg.cc/wTpbhYvL/Spirit.png"},
+  "Control":{beli:"3.2M",demand:"5/10",image:"https://i.postimg.cc/9QNpg6Wx/Control.png"},
+  "Venom":{beli:"3M",demand:"6/10",image:"https://i.postimg.cc/zGdtZLkF/Venom.png"},
+  "Shadow":{beli:"2.9M",demand:"5/10",image:"https://i.postimg.cc/kGpGPvBd/Shadow.png"},
+  "Portal":{beli:"1.9M",demand:"10/10",image:"https://i.postimg.cc/DzkWz65v/Portal.png"},
+  "Buddha":{beli:"1.2M",demand:"10/10",image:"https://i.postimg.cc/02nZD6h1/Buddha.png"},
+  "Blizzard":{beli:"2.4M",demand:"5/10",image:"https://i.postimg.cc/fTDBV72v/Blizzard.png"},
+  "Creation":{beli:"1.4M",demand:"3/10",image:"https://i.postimg.cc/HLctq6nT/Creation.png"}
 };
 
 /* ==== STATE ==== */
-let currentSide = 'offering';
 let currentUser = null;
-let currentChatWith = null;
 let trades = [];
-let conversationsMap = new Map();
-let unreadCount = 0;
-const selectedOffering = new Set();   // only one of each
-const selectedWanting = new Set();    // only one of each
+let messages = {};
+let unreadCounts = {};
+let currentChatPartner = null;
+let filterMode = 'all';
+let searchTerm = '';
+let currentSide = 'offering';
+let selectedOffering = new Set();
+let selectedWanting = new Set();
 
 /* ==== DOM ELEMENTS ==== */
-const modal = document.getElementById('tradeModal');
-const itemGrid = document.getElementById('itemGrid');
-const searchInput = document.getElementById('searchInput');
+const genderModal = document.getElementById('genderModal');
+const selectMale = document.getElementById('selectMale');
+const selectFemale = document.getElementById('selectFemale');
+const tradeModal = document.getElementById('tradeModal');
+const createTradeBtn = document.getElementById('createTradeBtn');
+const searchFilter = document.getElementById('searchFilter');
+const clearSearch = document.getElementById('clearSearch');
+const filterAll = document.getElementById('filterAll');
+const filterOffering = document.getElementById('filterOffering');
+const filterRequesting = document.getElementById('filterRequesting');
+const messagingPanel = document.getElementById('messagingPanel');
+const conversationsDiv = document.getElementById('conversations');
+const chatArea = document.getElementById('chatArea');
+const messagesDiv = document.getElementById('messages');
+const msgInput = document.getElementById('msgInput');
+const sendMsgBtn = document.getElementById('sendMsg');
+const openMessagesBtn = document.getElementById('openMessagesBtn');
+const mobileMsgBtn = document.getElementById('mobileMsgBtn');
+const closeChatBtn = document.getElementById('closeChat');
 const offeringTab = document.getElementById('offeringTab');
 const requestingTab = document.getElementById('requestingTab');
+const modalSearch = document.getElementById('modalSearch');
+const itemGrid = document.getElementById('itemGrid');
 const confirmPost = document.getElementById('confirmPost');
-const messagingPanel = document.getElementById('messagingPanel');
-const conversations = document.getElementById('conversations');
-const chatArea = document.getElementById('chatArea');
-const messages = document.getElementById('messages');
-const msgInput = document.getElementById('msgInput');
-const sendMsg = document.getElementById('sendMsg');
-const chatAvatar = document.getElementById('chatAvatar');
-const chatUser = document.getElementById('chatUser');
-const closeChat = document.getElementById('closeChat');
-const newAccountBtn = document.getElementById('newAccount');
-const openMessagesBtn = document.getElementById('openMessagesBtn');
-const msgBadge = document.getElementById('msgBadge');
-const postBtn = document.getElementById('postBtn');
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const closeMobileMenu = document.getElementById('closeMobileMenu');
-const mobileMsgBtn = document.getElementById('mobileMsgBtn');
-const mobileMsgBadge = document.getElementById('mobileMsgBadge');
-const mobileAvatar = document.getElementById('mobileAvatar');
-const mobileNewAccount = document.getElementById('mobileNewAccount');
+const cancelPost = document.getElementById('cancelPost');
+const closeModal = document.getElementById('closeModal');
 
-/* ==== USER ==== */
-function generateUser() {
-  const id = Date.now().toString(36) + Math.random().toString(36).substr(2);
-  const username = "User_" + Math.random().toString(36).substr(2, 5);
-  const avatar = `https://api.dicebear.com/7.x/avataaars/svg?seed=${id}`;
-  return { id, username, avatar };
+/* ==== USER / GENDER ==== */
+function generateUser(gender){
+  const id = Date.now().toString(36)+Math.random().toString(36).substr(2);
+  const username = "User_"+Math.random().toString(36).substr(2,5);
+  const avatar = gender==="male"?"https://iili.io/KmAE9MF.webp":"https://iili.io/KmAEH6g.webp";
+  return {id,username,avatar,gender};
 }
-function loadUser() {
+function loadUser(){
   const saved = localStorage.getItem('bf_user');
-  if (saved) {
-    currentUser = JSON.parse(saved);
-    updateUserUI();
-  } else {
-    currentUser = generateUser();
-    localStorage.setItem('bf_user', JSON.stringify(currentUser));
-    updateUserUI();
+  if(saved){
+    const u = JSON.parse(saved);
+    if(u.gender){ currentUser=u; updateUserUI(); return true; }
+    else localStorage.removeItem('bf_user');
   }
+  return false;
 }
-function updateUserUI() {
-  document.getElementById('userAvatar').src = currentUser.avatar;
-  document.getElementById('userName').textContent = currentUser.username;
-  mobileAvatar.src = currentUser.avatar;
+function showGenderModal(){ genderModal.classList.remove('hidden'); document.body.style.overflow='hidden'; }
+function hideGenderModal(){ genderModal.classList.add('hidden'); document.body.style.overflow=''; }
+function finalizeUser(gender){
+  currentUser = generateUser(gender);
+  localStorage.setItem('bf_user',JSON.stringify(currentUser));
+  updateUserUI(); hideGenderModal(); loadTrades(); loadMessages();
 }
-function newAccount() {
-  if (confirm("Create new account? This will clear your current session.")) {
-    localStorage.removeItem('bf_user');
-    currentUser = generateUser();
-    localStorage.setItem('bf_user', JSON.stringify(currentUser));
-    updateUserUI();
-    loadTrades();
-    loadAllConversations();
-  }
+selectMale.onclick = ()=>finalizeUser('male');
+selectFemale.onclick = ()=>finalizeUser('female');
+function updateUserUI(){
+  document.getElementById('userAvatar')?.setAttribute('src',currentUser.avatar);
+  document.getElementById('mobileAvatar').src = currentUser.avatar;
+  document.getElementById('userName') && (document.getElementById('userName').textContent = currentUser.username);
 }
-newAccountBtn.onclick = newAccount;
-mobileNewAccount.onclick = newAccount;
 
-/* ==== MODAL ITEM RENDER ==== */
-function itemHTML(name, data) {
-  const isSelected = currentSide === 'offering' ? selectedOffering.has(name) : selectedWanting.has(name);
-  return `<button data-name="${name}" class="relative group flex flex-col items-center p-2 lg:p-3 rounded-xl bg-gray-800/50 border border-white/10 hover:border-purple-500/50 transition">
-    <div class="relative">
-      <img src="${data.image}" class="w-16 h-16 lg:w-20 lg:h-20 object-contain">
-      <div class="tick ${isSelected ? 'show' : ''}">
-        <svg class="w-12 h-12 lg:w-16 lg:h-16 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/></svg>
-      </div>
-    </div>
-    <span class="mt-1 lg:mt-2 text-xs font-medium truncate w-full text-center">${name}</span>
-    <span class="text-[9px] lg:text-[10px] text-gray-400">${data.beli} • ${data.demand}</span>
-  </button>`;
-}
-function renderItems() {
-  const term = searchInput.value.toLowerCase();
-  const filtered = Object.entries(fruits).filter(([name]) => name.toLowerCase().includes(term));
-  itemGrid.innerHTML = filtered.map(([name, data]) => itemHTML(name, data)).join('');
-}
-function toggleItem(name) {
-  const set = currentSide === 'offering' ? selectedOffering : selectedWanting;
-  set.has(name) ? set.delete(name) : set.add(name);
-  renderItems();
-}
-itemGrid.addEventListener('click', e => {
-  const btn = e.target.closest('button[data-name]');
-  if (btn) toggleItem(btn.dataset.name);
-});
+/* ==== NEW ACCOUNT ==== */
+document.getElementById('newAccount')?.addEventListener('click',()=>{ if(confirm('Create new account?')){ localStorage.removeItem('bf_user'); currentUser=null; showGenderModal(); } });
+document.getElementById('mobileNewAccount')?.addEventListener('click',()=>{ if(confirm('Create new account?')){ localStorage.removeItem('bf_user'); currentUser=null; showGenderModal(); } });
 
-/* ==== TABS ==== */
-offeringTab.onclick = () => {
-  currentSide = 'offering';
-  offeringTab.classList.replace('bg-gray-700', 'bg-purple-600');
-  requestingTab.classList.replace('bg-purple-600', 'bg-gray-700');
-  renderItems();
-};
-requestingTab.onclick = () => {
-  currentSide = 'requesting';
-  requestingTab.classList.replace('bg-gray-700', 'bg-purple-600');
-  offeringTab.classList.replace('bg-purple-600', 'bg-gray-700');
-  renderItems();
-};
-searchInput.oninput = renderItems;
-
-/* ==== OPEN / CLOSE MODAL ==== */
-postBtn.onclick = () => {
-  selectedOffering.clear(); selectedWanting.clear();
-  currentSide = 'offering';
-  offeringTab.classList.replace('bg-gray-700', 'bg-purple-600');
-  requestingTab.classList.replace('bg-purple-600', 'bg-gray-700');
-  searchInput.value = '';
-  renderItems();
-  modal.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-};
-function closeModal() {
-  modal.classList.add('hidden');
-  document.body.style.overflow = '';
-}
-document.getElementById('closeModal').onclick = closeModal;
-document.getElementById('cancelPost').onclick = closeModal;
-
-/* ==== POST TRADE ==== */
-confirmPost.onclick = async () => {
-  if (selectedOffering.size === 0 || selectedWanting.size === 0) {
-    alert("Both Offering and Requesting must have at least one item!");
-    return;
-  }
-  const offering = Array.from(selectedOffering).map(name => ({
-    name, img: fruits[name].image, value: fruits[name].beli, rate: fruits[name].demand
-  }));
-  const wanting = Array.from(selectedWanting).map(name => ({
-    name, img: fruits[name].image, value: fruits[name].beli, rate: fruits[name].rate
-  })).map(name => ({
-    name, img: fruits[name].image, value: fruits[name].beli, rate: fruits[name].demand
-  }));
-  const trade = {
-    id: Date.now(),
-    user: currentUser,
-    offering, wanting,
-    offerValue: offering.reduce((a, i) => a + (parseFloat(i.value) || 0), 0) + "M",
-    wantValue: wanting.reduce((a, i) => a + (parseFloat(i.value) || 0), 0) + "M"
-  };
-  try {
-    const res = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(trade) });
-    if (!res.ok) throw new Error();
-    alert("Trade posted!");
-    closeModal();
-    loadTrades();
-  } catch {
-    alert("Failed to post trade.");
-  }
-};
-
-/* ==== TRADE CARD RENDER ==== */
-function itemHTMLCard(i, color = "pink") {
-  const grad = color === "rose" ? "from-rose-400/50 to-rose-600/40" : "from-pink-400/50 to-pink-600/40";
+/* ==== ITEM CARD (EXACT FROM FIRST SITE) ==== */
+function itemHTMLCard(i,color="pink"){
+  const grad = color==="rose"?"from-rose-400/50 to-rose-600/40":"from-pink-400/50 to-pink-600/40";
   return `<div class="group relative rounded-md border bg-gradient-to-br transition-transform hover:-translate-y-1 hover:z-10 ${grad} p-0.5 border-purple-500/20 h-[100px] w-[75px] sm:h-[120px] sm:w-[90px] lg:h-[150px] lg:w-[120px] shrink-0">
     <div class="bg-grid-pattern absolute inset-0 opacity-10"></div>
     <div class="relative z-10 flex h-full w-full flex-col">
       <div class="relative flex flex-1 items-center justify-center p-0.5">
-        <img src="${i.img}" alt="${i.name}" class="h-auto max-h-full w-auto max-w-full object-contain drop-shadow-md">
+        <img src="${i.image}" alt="${i.name}" class="h-auto max-h-full w-auto max-w-full object-contain drop-shadow-md">
         <div class="absolute left-1 top-1"><span class="rounded-md px-1.5 py-0.5 text-[9px] lg:text-[10px] font-bold uppercase bg-purple-600/80 text-white">R</span></div>
       </div>
       <div class="flex flex-col items-center gap-0.5 pb-1">
         <div class="bg-black/80 backdrop-blur-md rounded-md border border-white/20 p-1">
           <div class="flex items-center gap-1 lg:gap-2">
-            <div class="flex items-center gap-1">
-              <svg class="h-2.5 w-2.5 lg:h-3 lg:w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg>
-              <span class="text-[10px] lg:text-xs font-bold text-amber-300">${i.value}</span>
+            <div class="flex items-center gap-1"><svg class="h-2.5 w-2.5 lg:h-3 lg:w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg>
+              <span class="text-[10px] lg:text-xs font-bold text-amber-300">${i.beli}</span>
             </div>
-            <div class="flex items-center gap-1">
-              <svg class="lucide lucide-trending-up h-2.5 w-2.5 lg:h-3 lg:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
-              <span class="text-[10px] lg:text-xs font-bold text-white">${i.rate}</span>
+            <div class="flex items-center gap-1"><svg class="lucide lucide-trending-up h-2.5 w-2.5 lg:h-3 lg:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+              <span class="text-[10px] lg:text-xs font-bold text-white">${i.demand}</span>
             </div>
           </div>
         </div>
@@ -354,14 +335,16 @@ function itemHTMLCard(i, color = "pink") {
     </div>
   </div>`;
 }
-function renderTrade(t) {
+
+/* ==== TRADE CARD (EXACT FROM FIRST SITE) ==== */
+function renderTrade(t){
   const totalItems = t.offering.length + t.wanting.length;
   const scrollClass = totalItems > 8 ? 'max-h-32 lg:max-h-40 overflow-y-auto' : '';
-  const offerHTML = t.offering.map(i => itemHTMLCard(i, "pink")).join('');
-  const wantHTML = t.wanting.map(i => itemHTMLCard(i, "rose")).join('');
-  const isOwner = t.user.id === currentUser.id;
+  const offerHTML = t.offering.map(i => itemHTMLCard(i,"pink")).join('');
+  const wantHTML = t.wanting.map(i => itemHTMLCard(i,"rose")).join('');
+  const isOwner = t.user.id === currentUser?.id;
   const deleteBtn = isOwner ? `<button onclick="deleteTrade(${t.id})" class="ml-2 p-1.5 bg-red-600/80 hover:bg-red-700 rounded-full"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>` : '';
-  return `<div class="bg-gray-800/50 rounded-xl p-3 lg:p-4 border border-purple-500/20">
+  return `<div class="bg-gray-800/50 rounded-xl p-3 lg:p-4 border border-purple-500/20 trade-card">
     <div class="flex items-center gap-2 lg:gap-3 mb-2 lg:mb-3">
       <img src="${t.user.avatar}" class="w-8 h-8 lg:w-10 lg:h-10 rounded-full">
       <div class="flex-1">
@@ -392,154 +375,195 @@ function renderTrade(t) {
   </div>`;
 }
 
-/* ==== LOAD / DELETE TRADES ==== */
-async function deleteTrade(id) {
-  if (!confirm("Delete your trade?")) return;
-  try { await fetch(`${API}/${id}`, { method: "DELETE" }); loadTrades(); } catch { alert("Failed to delete"); }
-}
-async function loadTrades() {
-  try {
+/* ==== LOAD TRADES ==== */
+async function loadTrades(){
+  try{
     const res = await fetch(API);
-    if (!res.ok) throw new Error(`Server ${res.status}`);
-    const data = await res.json();
-    trades = data;
-    document.getElementById("trades").innerHTML = data.length ? data.map(renderTrade).join("") : "<p class='text-center text-gray-500'>No trades yet.</p>";
-    loadAllConversations();
-  } catch {
-    document.getElementById("trades").innerHTML = `<div class="text-center p-6"><p class="text-red-400 mb-2">Unable to load trades</p><button onclick="loadTrades()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm font-medium">Try again</button></div>`;
+    trades = await res.json();
+    filterAndRender();
+  }catch(e){
+    document.getElementById("trades").innerHTML = `<p class="text-center text-red-400">Failed to load trades.</p>`;
   }
 }
 
-/* ==== MESSAGING ==== */
-async function loadAllConversations() {
-  if (!currentUser) return;
-  try {
-    const res = await fetch(MSG_API);
-    const allMsgs = await res.json();
-    conversationsMap.clear(); unreadCount = 0;
-    allMsgs.forEach(m => {
-      const other = m.from === currentUser.id ? m.to : m.from;
-      const key = [currentUser.id, other].sort().join('-');
-      if (!conversationsMap.has(key)) {
-        conversationsMap.set(key, { userId: other, lastMsg: m.text, timestamp: m.timestamp, unread: 0 });
-      }
-      const conv = conversationsMap.get(key);
-      if (m.from !== currentUser.id && m.timestamp > conv.timestamp) {
-        conv.lastMsg = m.text; conv.timestamp = m.timestamp; conv.unread++;
-      } else if (m.from !== currentUser.id) conv.unread++;
-    });
-    unreadCount = Array.from(conversationsMap.values()).reduce((a, c) => a + c.unread, 0);
-    updateBadge(); renderConversations();
-  } catch {}
-}
-function renderConversations() {
-  conversations.innerHTML = '';
-  if (conversationsMap.size === 0) {
-    conversations.innerHTML = "<p class='text-center text-gray-500 p-4'>No messages yet.</p>";
-    return;
+/* ==== FILTER & SEARCH ==== */
+function filterAndRender(){
+  let filtered = trades;
+  if(searchTerm){
+    filtered = filtered.filter(t=>
+      t.offering.some(i=>i.name.toLowerCase().includes(searchTerm)) ||
+      t.wanting.some(i=>i.name.toLowerCase().includes(searchTerm))
+    );
   }
-  const sorted = [...conversationsMap.values()].sort((a, b) => b.timestamp - a.timestamp);
-  sorted.forEach(c => {
-    const tradeUser = trades.find(t => t.user.id === c.userId)?.user || { username: "Unknown", avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=" + c.userId };
-    const unreadBadge = c.unread > 0 ? `<span class="notification-badge text-xs">${c.unread}</span>` : '';
-    conversations.innerHTML += `<button onclick="openChat('${c.userId}')" class="w-full p-3 flex items-center gap-3 hover:bg-gray-700 rounded-lg transition">
-      <img src="${tradeUser.avatar}" class="w-10 h-10 rounded-full">
-      <div class="flex-1 text-left">
-        <div class="font-medium text-sm">${tradeUser.username}</div>
-        <div class="text-xs text-gray-400 truncate">${c.lastMsg}</div>
+  if(filterMode==='offering') filtered = filtered.filter(t=>t.offering.length>0);
+  if(filterMode==='requesting') filtered = filtered.filter(t=>t.wanting.length>0);
+  document.getElementById("trades").innerHTML = filtered.length
+    ? filtered.map(renderTrade).join("")
+    : `<p class="text-center text-gray-500 col-span-full">No trades found.</p>`;
+}
+searchFilter.oninput = e=>{ searchTerm=e.target.value.toLowerCase(); filterAndRender(); };
+clearSearch.onclick = ()=>{ searchFilter.value=''; searchTerm=''; filterAndRender(); };
+filterAll.onclick = ()=>{ filterMode='all'; updateFilterButtons(); filterAndRender(); };
+filterOffering.onclick = ()=>{ filterMode='offering'; updateFilterButtons(); filterAndRender(); };
+filterRequesting.onclick = ()=>{ filterMode='requesting'; updateFilterButtons(); filterAndRender(); };
+function updateFilterButtons(){
+  filterAll.classList.toggle('bg-gradient-to-r',filterMode==='all');
+  filterAll.classList.toggle('from-purple-500',filterMode==='all');
+  filterAll.classList.toggle('to-purple-600',filterMode==='all');
+  filterAll.classList.toggle('text-white',filterMode==='all');
+  [filterOffering,filterRequesting].forEach(b=>{ b.classList.remove('bg-gradient-to-r','from-purple-500','to-purple-600','text-white'); b.classList.add('text-gray-400','hover:text-white'); });
+  if(filterMode==='offering') filterOffering.classList.add('bg-gradient-to-r','from-purple-500','to-purple-600','text-white');
+  if(filterMode==='requesting') filterRequesting.classList.add('bg-gradient-to-r','from-purple-500','to-purple-600','text-white');
+}
+
+/* ==== MODAL ITEM GRID (WITH TICK) ==== */
+function renderModalItems(){
+  const term = modalSearch.value.toLowerCase();
+  const filtered = Object.entries(fruits).filter(([name])=>name.toLowerCase().includes(term));
+  itemGrid.innerHTML = filtered.map(([name,data])=>{
+    const selected = currentSide==='offering' ? selectedOffering.has(name) : selectedWanting.has(name);
+    return `<button data-name="${name}" class="relative group flex flex-col items-center p-2 lg:p-3 rounded-xl bg-gray-800/50 border border-white/10 hover:border-purple-500/50 transition">
+      <div class="relative">
+        <img src="${data.image}" class="w-16 h-16 lg:w-20 lg:h-20 object-contain">
+        <div class="tick ${selected?'show':''}">
+          <svg class="w-12 h-12 lg:w-16 lg:h-16 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/></svg>
+        </div>
       </div>
-      ${unreadBadge}
+      <span class="mt-1 lg:mt-2 text-xs font-medium truncate w-full text-center">${name}</span>
+      <span class="text-[9px] lg:text-[10px] text-gray-400">${data.beli} • ${data.demand}</span>
     </button>`;
-  });
+  }).join('');
 }
-function updateBadge() {
-  const count = unreadCount > 99 ? '99+' : unreadCount;
-  if (unreadCount > 0) {
-    msgBadge.textContent = count; msgBadge.classList.remove('hidden');
-    mobileMsgBadge.textContent = count; mobileMsgBadge.classList.remove('hidden');
-  } else {
-    msgBadge.classList.add('hidden'); mobileMsgBadge.classList.add('hidden');
+itemGrid.addEventListener('click', e=>{
+  const btn = e.target.closest('button[data-name]');
+  if(btn){
+    const name = btn.dataset.name;
+    const set = currentSide==='offering'?selectedOffering:selectedWanting;
+    set.has(name)?set.delete(name):set.add(name);
+    renderModalItems();
+    confirmPost.disabled = selectedOffering.size===0 || selectedWanting.size===0;
   }
-}
-function openChat(userId) {
-  currentChatWith = userId;
-  messagingPanel.classList.remove('hidden');
-  chatArea.classList.remove('hidden');
-  conversations.classList.add('hidden');
-  postBtn.classList.add('hidden');
-  const tradeUser = trades.find(t => t.user.id === userId)?.user || { username: "Unknown", avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=" + userId };
-  chatAvatar.src = tradeUser.avatar;
-  chatUser.textContent = tradeUser.username;
-  markAsRead(userId);
-  loadMessages();
-}
-function markAsRead(userId) {
-  const key = [currentUser.id, userId].sort().join('-');
-  if (conversationsMap.has(key)) {
-    const conv = conversationsMap.get(key);
-    unreadCount -= conv.unread; conv.unread = 0;
-    updateBadge(); renderConversations();
-  }
-}
-function closeChatPanel() {
-  messagingPanel.classList.add('hidden');
-  currentChatWith = null;
-  chatArea.classList.add('hidden');
-  conversations.classList.remove('hidden');
-  postBtn.classList.remove('hidden');
-}
-closeChat.onclick = closeChatPanel;
-openMessagesBtn.onclick = () => {
-  messagingPanel.classList.remove('hidden');
-  conversations.classList.remove('hidden');
-  chatArea.classList.add('hidden');
-  postBtn.classList.add('hidden');
-  loadAllConversations();
-};
-mobileMsgBtn.onclick = openMessagesBtn.onclick;
+});
 
-/* ==== SEND / LOAD MESSAGES ==== */
-async function loadMessages() {
-  if (!currentChatWith) return;
-  try {
-    const res = await fetch(`${MSG_API}?user1=${currentUser.id}&user2=${currentChatWith}`);
-    const msgs = await res.json();
-    messages.innerHTML = '';
-    msgs.forEach(m => {
-      const isMe = m.from === currentUser.id;
-      const bubble = `<div class="flex ${isMe ? 'justify-end' : 'justify-start'}">
-        <div class="${isMe ? 'bg-purple-600 text-white' : 'bg-gray-700 text-white'} rounded-lg px-3 lg:px-4 py-2 chat-bubble text-sm">${m.text}</div>
-      </div>`;
-      messages.innerHTML +=bubble;
-    });
-    messages.scrollTop = messages.scrollHeight;
-  } catch {}
+/* ==== CREATE TRADE MODAL ==== */
+createTradeBtn.onclick = ()=>{ if(!currentUser?.gender) return; openTradeModal(); };
+function openTradeModal(){
+  selectedOffering.clear(); selectedWanting.clear(); currentSide='offering';
+  offeringTab.classList.replace('bg-gray-700','bg-purple-600');
+  requestingTab.classList.replace('bg-purple-600','bg-gray-700');
+  modalSearch.value=''; renderModalItems();
+  tradeModal.classList.remove('hidden');
 }
-sendMsg.onclick = async () => {
-  if (!msgInput.value.trim() || !currentChatWith) return;
-  const msg = { from: currentUser.id, to: currentChatWith, text: msgInput.value.trim(), timestamp: Date.now() };
-  try {
-    await fetch(MSG_API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(msg) });
-    msgInput.value = '';
-    loadMessages();
-    loadAllConversations();
-  } catch { alert("Failed to send"); }
+closeModal.onclick = cancelPost.onclick = ()=>{ tradeModal.classList.add('hidden'); };
+offeringTab.onclick = ()=>{ currentSide='offering'; offeringTab.classList.replace('bg-gray-700','bg-purple-600'); requestingTab.classList.replace('bg-purple-600','bg-gray-700'); renderModalItems(); };
+requestingTab.onclick = ()=>{ currentSide='requesting'; requestingTab.classList.replace('bg-gray-700','bg-purple-600'); offeringTab.classList.replace('bg-purple-600','bg-gray-700'); renderModalItems(); };
+modalSearch.oninput = renderModalItems;
+
+confirmPost.onclick = async ()=>{
+  if(selectedOffering.size===0 || selectedWanting.size===0) return;
+  const offering = Array.from(selectedOffering).map(name=>({name,img:fruits[name].image,beli:fruits[name].beli,demand:fruits[name].demand}));
+  const wanting = Array.from(selectedWanting).map(name=>({name,img:fruits[name].image,beli:fruits[name].beli,demand:fruits[name].demand}));
+  const trade = {
+    id:Date.now(), user:currentUser, offering, wanting,
+    offerValue:offering.reduce((a,i)=>a+(parseFloat(i.beli)||0),0)+"M",
+    wantValue:wanting.reduce((a,i)=>a+(parseFloat(i.beli)||0),0)+"M"
+  };
+  try{
+    await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(trade)});
+    tradeModal.classList.add('hidden');
+    loadTrades();
+  }catch{ alert("Failed to post trade."); }
 };
-msgInput.onkeydown = e => { if (e.key === "Enter") sendMsg.click(); };
+
+/* ==== CHAT ==== */
+function openChat(partnerId){
+  currentChatPartner = partnerId;
+  const trade = trades.find(t=>t.user.id===partnerId);
+  document.getElementById('chatAvatar').src = trade?.user.avatar || '';
+  document.getElementById('chatUser').textContent = trade?.user.username || 'User';
+  renderConversationList(); renderMessages();
+  chatArea.classList.remove('hidden'); conversationsDiv.classList.add('hidden');
+  messagingPanel.classList.remove('hidden');
+  unreadCounts[partnerId] = 0; updateBadges();
+}
+function closeChat(){ messagingPanel.classList.add('hidden'); currentChatPartner = null; }
+openMessagesBtn.onclick = mobileMsgBtn.onclick = ()=>{ if(!currentUser?.gender) return; messagingPanel.classList.remove('hidden'); renderConversationList(); };
+closeChatBtn.onclick = closeChat;
+function renderConversationList(){
+  const partners = [...new Set(trades.map(t=>t.user.id).filter(id=>id!==currentUser?.id))];
+  conversationsDiv.innerHTML = partners.map(id=>{
+    const user = trades.find(t=>t.user.id===id).user;
+    const last = messages[id]?.[messages[id].length-1];
+    const unread = unreadCounts[id]||0;
+    return `<div onclick="openChat('${id}')" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-700 cursor-pointer">
+      <img src="${user.avatar}" class="w-10 h-10 rounded-full">
+      <div class="flex-1">
+        <div class="font-medium">${user.username}</div>
+        <div class="text-xs text-gray-400 truncate">${last?last.msg:'Start chatting'}</div>
+      </div>
+      ${unread?`<span class="notification-badge">${unread}</span>`:''}
+    </div>`;
+  }).join('') || '<p class="text-center text-gray-500 p-4">No conversations yet.</p>';
+}
+function renderMessages(){
+  const msgs = messages[currentChatPartner]||[];
+  messagesDiv.innerHTML = msgs.map(m=>`
+    <div class="${m.from===currentUser.id?'ml-auto bg-purple-600 text-white':'bg-gray-700 text-gray-200'} max-w-[75%] rounded-lg p-2">
+      <div class="text-xs">${m.msg}</div>
+      <div class="text-[10px] opacity-70">${new Date(m.time).toLocaleTimeString()}</div>
+    </div>`).join('');
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+sendMsgBtn.onclick = async ()=>{
+  if(!msgInput.value.trim() || !currentChatPartner) return;
+  const txt = msgInput.value.trim(); msgInput.value = '';
+  const payload = {from:currentUser.id,to:currentChatPartner,msg:txt,time:Date.now()};
+  try{ await fetch(MSG_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }
+  catch(e){ console.error(e); }
+  if(!messages[currentChatPartner]) messages[currentChatPartner]=[];
+  messages[currentChatPartner].push({...payload,from:currentUser.id});
+  renderMessages();
+};
+async function loadMessages(){
+  try{
+    const res = await fetch(MSG_API);
+    const all = await res.json();
+    messages = {}; unreadCounts = {};
+    all.forEach(m=>{
+      const partner = m.from===currentUser.id?m.to:m.from;
+      if(!messages[partner]) messages[partner]=[];
+      messages[partner].push(m);
+      if(m.from!==currentUser.id) unreadCounts[partner] = (unreadCounts[partner]||0)+1;
+    });
+    updateBadges();
+  }catch(e){ console.error(e); }
+}
+function updateBadges(){
+  const total = Object.values(unreadCounts).reduce((a,b)=>a+b,0);
+  document.getElementById('msgBadge').textContent = total;
+  document.getElementById('msgBadge').classList.toggle('hidden',!total);
+  document.getElementById('mobileMsgBadge').textContent = total;
+  document.getElementById('mobileMsgBadge').classList.toggle('hidden',!total);
+}
+
+/* ==== DELETE TRADE ==== */
+window.deleteTrade = async (id)=>{
+  if(!confirm('Delete this trade?')) return;
+  try{
+    await fetch(`${API}/${id}`,{method:'DELETE'});
+    trades = trades.filter(t=>t.id!==id);
+    filterAndRender();
+  }catch(e){ alert('Failed to delete'); }
+};
 
 /* ==== MOBILE MENU ==== */
-mobileMenuBtn.onclick = () => mobileMenu.classList.add('open');
-closeMobileMenu.onclick = () => mobileMenu.classList.remove('open');
-
-/* ==== GLOBAL FUNCTIONS ==== */
-window.openChat = openChat;
-window.deleteTrade = deleteTrade;
+document.getElementById('mobileMenuBtn').onclick = ()=>{ document.getElementById('mobileMenu').classList.add('open'); };
+document.getElementById('closeMobileMenu').onclick = ()=>{ document.getElementById('mobileMenu').classList.remove('open'); };
 
 /* ==== INIT ==== */
-loadUser();
-loadTrades();
-renderItems();
-setInterval(() => { if (currentChatWith) loadMessages(); loadAllConversations(); }, 3000);
+if(!loadUser()) showGenderModal();
+else{ loadTrades(); loadMessages(); setInterval(()=>{loadTrades();loadMessages();},15000); }
+renderModalItems();
 </script>
 </body>
 </html>
