@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blox Fruits Trading</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .gradient-text { @apply bg-gradient-to-r from-purple-300 to-indigo-400 bg-clip-text text-transparent; }
-    .bg-grid-pattern { background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10h20M10 0v20' stroke='%23ffffff' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E"); }
-    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
-    [data-radix-scroll-area-viewport] { scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; }
-    [data-radix-scroll-area-viewport]::-webkit-scrollbar { display: none; }
-    .tick { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; }
-    .tick.show { opacity: 1; }
-    .chat-bubble { max-width: 75%; }
-    .notification-badge { position: absolute; top: -6px; right: -6px; background: #ef4444; color: white; font-size: 10px; font-weight: bold; min-width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .mobile-menu { transition: transform .3s ease; }
-    .mobile-menu.open { transform: translateX(0); }
-    .trade-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .trade-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.3); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blox Fruits Trading</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .gradient-text {@apply bg-gradient-to-r from-purple-300 to-indigo-400 bg-clip-text text-transparent;}
+  .bg-grid-pattern {background-image:url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10h20M10 0v20' stroke='%23ffffff' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E");}
+  .scrollbar-hide {-ms-overflow-style:none;scrollbar-width:none;}
+  .scrollbar-hide::-webkit-scrollbar{display:none;}
+  .tick {position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+  .tick.show {opacity:1;}
+  .notification-badge {position:absolute;top:-6px;right:-6px;background:#ef4444;color:white;font-size:10px;font-weight:bold;min-width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .mobile-menu {transition:transform .3s ease;}
+  .mobile-menu.open {transform:translateX(0);}
+  .trade-card {transition:transform .3s ease,box-shadow .3s ease;}
+  .trade-card:hover {transform:translateY(-4px);box-shadow:0 20px 25px -5px rgba(139,92,246,0.2),0 10px 10px -5px rgba(0,0,0,0.3);}
+</style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col">
 
-<!-- Gender Modal -->
+<body class="bg-black text-white min-h-screen flex flex-col">
+
+<!-- ==== GENDER MODAL ==== -->
 <div id="genderModal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 px-4">
   <div class="relative w-full max-w-sm rounded-2xl bg-gray-800 p-8 border border-purple-500/30 shadow-2xl">
     <h2 class="text-2xl font-bold text-center mb-6">Choose Your Avatar</h2>
@@ -41,7 +39,7 @@
   </div>
 </div>
 
-<!-- Mobile Header -->
+<!-- ==== MOBILE TOP BAR ==== -->
 <div class="lg:hidden fixed top-0 left-0 right-0 bg-gray-800/95 backdrop-blur z-50 border-b border-purple-500/20">
   <div class="flex items-center justify-between p-3">
     <button id="mobileMenuBtn" class="p-2">
@@ -57,12 +55,12 @@
   </div>
 </div>
 
-<!-- Mobile Menu -->
+<!-- ==== MOBILE MENU ==== -->
 <div id="mobileMenu" class="mobile-menu fixed inset-0 bg-gray-800/95 backdrop-blur z-40 -translate-x-full lg:hidden">
   <div class="p-4 border-b border-white/10 flex justify-between items-center">
     <h3 class="font-bold">Menu</h3>
     <button id="closeMobileMenu" class="text-white/70 hover:text-white">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoinstrom="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
   </div>
   <div class="p-4 space-y-4">
@@ -74,14 +72,59 @@
   </div>
 </div>
 
-<!-- Desktop Header (Hidden on mobile) -->
+<!-- ==== DESKTOP TOP BAR ==== -->
 <div class="hidden lg:block w-full">
   <div class="relative mx-auto flex w-full justify-between px-4 py-3 transition duration-200 rounded-full bg-transparent">
-    <!-- (Your original nav - kept intact) -->
+    <div class="flex w-full flex-row items-center justify-between">
+      <!-- Logo + Game Switcher -->
+      <div class="flex w-[90px] flex-row items-center gap-2">
+        <a href="https://bloxfruittrading.com/"><img alt="logo" loading="lazy" width="48" height="48" decoding="async" class="min-w-10 min-h-10 w-full h-full object-contain" src="./final ones_files/KL1P0ib.gif"></a>
+        <div class="relative z-50">
+          <button class="group flex items-center gap-3 rounded-xl border border-border/60 bg-black/40 px-4 py-2.5 backdrop-blur-md transition-all hover:border-primary/50 hover:bg-black/60 hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]">
+            <div class="relative flex items-center gap-3">
+              <div class="flex flex-col items-start">
+                <span class="max-w-[150px] truncate text-base font-bold text-white">Blox Fruits</span>
+                <span class="text-xs text-neutral-400">Switch Game</span>
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-chevron-down ml-1 h-4 w-4 text-neutral-400"><path d="M6 9l6 6l6 -6"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Nav Links -->
+      <nav aria-label="Main" class="relative z-10 flex max-w-max flex-1 items-center justify-center">
+        <ul class="group flex-1 list-none space-x-5 flex items-center justify-center">
+          <li><a href="https://bloxfruittrading.com/trading" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center"><img src="./final ones_files/KL12OJt.png" alt="Icon" class="h-full w-full object-contain"></span><span class="text-xs font-medium">Trading</span></a></li>
+          <li><a href="https://bloxfruittrading.com/values" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center"><svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.6875 5.625H25.375V27.1875H4.75V5.625H9.4375V7.5H20.6875V5.625ZM8.5 15H21.625V13.125H8.5V15ZM8.5 22.5H21.625V20.625H8.5V22.5ZM11.3125 5.625V2.8125H18.8125V5.625H11.3125Z" fill="currentColor"></path></svg></span><span class="text-xs font-medium">Values</span></a></li>
+          <li><a href="https://bloxfruittrading.com/calculator" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg></span><span class="text-xs font-medium">Calculator</span></a></li>
+          <li><a href="https://bloxfruittrading.com/rate" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center text-gray-400 text-lg">Stars</span><span class="text-xs font-medium">Reviews</span></a></li>
+          <li><a href="https://bloxfruittrading.com/giveaways" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent"><span class="flex h-7 w-7 items-center justify-center text-gray-400 text-lg">Chart</span><span class="text-xs font-medium">Stocks</span></a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Icons -->
+      <div class="flex items-center space-x-4">
+        <a target="_blank" href="https://bloxfruittrading.com/discord" class="flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50">
+          <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-6 w-6"><path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775  33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path></svg>
+        </a>
+        <button id="openMessagesBtn" class="relative flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-6 w-6"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          <span id="msgBadge" class="notification-badge hidden">0</span>
+        </button>
+        <div id="userInfo" class="flex items-center gap-3">
+          <img id="userAvatar" class="w-10 h-10 rounded-full" src="">
+          <div class="flex flex-col">
+            <span id="userName" class="font-semibold"></span>
+            <button id="newAccount" class="text-xs text-purple-400 hover:underline">New Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- Main Content -->
+<!-- ==== MAIN CONTENT ==== -->
 <main class="flex-1 pt-16 lg:pt-0 px-4 lg:px-8 max-w-7xl mx-auto w-full">
   <!-- Header -->
   <header class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 mt-6 lg:mt-10">
@@ -89,12 +132,10 @@
       <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Trade Ads</h1>
       <p class="pt-2 text-sm text-gray-400 sm:text-base">Browse and find the perfect trade for your items.</p>
     </div>
-    <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-      <button id="createTradeBtn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:shadow-lg hover:shadow-purple-500/25 active:scale-[0.97] border border-purple-500/20 ring-1 ring-white/10 h-10 px-4 py-2 w-full sm:w-auto text-white transition-all duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus mr-2 h-5 w-5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
-        <span class="font-medium">Create Trade Ad</span>
-      </button>
-    </div>
+    <button id="createTradeBtn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 hover:from-purple-600 hover:via-purple-700 hover:to-purple-800 hover:shadow-lg hover:shadow-purple-500/25 active:scale-[0.97] border border-purple-500/20 ring-1 ring-white/10 h-10 px-4 py-2 w-full sm:w-auto text-white transition-all duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus mr-2 h-5 w-5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+      <span class="font-medium">Create Trade Ad</span>
+    </button>
   </header>
 
   <!-- Search & Filters -->
@@ -129,7 +170,7 @@
   <div id="trades" class="grid gap-6 lg:gap-8"></div>
 </main>
 
-<!-- Messaging Panel -->
+<!-- ==== MESSAGING PANEL ==== -->
 <div id="messagingPanel" class="hidden fixed inset-0 lg:right-0 lg:left-auto lg:top-0 lg:h-full lg:w-96 bg-gray-800 border-l lg:border-purple-500/30 shadow-2xl flex flex-col z-40">
   <div class="p-4 border-b border-white/10 flex items-center justify-between">
     <h3 class="font-bold text-lg">Messages</h3>
@@ -151,23 +192,17 @@
   </div>
 </div>
 
-<!-- Trade Modal -->
+<!-- ==== TRADE MODAL (unchanged) ==== -->
 <div id="tradeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 overflow-y-auto">
   <div class="relative w-full max-w-4xl my-8 rounded-xl bg-gray-900 border border-purple-500/20 shadow-2xl">
-    <button id="closeModal" class="absolute top-4 right-4 text-white/70 hover:text-white z-10">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
-    <div class="p-6 pb-4 border-b border-white/10">
-      <h2 class="text-xl lg:text-2xl font-bold flex items-center gap-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Create Trade</h2>
-      <p class="text-sm text-gray-400 mt-1">Select items you're offering and requesting</p>
-    </div>
+    <!-- (same as previous version) -->
+    <button id="closeModal" class="absolute top-4 right-4 text-white/70 hover:text-white z-10"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    <div class="p-6 pb-4 border-b border-white/10"><h2 class="text-xl lg:text-2xl font-bold flex items-center gap-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Create Trade</h2><p class="text-sm text-gray-400 mt-1">Select items you're offering and requesting</p></div>
     <div class="flex gap-2 lg:gap-3 p-4 border-b border-white/10">
       <button id="offeringTab" class="px-5 py-2.5 lg:px-6 lg:py-3 rounded-full bg-purple-600 font-semibold text-sm transition">Offering</button>
       <button id="requestingTab" class="px-5 py-2.5 lg:px-6 lg:py-3 rounded-full bg-gray-700 font-semibold text-sm transition">Requesting</button>
     </div>
-    <div class="p-4">
-      <input id="searchInput" type="text" placeholder="Search fruits..." class="w-full px-4 py-3 bg-gray-800 rounded-lg border border-white/20 focus:border-purple-500 outline-none">
-    </div>
+    <div class="p-4"><input id="searchInput" type="text" placeholder="Search fruits..." class="w-full px-4 py-3 bg-gray-800 rounded-lg border border-white/20 focus:border-purple-500 outline-none"></div>
     <div id="itemGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-3 lg:gap-4 p-4 lg:p-6 max-h-96 overflow-y-auto"></div>
     <div class="flex justify-end gap-3 p-4 lg:p-6 border-t border-white/10">
       <button id="cancelPost" class="px-5 py-2.5 lg:px-6 lg:py-3 bg-gray-700 rounded-lg font-medium">Cancel</button>
@@ -176,8 +211,8 @@
   </div>
 </div>
 
-<!-- Footer -->
-<footer class="border-t border-white/10 px-4 lg:px-8 py-10 lg:py-20 bg-gray-900/50 w-full text-xs lg:text-sm mt-16">
+<!-- ==== FOOTER ==== -->
+<footer class="border-t border-white/10 px-4 lg:px-8 py-10 lg:py-20 bg-black/50 w-full text-xs lg:text-sm mt-16">
   <div class="max-w-7xl mx-auto text-gray-500 text-center">
     © 2025 Blox Fruit Trading. All rights reserved.<br>
     <span class="text-gray-600">https://bloxfruittrading.com is a 3rd party website not affiliated with Blox Fruits.</span>
@@ -185,9 +220,12 @@
 </footer>
 
 <script>
+/* ==== DATA & API ==== */
 const API = "https://dropjetic.pythonanywhere.com/trades";
 const MSG_API = "https://dropjetic.pythonanywhere.com/messages";
-const fruits = { /* your fruits object */ };
+const fruits = {/* your fruits object – unchanged */};
+
+/* ==== STATE ==== */
 let currentUser = null;
 let currentSide = 'offering';
 let selectedOffering = new Set();
@@ -196,7 +234,7 @@ let trades = [];
 let filterMode = 'all';
 let searchTerm = '';
 
-// DOM
+/* ==== DOM ==== */
 const genderModal = document.getElementById('genderModal');
 const selectMale = document.getElementById('selectMale');
 const selectFemale = document.getElementById('selectFemale');
@@ -207,111 +245,78 @@ const filterAll = document.getElementById('filterAll');
 const filterOffering = document.getElementById('filterOffering');
 const filterRequesting = document.getElementById('filterRequesting');
 
-// Gender & User
-function generateUser(gender) {
-  const id = Date.now().toString(36) + Math.random().toString(36).substr(2);
-  const username = "User_" + Math.random().toString(36).substr(2, 5);
-  const avatar = gender === "male" ? "https://iili.io/KmAE9MF.webp" : "https://iili.io/KmAEH6g.webp";
-  return { id, username, avatar, gender };
+/* ==== USER / GENDER ==== */
+function generateUser(gender){
+  const id = Date.now().toString(36)+Math.random().toString(36).substr(2);
+  const username = "User_"+Math.random().toString(36).substr(2,5);
+  const avatar = gender==="male"?"https://iili.io/KmAE9MF.webp":"https://iili.io/KmAEH6g.webp";
+  return {id,username,avatar,gender};
 }
-
-function loadUser() {
+function loadUser(){
   const saved = localStorage.getItem('bf_user');
-  if (saved) {
-    const user = JSON.parse(saved);
-    if (user.gender) {
-      currentUser = user;
-      updateUserUI();
-      return true;
-    } else {
-      localStorage.removeItem('bf_user');
-    }
-  }
+  if(saved){ const user = JSON.parse(saved); if(user.gender){ currentUser=user; updateUserUI(); return true; } else localStorage.removeItem('bf_user'); }
   return false;
 }
-
-function showGenderModal() {
-  genderModal.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-}
-
-function hideGenderModal() {
-  genderModal.classList.add('hidden');
-  document.body.style.overflow = '';
-}
-
-function finalizeUser(gender) {
+function showGenderModal(){ genderModal.classList.remove('hidden'); document.body.style.overflow='hidden'; }
+function hideGenderModal(){ genderModal.classList.add('hidden'); document.body.style.overflow=''; }
+function finalizeUser(gender){
   currentUser = generateUser(gender);
-  localStorage.setItem('bf_user', JSON.stringify(currentUser));
-  updateUserUI();
-  hideGenderModal();
-  loadTrades();
+  localStorage.setItem('bf_user',JSON.stringify(currentUser));
+  updateUserUI(); hideGenderModal(); loadTrades();
 }
-
 selectMale.onclick = () => finalizeUser('male');
 selectFemale.onclick = () => finalizeUser('female');
-
-function updateUserUI() {
-  document.getElementById('userAvatar')?.setAttribute('src', currentUser.avatar);
+function updateUserUI(){
+  document.getElementById('userAvatar')?.setAttribute('src',currentUser.avatar);
   document.getElementById('mobileAvatar').src = currentUser.avatar;
   document.getElementById('userName') && (document.getElementById('userName').textContent = currentUser.username);
 }
+document.getElementById('newAccount')?.addEventListener('click',()=>{ if(confirm("Create new account?")){ localStorage.removeItem('bf_user'); currentUser=null; showGenderModal(); loadTrades(); } });
+document.getElementById('mobileNewAccount')?.addEventListener('click',()=>{ if(confirm("Create new account?")){ localStorage.removeItem('bf_user'); currentUser=null; showGenderModal(); loadTrades(); } });
 
-// Trade Card Renderer (Exact match to your design)
-function renderItem(item, color = 'pink') {
-  const grad = color === 'rose' ? 'from-rose-400/50 to-rose-600/40' : 'from-pink-400/50 to-pink-600/40';
-  return `
-    <div class="group relative rounded-md border bg-gradient-to-br transition-transform hover:-translate-y-1 hover:z-10 ${grad} p-0.5 border-purple-500/20 h-[120px] w-[90px] sm:h-[150px] sm:w-[120px] shrink-0">
-      <div class="bg-grid-pattern absolute inset-0 opacity-10"></div>
-      <div class="relative z-10 flex h-full w-full flex-col">
-        <div class="relative flex flex-1 items-center justify-center p-0.5">
-          <img src="${item.img}" alt="${item.name}" class="h-auto max-h-full w-auto max-w-full object-contain drop-shadow-md">
-          <div class="absolute left-1 top-1"><span class="rounded-md px-1.5 py-0.5 text-[10px] font-bold uppercase bg-purple-600/80 text-white">R</span></div>
-        </div>
-        <div class="flex flex-col items-center gap-0.5 pb-1">
-          <div class="bg-black/80 backdrop-blur-md rounded-md border border-white/20 p-1">
-            <div class="flex items-center gap-1 lg:gap-2">
-              <div class="flex items-center gap-1">
-                <svg class="h-2.5 w-2.5 lg:h-3 lg:w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg>
-                <span class="text-[10px] lg:text-xs font-bold text-container text-amber-300">${item.value}</span>
-              </div>
-              <div class="flex items-center gap-1">
-                <svg class="lucide lucide-trending-up h-2.5 w-2.5 lg:h-3 lg:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
-                <span class="text-[10px] lg:text-xs font-bold text-white">${item.rate}</span>
-              </div>
+/* ==== TRADE CARD RENDERER ==== */
+function renderItem(item,color='pink'){
+  const grad = color==='rose'?'from-rose-400/50 to-rose-600/40':'from-pink-400/50 to-pink-600/40';
+  return `<div class="group relative rounded-md border bg-gradient-to-br transition-transform hover:-translate-y-1 hover:z-10 ${grad} p-0.5 border-purple-500/20 h-[120px] w-[90px] sm:h-[150px] sm:w-[120px] shrink-0">
+    <div class="bg-grid-pattern absolute inset-0 opacity-10"></div>
+    <div class="relative z-10 flex h-full w-full flex-col">
+      <div class="relative flex flex-1 items-center justify-center p-0.5">
+        <img src="${item.img}" alt="${item.name}" class="h-auto max-h-full w-auto max-w-full object-contain drop-shadow-md">
+        <div class="absolute left-1 top-1"><span class="rounded-md px-1.5 py-0.5 text-[10px] font-bold uppercase bg-purple-600/80 text-white">R</span></div>
+      </div>
+      <div class="flex flex-col items-center gap-0.5 pb-1">
+        <div class="bg-black/80 backdrop-blur-md rounded-md border border-white/20 p-1">
+          <div class="flex items-center gap-1 lg:gap-2">
+            <div class="flex items-center gap-1"><svg class="h-2.5 w-2.5 lg:h-3 lg:w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg>
+              <span class="text-[10px] lg:text-xs font-bold text-amber-300">${item.value}</span>
+            </div>
+            <div class="flex items-center gap-1"><svg class="lucide lucide-trending-up h-2.5 w-2.5 lg:h-3 lg:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+              <span class="text-[10px] lg:text-xs font-bold text-white">${item.rate}</span>
             </div>
           </div>
         </div>
-        <div class="absolute inset-x-0 bottom-0.5 flex justify-center"><span class="rounded-full bg-pink-400 h-1.5 w-1.5"></span></div>
       </div>
-    </div>`;
+      <div class="absolute inset-x-0 bottom-0.5 flex justify-center"><span class="rounded-full bg-pink-400 h-1.5 w-1.5"></span></div>
+    </div>
+  </div>`;
 }
-
-function renderTrade(t) {
-  const offerHTML = t.offering.map(i => renderItem(i, 'pink')).join('');
-  const wantHTML = t.wanting.map(i => renderItem(i, 'rose')).join('');
-  const isOwner = t.user.id === currentUser?.id;
-  const deleteBtn = isOwner ? `<button onclick="deleteTrade(${t.id})" class="ml-2 p-1.5 bg-red-600/80 hover:bg-red-700 rounded-full"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>` : '';
-
-  return `
-  <div class="trade-card group relative rounded-lg border transition duration-300 border-b border-l-2 border-r border-t border-purple-500/20 bg-gradient-to-br from-gray-800/80 via-gray-800/60 to-gray-800/40 shadow-lg">
+function renderTrade(t){
+  const offerHTML = t.offering.map(i=>renderItem(i,'pink')).join('');
+  const wantHTML = t.wanting.map(i=>renderItem(i,'rose')).join('');
+  const isOwner = t.user.id===currentUser?.id;
+  const deleteBtn = isOwner?`<button onclick="deleteTrade(${t.id})" class="ml-2 p-1.5 bg-red-600/80 hover:bg-red-700 rounded-full"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>`:'';
+  return `<div class="trade-card group relative rounded-lg border transition duration-300 border-b border-l-2 border-r border-t border-purple-500/20 bg-gradient-to-br from-gray-800/80 via-gray-800/60 to-gray-800/40 shadow-lg">
     <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-indigo-500/5 to-violet-500/10"></div>
     <div class="bg-grid-pattern absolute inset-0 opacity-5"></div>
     <div class="relative z-10 flex flex-col gap-0.5 p-0.5 sm:gap-1 sm:p-1">
       <header class="flex items-center justify-between rounded-lg border border-purple-500/10 bg-gray-800/30 p-1 sm:p-1.5">
         <div class="flex items-center gap-1.5 sm:gap-2">
-          <div class="cursor-pointer transition-all duration-200 hover:-translate-y-0.5">
-            <img src="${t.user.avatar}" class="w-6 h-6 sm:w-8 sm:h-8 rounded-full" alt="${t.user.username}">
-          </div>
-          <div class="flex flex-col">
-            <span class="text-xs font-medium">${t.user.username}</span>
-            <span class="text-xs text-gray-400">less than a minute ago</span>
-          </div>
+          <img src="${t.user.avatar}" class="w-6 h-6 sm:w-8 sm:h-8 rounded-full" alt="${t.user.username}">
+          <div class="flex flex-col"><span class="text-xs font-medium">${t.user.username}</span><span class="text-xs text-gray-400">less than a minute ago</span></div>
         </div>
         <div class="flex items-center gap-1.5">
           <button onclick="openChat('${t.user.id}')" class="flex h-5 items-center gap-0.5 rounded-md bg-purple-500/10 px-1 text-xs text-purple-300 hover:bg-purple-500/20 hover:text-purple-200 sm:h-6 sm:gap-1 sm:px-1.5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-2.5 w-2.5 sm:h-3 sm:w-3"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
-            <span>Chat</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-2.5 w-2.5 sm:h-3 sm:w-3"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>Chat</span>
           </button>
           ${deleteBtn}
         </div>
@@ -322,14 +327,8 @@ function renderTrade(t) {
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles h-3.5 w-3.5 text-purple-400"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5 0 0 1 0 .964L15.5 14.063a2 0 0 0-1.437 1.437l-1.582 6.135a.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
             <span class="gradient-text">Offering</span>
             <div class="ml-1 sm:ml-2 flex items-center gap-1 sm:gap-2 rounded-md bg-purple-500/10 px-1.5 sm:px-2 py-0.5 sm:py-1">
-              <div class="flex items-center gap-0.5 sm:gap-1">
-                <svg class="h-2.5 w-2.5 sm:h-3 sm:w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg>
-                <span class="text-[8px] xs:text-[9px] sm:text-xs font-semibold text-amber-300">${t.offerValue}</span>
-              </div>
-              <div class="flex items-center gap-0.5 sm:gap-1">
-                <svg class="lucide lucide-trending-up h-2.5 w-2.5 sm:h-3 sm:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
-                <span class="text-[8px] xs:text-[9px] sm:text-xs font-semibold text-white">9.3/10</span>
-              </div>
+              <div class="flex items-center gap-0.5 sm:gap-1"><svg class="h-2.5 w-2.5 sm:h-3 sm:w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg><span class="text-[8px] xs:text-[9px] sm:text-xs font-semibold text-amber-300">${t.offerValue}</span></div>
+              <div class="flex items-center gap-0.5 sm:gap-1"><svg class="lucide lucide-trending-up h-2.5 w-2.5 sm:h-3 sm:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><span class="text-[8px] xs:text-[9px] sm:text-xs font-semibold text-white">9.3/10</span></div>
             </div>
           </h3>
           <div class="scrollbar-hide flex space-x-1.5 overflow-x-auto pt-1">${offerHTML}</div>
@@ -344,14 +343,8 @@ function renderTrade(t) {
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles h-3.5 w-3.5 text-purple-400"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5 0 0 1 0 .964L15.5 14.063a2 0 0 0-1.437 1.437l-1.582 6.135a.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
             <span class="gradient-text">Requesting</span>
             <div class="ml-1 sm:ml-2 flex items-center gap-1 sm:gap-2 rounded-md bg-purple-500/10 px-1.5 sm:px-2 py-0.5 sm:py-1">
-              <div class="flex items-center gap-0.5 sm:gap-1">
-                <svg class="h-2.5 w-2.5 sm:h-3 sm:w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg>
-                <span class="text-[8px] xs:text-[9px] sm:text-xs font-semibold text-amber-300">${t.wantValue}</span>
-              </div>
-              <div class="flex items-center gap-0.5 sm:gap-1">
-                <svg class="lucide lucide-trending-up h-2.5 w-2.5 sm:h-3 sm:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
-                <span class="text-[8px] xs:text-[9px] sm:text-xs font-semibold text-white">8/10</span>
-              </div>
+              <div class="flex items-center gap-0.5 sm:gap-1"><svg class="h-2.5 w-2.5 sm:h-3 sm:w-3 text-amber-400" viewBox="0 0 512 512" fill="currentColor"><path d="M416 64H257.6L76.5 251.6c-8 8-12.3 18.5-12.5 29-.3 11.3 3.9 22.6 12.5 31.2l123.7 123.6c8 8 20.8 12.5 28.8 12.5s22.8-3.9 31.4-12.5L448 256V96l-32-32zm-30.7 102.7c-21.7 6.1-41.3-10-41.3-30.7 0-17.7 14.3-32 32-32 20.7 0 36.8 19.6 30.7 41.3-2.9 10.3-11.1 18.5-21.4 21.4z"></path></svg><span class="text-[8px] xs:text-[9px] sm:text-xs font-semibold text-amber-300">${t.wantValue}</span></div>
+              <div class="flex items-center gap-0.5 sm:gap-1"><svg class="lucide lucide-trending-up h-2.5 w-2.5 sm:h-3 sm:w-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg><span class="text-[8px] xs:text-[9px] sm:text-xs font-semibold text-white">8/10</span></div>
             </div>
           </h3>
           <div class="scrollbar-hide flex space-x-1.5 overflow-x-auto pt-1">${wantHTML}</div>
@@ -361,61 +354,56 @@ function renderTrade(t) {
   </div>`;
 }
 
-// Load & Filter Trades
-async function loadTrades() {
-  try {
+/* ==== LOAD / FILTER TRADES ==== */
+async function loadTrades(){
+  try{
     const res = await fetch(API);
     trades = await res.json();
     filterAndRender();
-  } catch {
+  }catch{
     document.getElementById("trades").innerHTML = `<p class="text-center text-red-400">Failed to load trades.</p>`;
   }
 }
-
-function filterAndRender() {
+function filterAndRender(){
   let filtered = trades;
-
-  if (searchTerm) {
-    filtered = filtered.filter(t =>
-      t.offering.some(i => i.name.toLowerCase().includes(searchTerm)) ||
-      t.wanting.some(i => i.name.toLowerCase().includes(searchTerm))
+  if(searchTerm){
+    filtered = filtered.filter(t=>
+      t.offering.some(i=>i.name.toLowerCase().includes(searchTerm)) ||
+      t.wanting.some(i=>i.name.toLowerCase().includes(searchTerm))
     );
   }
-
-  if (filterMode === 'offering') {
-    filtered = filtered.filter(t => t.offering.length > 0);
-  } else if (filterMode === 'requesting') {
-    filtered = filtered.filter(t => t.wanting.length > 0);
-  }
-
+  if(filterMode==='offering') filtered = filtered.filter(t=>t.offering.length>0);
+  if(filterMode==='requesting') filtered = filtered.filter(t=>t.wanting.length>0);
   document.getElementById("trades").innerHTML = filtered.length
     ? filtered.map(renderTrade).join("")
     : `<p class="text-center text-gray-500 col-span-full">No trades found.</p>`;
 }
-
-// Filters
-searchFilter.oninput = (e) => { searchTerm = e.target.value.toLowerCase(); filterAndRender(); };
-filterAll.onclick = () => { filterMode = 'all'; updateFilterButtons(); filterAndRender(); };
-filterOffering.onclick = () => { filterMode = 'offering'; updateFilterButtons(); filterAndRender(); };
-filterRequesting.onclick = () => { filterMode = 'requesting'; updateFilterButtons(); filterAndRender(); };
-
-function updateFilterButtons() {
-  filterAll.classList.toggle('bg-gradient-to-r', filterMode === 'all');
-  filterAll.classList.toggle('from-purple-500', filterMode === 'all');
-  filterAll.classList.toggle('to-purple-600', filterMode === 'all');
-  filterAll.classList.toggle('text-white', filterMode === 'all');
-  [filterOffering, filterRequesting].forEach(b => {
-    b.classList.remove('bg-gradient-to-r', 'from-purple-500', 'to-purple-600', 'text-white');
-    b.classList.add('text-gray-400', 'hover:text-white');
-  });
-  if (filterMode === 'offering') filterOffering.classList.add('bg-gradient-to-r', 'from-purple-500', 'to-purple-600', 'text-white');
-  if (filterMode === 'requesting') filterRequesting.classList.add('bg-gradient-to-r', 'from-purple-500', 'to-purple-600', 'text-white');
+searchFilter.oninput = e=>{ searchTerm=e.target.value.toLowerCase(); filterAndRender(); };
+filterAll.onclick = ()=>{ filterMode='all'; updateFilterButtons(); filterAndRender(); };
+filterOffering.onclick = ()=>{ filterMode='offering'; updateFilterButtons(); filterAndRender(); };
+filterRequesting.onclick = ()=>{ filterMode='requesting'; updateFilterButtons(); filterAndRender(); };
+function updateFilterButtons(){
+  filterAll.classList.toggle('bg-gradient-to-r',filterMode==='all');
+  filterAll.classList.toggle('from-purple-500',filterMode==='all');
+  filterAll.classList.toggle('to-purple-600',filterMode==='all');
+  filterAll.classList.toggle('text-white',filterMode==='all');
+  [filterOffering,filterRequesting].forEach(b=>{ b.classList.remove('bg-gradient-to-r','from-purple-500','to-purple-600','text-white'); b.classList.add('text-gray-400','hover:text-white'); });
+  if(filterMode==='offering') filterOffering.classList.add('bg-gradient-to-r','from-purple-500','to-purple-600','text-white');
+  if(filterMode==='requesting') filterRequesting.classList.add('bg-gradient-to-r','from-purple-500','to-purple-600','text-white');
 }
 
-// Init
-createTradeBtn.onclick = () => { if (!currentUser?.gender) return; /* open modal */ };
-if (!loadUser()) showGenderModal(); else loadTrades();
-setInterval(loadTrades, 10000);
+/* ==== MESSAGING (stub – you already have full implementation) ==== */
+function openChat(userId){ /* … */ }
+function deleteTrade(id){ /* … */ }
+window.openChat = openChat;
+window.deleteTrade = deleteTrade;
+
+/* ==== CREATE TRADE BUTTON ==== */
+createTradeBtn.onclick = ()=>{ if(!currentUser?.gender) return; /* open modal – you already have the logic */ };
+
+/* ==== INIT ==== */
+if(!loadUser()) showGenderModal(); else loadTrades();
+setInterval(loadTrades,10000);
 </script>
 </body>
 </html>
