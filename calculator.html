@@ -6,21 +6,10 @@
 <title>Blox Fruits Calculator</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body.modal-open { overflow: hidden; }
-  #fruit-modal { max-height: 90vh; max-width: 95vw; }
-  @media (max-width: 640px) {
-    #fruit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .item-grid { width: 80px; height: 80px; }
-    #fruit-search { font-size: 0.875rem; }
-    .fruit-slot img { width: 60%; height: 60%; }
-    .fruit-slot span { font-size: 0.65rem; }
-    .add-fruit svg { width: 1.5rem; height: 1.5rem; }
-    .add-fruit span { font-size: 0.65rem; }
-  }
-  @media (min-width: 641px) and (max-width: 768px) {
-    #fruit-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .item-grid { width: 100px; height: 100px; }
-  }
+body.modal-open{overflow:hidden}
+#fruit-modal{max-height:90vh;max-width:95vw;background:rgba(0,0,0,0.95)!important;backdrop-filter:blur(8px)}
+@media(max-width:640px){#fruit-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.item-grid{width:80px;height:80px}#fruit-search{font-size:.875rem}.fruit-slot img{width:60%;height:60%}.fruit-slot span{font-size:.65rem}.add-fruit svg{width:1.5rem;height:1.5rem}.add-fruit span{font-size:.65rem}}
+@media(min-width:641px)and(max-width:768px){#fruit-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.item-grid{width:100px;height:100px}}
 </style>
 </head>
 <body class="relative bg-black text-white">
@@ -28,7 +17,6 @@
 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(120,119,198,0.06),transparent_70%)]"></div>
 <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
 <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black via-black/95 to-transparent"></div>
-
 <div class="relative mx-auto flex w-full max-w-[95vw] justify-between px-4 py-3 transition duration-200 rounded-full bg-transparent">
 <div class="flex w-full flex-row items-center justify-between">
 <div class="flex w-[80px] sm:w-[90px] flex-row items-center gap-2">
@@ -54,7 +42,6 @@
 </div>
 </div>
 </div>
-
 <main class="relative z-10 flex flex-col items-center justify-center min-h-screen py-6 sm:py-10">
 <div class="w-full max-w-[95vw] sm:max-w-4xl mx-auto space-y-4 sm:space-y-8 rounded-xl p-3 sm:p-6 border bg-gray-500/5 border-gray-500/15 shadow-sm">
 <div class="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
@@ -147,183 +134,38 @@
 </div>
 </div>
 </main>
-
-<div id="fruit-modal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-desc" data-state="open" class="fixed left-[50%] top-[50%] grid w-full translate-x-[-50%] translate-y-[-50%] rounded-lg border shadow-xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg max-h-[92vh] sm:max-h-[80vh] max-w-[95vw] gap-0 border-foreground/10 bg-background/95 p-0 sm:min-w-[500px] sm:max-w-[1000px] z-50" tabindex="-1" style="display:none;">
-  <div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-4 pb-3">
-    <h2 id="modal-title" class="font-semibold tracking-tight flex items-center gap-2 text-xl">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-5 w-5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-      Search Items
-    </h2>
-  </div>
-  <div id="modal-desc" class="p-4 overflow-y-auto max-h-[70vh]">
-    <div id="fruit-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-3"></div>
-  </div>
-  <input id="fruit-search" class="w-full mx-4 mb-3 px-3 py-2 rounded border border-input bg-background/50 text-sm" placeholder="Search...">
-  <button id="close-modal" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-popover transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-    <span class="sr-only">Close</span>
-  </button>
+<div id="fruit-modal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-desc" data-state="open" class="fixed inset-0 flex items-center justify-center z-50" style="display:none;">
+<div class="relative bg-black/90 border border-gray-800 rounded-xl shadow-2xl max-h-[90vh] max-w-[95vw] w-full sm:max-w-4xl overflow-hidden">
+<div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-4 pb-3">
+<h2 id="modal-title" class="font-semibold tracking-tight flex items-center gap-2 text-xl">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-5 w-5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+Search Items
+</h2>
 </div>
-
+<div id="modal-desc" class="p-4 overflow-y-auto max-h-[70vh]">
+<div id="fruit-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-3"></div>
+</div>
+<input id="fruit-search" class="w-full mx-4 mb-3 px-3 py-2 rounded border border-input bg-background/50 text-sm" placeholder="Search...">
+<button id="close-modal" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-popover transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+<span class="sr-only">Close</span>
+</button>
+</div>
+</div>
 <script>
-const fruits = {
-  "West Dragon": {value:1500000000, beli:"15M", demand:"10/10", image:"West-Dragon.webp"},
-  "East Dragon": {value:1200000000, beli:"15M", demand:"10/10", image:"East-Dragon.webp"},
-  "Kitsune": {value:300000000, beli:"8M", demand:"10/10", image:"Kitsune.webp"},
-  "Yeti": {value:150000000, beli:"5M", demand:"10/10", image:"Yeti.webp"},
-  "Gas": {value:65000000, beli:"3.2M", demand:"8/10", image:"Gas.webp"},
-  "Leopard": {value:150000000, beli:"5M", demand:"10/10", image:"Leopard.webp"},
-  "Dough": {value:30000000, beli:"2.8M", demand:"10/10", image:"Dough.webp"},
-  "Pain": {value:15000000, beli:"2.3M", demand:"6/10", image:"Pain.webp"},
-  "T-Rex": {value:20000000, beli:"2.7M", demand:"8/10", image:"T-RexFruit.svg"},
-  "Gravity": {value:15000000, beli:"2.5M", demand:"4/10", image:"Gravity.webp"},
-  "Mammoth": {value:10000000, beli:"2.7M", demand:"5/10", image:"Mammoth.webp"},
-  "Spirit": {value:10000000, beli:"3.4M", demand:"6/10", image:"Spirit.webp"},
-  "Control": {value:10000000, beli:"3.2M", demand:"5/10", image:"Control.webp"},
-  "Venom": {value:10000000, beli:"3M", demand:"6/10", image:"Venom.webp"},
-  "Portal": {value:10000000, beli:"1.9M", demand:"10/10", image:"Portal.webp"},
-  "Buddha": {value:10000000, beli:"1.2M", demand:"10/10", image:"Buddha.webp"},
-  "Shadow": {value:6500000, beli:"2.9M", demand:"5/10", image:"Shadow.webp"},
-  "Blizzard": {value:5000000, beli:"2.4M", demand:"5/10", image:"Blizzard.webp"},
-  "Creation": {value:3500000, beli:"1.4M", demand:"3/10", image:"Creation.webp"},
-  "Phoenix": {value:2750000, beli:"1.8M", demand:"3/10", image:"Phoenix.webp"},
-  "Sound": {value:2500000, beli:"1.7M", demand:"4/10", image:"Sound.webp"},
-  "Spider": {value:1500000, beli:"1.5M", demand:"2/10", image:"Spider.webp"},
-  "Love": {value:1500000, beli:"1.3M", demand:"3/10", image:"Love.webp"},
-  "Magma": {value:1150000, beli:"960K", demand:"8/10", image:"Magma.webp"},
-  "Quake": {value:1000000, beli:"1M", demand:"2/10", image:"Quake.webp"},
-  "Diamond": {value:1000000, beli:"600K", demand:"2/10", image:"Diamond.webp"},
-  "Ghost": {value:800000, beli:"940K", demand:"1/10", image:"Ghost.webp"},
-  "Eagle": {value:800000, beli:"550K", demand:"2/10", image:"Eagle.webp"},
-  "Rubber": {value:700000, beli:"750K", demand:"1/10", image:"Rubber.webp"},
-  "Ice": {value:550000, beli:"350K", demand:"2/10", image:"Ice.webp"},
-  "Sand": {value:420000, beli:"420K", demand:"1/10", image:"Sand.webp"},
-  "Dark": {value:400000, beli:"500K", demand:"1/10", image:"Dark.webp"},
-  "Flame": {value:250000, beli:"250K", demand:"1/10", image:"Flame.webp"},
-  "Spike": {value:180000, beli:"180K", demand:"1/10", image:"Spike.webp"},
-  "Smoke": {value:100000, beli:"100K", demand:"1/10", image:"Smoke.webp"},
-  "Bomb": {value:80000, beli:"80K", demand:"1/10", image:"Bomb.webp"},
-  "Spring": {value:60000, beli:"60K", demand:"1/10", image:"Spring.webp"},
-  "Blade": {value:50000, beli:"30K", demand:"1/10", image:"Blade.webp"},
-  "Spin": {value:7500, beli:"7.5K", demand:"1/10", image:"Spin.webp"},
-  "Rocket": {value:5000, beli:"5K", demand:"1/10", image:"Rocket.webp"}
-};
-
-const leftSlots = document.querySelectorAll('.fruit-slot[data-side="left"]');
-const rightSlots = document.querySelectorAll('.fruit-slot[data-side="right"]');
-const addButtons = document.querySelectorAll('.add-fruit');
-const yourValueEl = document.getElementById('your-value');
-const theirValueEl = document.getElementById('their-value');
-const yourPriceEl = document.getElementById('your-price');
-const theirPriceEl = document.getElementById('their-price');
-const yourDemandEl = document.getElementById('your-demand');
-const theirDemandEl = document.getElementById('their-demand');
-const resultEl = document.getElementById('result');
-const yourOfferEl = document.getElementById('your-offer');
-const theirOfferEl = document.getElementById('their-offer');
-const yourDemandTotal = document.getElementById('your-demand-total');
-const theirDemandTotal = document.getElementById('their-demand-total');
-const yourPriceTotal = document.getElementById('your-price-total');
-const theirPriceTotal = document.getElementById('their-price-total');
-const leftBar = document.getElementById('left-bar');
-const rightBar = document.getElementById('right-bar');
-const modal = document.getElementById('fruit-modal');
-const closeModal = document.getElementById('close-modal');
-const fruitGrid = document.getElementById('fruit-grid');
-const fruitSearch = document.getElementById('fruit-search');
-let leftFruits = Array(8).fill(null);
-let rightFruits = Array(8).fill(null);
-let currentSide = null;
-
-addButtons.forEach(b => b.addEventListener('click', () => { currentSide = b.dataset.side; modal.style.display = 'block'; renderFruits(); }));
-closeModal.addEventListener('click', () => modal.style.display = 'none');
-fruitSearch.addEventListener('input', renderFruits);
-
-function renderFruits() {
-  fruitGrid.innerHTML = '';
-  const q = fruitSearch.value.toLowerCase();
-  Object.entries(fruits).filter(([n]) => n.toLowerCase().includes(q)).forEach(([n, f]) => {
-    const btn = document.createElement('button');
-    btn.className = 'group relative flex w-full flex-col items-center overflow-hidden rounded-lg p-3 sm:p-2 text-left transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] bg-foreground/[0.02] hover:bg-foreground/[0.06] border border-transparent hover:border-foreground/10 outline-none focus:ring-2 focus:ring-white/10';
-    btn.innerHTML = `
-      <div class="relative mb-2 h-24 w-24 sm:h-20 sm:w-20">
-        <img src="${f.image}" draggable="false" alt="${n}" loading="lazy" class="object-contain transition-transform duration-200 group-hover:scale-110">
-        <div class="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
-      </div>
-      <div class="w-full space-y-0.5">
-        <div class="flex items-center gap-1">
-          <span class="truncate text-xs font-medium sm:text-sm">${n}</span>
-        </div>
-      </div>`;
-    btn.onclick = () => addFruit(n);
-    fruitGrid.appendChild(btn);
-  });
-}
-
-function addFruit(name) {
-  const arr = currentSide === 'left' ? leftFruits : rightFruits;
-  const slots = currentSide === 'left' ? leftSlots : rightSlots;
-  const i = arr.indexOf(null);
-  if (i > -1) {
-    arr[i] = name;
-    slots[i].innerHTML = `<img src="${fruits[name].image}" class="w-3/5 h-3/5 object-contain"><span class="text-[10px] mt-1 truncate w-full">${name}</span>`;
-    calculate();
-  }
-  modal.style.display = 'none';
-}
-
-[...leftSlots, ...rightSlots].forEach(s => s.addEventListener('click', () => {
-  const side = s.dataset.side;
-  const i = s.dataset.index;
-  const arr = side === 'left' ? leftFruits : rightFruits;
-  if (arr[i]) { arr[i] = null; s.innerHTML = ''; calculate(); }
-}));
-
-document.querySelector('.reset-calculator').onclick = () => {
-  leftFruits.fill(null); rightFruits.fill(null);
-  leftSlots.forEach(s => s.innerHTML = ''); rightSlots.forEach(s => s.innerHTML = '');
-  calculate();
-};
-
-function calculate() {
-  const left = {val:0, beli:0, dem:0};
-  const right = {val:0, beli:0, dem:0};
-  leftFruits.filter(Boolean).forEach(f => { const d = fruits[f]; left.val += d.value; left.beli += parseBeli(d.beli); left.dem += parseDemand(d.demand); });
-  rightFruits.filter(Boolean).forEach(f => { const d = fruits[f]; right.val += d.value; right.beli += parseBeli(d.beli); right.dem += parseDemand(d.demand); });
-
-  yourValueEl.textContent = formatNum(left.val);
-  theirValueEl.textContent = formatNum(right.val);
-  yourPriceEl.textContent = formatNum(left.beli);
-  theirPriceEl.textContent = formatNum(right.beli);
-  yourDemandEl.textContent = `${Math.round(left.dem)}/10`;
-  theirDemandEl.textContent = `${Math.round(right.dem)}/10`;
-  yourOfferEl.textContent = formatNum(left.val);
-  theirOfferEl.textContent = formatNum(right.val);
-  yourDemandTotal.textContent = `Demand: ${Math.round(left.dem)}/10`;
-  theirDemandTotal.textContent = `Demand: ${Math.round(right.dem)}/10`;
-  yourPriceTotal.textContent = `Price: ${formatNum(left.beli)}`;
-  theirPriceTotal.textContent = `Price: ${formatNum(right.beli)}`;
-
-  const total = left.val + right.val || 1;
-  const leftPct = (left.val / total) * 100;
-  leftBar.style.width = `${leftPct}%`;
-  rightBar.style.width = `${100 - leftPct}%`;
-
-  const diff = left.val - right.val;
-  let color = "bg-purple-500";
-  let msg = "Neutral";
-  if (Math.abs(diff) / total < 0.05) { color = "bg-purple-500"; msg = "Fair"; }
-  else if (diff > 0) { color = diff / total > 0.3 ? "bg-red-500" : "bg-orange-500"; msg = `Loss: ${formatNum(diff)}`; }
-  else { color = -diff / total > 0.3 ? "bg-green-500" : "bg-orange-500"; msg = `Win: ${formatNum(-diff)}`; }
-  resultEl.textContent = msg;
-  leftBar.className = `absolute left-0 top-0 h-full ${color} shadow-sm transition-all duration-1000`;
-  rightBar.className = `absolute right-0 top-0 h-full bg-gradient-to-l ${color.replace('from-', 'from-purple-500/').replace('to-', 'to-purple-500/')} shadow-sm transition-all duration-1000`;
-}
-
-function parseBeli(s) { return parseFloat(s.replace(/[^0-9.]/g,'')) * (s.includes('M')?1e6:s.includes('K')?1e3:1); }
-function parseDemand(s) { return parseInt(s.split('/')[0]); }
-function formatNum(n) { return n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(1)+'K' : n; }
-
+const fruits={"West Dragon":{value:1500000000,beli:"15M",demand:"10/10",image:"West-Dragon.webp"},"East Dragon":{value:1200000000,beli:"15M",demand:"10/10",image:"East-Dragon.webp"},"Kitsune":{value:300000000,beli:"8M",demand:"10/10",image:"Kitsune.webp"},"Yeti":{value:150000000,beli:"5M",demand:"10/10",image:"Yeti.webp"},"Gas":{value:65000000,beli:"3.2M",demand:"8/10",image:"Gas.webp"},"Leopard":{value:150000000,beli:"5M",demand:"10/10",image:"Leopard.webp"},"Dough":{value:30000000,beli:"2.8M",demand:"10/10",image:"Dough.webp"},"Pain":{value:15000000,beli:"2.3M",demand:"6/10",image:"Pain.webp"},"T-Rex":{value:20000000,beli:"2.7M",demand:"8/10",image:"T-RexFruit.svg"},"Gravity":{value:15000000,beli:"2.5M",demand:"4/10",image:"Gravity.webp"},"Mammoth":{value:10000000,beli:"2.7M",demand:"5/10",image:"Mammoth.webp"},"Spirit":{value:10000000,beli:"3.4M",demand:"6/10",image:"Spirit.webp"},"Control":{value:10000000,beli:"3.2M",demand:"5/10",image:"Control.webp"},"Venom":{value:10000000,beli:"3M",demand:"6/10",image:"Venom.webp"},"Portal":{value:10000000,beli:"1.9M",demand:"10/10",image:"Portal.webp"},"Buddha":{value:10000000,beli:"1.2M",demand:"10/10",image:"Buddha.webp"},"Shadow":{value:6500000,beli:"2.9M",demand:"5/10",image:"Shadow.webp"},"Blizzard":{value:5000000,beli:"2.4M",demand:"5/10",image:"Blizzard.webp"},"Creation":{value:3500000,beli:"1.4M",demand:"3/10",image:"Creation.webp"},"Phoenix":{value:2750000,beli:"1.8M",demand:"3/10",image:"Phoenix.webp"},"Sound":{value:2500000,beli:"1.7M",demand:"4/10",image:"Sound.webp"},"Spider":{value:1500000,beli:"1.5M",demand:"2/10",image:"Spider.webp"},"Love":{value:1500000,beli:"1.3M",demand:"3/10",image:"Love.webp"},"Magma":{value:1150000,beli:"960K",demand:"8/10",image:"Magma.webp"},"Quake":{value:1000000,beli:"1M",demand:"2/10",image:"Quake.webp"},"Diamond":{value:1000000,beli:"600K",demand:"2/10",image:"Diamond.webp"},"Ghost":{value:800000,beli:"940K",demand:"1/10",image:"Ghost.webp"},"Eagle":{value:800000,beli:"550K",demand:"2/10",image:"Eagle.webp"},"Rubber":{value:700000,beli:"750K",demand:"1/10",image:"Rubber.webp"},"Ice":{value:550000,beli:"350K",demand:"2/10",image:"Ice.webp"},"Sand":{value:420000,beli:"420K",demand:"1/10",image:"Sand.webp"},"Dark":{value:400000,beli:"500K",demand:"1/10",image:"Dark.webp"},"Flame":{value:250000,beli:"250K",demand:"1/10",image:"Flame.webp"},"Spike":{value:180000,beli:"180K",demand:"1/10",image:"Spike.webp"},"Smoke":{value:100000,beli:"100K",demand:"1/10",image:"Smoke.webp"},"Bomb":{value:80000,beli:"80K",demand:"1/10",image:"Bomb.webp"},"Spring":{value:60000,beli:"60K",demand:"1/10",image:"Spring.webp"},"Blade":{value:50000,beli:"30K",demand:"1/10",image:"Blade.webp"},"Spin":{value:7500,beli:"7.5K",demand:"1/10",image:"Spin.webp"},"Rocket":{value:5000,beli:"5K",demand:"1/10",image:"Rocket.webp"}};
+const leftSlots=document.querySelectorAll('.fruit-slot[data-side="left"]');const rightSlots=document.querySelectorAll('.fruit-slot[data-side="right"]');const addButtons=document.querySelectorAll('.add-fruit');const yourValueEl=document.getElementById('your-value');const theirValueEl=document.getElementById('their-value');const yourPriceEl=document.getElementById('your-price');const theirPriceEl=document.getElementById('their-price');const yourDemandEl=document.getElementById('your-demand');const theirDemandEl=document.getElementById('their-demand');const resultEl=document.getElementById('result');const yourOfferEl=document.getElementById('your-offer');const theirOfferEl=document.getElementById('their-offer');const yourDemandTotal=document.getElementById('your-demand-total');const theirDemandTotal=document.getElementById('their-demand-total');const yourPriceTotal=document.getElementById('your-price-total');const theirPriceTotal=document.getElementById('their-price-total');const leftBar=document.getElementById('left-bar');const rightBar=document.getElementById('right-bar');const modal=document.getElementById('fruit-modal');const closeModal=document.getElementById('close-modal');const fruitGrid=document.getElementById('fruit-grid');const fruitSearch=document.getElementById('fruit-search');let leftFruits=Array(8).fill(null);let rightFruits=Array(8).fill(null);let currentSide=null;
+addButtons.forEach(b=>b.addEventListener('click',()=>{currentSide=b.dataset.side;modal.style.display='flex';renderFruits()}));
+closeModal.addEventListener('click',()=>modal.style.display='none');
+fruitSearch.addEventListener('input',renderFruits);
+function renderFruits(){fruitGrid.innerHTML='';const q=fruitSearch.value.toLowerCase();Object.entries(fruits).filter(([n])=>n.toLowerCase().includes(q)).forEach(([n,f])=>{const btn=document.createElement('button');btn.className='group relative flex w-full flex-col items-center overflow-hidden rounded-lg p-3 sm:p-2 text-left transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] bg-foreground/[0.02] hover:bg-foreground/[0.06] border border-transparent hover:border-foreground/10 outline-none focus:ring-2 focus:ring-white/10';btn.innerHTML=`<div class="relative mb-2 h-24 w-24 sm:h-20 sm:w-20"><img src="${f.image}" draggable="false" alt="${n}" loading="lazy" class="object-contain transition-transform duration-200 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div></div><div class="w-full space-y-0.5"><div class="flex items-center gap-1"><span class="truncate text-xs font-medium sm:text-sm">${n}</span></div></div>`;btn.onclick=()=>addFruit(n);fruitGrid.appendChild(btn)})}
+function addFruit(name){const arr=currentSide==='left'?leftFruits:rightFruits;const slots=currentSide==='left'?leftSlots:rightSlots;const i=arr.indexOf(null);if(i>-1){arr[i]=name;slots[i].innerHTML=`<img src="${fruits[name].image}" class="w-3/5 h-3/5 object-contain"><span class="text-[10px] mt-1 truncate w-full">${name}</span>`;calculate()};modal.style.display='none'}
+[...leftSlots,...rightSlots].forEach(s=>s.addEventListener('click',()=>{const side=s.dataset.side;const i=s.dataset.index;const arr=side==='left'?leftFruits:rightFruits;if(arr[i]){arr[i]=null;s.innerHTML='';calculate()}}));
+document.querySelector('.reset-calculator').onclick=()=>{leftFruits.fill(null);rightFruits.fill(null);leftSlots.forEach(s=>s.innerHTML='');rightSlots.forEach(s=>s.innerHTML='');calculate()};
+function calculate(){const left={val:0,beli:0,dem:0};const right={val:0,beli:0,dem:0};leftFruits.filter(Boolean).forEach(f=>{const d=fruits[f];left.val+=d.value;left.beli+=parseBeli(d.beli);left.dem+=parseDemand(d.demand)});rightFruits.filter(Boolean).forEach(f=>{const d=fruits[f];right.val+=d.value;right.beli+=parseBeli(d.beli);right.dem+=parseDemand(d.demand)});yourValueEl.textContent=formatNum(left.val);theirValueEl.textContent=formatNum(right.val);yourPriceEl.textContent=formatNum(left.beli);theirPriceEl.textContent=formatNum(right.beli);yourDemandEl.textContent=`${Math.round(left.dem)}/10`;theirDemandEl.textContent=`${Math.round(right.dem)}/10`;yourOfferEl.textContent=formatNum(left.val);theirOfferEl.textContent=formatNum(right.val);yourDemandTotal.textContent=`Demand: ${Math.round(left.dem)}/10`;theirDemandTotal.textContent=`Demand: ${Math.round(right.dem)}/10`;yourPriceTotal.textContent=`Price: ${formatNum(left.beli)}`;theirPriceTotal.textContent=`Price: ${formatNum(right.beli)}`;const total=left.val+right.val||1;const leftPct=(left.val/total)*100;leftBar.style.width=`${leftPct}%`;rightBar.style.width=`${100-leftPct}%`;const diff=left.val-right.val;let color="bg-purple-500";let msg="Neutral";if(Math.abs(diff)/total<0.05){color="bg-purple-500";msg="Fair"}else if(diff>0){color=diff/total>0.3?"bg-red-500":"bg-orange-500";msg=`Loss: ${formatNum(diff)}`}else{color=-diff/total>0.3?"bg-green-500":"bg-orange-500";msg=`Win: ${formatNum(-diff)}`};resultEl.textContent=msg;leftBar.className=`absolute left-0 top-0 h-full ${color} shadow-sm transition-all duration-1000`;rightBar.className=`absolute right-0 top-0 h-full bg-gradient-to-l ${color.replace('from-','from-purple-500/').replace('to-','to-purple-500/')} shadow-sm transition-all duration-1000`}
+function parseBeli(s){return parseFloat(s.replace(/[^0-9.]/g,''))*(s.includes('M')?1e6:s.includes('K')?1e3:1)}
+function parseDemand(s){return parseInt(s.split('/')[0])}
+function formatNum(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':n}
 calculate();
 </script>
 </body>
