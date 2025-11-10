@@ -16,9 +16,28 @@
 .notification-badge {position:absolute;top:-6px;right:-6px;background:#ef4444;color:white;font-size:10px;font-weight:bold;min-width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
 .mobile-menu {transition:transform .3s ease;}
 .mobile-menu.open {transform:translateX(0);}
+.gender-btn {transition:all .2s;}
+.gender-btn.selected {border-color:#a855f7;transform:scale(1.05);}
+.gender-btn img {filter:drop-shadow(0 0 8px rgba(168,85,247,0.4));}
 </style>
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex flex-col">
+<div id="genderModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4">
+  <div class="relative w-full max-w-md rounded-xl bg-gray-800 border border-purple-500/30 shadow-2xl p-6">
+    <h2 class="text-2xl font-bold text-center mb-2">Choose Your Avatar</h2>
+    <p class="text-sm text-gray-400 text-center mb-6">Select male or female to continue</p>
+    <div class="grid grid-cols-2 gap-4">
+      <button id="maleBtn" class="gender-btn relative p-4 rounded-xl border-2 border-white/10 hover:border-purple-500/50 transition">
+        <img src="https://iili.io/KmAE9MF.webp" alt="Male" class="w-full h-auto rounded-lg">
+        <span class="absolute bottom-2 left-1/2 -translate-x-1/2 text-sm font-medium">Male</span>
+      </button>
+      <button id="femaleBtn" class="gender-btn relative p-4 rounded-xl border-2 border-white/10 hover:border-purple-500/50 transition">
+        <img src="https://iili.io/KmAEH6g.webp" alt="Female" class="w-full h-auto rounded-lg">
+        <span class="absolute bottom-2 left-1/2 -translate-x-1/2 text-sm font-medium">Female</span>
+      </button>
+    </div>
+  </div>
+</div>
 <div class="lg:hidden fixed top-0 left-0 right-0 bg-gray-800/95 backdrop-blur z-50 border-b border-purple-500/20">
   <div class="flex items-center justify-between p-3">
     <button id="mobileMenuBtn" class="p-2">
@@ -101,7 +120,7 @@
   </div>
 </div>
 </main>
-<footer class="border-t border-neutral-100 dark:border-white/[0.1] px-4 lg:px-8 py-10 lg:py-20 bg-foreground/[3%] w-full relative overflow-hidden text-xs lg:text-sm"><div class="max-w-7xl mx-auto text-neutral-500 flex flex-col lg:flex-row justify-between items-center lg:items-start"><div class="text-center lg:text-left w-full lg:w-auto"><div class="flex mb-4 justify-center lg:justify-start"><a class="flex items-center space-x-2" href="https://bloxfruittrading.com/"><img alt="Logo" loading="lazy" width="36" height="36" decoding="async" class="min-w-8 min-h-8" src="" style="color:transparent;"><span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text font-extrabold">Blox Fruit Trading</span></a></div><div class="mt-2 text-foreground/70">© 2025 Blox Fruit Trading All rights reserved.<br>All trademarks are property of their respective owners.</div><div class="mt-4 text-foreground/70 max-w-md mx-auto lg:mx-0">https://bloxfruittrading.com is a 3rd party website that is not affiliated or partnered with Blox Fruits. We are not endorsed by their respective owners.</div></div><div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-10 mt-8 lg:mt-0 w-full lg:w-auto justify-center lg:justify-start"><div class="flex justify-center lg:justify-start space-y-3 flex-col text-center lg:text-left"><p class="text-foreground font-bold">Pages</p><ul class="text-foreground/70 list-none space-y-2"><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/">Home</a></li><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/trading">Trade</a></li><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/values">Values</a></li><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/donators">Top Donators</a></li></ul></div><div class="flex justify-center lg:justify-start space-y-3 flex-col text-center lg:text-left"><p class="text-foreground font-bold">Socials</p><ul class="text-foreground/70 list-none space-y-2"><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://discord.gg/bfhs">Discord</a></li><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://x.com/FlareTradings">X</a></li><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://youtube.com/@FlareFruitTrading">YouTube</a></li></ul></div><div class="flex justify-center lg:justify-start space-y-3 flex-col text-center lg:text-left"><p class="text-foreground font-bold">Legal</p><ul class="text-foreground/70 list-none space-y-2"><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/privacy-policy">Privacy Policy</a></li><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/terms-of-service">Terms of Service</a></li></ul></div><div class="flex justify-center lg:justify-start space-y-3 flex-col text-center lg:text-left"><p class="text-foreground font-bold">Support</p><ul class="text-foreground/70 list-none space-y-2"><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://discord.com/discovery/applications/878633004640124998">Discord Bot</a></li><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://bloxfruittrading/">FAQ</a></li><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://bloxfruittrading.com">Our games</a></li></ul></div></div></div></footer>
+<footer class="border-t border-neutral-100 dark:border-white/[0.1] px-4 lg:px-8 py-10 lg:py-20 bg-foreground/[3%] w-full relative overflow-hidden text-xs lg:text-sm"><div class="max-w-7xl mx-auto text-neutral-500 flex flex-col lg:flex-row justify-between items-center lg:items-start"><div class="text-center lg:text-left w-full lg:w-auto"><div class="flex mb-4 justify-center lg:justify-start"><a class="flex items-center space-x-2" href="https://bloxfruittrading.com/"><img alt="Logo" loading="lazy" width="36" height="36" decoding="async" class="min-w-8 min-h-8" src="./final ones_files/logo.png" style="color:transparent;"><span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text font-extrabold">Blox Fruit Trading</span></a></div><div class="mt-2 text-foreground/70">© 2025 Blox Fruit Trading All rights reserved.<br>All trademarks are property of their respective owners.</div><div class="mt-4 text-foreground/70 max-w-md mx-auto lg:mx-0">https://bloxfruittrading.com is a 3rd party website that is not affiliated or partnered with Blox Fruits. We are not endorsed by their respective owners.</div></div><div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-10 mt-8 lg:mt-0 w-full lg:w-auto justify-center lg:justify-start"><div class="flex justify-center lg:justify-start space-y-3 flex-col text-center lg:text-left"><p class="text-foreground font-bold">Pages</p><ul class="text-foreground/70 list-none space-y-2"><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/">Home</a></li><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/trading">Trade</a></li><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/values">Values</a></li><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/donators">Top Donators</a></li></ul></div><div class="flex justify-center lg:justify-start space-y-3 flex-col text-center lg:text-left"><p class="text-foreground font-bold">Socials</p><ul class="text-foreground/70 list-none space-y-2"><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://discord.gg/bfhs">Discord</a></li><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://x.com/FlareTradings">X</a></li><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://youtube.com/@FlareFruitTrading">YouTube</a></li></ul></div><div class="flex justify-center lg:justify-start space-y-3 flex-col text-center lg:text-left"><p class="text-foreground font-bold">Legal</p><ul class="text-foreground/70 list-none space-y-2"><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/privacy-policy">Privacy Policy</a></li><li><a class="transition-colors hover:text-foreground" href="https://bloxfruittrading.com/terms-of-service">Terms of Service</a></li></ul></div><div class="flex justify-center lg:justify-start space-y-3 flex-col text-center lg:text-left"><p class="text-foreground font-bold">Support</p><ul class="text-foreground/70 list-none space-y-2"><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://discord.com/discovery/applications/878633004640124998">Discord Bot</a></li><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://bloxfruittrading/">FAQ</a></li><li><a class="transition-colors hover:text-foreground" target="_blank" rel="noreferrer" href="https://bloxfruittrading.com">Our games</a></li></ul></div></div></div></footer>
 <script>
 const API="https://dropjetic.pythonanywhere.com/trades";
 const MSG_API="https://dropjetic.pythonanywhere.com/messages";
@@ -140,10 +159,17 @@ const mobileMsgBtn=document.getElementById('mobileMsgBtn');
 const mobileMsgBadge=document.getElementById('mobileMsgBadge');
 const mobileAvatar=document.getElementById('mobileAvatar');
 const mobileNewAccount=document.getElementById('mobileNewAccount');
-function generateUser(){const id=Date.now().toString(36)+Math.random().toString(36).substr(2);const username="User_"+Math.random().toString(36).substr(2,5);const avatar=`https://api.dicebear.com/7.x/avataaars/svg?seed=${id}`;return{id,username,avatar};}
-function loadUser(){const saved=localStorage.getItem('bf_user');if(saved){currentUser=JSON.parse(saved);updateUserUI();}else{currentUser=generateUser();localStorage.setItem('bf_user',JSON.stringify(currentUser));updateUserUI();}}
+const genderModal=document.getElementById('genderModal');
+const maleBtn=document.getElementById('maleBtn');
+const femaleBtn=document.getElementById('femaleBtn');
+function generateUser(gender){const id=Date.now().toString(36)+Math.random().toString(36).substr(2);const username="User_"+Math.random().toString(36).substr(2,5);const avatar=gender==="male"?"https://iili.io/KmAE9MF.webp":"https://iili.io/KmAEH6g.webp";return{id,username,avatar,gender};}
+function loadUser(){const saved=localStorage.getItem('bf_user');if(saved){currentUser=JSON.parse(saved);if(currentUser.gender)genderModal.remove();updateUserUI();}else{showGenderModal();}}
+function showGenderModal(){genderModal.style.display='flex';}
+function selectGender(gender){currentUser=generateUser(gender);localStorage.setItem('bf_user',JSON.stringify(currentUser));genderModal.remove();updateUserUI();loadTrades();loadAllConversations();}
+maleBtn.onclick=()=>selectGender('male');
+femaleBtn.onclick=()=>selectGender('female');
 function updateUserUI(){document.getElementById('userAvatar').src=currentUser.avatar;document.getElementById('userName').textContent=currentUser.username;mobileAvatar.src=currentUser.avatar;}
-function newAccount(){if(confirm("Create new account? This will clear your current session.")){localStorage.removeItem('bf_user');currentUser=generateUser();localStorage.setItem('bf_user',JSON.stringify(currentUser));updateUserUI();loadTrades();loadAllConversations();}}
+function newAccount(){if(confirm("Create new account? This will clear your current session.")){localStorage.removeItem('bf_user');location.reload();}}
 newAccountBtn.onclick=newAccount;mobileNewAccount.onclick=newAccount;
 function itemHTML(name,data){const selected=currentSide==='offering'?selectedOffering.has(name):selectedWanting.has(name);return`<button data-name="${name}" class="relative group flex flex-col items-center p-2 lg:p-3 rounded-xl bg-gray-800/50 border border-white/10 hover:border-purple-500/50 transition"><div class="relative"><img src="${data.image}" class="w-16 h-16 lg:w-20 lg:h-20 object-contain"><div class="tick ${selected?'show':''}"><svg class="w-12 h-12 lg:w-16 lg:h-16 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/></svg></div></div><span class="mt-1 lg:mt-2 text-xs font-medium truncate w-full text-center">${name}</span><span class="text-[9px] lg:text-[10px] text-gray-400">${data.beli} • ${data.demand}</span></button>`;}
 function renderItems(){const term=searchInput.value.toLowerCase();const filtered=Object.entries(fruits).filter(([name])=>name.toLowerCase().includes(term));itemGrid.innerHTML=filtered.map(([name,data])=>itemHTML(name,data)).join('');}
@@ -181,7 +207,7 @@ sendMsg.onclick=async()=>{if(!msgInput.value.trim()|| !currentChatWith)return;co
 msgInput.onkeydown=e=>{if(e.key==="Enter"){sendMsg.click();}};
 window.openChat=openChat;
 window.deleteTrade=deleteTrade;
-loadUser();loadTrades();renderItems();
+loadUser();renderItems();
 setInterval(()=>{if(currentChatWith)loadMessages();loadAllConversations();},3000);
 </script>
 </body>
