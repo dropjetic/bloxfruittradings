@@ -218,7 +218,7 @@ function finalizeUser(gender){currentUser=generateUser(gender);localStorage.setI
 selectMale.onclick=()=>finalizeUser('male');selectFemale.onclick=()=>finalizeUser('female');
 function updateUserUI(){document.getElementById('userAvatar')?.setAttribute('src',currentUser.avatar);document.getElementById('mobileAvatar').src=currentUser.avatar;document.getElementById('userName')&&(document.getElementById('userName').textContent=currentUser.username);}
 document.getElementById('newAccount')?.addEventListener('click',()=>{if(confirm('Create new account?')){localStorage.removeItem('bf_user');currentUser=null;showGenderModal();}});
-document.getElementById('mobileNewAccount')?.addEventListener('click',()=>{if(confirm('Create new account?')){localStorage.removeItem('bf_user');currentUser=null;showGenderModal();}});
+document.getElementById('mobileNewAccount')?.addEventListener('click',()=>{if(confirm(' recruit new account?')){localStorage.removeItem('bf_user');currentUser=null;showGenderModal();}});
 function itemHTMLCard(i,color="pink"){const grad=color==="rose"?"from-rose-400/50 to-rose-600/40":"from-pink-400/50 to-pink-600/40";return `<div class="group relative rounded-md border bg-gradient-to-br transition-transform hover:-translate-y-1 hover:z-10 ${grad} p-0.5 border-purple-500/20 h-[100px] w-[75px] sm:h-[120px] sm:w-[90px] lg:h-[150px] lg:w-[120px] shrink-0">
     <div class="bg-grid-pattern absolute inset-0 opacity-10"></div>
     <div class="relative z-10 flex h-full w-full flex-col">
@@ -270,57 +270,213 @@ function renderTrade(t){const totalItems=t.offering.length+t.wanting.length;cons
       </div>
     </div>
   </div>`;}
-async function loadTrades(){try{const res=await fetch(API);trades=await res.json();filterAndRender();renderConversationList();}catch(e){document.getElementById("trades").innerHTML=`<p class="text-center text-red-400">Failed to load trades.</p>`;}}
-function filterAndRender(){let filtered=trades;if(searchTerm){filtered=filtered.filter(t=>t.offering.some(i=>i.name.toLowerCase().includes(searchTerm))||t.wanting.some(i=>i.name.toLowerCase().includes(searchTerm)));}if(filterMode==='offering')filtered=filtered.filter(t=>t.offering.length>0);if(filterMode==='requesting')filtered=filtered.filter(t=>t.wanting.length>0);document.getElementById("trades").innerHTML=filtered.length?filtered.map(renderTrade).join(""):`<p class="text-center text-gray-500 col-span-full">No trades found.</p>`;document.getElementById("trades").addEventListener('click',e=>{if(e.target.closest('.message-btn')){const btn=e.target.closest('.message-btn');openChat(btn.dataset.userId,btn.dataset.username,btn.dataset.avatar);}});document.getElementById("trades").addEventListener('click',e=>{if(e.target.closest('[data-id]')){const btn=e.target.closest('[data-id]');deleteTrade(btn.dataset.id);}});}
-searchFilter.oninput=e=>{searchTerm=e.target.value.toLowerCase();filterAndRender();};
-clearSearch.onclick=()=>{searchFilter.value='';searchTerm='';filterAndRender();};
-filterAll.onclick=()=>{filterMode='all';updateFilterButtons();filterAndRender();};
-filterOffering.onclick=()=>{filterMode='offering';updateFilterButtons();filterAndRender();};
-filterRequesting.onclick=()=>{filterMode='requesting';updateFilterButtons();filterAndRender();};
-function updateFilterButtons(){filterAll.classList.toggle('bg-gradient-to-r',filterMode==='all');filterAll.classList.toggle('from-purple-500',filterMode==='all');filterAll.classList.toggle('to-purple-600',filterMode==='all');filterAll.classList.toggle('text-white',filterMode==='all');[filterOffering,filterRequesting].forEach(b=>{b.classList.remove('bg-gradient-to-r','from-purple-500','to-purple-600','text-white');b.classList.add('text-gray-400','hover:text-white');});if(filterMode==='offering')filterOffering.classList.add('bg-gradient-to-r','from-purple-500','to-purple-600','text-white');if(filterMode==='requesting')filterRequesting.classList.add('bg-gradient-to-r','from-purple-500','to-purple-600','text-white');}
-function renderModalItems(){const term=modalSearch.value.toLowerCase();const filtered=Object.entries(fruits).filter(([name])=>name.toLowerCase().includes(term));itemGrid.innerHTML=filtered.map(([name,data])=>{const selected=currentSide==='offering'?selectedOffering.has(name):selectedWanting.has(name);return `<button data-name="${name}" class="relative group flex flex-col items-center p-2 lg:p-3 rounded-xl bg-gray-800/50 border border-white/10 hover:border-purple-500/50 transition">
+async function api(url, opts = {}) {
+    opts.credentials = 'include';
+    const res = await fetch(url, opts);
+    if (res.status === 401) {
+        alert('Please log in with Roblox');
+        window.location.href = '/';
+        return;
+    }
+    return res;
+}
+async function loadTrades() {
+    try {
+        const res = await api(API);
+        if (!res) return;
+        trades = await res.json();
+        filterAndRender();
+        renderConversationList();
+    } catch (e) {
+        document.getElementById("trades").innerHTML = `<p class="text-center text-red-400">Failed to load trades.</p>`;
+    }
+}
+function filterAndRender() {
+    let filtered = trades;
+    if (searchTerm) {
+        filtered = filtered.filter(t => t.offering.some(i => i.name.toLowerCase().includes(searchTerm)) || t.wanting.some(i => i.name.toLowerCase().includes(searchTerm)));
+    }
+    if (filterMode === 'offering') filtered = filtered.filter(t => t.offering.length > 0);
+    if (filterMode === 'requesting') filtered = filtered.filter(t => t.wanting.length > 0);
+    document.getElementById("trades").innerHTML = filtered.length ? filtered.map(renderTrade).join("") : `<p class="text-center text-gray-500 col-span-full">No trades found.</p>`;
+    document.getElementById("trades").addEventListener('click', e => {
+        if (e.target.closest('.message-btn')) {
+            const btn = e.target.closest('.message-btn');
+            openChat(btn.dataset.userId, btn.dataset.username, btn.dataset.avatar);
+        }
+    });
+    document.getElementById("trades").addEventListener('click', e => {
+        if (e.target.closest('[data-id]')) {
+            const btn = e.target.closest('[data-id]');
+            deleteTrade(btn.dataset.id);
+        }
+    });
+}
+searchFilter.oninput = e => { searchTerm = e.target.value.toLowerCase(); filterAndRender(); };
+clearSearch.onclick = () => { searchFilter.value = ''; searchTerm = ''; filterAndRender(); };
+filterAll.onclick = () => { filterMode = 'all'; updateFilterButtons(); filterAndRender(); };
+filterOffering.onclick = () => { filterMode = 'offering'; updateFilterButtons(); filterAndRender(); };
+filterRequesting.onclick = () => { filterMode = 'requesting'; updateFilterButtons(); filterAndRender(); };
+function updateFilterButtons() {
+    filterAll.classList.toggle('bg-gradient-to-r', filterMode === 'all');
+    filterAll.classList.toggle('from-purple-500', filterMode === 'all');
+    filterAll.classList.toggle('to-purple-600', filterMode === 'all');
+    filterAll.classList.toggle('text-white', filterMode === 'all');
+    [filterOffering, filterRequesting].forEach(b => {
+        b.classList.remove('bg-gradient-to-r', 'from-purple-500', 'to-purple-600', 'text-white');
+        b.classList.add('text-gray-400', 'hover:text-white');
+    });
+    if (filterMode === 'offering') filterOffering.classList.add('bg-gradient-to-r', 'from-purple-500', 'to-purple-600', 'text-white');
+    if (filterMode === 'requesting') filterRequesting.classList.add('bg-gradient-to-r', 'from-purple-500', 'to-purple-600', 'text-white');
+}
+function renderModalItems() {
+    const term = modalSearch.value.toLowerCase();
+    const filtered = Object.entries(fruits).filter(([name]) => name.toLowerCase().includes(term));
+    itemGrid.innerHTML = filtered.map(([name, data]) => {
+        const selected = currentSide === 'offering' ? selectedOffering.has(name) : selectedWanting.has(name);
+        return `<button data-name="${name}" class="relative group flex flex-col items-center p-2 lg:p-3 rounded-xl bg-gray-800/50 border border-white/10 hover:border-purple-500/50 transition">
       <div class="relative">
         <img src="${data.image}" class="w-16 h-16 lg:w-20 lg:h-20 object-contain">
-        <div class="tick ${selected?'show':''}">
+        <div class="tick ${selected ? 'show' : ''}">
           <svg class="w-12 h-12 lg:w-16 lg:h-16 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"/></svg>
         </div>
       </div>
       <span class="mt-1 lg:mt-2 text-xs font-medium truncate w-full text-center">${name}</span>
       <span class="text-[9px] lg:text-[10px] text-gray-400">${data.beli} • ${data.demand}</span>
-    </button>`;}).join('');}
-itemGrid.addEventListener('click',e=>{const btn=e.target.closest('button[data-name]');if(btn){const name=btn.dataset.name;const set=currentSide==='offering'?selectedOffering:selectedWanting;set.has(name)?set.delete(name):set.add(name);renderModalItems();confirmPost.disabled=selectedOffering.size===0||selectedWanting.size===0;}});
-createTradeBtn.onclick=()=>{if(!currentUser?.gender)return;openTradeModal();};
-function openTradeModal(){selectedOffering.clear();selectedWanting.clear();currentSide='offering';offeringTab.classList.replace('bg-gray-700','bg-purple-600');requestingTab.classList.replace('bg-purple-600','bg-gray-700');modalSearch.value='';renderModalItems();tradeModal.classList.remove('hidden');}
-closeModal.onclick=cancelPost.onclick=()=>{tradeModal.classList.add('hidden');};
-offeringTab.onclick=()=>{currentSide='offering';offeringTab.classList.replace('bg-gray-700','bg-purple-600');requestingTab.classList.replace('bg-purple-600','bg-gray-700');renderModalItems();};
-requestingTab.onclick=()=>{currentSide='requesting';requestingTab.classList.replace('bg-gray-700','bg-purple-600');offeringTab.classList.replace('bg-purple-600','bg-gray-700');renderModalItems();};
-modalSearch.oninput=renderModalItems;
-confirmPost.onclick=async()=>{if(selectedOffering.size===0||selectedWanting.size===0)return;const offering=Array.from(selectedOffering).map(name=>({name:name,img:fruits[name].image,beli:fruits[name].beli,demand:fruits[name].demand}));const wanting=Array.from(selectedWanting).map(name=>({name:name,img:fruits[name].image,beli:fruits[name].beli,demand:fruits[name].demand}));const trade={id:Date.now(),user:currentUser,offering,wanting,offerValue:offering.reduce((a,i)=>a+(parseFloat(i.beli)||0),0)+"M",wantValue:wanting.reduce((a,i)=>a+(parseFloat(i.beli)||0),0)+"M"};try{await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(trade)});tradeModal.classList.add('hidden');loadTrades();}catch{alert("Failed to post trade.");}};
-function openChat(partnerId,username,avatar){if(!currentUser?.gender)return;currentChatPartner=partnerId;document.getElementById('chatAvatar').src=avatar||'';document.getElementById('chatUser').textContent=username||'User';panelTitle.textContent=username||'Chat';messagingPanel.classList.remove('hidden');renderMessages();chatArea.classList.remove('hidden');conversationsDiv.classList.add('hidden');unreadCounts[partnerId]=0;updateBadges();}
-function backToConversations(){chatArea.classList.add('hidden');conversationsDiv.classList.remove('hidden');panelTitle.textContent='Messages';currentChatPartner=null;}
-function closeChat(){messagingPanel.classList.add('hidden');backToConversations();}
-backToList.onclick=backToListDesktop.onclick=backToConversations;
-closeChatMobile.onclick=closeChatDesktop.onclick=closeChat;
-openMessagesBtn.onclick=mobileMsgBtn.onclick=()=>{if(!currentUser?.gender)return;messagingPanel.classList.remove('hidden');backToConversations();renderConversationList();};
-function renderConversationList(){const partners=Object.keys(messages).filter(id=>messages[id].length>0);conversationsDiv.innerHTML=partners.length?partners.map(id=>{const user=trades.find(t=>t.user.id===id)?.user||{username:'Unknown',avatar:''};const last=messages[id][messages[id].length-1];const unread=unreadCounts[id]||0;return `<div onclick="openChat('${id}','${user.username}','${user.avatar}')" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-700 cursor-pointer">
+    </button>`;
+    }).join('');
+}
+itemGrid.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-name]');
+    if (btn) {
+        const name = btn.dataset.name;
+        const set = currentSide === 'offering' ? selectedOffering : selectedWanting;
+        set.has(name) ? set.delete(name) : set.add(name);
+        renderModalItems();
+        confirmPost.disabled = selectedOffering.size === 0 || selectedWanting.size === 0;
+    }
+});
+createTradeBtn.onclick = () => { if (!currentUser?.gender) return; openTradeModal(); };
+function openTradeModal() {
+    selectedOffering.clear(); selectedWanting.clear(); currentSide = 'offering';
+    offeringTab.classList.replace('bg-gray-700', 'bg-purple-600');
+    requestingTab.classList.replace('bg-purple-600', 'bg-gray-700');
+    modalSearch.value = ''; renderModalItems(); tradeModal.classList.remove('hidden');
+}
+closeModal.onclick = cancelPost.onclick = () => { tradeModal.classList.add('hidden'); };
+offeringTab.onclick = () => {
+    currentSide = 'offering';
+    offeringTab.classList.replace('bg-gray-700', 'bg-purple-600');
+    requestingTab.classList.replace('bg-purple-600', 'bg-gray-700');
+    renderModalItems();
+};
+requestingTab.onclick = () => {
+    currentSide = 'requesting';
+    requestingTab.classList.replace('bg-gray-700', 'bg-purple-600');
+    offeringTab.classList.replace('bg-purple-600', 'bg-gray-700');
+    renderModalItems();
+};
+modalSearch.oninput = renderModalItems;
+confirmPost.onclick = async () => {
+    if (selectedOffering.size === 0 || selectedWanting.size === 0) return;
+    const offering = Array.from(selectedOffering).map(name => ({ name: name, img: fruits[name].image, beli: fruits[name].beli, demand: fruits[name].demand }));
+    const wanting = Array.from(selectedWanting).map(name => ({ name: name, img: fruits[name].image, beli: fruits[name].beli, demand: fruits[name].demand }));
+    const trade = { id: Date.now(), user: currentUser, offering, wanting, offerValue: offering.reduce((a, i) => a + (parseFloat(i.beli) || 0), 0) + "M", wantValue: wanting.reduce((a, i) => a + (parseFloat(i.beli) || 0), 0) + "M" };
+    try {
+        await api(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(trade) });
+        tradeModal.classList.add('hidden'); loadTrades();
+    } catch { alert("Failed to post trade."); }
+};
+function openChat(partnerId, username, avatar) {
+    if (!currentUser?.gender) return;
+    currentChatPartner = partnerId;
+    document.getElementById('chatAvatar').src = avatar || '';
+    document.getElementById('chatUser').textContent = username || 'User';
+    panelTitle.textContent = username || 'Chat';
+    messagingPanel.classList.remove('hidden');
+    renderMessages(); chatArea.classList.remove('hidden'); conversationsDiv.classList.add('hidden');
+    unreadCounts[partnerId] = 0; updateBadges();
+}
+function backToConversations() {
+    chatArea.classList.add('hidden'); conversationsDiv.classList.remove('hidden'); panelTitle.textContent = 'Messages'; currentChatPartner = null;
+}
+function closeChat() {
+    messagingPanel.classList.add('hidden'); backToConversations();
+}
+backToList.onclick = backToListDesktop.onclick = backToConversations;
+closeChatMobile.onclick = closeChatDesktop.onclick = closeChat;
+openMessagesBtn.onclick = mobileMsgBtn.onclick = () => {
+    if (!currentUser?.gender) return;
+    messagingPanel.classList.remove('hidden'); backToConversations(); renderConversationList();
+};
+function renderConversationList() {
+    const partners = Object.keys(messages).filter(id => messages[id].length > 0);
+    conversationsDiv.innerHTML = partners.length ? partners.map(id => {
+        const user = trades.find(t => t.user.id === id)?.user || { username: 'Unknown', avatar: '' };
+        const last = messages[id][messages[id].length - 1];
+        const unread = unreadCounts[id] || 0;
+        return `<div onclick="openChat('${id}','${user.username}','${user.avatar}')" class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-700 cursor-pointer">
       <img src="${user.avatar}" class="w-10 h-10 rounded-full">
       <div class="flex-1">
         <div class="font-medium">${user.username}</div>
         <div class="text-xs text-gray-400 truncate">${last.msg}</div>
       </div>
-      ${unread?`<span class="notification-badge">${unread}</span>`:''}
-    </div>`;}).join(''):'<p class="text-center text-gray-500 p-4">No messages yet.</p>';}
-function renderMessages(){const msgs=messages[currentChatPartner]||[];messagesDiv.innerHTML=msgs.map(m=>`<div class="${m.from===currentUser.id?'ml-auto bg-purple-600 text-white':'bg-gray-700 text-gray-200'} max-w-[75%] rounded-lg p-2">
+      ${unread ? `<span class="notification-badge">${unread}</span>` : ''}
+    </div>`;
+    }).join('') : '<p class="text-center text-gray-500 p-4">No messages yet.</p>';
+}
+function renderMessages() {
+    const msgs = messages[currentChatPartner] || [];
+    messagesDiv.innerHTML = msgs.map(m => `<div class="${m.from === currentUser.id ? 'ml-auto bg-purple-600 text-white' : 'bg-gray-700 text-gray-200'} max-w-[75%] rounded-lg p-2">
       <div class="text-xs">${m.msg}</div>
       <div class="text-[10px] opacity-70">${new Date(m.time).toLocaleTimeString()}</div>
-    </div>`).join('');messagesDiv.scrollTop=messagesDiv.scrollHeight;}
-sendMsgBtn.onclick=async()=>{if(!msgInput.value.trim()||!currentChatPartner)return;const txt=msgInput.value.trim();msgInput.value='';const payload={from:currentUser.id,to:currentChatPartner,msg:txt,time:Date.now()};try{await fetch(MSG_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }catch(e){console.error(e);}if(!messages[currentChatPartner])messages[currentChatPartner]=[];messages[currentChatPartner].push({...payload,from:currentUser.id});renderMessages();renderConversationList();updateBadges();};
-async function loadMessages(){try{const res=await fetch(MSG_API);const all=await res.json();const oldKeys=Object.keys(messages);messages={};unreadCounts={};all.forEach(m=>{const partner=m.from===currentUser.id?m.to:m.from;if(!messages[partner])messages[partner]=[];messages[partner].push(m);if(m.from!==currentUser.id&&currentChatPartner!==partner)unreadCounts[partner]=(unreadCounts[partner]||0)+1;});renderConversationList();updateBadges();if(currentChatPartner){renderMessages();}}catch(e){console.error(e);}}
-function updateBadges(){const total=Object.values(unreadCounts).reduce((a,b)=>a+b,0);document.getElementById('msgBadge').textContent=total;document.getElementById('msgBadge').classList.toggle('hidden',!total);document.getElementById('mobileMsgBadge').textContent=total;document.getElementById('mobileMsgBadge').classList.toggle('hidden',!total);}
-async function deleteTrade(id){if(!confirm('Delete this trade?'))return;try{await fetch(`${API}/${id}`,{method:'DELETE'});trades=trades.filter(t=>t.id!==id);filterAndRender();renderConversationList();}catch(e){alert('Failed to delete');}}
-document.getElementById('mobileMenuBtn').onclick=()=>{document.getElementById('mobileMenu').classList.add('open');};
-document.getElementById('closeMobileMenu').onclick=()=>{document.getElementById('mobileMenu').classList.remove('open');};
-if(!loadUser())showGenderModal();else{loadTrades();loadMessages();setInterval(()=>{loadTrades();loadMessages();},5000);}
+    </div>`).join('');
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+sendMsgBtn.onclick = async () => {
+    if (!msgInput.value.trim() || !currentChatPartner) return;
+    const txt = msgInput.value.trim(); msgInput.value = '';
+    const payload = { from: currentUser.id, to: currentChatPartner, msg: txt, time: Date.now() };
+    try {
+        await api(MSG_API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    } catch (e) { console.error(e); }
+    if (!messages[currentChatPartner]) messages[currentChatPartner] = [];
+    messages[currentChatPartner].push({ ...payload, from: currentUser.id });
+    renderMessages(); renderConversationList(); updateBadges();
+};
+async function loadMessages() {
+    try {
+        const res = await api(MSG_API);
+        if (!res) return;
+        const all = await res.json();
+        const oldKeys = Object.keys(messages);
+        messages = {}; unreadCounts = {};
+        all.forEach(m => {
+            const partner = m.from === currentUser.id ? m.to : m.from;
+            if (!messages[partner]) messages[partner] = [];
+            messages[partner].push(m);
+            if (m.from !== currentUser.id && currentChatPartner !== partner) unreadCounts[partner] = (unreadCounts[partner] || 0) + 1;
+        });
+        renderConversationList(); updateBadges();
+        if (currentChatPartner) { renderMessages(); }
+    } catch (e) { console.error(e); }
+}
+function updateBadges() {
+    const total = Object.values(unreadCounts).reduce((a, b) => a + b, 0);
+    document.getElementById('msgBadge').textContent = total; document.getElementById('msgBadge').classList.toggle('hidden', !total);
+    document.getElementById('mobileMsgBadge').textContent = total; document.getElementById('mobileMsgBadge').classList.toggle('hidden', !total);
+}
+async function deleteTrade(id) {
+    if (!confirm('Delete this trade?')) return;
+    try {
+        await api(`${API}/${id}`, { method: 'DELETE' });
+        trades = trades.filter(t => t.id !== id);
+        filterAndRender(); renderConversationList();
+    } catch (e) { alert('Failed to delete'); }
+}
+document.getElementById('mobileMenuBtn').onclick = () => { document.getElementById('mobileMenu').classList.add('open'); };
+document.getElementById('closeMobileMenu').onclick = () => { document.getElementById('mobileMenu').classList.remove('open'); };
+if (!loadUser()) showGenderModal(); else { loadTrades(); loadMessages(); setInterval(() => { loadTrades(); loadMessages(); }, 5000); }
 renderModalItems();
 </script>
 </body>
