@@ -1,0 +1,17 @@
+.pw-ad-scroll-container {
+    grid-column: 1/-1 !important;
+}
+
+.pw-sticky {
+    top: 117px !important;
+}
+
+.pw-rewarded-ad-video #rewarded-pw-logo {
+  opacity: 0 !important;
+  display: none !important;
+}
+
+.pw-ad-scroll-container [id^="in_content"] {
+    display: flex !important;
+    justify-content: center !important;
+}
