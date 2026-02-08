@@ -5,668 +5,531 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blox Fruits Value List</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<style>
+html,body{overscroll-behavior:none;scroll-behavior:smooth}
+.nav-transparent{background:transparent}
+.nav-scrolled{background:rgba(17,24,39,0.95);backdrop-blur-xl}
+.rarity-mythical{background:linear-gradient(135deg,#ff6b6b,#ff8e8e)}
+.rarity-legendary{background:linear-gradient(135deg,#ffd700,#ffed4e)}
+.rarity-uncommon{background:linear-gradient(135deg,#4ade80,#6ee7b7)}
+.rarity-common{background:linear-gradient(135deg,#94a3b8,#cbd5e1)}
+.trend-overpaid{color:#ef4444}
+.trend-stable{color:#10b981}
+.shimmer{background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);animation:shimmer 2s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+</style>
 </head>
-<body class="bg-black text-white">
-<nav role="navigation" aria-label="Main navigation" class="fixed inset-x-0 top-0 z-50 mx-auto w-full bg-black/90 backdrop-blur-lg border-b border-white/10" style="height: 100px;">
-<div class="flex h-full items-center justify-center px-4">
-<div class="flex w-full items-center justify-center max-w-7xl mx-auto">
-<div class="flex items-center gap-6 lg:gap-8">
-<a href="https://bloxfruittrading.com/" class="flex flex-col items-center gap-1 py-2">
-<img alt="logo" loading="lazy" width="48" height="48" class="w-12 h-12 object-contain" src="./final ones_files/KL1P0ib.gif">
+<body class="bg-gradient-to-br from-gray-950 via-black to-gray-900 text-white min-h-screen">
+<nav class="fixed inset-x-0 top-4 z-50 mx-auto w-[95%] max-w-7xl rounded-full nav-transparent transition-all duration-300" id="navbar">
+<div class="flex items-center justify-between px-6 py-4">
+<a href="/" class="flex items-center gap-3">
+<img src="https://i.postimg.cc/7LfBxxs8/West-Dragon.png" class="w-11 h-11 rounded-xl shadow-2xl" alt="Logo">
+<span class="text-2xl font-black bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">BloxValues</span>
 </a>
-<button class="flex flex-col items-center gap-1 py-2">
-<img src="./final ones_files/KL12OJt.png" alt="Icon" class="h-8 w-8 object-contain">
-<span class="text-xs font-medium">Trading</span>
-</button>
-<a href="https://bloxfruittrading.com/values" class="flex flex-col items-center gap-1 py-2">
-<svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7"><path d="M20.6875 5.625H25.375V27.1875H4.75V5.625H9.4375V7.5H20.6875V5.625ZM8.5 15H21.625V13.125H8.5V15ZM8.5 22.5H21.625V20.625H8.5V22.5ZM11.3125 5.625V2.8125H18.8125V5.625H11.3125Z" fill="currentColor"></path></svg>
-<span class="text-xs font-medium">Values</span>
+<div class="hidden lg:flex items-center gap-8">
+<a href="/trading" class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-white/10 transition">
+<svg class="w-7 h-7 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M30 7L23 0V5H11V9H23V14M7 10L0 17L7 24V19H19V15H7V10Z"/></svg>
+<span class="text-sm font-semibold">Trading</span>
 </a>
-<a href="https://bloxfruittrading.com/calculator" class="flex flex-col items-center gap-1 py-2">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7"><rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
-<span class="text-xs font-medium">Calculator</span>
+<a href="/values" class="flex flex-col items-center gap-1 p-2 rounded-xl bg-white/10">
+<svg class="w-7 h-7 text-emerald-400" fill="currentColor" viewBox="0 0 31 30"><path d="M20.6875 5.625H25.375V27.1875H4.75V5.625H9.4375V7.5H20.6875V5.625ZM8.5 15H21.625V13.125H8.5V15ZM8.5 22.5H21.625V20.625H8.5V22.5ZM11.3125 5.625V2.8125H18.8125V5.625H11.3125Z"/></svg>
+<span class="text-sm font-semibold">Values</span>
 </a>
-<a href="https://bloxfruittrading.com/rate" class="flex flex-col items-center gap-1 py-2">
-<span class="text-2xl">Reviews</span>
-<span class="text-xs font-medium">Reviews</span>
-</a>
-<div class="flex flex-col items-center gap-1 py-2 cursor-pointer">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-<span class="text-xs font-medium">Search</span>
-</div>
-<a href="https://bloxfruittrading.com/giveaways" class="flex flex-col items-center gap-1 py-2">
-<span class="text-2xl">Stocks</span>
-<span class="text-xs font-medium">Stocks</span>
+<a href="/calculator" class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-white/10 transition">
+<svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/></svg>
+<span class="text-sm font-semibold">Calculator</span>
 </a>
 </div>
-<div class="absolute right-4 flex items-center gap-4">
-<a target="_blank" href="https://bloxfruittrading.com/discord">
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-8 w-8"><path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path></svg>
+<div class="flex items-center gap-4">
+<a href="https://discord.gg/bloxfruits" target="_blank" class="p-3 rounded-xl bg-indigo-600/30 hover:bg-indigo-600/50 transition">
+<svg class="w-6 h-6" viewBox="0 -28.5 256 256" fill="#5865F2"><path d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path></svg>
 </a>
-<a href="https://bloxfruittrading.com/login">
-<button class="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-3 text-base font-medium shadow-lg transition">Login</button>
-</a>
-</div>
+<a href="/login" class="px-7 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 font-bold shadow-xl transition">Login</a>
 </div>
 </div>
 </nav>
-<div class="pt-32">
-<main class="flex-1 max-w-7xl mx-auto px-4">
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/west-dragon">
-<img alt="West Dragon" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="https://i.postimg.cc/7LfBxxs8/West-Dragon.png" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-<div class="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0"><div class="rounded-full bg-white/10 p-2.5 border border-white/10"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link h-5 w-5 text-white" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg></div></div>
-</a>
-<div class="absolute right-1.5 sm:right-2.5 top-1.5 sm:top-2.5 z-10">
-<div class="relative">
-<div class="relative flex items-center rounded-lg bg-gradient-to-r from-red-500 via-red-600 to-red-700 border-red-400/70 px-2 sm:px-2.5 py-1 sm:py-1.5 text-[8px] sm:text-[10px] font-bold text-white border">
-<div class="absolute inset-0 rounded-lg bg-white/5 opacity-30"></div>
-<span class="relative z-10 drop-shadow-sm tracking-wide uppercase">Mythical</span>
-</div>
-</div>
-</div>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">West Dragon</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><div class="flex items-center gap-1"><span class="text-sm sm:text-base font-bold text-white">1.72B</span></div></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Trend</span><span class="text-xs sm:text-sm font-bold font-bold overpaid-animate"><span class="font-bold overpaid-animate">Overpaid</span></span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">10/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">15M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Fruit Type</span><span class="text-xs font-semibold text-blue-300">Beast</span></div>
-</div>
-<div class="mt-2 flex items-center justify-between text-[9px] text-gray-500"><span>4 days ago</span></div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/east-dragon">
-<img alt="East Dragon" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="East-Dragon.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">East Dragon</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">1.2B</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">10/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">15M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/kitsune">
-<img alt="Kitsune" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Kitsune.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Kitsune</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">300M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">10/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">8M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/yeti">
-<img alt="Yeti" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Yeti.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Yeti</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">150M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">10/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">5M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/leopard">
-<img alt="Leopard" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Leopard.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Leopard</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">150M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">10/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">5M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/gas">
-<img alt="Gas" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Gas.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Gas</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">65M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">8/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">3.2M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/dough">
-<img alt="Dough" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Dough.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Dough</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">30M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">10/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">2.8M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/pain">
-<img alt="Pain" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Pain.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Pain</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">15M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">6/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">2.3M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/t-rex">
-<img alt="T-Rex" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="T-RexFruit.svg" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">T-Rex</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">20M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">8/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">2.7M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/gravity">
-<img alt="Gravity" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Gravity.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Gravity</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">15M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">4/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">2.5M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/mammoth">
-<img alt="Mammoth" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Mammoth.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Mammoth</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">10M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">5/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">2.7M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/spirit">
-<img alt="Spirit" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Spirit.webp" style="position: absolute  height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Spirit</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">10M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">6/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">3.4M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/control">
-<img alt="Control" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Control.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Control</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">10M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">5/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">3.2M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/venom">
-<img alt="Venom" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Venom.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text  text-sm sm:text-base"><span class="truncate">Venom</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">10M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">6/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">3M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/portal">
-<img alt="Portal" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Portal.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Portal</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">10M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">10/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">1.9M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/buddha">
-<img alt="Buddha" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Buddha.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Buddha</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">10M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">10/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">1.2M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/shadow">
-<img alt="Shadow" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Shadow.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Shadow</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">6.5M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">5/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">2.9M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/blizzard">
-<img alt="Blizzard" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Blizzard.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Blizzard</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">5M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">5/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">2.4M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/creation">
-<img alt="Creation" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Creation.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Creation</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">3.5M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">3/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">1.4M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/phoenix">
-<img alt="Phoenix" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Phoenix.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Phoenix</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">2.75M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">3/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">1.8M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/sound">
-<img alt="Sound" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Sound.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Sound</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">2.5M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">4/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">1.7M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/spider">
-<img alt="Spider" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Spider.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Spider</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">1.5M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">2/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">1.5M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/love">
-<img alt="Love" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Love.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Love</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">1.5M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">3/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">1.3M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/magma">
-<img alt="Magma" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Magma.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Magma</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">1.15M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">8/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">960K</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/quake">
-<img alt="Quake" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Quake.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Quake</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">1M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">2/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">1M</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/diamond">
-<img alt="Diamond" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Diamond.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Diamond</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">1M</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">2/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">600K</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/ghost">
-<img alt="Ghost" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Ghost.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Ghost</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs  sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">800K</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">1/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">940K</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/eagle">
-<img alt="Eagle" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Eagle.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Eagle</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">800K</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">2/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">550K</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/rubber">
-<img alt="Rubber" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Rubber.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Rubber</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">700K</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">1/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">750K</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/ice">
-<img alt="Ice" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Ice.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Ice</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">550K</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">2/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">350K</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/sand">
-<img alt="Sand" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Sand.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Sand</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">420K</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">1/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">420K</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/dark">
-<img alt="Dark" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Dark.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Dark</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">400K</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">1/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">500K</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/flame">
-<img alt="Flame" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Flame.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Flame</span></h3>
-</div>
-<div class="space-y-2 bg-black/20 rounded-lg p-2.5 border border-white/5">
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Value</span><span class="text-sm sm:text-base font-bold text-white">250K</span></div>
-<div class="flex items-center justify-between"><span class="text-xs sm:text-sm font-medium text-gray-300">Demand</span><span class="text-xs sm:text-sm font-bold text-emerald-500">1/10</span></div>
-<div class="h-px bg-white/10 my-2"></div>
-<div class="flex items-center justify-between"><span class="text-xs font-medium text-gray-400">Beli Price</span><span class="text-xs font-semibold text-yellow-400">250K</span></div>
-</div>
-</div>
-</div>
-<div class="group relative overflow-hidden h-full z-0 rounded-xl transition-all duration-200 ease-out border border-white/10 bg-black/5 hover:bg-black/10">
-<div class="relative">
-<a class="relative block aspect-square overflow-hidden rounded-t-xl bg-black/30" href="/values/fruits/spike">
-<img alt="Spike" loading="lazy" decoding="async" data-nimg="fill" class="object-contain p-3 sm:p-4 transition-transform duration-200 group-hover:scale-[1.02]" sizes="100vw" src="Spike.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-</a>
-</div>
-<div class="p-2.5 sm:p-3 relative z-10">
-<div class="flex items-center mb-1.5 sm:mb-2">
-<h3 class="truncate font-semibold tracking-tight text-white flex-1 text-sm sm:text-base"><span class="truncate">Spike</span></h3>
-</div>
-<div class="
+
+<main class="pt-28 pb-20">
+<div class="max-w-7xl mx-auto px-6 mb-16 text-center">
+<h1 class="text-6xl md:text-8xl font-black bg-gradient-to-r from-white via-purple-400 to-pink-500 bg-clip-text text-transparent">Blox Fruits Value List</h1>
+<p class="mt-4 text-xl text-gray-400">Real-time prices • February 08, 2026</p>
+</div>
+
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/7LfBxxs8/West-Dragon.png" alt="West Dragon" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>MYTHICAL</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">West Dragon</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">3.38B</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">10/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-red-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/Qtn7Wv59/latest-cb-20251226164628.webp" alt="Ember West Dragon" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Ember West Dragon</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">3.7B</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">10/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-amber-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/k5JRY7vf/latest-cb-20251226164613.webp" alt="Galaxy Empyrean Kitsune" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Galaxy Empyrean Kitsune</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">4.7B</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">10/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-rose-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/dtg9fZh5/latest-cb-20251225145618.webp" alt="Crimson Kitsune" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Crimson Kitsune</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">3.54B</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">10/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-blue-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/htF9sFwc/latest-cb-20251225222313.webp" alt="Divine Portal" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-legendary px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Divine Portal</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">360M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-yellow-500 font-bold">Fluctuating</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">8/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/d0FsYGYD/Purple-Lightning.png" alt="Purple Lightning" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Purple Lightning</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">2.51B</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">10/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/59nFmw9g/Permanent-Dragon-Token.png" alt="Permanent Dragon Token" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-legendary px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Permanent Dragon Token</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">3.38B</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">6/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/65MLTkG9/Eclipse.png" alt="Eclipse" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Eclipse</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">N/A</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">10/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/Xv7LjsRD/Super-Spirit-Pain.png" alt="Super Spirit Pain" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Super Spirit Pain</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">570M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">10/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/T1qGN3Q0/Torment.png" alt="Torment Pain" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-uncommon px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Torment Pain</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">60M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-yellow-500 font-bold">Unstable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">3/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/C5VS4qCd/Sadness.png" alt="Sadness Pain" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Sadness Pain</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">290M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">7/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/26WCvwZP/Frustration.png" alt="Frustration Pain" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Frustration Pain</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">200M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">6/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/RC7ZvC2r/Celestial-Pain.png" alt="Celestial Pain" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Celestial Pain</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">270M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">7/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/7P3ZqPjr/Eagle-Requiem.png" alt="Eagle Requiem" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-uncommon px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Eagle Requiem</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">110M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">5/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-blue-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/qBsvpBWV/Eagle-Glacier.png" alt="Eagle Glacier" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-uncommon px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Eagle Glacier</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">20M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-yellow-500 font-bold">Unstable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">3/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/446xX4qD/Eagle-Matrix.png" alt="Eagle Matrix" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-uncommon px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Eagle Matrix</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">135M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">5/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-red-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/Jh4xrpf6/Celebration-Bomb.png" alt="Celebration Bomb" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-common px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Celebration Bomb</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">5M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">2/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-blue-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/PfW5df9K/Azura-Bomb.png" alt="Azura Bomb" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Azura Bomb</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">220M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">7/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-orange-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/T2V3T2Bf/Thermite-Bomb.png" alt="Thermite Bomb" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Thermite Bomb</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">220M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">7/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-red-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/QNQdjNvs/Nuclear-Bomb.png" alt="Nuclear Bomb" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Nuclear Bomb</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">220M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">7/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-pink-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/RhvjdZB9/placeholder.png" alt="Pink Portal" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-legendary px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Pink Portal</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">N/A</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-gray-400 font-bold">0/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-orange-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/RhvjdZB9/placeholder.png" alt="Orange Portal" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-legendary px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>LIMITED</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Orange Portal</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">N/A</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-gray-400 font-bold">0/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/Zqdr70sR/Fruit-Notifer.png" alt="Fruit Notifier" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>GAMEPASS</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Fruit Notifier</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">4.05B</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">9/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-gray-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/fLYfLkYF/Dark-Blade.png" alt="Dark Blade" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>GAMEPASS</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Dark Blade</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">880M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">9/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/d3HktKNp/Mythical-Scrolls.png" alt="Mythical Scrolls" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-legendary px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>GAMEPASS</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Mythical Scrolls</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">700M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">4/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-amber-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/YqDYtQJ0/Legendary-Scrolls.png" alt="Legendary Scrolls" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-uncommon px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>GAMEPASS</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Legendary Scrolls</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">415M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">3/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-purple-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/hj7pmcdF/1-Fruit-Storage.png" alt="+1 Fruit Storage" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>GAMEPASS</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">+1 Fruit Storage</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">255M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">10/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-green-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/0jdntrQm/2x-Mastery.png" alt="2x Mastery" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>GAMEPASS</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">2x Mastery</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">280M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">10/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/rsLgC58M/2x-Money.png" alt="2x Money" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>GAMEPASS</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">2x Money</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">280M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">10/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-red-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/HxMBy616/2x-Boss-Drops.png" alt="2x Boss Drops" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>GAMEPASS</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">2x Boss Drops</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">170M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">6/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-blue-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/NjV6kR4S/Fast-Boats.png" alt="Fast Boats" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-mythical px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>GAMEPASS</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Fast Boats</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">170M</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-red-500 font-bold">Overpaid</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">9/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-gray-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/y8NjP1zg/Bomb.png" alt="Bomb" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-common px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>COMMON</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Bomb</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">N/A</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">1/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-green-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/15r7B7nT/Spring.png" alt="Spring" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-common px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>COMMON</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Spring</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">N/A</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">1/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-gray-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/bYQmYVTJ/Blade.png" alt="Blade" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-common px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>COMMON</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Blade</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">N/A</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">1/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-gray-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/jj4jSbLc/Spin.png" alt="Spin" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-common px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>COMMON</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Spin</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">N/A</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">1/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-black/40 to-black/80 hover:from-white/5 hover:to-white/10 transition-all duration-400 shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-blue-950/60 to-black/60 p-8"><img src="https://i.postimg.cc/cHdrRJVP/Rocket.png" alt="Rocket" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 right-4 rarity-common px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg"><span class="shimmer absolute inset-0 rounded-full"></span>COMMON</div>
+<div class="p-6">
+<h3 class="text-xl font-black text-white mb-4">Rocket</h3>
+<div class="space-y-3 bg-black/50 rounded-2xl p-4 border border-white/10">
+<div class="flex justify-between"><span class="text-gray-400">Value</span><span class="text-2xl font-black text-emerald-400">N/A</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Trend</span><span class="text-emerald-400 font-bold">Stable</span></div>
+<div class="flex justify-between"><span class="text-gray-400">Demand</span><span class="text-emerald-400 font-bold">1/10</span></div>
+</div>
+</div>
+</div>
+
+</div>
+</main>
+
+<script>
+window.addEventListener('scroll',()=>{let n=document.getElementById('navbar');n.classList.toggle('nav-scrolled',window.scrollY>80);n.classList.toggle('nav-transparent',window.scrollY<=80)})
+</script>
+</body>
+</html>
