@@ -6,53 +6,137 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 body.modal-open{overflow:hidden}
-#fruit-modal{max-height:90vh;max-width:95vw;background:rgba(0,0,0,0.95)!important;backdrop-filter:blur(8px)}
-@media(max-width:640px){#fruit-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.item-grid{width:80px;height:80px}#fruit-search{font-size:.875rem}.fruit-slot img{width:60%;height:60%}.fruit-slot span{font-size:.65rem}.add-fruit svg{width:1.5rem;height:1.5rem}.add-fruit span{font-size:.65rem}}
+#fruit-modal{max-height:100vh;max-width:100vw;background:rgba(0,0,0,0.97)!important;backdrop-filter:blur(12px)}
+#fruit-modal > div{width:100%;height:100vh;border-radius:0}
+@media(max-width:640px){#fruit-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.item-grid{width:80px;height:80px}#fruit-search{font-size:.875rem}.fruit-slot img{width:60%;height:60%}.fruit-slot span{font-size:.65rem}}
 @media(min-width:641px)and(max-width:768px){#fruit-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.item-grid{width:100px;height:100px}}
+#fruit-search{color:black;background:white;border:1px solid #ccc}
 </style>
 </head>
 <body class="relative bg-black text-white min-h-screen flex flex-col">
-<div class="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black"></div>
-<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(120,119,198,0.06),transparent_70%)]"></div>
-<div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black via-black/95 to-transparent"></div>
 
-<!-- NEW TOP BAR -->
-<div class="relative z-50 mx-auto w-full max-w-[95vw] px-4 py-3">
-    <div class="flex items-center justify-between rounded-full bg-black/40 backdrop-blur-md border border-border/60 px-5 py-2.5">
-        <!-- Logo + Game Button -->
-        <div class="flex items-center gap-3">
-            <a href="/">
-                <img alt="logo" loading="lazy" width="48" height="48" class="min-w-10 min-h-10 w-12 h-12 object-contain" src="https://iili.io/fuZmZP9.gif">
-            </a>
-            <button class="group flex items-center gap-3 rounded-xl border border-border/60 bg-black/40 px-4 py-2.5 backdrop-blur-md transition-all hover:border-primary/50 hover:bg-black/60 hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]">
-                <div class="flex flex-col items-start">
-                    <span class="font-bold text-white">Blox Fruits</span>
-                    <span class="text-xs text-neutral-400">Switch Game</span>
-                </div>
-            </button>
-        </div>
-
-        <!-- Centered Navigation -->
-        <nav class="hidden md:flex items-center justify-center flex-1 px-8">
-            <ul class="flex items-center gap-1 text-sm">
-                <li><button onclick="window.location.href='#'" class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground focus:bg-foreground/5 focus:text-accent-foreground">99+ Trade Ads</button></li>
-                <li><a href="/values" class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground focus:bg-foreground/5 focus:text-accent-foreground">Value List</a></li>
-                <li><a href="/calculator.html" class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground focus:bg-foreground/5 focus:text-accent-foreground">Calculator</a></li>
-                <li><a href="#" class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground focus:bg-foreground/5 focus:text-accent-foreground">Community</a></li>
-                <li><a href="#" class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground focus:bg-foreground/5 focus:text-accent-foreground">Search</a></li>
-                <li><a href="#" class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground focus:bg-foreground/5 focus:text-accent-foreground">Giveaways</a></li>
-            </ul>
-        </nav>
-
-        <!-- Right side -->
-        <div class="flex items-center gap-3">
-            <a target="_blank" href="https://discord.com/invite/bfhs" class="flex items-center justify-center rounded-full p-2 transition-colors hover:bg-accent/50">
-                <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-5 w-5"><path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path></svg>
-            </a>
-            <button class="group rounded-full hover:-translate-y-0.5 active:scale-[0.98] bg-primary relative z-10 hover:bg-primary/90 border border-primary text-primary-foreground md:text-sm transition font-medium duration-200 flex items-center justify-center shadow-[0px_-1px_0px_0px_rgba(255,255,255,0.4)_inset,_0px_1px_0px_0px_rgba(255,255,255,0.4)_inset] px-6 py-2.5 text-base">Login</button>
-        </div>
+<div id="main-nav" class="relative mx-auto flex w-full justify-between px-4 py-3 transition duration-200 rounded-full bg-transparent" style="width: 81.0788%;">
+  <div class="flex w-full flex-row items-center justify-between">
+    <div class="flex w-[90px] flex-row items-center gap-2">
+      <div class="flex items-center justify-center" style="opacity: 1;">
+        <a href="https://bloxfruittrading.com/">
+          <div style="width: 47.9656px; height: 47.9656px;">
+            <img alt="logo" loading="lazy" width="48" height="48" class="min-w-10 min-h-10 w-full h-full object-contain" src="https://iili.io/KL1P0ib.gif">
+          </div>
+        </a>
+      </div>
+      <div class="flex items-center justify-center" style="opacity: 0; transform: translateX(-9.95705px);">
+        <button class="group flex items-center gap-3 rounded-xl border border-border/60 bg-black/40 px-4 py-2.5 backdrop-blur-md transition-all hover:border-primary/50 hover:bg-black/60 hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]">
+          <div class="flex flex-col items-start">
+            <span class="max-w-[150px] truncate text-base font-bold text-white">Blox Fruits</span>
+            <span class="text-xs text-neutral-400">Switch Game</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-neutral-400">
+            <path d="M6 9l6 6l6 -6"></path>
+          </svg>
+        </button>
+      </div>
     </div>
+
+    <div class="flex flex-1 justify-center">
+      <nav class="relative z-10 flex max-w-max flex-1 items-center justify-center">
+        <ul class="group flex-1 list-none space-x-5 flex items-center justify-center">
+          <li>
+            <button class="group inline-flex w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-accent-foreground">
+              <div class="flex flex-col items-center gap-2 py-1">
+                <div class="relative">
+                  <span class="flex h-7 w-7 items-center justify-center">
+                    <svg width="31" height="24" viewBox="0 0 31 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M30.0625 7.00016L23.3958 0.333496V5.3335H11.7292V8.66683H23.3958V13.6668M6.72917 10.3335L0.0625 17.0002L6.72917 23.6668V18.6668H18.3958V15.3335H6.72917V10.3335Z" fill="currentColor"></path>
+                    </svg>
+                  </span>
+                  <span class="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">99+</span>
+                </div>
+                <span class="text-xs font-medium">Trade Ads</span>
+              </div>
+            </button>
+          </li>
+          <li>
+            <a href="https://bloxfruittrading.com/values" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent">
+              <span class="flex h-7 w-7 items-center justify-center">
+                <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.6875 5.625H25.375V27.1875H4.75V5.625H9.4375V7.5H20.6875V5.625ZM8.5 15H21.625V13.125H8.5V15ZM8.5 22.5H21.625V20.625H8.5V22.5ZM11.3125 5.625V2.8125H18.8125V5.625H11.3125Z" fill="currentColor"></path>
+                </svg>
+              </span>
+              <span class="text-xs font-medium">Value List</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://bloxfruittrading.com/calculator" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent">
+              <span class="flex h-7 w-7 items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calculator">
+                  <rect width="16" height="20" x="4" y="2" rx="2"></rect>
+                  <line x1="8" x2="16" y1="6" y2="6"></line>
+                  <line x1="16" x2="16" y1="14" y2="18"></line>
+                  <path d="M16 10h.01"></path>
+                  <path d="M12 10h.01"></path>
+                  <path d="M8 10h.01"></path>
+                  <path d="M12 14h.01"></path>
+                  <path d="M8 14h.01"></path>
+                  <path d="M12 18h.01"></path>
+                  <path d="M8 18h.01"></path>
+                </svg>
+              </span>
+              <span class="text-xs font-medium">Calculator</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://bloxfruittrading.com/rate" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent">
+              <span class="flex h-7 w-7 items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </span>
+              <span class="text-xs font-medium">Community</span>
+            </a>
+          </li>
+          <li>
+            <div class="flex cursor-pointer flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent">
+              <span class="flex h-7 w-7 items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </svg>
+              </span>
+              <span class="text-xs font-medium">Search</span>
+            </div>
+          </li>
+          <li>
+            <a href="https://bloxfruittrading.com/giveaways" class="flex flex-col items-center gap-2 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-accent">
+              <span class="flex h-7 w-7 items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift">
+                  <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+                  <path d="M12 8v13"></path>
+                  <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
+                  <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path>
+                </svg>
+              </span>
+              <span class="text-xs font-medium">Giveaways</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <a target="_blank" href="https://bloxfruittrading.com/discord" class="flex items-center justify-center rounded-full p-1.5 transition-colors hover:bg-accent/50">
+        <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="0 -28.5 256 256" class="h-6 w-6">
+          <path fill="#5865F2" d="M216.856 16.597A208.5 208.5 0 0 0 164.042 0c-2.275 4.113-4.933 9.645-6.766 14.046q-29.538-4.442-58.533 0c-1.832-4.4-4.55-9.933-6.846-14.046a207.8 207.8 0 0 0-52.855 16.638C5.618 67.147-3.443 116.4 1.087 164.956c22.169 16.555 43.653 26.612 64.775 33.193A161 161 0 0 0 79.735 175.3a136.4 136.4 0 0 1-21.846-10.632 109 109 0 0 0 5.356-4.237c42.122 19.702 87.89 19.702 129.51 0a132 132 0 0 0 5.355 4.237 136 136 0 0 1-21.886 10.653c4.006 8.02 8.638 15.67 13.873 22.848 21.142-6.58 42.646-16.637 64.815-33.213 5.316-56.288-9.08-105.09-38.056-148.36M85.474 135.095c-12.645 0-23.015-11.805-23.015-26.18s10.149-26.2 23.015-26.2 23.236 11.804 23.015 26.2c.02 14.375-10.148 26.18-23.015 26.18m85.051 0c-12.645 0-23.014-11.805-23.014-26.18s10.148-26.2 23.014-26.2c12.867 0 23.236 11.804 23.015 26.2 0 14.375-10.148 26.18-23.015 26.18"></path>
+        </svg>
+      </a>
+      <a href="https://bloxfruittrading.com/login">
+        <button class="group rounded-full hover:-translate-y-0.5 active:scale-[0.98] bg-primary relative z-10 hover:bg-primary/90 border border-primary text-primary-foreground transition font-medium duration-200 flex items-center justify-center shadow-[0px_-1px_0px_0px_rgba(255,255,255,0.4)_inset,_0px_1px_0px_0px_rgba(255,255,255,0.4)_inset] px-6 py-2.5 text-base">Login</button>
+      </a>
+    </div>
+  </div>
 </div>
 
 <main class="relative z-10 flex-1 flex flex-col items-center justify-center py-6 sm:py-10">
@@ -145,7 +229,7 @@ body.modal-open{overflow:hidden}
 </div>
 <button class="inline-flex items-center justify-center rounded-md font-medium duration-300 border-2 bg-background/70 backdrop-blur-md hover:shadow-md hover:border-border/80 active:scale-[0.97] ring-1 ring-white/5 h-8 sm:h-10 gap-2 border-destructive/30 text-destructive hover:bg-destructive/10 px-4 py-2 text-sm sm:text-base reset-calculator">
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash h-4 w-4"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
-<span class="hidden sm:inline">Reset</span><span class="sm:hidden">Reset</span>
+<span>Reset</span>
 </button>
 </div>
 </div>
@@ -155,143 +239,149 @@ body.modal-open{overflow:hidden}
 <p>© 2025 Blox Fruits Calculator • All values are community-based • Not affiliated with Roblox</p>
 </footer>
 
-<!-- Fruit Modal -->
-<div id="fruit-modal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-desc" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-<div class="relative bg-black/90 border border-gray-800 rounded-xl shadow-2xl max-h-[90vh] max-w-[95vw] w-full sm:max-w-4xl overflow-hidden">
-<div class="flex flex-col space-y-1.5 text-center sm:text-left border-b border-foreground/5 p-4 pb-3">
-<h2 id="modal-title" class="font-semibold tracking-tight flex items-center gap-2 text-xl">
+<div id="fruit-modal" role="dialog" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+<div class="relative bg-black/95 border border-gray-700 w-full h-full flex flex-col">
+<div class="flex items-center justify-between border-b border-gray-700 p-4">
+<h2 class="font-semibold text-xl flex items-center gap-2">
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search h-5 w-5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
 Search Items
 </h2>
-</div>
-<div id="modal-desc" class="p-4 overflow-y-auto max-h-[70vh]">
-<div id="fruit-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-3"></div>
-</div>
-<input id="fruit-search" class="w-full mx-4 mb-3 px-3 py-2 rounded border border-input bg-background/50 text-sm" placeholder="Search...">
-<button id="close-modal" class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-popover transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+<button id="close-modal" class="p-2 hover:bg-gray-800 rounded-lg">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-6 w-6"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
 </button>
+</div>
+<input id="fruit-search" class="w-full mx-4 mt-3 mb-2 px-4 py-3 rounded-lg border border-gray-600 bg-white text-black text-base" placeholder="Search fruits...">
+<div class="flex-1 overflow-y-auto p-4">
+<div id="fruit-grid" class="grid grid-cols-3 sm:grid-cols-5 gap-3"></div>
+</div>
 </div>
 </div>
 
 <script>
 const fruits={"West Dragon":{value:1500000000,beli:"15M",demand:"10/10",image:"West-Dragon.webp"},"East Dragon":{value:1200000000,beli:"15M",demand:"10/10",image:"East-Dragon.webp"},"Kitsune":{value:300000000,beli:"8M",demand:"10/10",image:"Kitsune.webp"},"Yeti":{value:150000000,beli:"5M",demand:"10/10",image:"Yeti.webp"},"Gas":{value:65000000,beli:"3.2M",demand:"8/10",image:"Gas.webp"},"Leopard":{value:150000000,beli:"5M",demand:"10/10",image:"Leopard.webp"},"Dough":{value:30000000,beli:"2.8M",demand:"10/10",image:"Dough.webp"},"Pain":{value:15000000,beli:"2.3M",demand:"6/10",image:"Pain.webp"},"T-Rex":{value:20000000,beli:"2.7M",demand:"8/10",image:"T-RexFruit.svg"},"Gravity":{value:15000000,beli:"2.5M",demand:"4/10",image:"Gravity.webp"},"Mammoth":{value:10000000,beli:"2.7M",demand:"5/10",image:"Mammoth.webp"},"Spirit":{value:10000000,beli:"3.4M",demand:"6/10",image:"Spirit.webp"},"Control":{value:10000000,beli:"3.2M",demand:"5/10",image:"Control.webp"},"Venom":{value:10000000,beli:"3M",demand:"6/10",image:"Venom.webp"},"Portal":{value:10000000,beli:"1.9M",demand:"10/10",image:"Portal.webp"},"Buddha":{value:10000000,beli:"1.2M",demand:"10/10",image:"Buddha.webp"},"Shadow":{value:6500000,beli:"2.9M",demand:"5/10",image:"Shadow.webp"},"Blizzard":{value:5000000,beli:"2.4M",demand:"5/10",image:"Blizzard.webp"},"Creation":{value:3500000,beli:"1.4M",demand:"3/10",image:"Creation.webp"},"Phoenix":{value:2750000,beli:"1.8M",demand:"3/10",image:"Phoenix.webp"},"Sound":{value:2500000,beli:"1.7M",demand:"4/10",image:"Sound.webp"},"Spider":{value:1500000,beli:"1.5M",demand:"2/10",image:"Spider.webp"},"Love":{value:1500000,beli:"1.3M",demand:"3/10",image:"Love.webp"},"Magma":{value:1150000,beli:"960K",demand:"8/10",image:"Magma.webp"},"Quake":{value:1000000,beli:"1M",demand:"2/10",image:"Quake.webp"},"Diamond":{value:1000000,beli:"600K",demand:"2/10",image:"Diamond.webp"},"Ghost":{value:800000,beli:"940K",demand:"1/10",image:"Ghost.webp"},"Eagle":{value:800000,beli:"550K",demand:"2/10",image:"Eagle.webp"},"Rubber":{value:700000,beli:"750K",demand:"1/10",image:"Rubber.webp"},"Ice":{value:550000,beli:"350K",demand:"2/10",image:"Ice.webp"},"Sand":{value:420000,beli:"420K",demand:"1/10",image:"Sand.webp"},"Dark":{value:400000,beli:"500K",demand:"1/10",image:"Dark.webp"},"Flame":{value:250000,beli:"250K",demand:"1/10",image:"Flame.webp"},"Spike":{value:180000,beli:"180K",demand:"1/10",image:"Spike.webp"},"Smoke":{value:100000,beli:"100K",demand:"1/10",image:"Smoke.webp"},"Bomb":{value:80000,beli:"80K",demand:"1/10",image:"Bomb.webp"},"Spring":{value:60000,beli:"60K",demand:"1/10",image:"Spring.webp"},"Blade":{value:50000,beli:"30K",demand:"1/10",image:"Blade.webp"},"Spin":{value:7500,beli:"7.5K",demand:"1/10",image:"Spin.webp"},"Rocket":{value:5000,beli:"5K",demand:"1/10",image:"Rocket.webp"}};
 
-const leftSlots=document.querySelectorAll('.fruit-slot[data-side="left"]');
-const rightSlots=document.querySelectorAll('.fruit-slot[data-side="right"]');
-const addButtons=document.querySelectorAll('.add-fruit');
-const yourValueEl=document.getElementById('your-value');
-const theirValueEl=document.getElementById('their-value');
-const yourPriceEl=document.getElementById('your-price');
-const theirPriceEl=document.getElementById('their-price');
-const yourDemandEl=document.getElementById('your-demand');
-const theirDemandEl=document.getElementById('their-demand');
-const resultEl=document.getElementById('result');
-const yourOfferEl=document.getElementById('your-offer');
-const theirOfferEl=document.getElementById('their-offer');
-const yourDemandTotal=document.getElementById('your-demand-total');
-const theirDemandTotal=document.getElementById('their-demand-total');
-const yourPriceTotal=document.getElementById('your-price-total');
-const theirPriceTotal=document.getElementById('their-price-total');
-const leftBar=document.getElementById('left-bar');
-const rightBar=document.getElementById('right-bar');
-const modal=document.getElementById('fruit-modal');
-const closeModal=document.getElementById('close-modal');
-const fruitGrid=document.getElementById('fruit-grid');
-const fruitSearch=document.getElementById('fruit-search');
+const leftSlots = document.querySelectorAll('.fruit-slot[data-side="left"]');
+const rightSlots = document.querySelectorAll('.fruit-slot[data-side="right"]');
+const addButtons = document.querySelectorAll('.add-fruit');
+const modal = document.getElementById('fruit-modal');
+const closeModal = document.getElementById('close-modal');
+const fruitGrid = document.getElementById('fruit-grid');
+const fruitSearch = document.getElementById('fruit-search');
 
-let leftFruits=Array(8).fill(null);
-let rightFruits=Array(8).fill(null);
-let currentSide=null;
+let leftFruits = Array(8).fill(null);
+let rightFruits = Array(8).fill(null);
+let currentSide = null;
 
-addButtons.forEach(b=>b.addEventListener('click',()=>{currentSide=b.dataset.side;modal.classList.remove('hidden');renderFruits()}));
-closeModal.addEventListener('click',()=>modal.classList.add('hidden'));
-fruitSearch.addEventListener('input',renderFruits);
+addButtons.forEach(b => b.addEventListener('click', () => {
+    currentSide = b.dataset.side;
+    modal.classList.remove('hidden');
+    renderFruits();
+}));
 
-function renderFruits(){
-    fruitGrid.innerHTML='';
-    const q=fruitSearch.value.toLowerCase();
-    Object.entries(fruits).filter(([n])=>n.toLowerCase().includes(q)).forEach(([n,f])=>{
-        const btn=document.createElement('button');
-        btn.className='group relative flex w-full flex-col items-center overflow-hidden rounded-lg p-3 sm:p-2 text-left transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] bg-foreground/[0.02] hover:bg-foreground/[0.06] border border-transparent hover:border-foreground/10';
-        btn.innerHTML=`<div class="relative mb-2 h-24 w-24 sm:h-20 sm:w-20"><img src="${f.image}" draggable="false" alt="${n}" loading="lazy" class="object-contain transition-transform duration-200 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div></div><div class="w-full space-y-0.5"><div class="flex items-center gap-1"><span class="truncate text-xs font-medium sm:text-sm">${n}</span></div></div>`;
-        btn.onclick=()=>{addFruit(n);};
+closeModal.addEventListener('click', () => modal.classList.add('hidden'));
+fruitSearch.addEventListener('input', renderFruits);
+
+function renderFruits() {
+    fruitGrid.innerHTML = '';
+    const q = fruitSearch.value.toLowerCase();
+    Object.entries(fruits).filter(([n]) => n.toLowerCase().includes(q)).forEach(([n, f]) => {
+        const btn = document.createElement('button');
+        btn.className = 'group relative flex w-full flex-col items-center overflow-hidden rounded-lg p-3 text-left transition-all duration-200 hover:scale-105 bg-white/10 hover:bg-white/20 border border-transparent hover:border-white/30';
+        btn.innerHTML = `<div class="relative mb-2 h-24 w-24"><img src="${f.image}" draggable="false" alt="${n}" class="object-contain w-full h-full transition-transform group-hover:scale-110"></div><span class="text-sm font-medium truncate">${n}</span>`;
+        btn.onclick = () => addFruit(n);
         fruitGrid.appendChild(btn);
     });
 }
 
-function addFruit(name){
-    const arr=currentSide==='left'?leftFruits:rightFruits;
-    const slots=currentSide==='left'?leftSlots:rightSlots;
-    const i=arr.indexOf(null);
-    if(i>-1){
-        arr[i]=name;
-        slots[i].innerHTML=`<img src="${fruits[name].image}" class="w-3/5 h-3/5 object-contain"><span class="text-[10px] mt-1 truncate w-full">${name}</span>`;
+function addFruit(name) {
+    const arr = currentSide === 'left' ? leftFruits : rightFruits;
+    const slots = currentSide === 'left' ? leftSlots : rightSlots;
+    const i = arr.indexOf(null);
+    if (i > -1) {
+        arr[i] = name;
+        slots[i].innerHTML = `<img src="${fruits[name].image}" class="w-3/5 h-3/5 object-contain"><span class="text-[10px] mt-1 truncate w-full">${name}</span>`;
         calculate();
     }
     modal.classList.add('hidden');
 }
 
-[...leftSlots,...rightSlots].forEach(s=>s.addEventListener('click',()=>{
-    const side=s.dataset.side;
-    const i=parseInt(s.dataset.index);
-    const arr=side==='left'?leftFruits:rightFruits;
-    if(arr[i]){
-        arr[i]=null;
-        s.innerHTML='';
-        calculate();
-    }
-}));
+[...leftSlots, ...rightSlots].forEach(s => {
+    s.addEventListener('click', () => {
+        const side = s.dataset.side;
+        const i = parseInt(s.dataset.index);
+        const arr = side === 'left' ? leftFruits : rightFruits;
+        if (arr[i]) {
+            arr[i] = null;
+            s.innerHTML = '';
+            calculate();
+        }
+    });
+});
 
-document.querySelector('.reset-calculator').onclick=()=>{
+document.querySelector('.reset-calculator').onclick = () => {
     leftFruits.fill(null);
     rightFruits.fill(null);
-    leftSlots.forEach(s=>s.innerHTML='');
-    rightSlots.forEach(s=>s.innerHTML='');
+    leftSlots.forEach(s => s.innerHTML = '');
+    rightSlots.forEach(s => s.innerHTML = '');
     calculate();
 };
 
-function calculate(){
-    const left={val:0,beli:0,dem:0};
-    const right={val:0,beli:0,dem:0};
-    
-    leftFruits.filter(Boolean).forEach(f=>{const d=fruits[f];left.val+=d.value;left.beli+=parseBeli(d.beli);left.dem+=parseDemand(d.demand)});
-    rightFruits.filter(Boolean).forEach(f=>{const d=fruits[f];right.val+=d.value;right.beli+=parseBeli(d.beli);right.dem+=parseDemand(d.demand)});
-    
-    yourValueEl.textContent=formatNum(left.val);
-    theirValueEl.textContent=formatNum(right.val);
-    yourPriceEl.textContent=formatNum(left.beli);
-    theirPriceEl.textContent=formatNum(right.beli);
-    yourDemandEl.textContent=`${Math.round(left.dem)}/10`;
-    theirDemandEl.textContent=`${Math.round(right.dem)}/10`;
-    
-    yourOfferEl.textContent=formatNum(left.val);
-    theirOfferEl.textContent=formatNum(right.val);
-    yourDemandTotal.textContent=`Demand: ${Math.round(left.dem)}/10`;
-    theirDemandTotal.textContent=`Demand: ${Math.round(right.dem)}/10`;
-    yourPriceTotal.textContent=`Price: ${formatNum(left.beli)}`;
-    theirPriceTotal.textContent=`Price: ${formatNum(right.beli)}`;
-    
-    const total=left.val+right.val||1;
-    const leftPct=(left.val/total)*100;
-    leftBar.style.width=`${leftPct}%`;
-    rightBar.style.width=`${100-leftPct}%`;
-    
-    const diff=left.val-right.val;
-    let msg="Neutral";
-    if(Math.abs(diff)/total<0.05){
-        msg="Fair";
-    }else if(diff>0){
-        msg=`Loss: ${formatNum(diff)}`;
-    }else{
-        msg=`Win: ${formatNum(-diff)}`;
-    }
-    resultEl.textContent=msg;
+function calculate() {
+    const left = {val:0, beli:0, dem:0};
+    const right = {val:0, beli:0, dem:0};
+
+    leftFruits.filter(Boolean).forEach(f => {
+        const d = fruits[f];
+        left.val += d.value;
+        left.beli += parseBeli(d.beli);
+        left.dem += parseDemand(d.demand);
+    });
+
+    rightFruits.filter(Boolean).forEach(f => {
+        const d = fruits[f];
+        right.val += d.value;
+        right.beli += parseBeli(d.beli);
+        right.dem += parseDemand(d.demand);
+    });
+
+    document.getElementById('your-value').textContent = formatNum(left.val);
+    document.getElementById('their-value').textContent = formatNum(right.val);
+    document.getElementById('your-price').textContent = formatNum(left.beli);
+    document.getElementById('their-price').textContent = formatNum(right.beli);
+    document.getElementById('your-demand').textContent = `${Math.round(left.dem)}/10`;
+    document.getElementById('their-demand').textContent = `${Math.round(right.dem)}/10`;
+
+    document.getElementById('your-offer').textContent = formatNum(left.val);
+    document.getElementById('their-offer').textContent = formatNum(right.val);
+    document.getElementById('your-demand-total').textContent = `Demand: ${Math.round(left.dem)}/10`;
+    document.getElementById('their-demand-total').textContent = `Demand: ${Math.round(right.dem)}/10`;
+    document.getElementById('your-price-total').textContent = `Price: ${formatNum(left.beli)}`;
+    document.getElementById('their-price-total').textContent = `Price: ${formatNum(right.beli)}`;
+
+    const total = left.val + right.val || 1;
+    const leftPct = (left.val / total) * 100;
+    document.getElementById('left-bar').style.width = `${leftPct}%`;
+    document.getElementById('right-bar').style.width = `${100 - leftPct}%`;
+
+    const diff = left.val - right.val;
+    let msg = "Neutral";
+    if (Math.abs(diff) / total < 0.05) msg = "Fair";
+    else if (diff > 0) msg = `Loss: ${formatNum(diff)}`;
+    else msg = `Win: ${formatNum(-diff)}`;
+    document.getElementById('result').textContent = msg;
 }
 
-function parseBeli(s){return parseFloat(s.replace(/[^0-9.]/g,''))*(s.includes('M')?1e6:s.includes('K')?1e3:1)}
-function parseDemand(s){return parseInt(s.split('/')[0])}
-function formatNum(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':n}
+function parseBeli(s) {
+    return parseFloat(s.replace(/[^0-9.]/g,'')) * (s.includes('M') ? 1e6 : s.includes('K') ? 1e3 : 1);
+}
+
+function parseDemand(s) {
+    return parseInt(s.split('/')[0]);
+}
+
+function formatNum(n) {
+    return n >= 1e6 ? (n/1e6).toFixed(1) + 'M' : n >= 1e3 ? (n/1e3).toFixed(1) + 'K' : n;
+}
 
 calculate();
 </script>
